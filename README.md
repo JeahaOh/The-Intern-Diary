@@ -2,6 +2,34 @@
 **2019년 02/11 ~ 04/11 인턴 기록**
 
 - - -
+## 2/14 목요일
+오전에 웹 앱 간단한 교육하고 QnA시간을 가졌음.
+WBS 외에 크게 중요한 얘기가 없어서 기록하지 않음.
+
+### WBS (Work Breakdown Structure)
+프로젝트를 소규모의 구성 단위까지 나누어 전달할 수 있는 기능.
+'계약 업무 분류 체계 (Contract Work Breakdown Structure, CWBS)'라고도 함.
+- 역할
+    - 전체의 큰 업무를 분류하여 구성 요소로 만등 후에 각 요소를 평가, 일정별 계획, 그것을 완수할 수 있는 사람에게 할당해주는 역할을 수행함.
+    - 본래 목적은 담당자, 예산 등 프로젝트에 들어갈 수 있는 자원들을 기입하여 해당 내용을 적극정으로 관리하고 투영하는데 목적이 있음.
+    - IT에 들어가면 프로젝트의 진행에 있어 일정에 대한 부분만 보여주고 있는 형태가 되었음. (프로젝트 진행 계획에만 치중하고 있다고 보면 됨.)
+
+
+```
+오후에 개발 환경 설정을 마져 했음.
+오늘 오후를 좀 날려먹었는데,
+org.apache.catalina.LifecycleException
+java.util.zip.ZipException: error in opening zip file
+등의 에러 때문이였음.
+
+원인은 .m2/repository 문제 였는데,
+이게 지우고 jar 파일을 다시 받아와도 와이파이로 받아오는 자료들을 제대로 인식하지 않고 에러를 계속 뿜었음.
+집에 와서 다른거 변경없이 repository만 다시 받았는데 아무 문제 없이 돌아가서 조금 현타가 왔음.
+
+```
+
+
+- - -
 ## 2/13 수요일
 
 ### APP 
@@ -93,7 +121,9 @@ Mac OS 단축키와 윈도우 단축키, 마우스 감도, 트랙패드 방향 �
 ```
 ```
 Server Tomcat v8.5 failed to start.
-apache-tomcat-X.X.XX/lib/servlet-api.jar 파일을 못 찾아서 날수도 있음.
+apache-tomcat-X.X.XX/lib/servlet-api.jar 파일을
+*/JAVA/jdkX.Y.Z/lib/servlet-api.jar 에 대체해주면 해결 될 수도 있음.
+이유는 버젼이 맞지 않아서 임.
 
 mvn .m2/repository 로 인한 에러도 여러가지임
 
