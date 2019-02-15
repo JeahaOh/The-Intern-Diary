@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB CAM API TEST</title>
+    <style></style>
+    <script src="../jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <video id="player" controls autoplay ></video>
+    <!--  카매라 live 영역, hidden 속성 입힐 수 있음. -->
+    <button id="capture">Capture</button>
+    <!--  사진을 capture하기 위한 버튼  -->
+    <canvas id="snapshot" width=320 height=240></canvas>
+    <!--  capture한 사진을 보여주기위한 canvas 객체 영역  -->
+    
+    <script>
+      var player = document.getElementById('player');
+      var snapshotCanvas = document.getElementById('snapshot');
+      var captureButton = document.getElementById('capture');
+      var videoTracks;
+
+      var handleSuccess = function(stream) {
+        //  웹캠을 <video>에 연결해주고 자동 실행함.
+        player.srcObject = stream;
+        videoTracks = stream.getVideoTracks();
+      };
+
+      captureButton.addEventListener('click', function() {
+        //  capture 버튼을 누르면 웹캠에서 사진을 가져옴.
+        var context = snapshot.getContext('2d');
+        //  이미지를 띄움
+        //  drawImage(img소스, x좌표, y좌표, width, height)
+        context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+
+        // 이벤트가 발생하면 마지막으로 스트림을 닫아줌.
+        videoTracks.forEach(function(track) {track.stop()});
+      });
+
+      navigator.mediaDevices.getUserMedia({video: true})
+          .then(handleSuccess);
+    </script>
+    <!--
+    출처 :
+        https://developers.google.com/web/fundamentals/media/capturing-images/?hl=ko
+    추가 참고 :
+        http://hacks.mozilla.or.kr/2011/01/html5-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%8D%94-%EA%B0%9C%EB%B0%9C-%EB%B0%A9%EB%B2%95/
+        https://cofs.tistory.com/182
+    
+    -->
+    
+</body>
+</html>
