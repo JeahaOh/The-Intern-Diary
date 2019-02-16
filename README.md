@@ -2,7 +2,92 @@
 **2019년 02/11 ~ 04/11 인턴 기록**
 
 - - -
-##2/15 금요일
+## 2/16 토요일
+오전에 기획하며 모은 자료를 git 관리가 꼬여서 날려 먹었음. 다시 기 획작업 하는데 낮에 정리한 만큼하지 못하였음.
+그 전에 git에 관해 약간 정리하자면.
+#### git add 취소하기
+- 실수로 git add . 으로 모든 파일을 staging area에 넣은 경우
+    ```
+    git reset HEAD [file]
+    ```
+    - 뒤에 파일명이 없다면 add한 파일을 전체 취소함
+#### git commit 취소하기
+- 완료한 commit을 취소 해야하는 경우
+    - 너무 일찍 commit 한 경우
+    - 어떤 파일을 빼먹고 commit 한 경우
+    - 100M 이상의 자료를 commit 한 경우
+    ```
+    [방법 1] commit을 취소하고 해당 파일들은 staged 상태로 워킹 디렉터리에 보존
+    git reset --soft HEAD^
+    [방법 2] commit을 취소하고 해당 파일들은 unstaged 상태로 워킹 디렉터리에 보존
+    git reset --mixed HEAD^ // 기본 옵션
+    git reset HEAD^ // 위와 동일
+    git reset HEAD~2 // 마지막 2개의 commit을 취소
+    [방법 3] commit을 취소하고 해당 파일들은 unstaged 상태로 워킹 디렉터리에서 삭제
+    git reset --hard HEAD^
+    ```
+### 교훈
+git reset 할 때는 작업 하던 파일을 따로 보관 하도록 하자...
+- - -
+### 기획
+#### Seoul Pics
+*Seoul Pictures* 와 *Seoul Picks* 의 중의적 표현
+- 서울관광재단의 서울 공식 여행 가이드를 보고 모티브를 받았음.
+    - http://korean.visitseoul.net/index
+- 이용자들이 서울에서 문화, 역사, 식도락 등의 다양한 활동을 사진으로 공유함으로 내/외국인의 데이트, 관광등의 정보를 공유할 수 있는 서비스.
+
+#### 기능 (예정)
+- 회원 관리와 사진 공유 게시판의 CRUD와 Client Side의 선 개발 후 이후 나머지 기능들 구현.
+1. Web App 공통 (공통 컴포넌트 이용)
+    - 일반 로그인 (사용자디렉토리 / 통합 인증)
+        - 모바일에서는 한번의 로그인 처리
+        - 웹에서는 session 처리
+    - 게시판 (협업)
+        - 사용자들이 올리는 사진과 위치 정보, 간단한 후기 표시
+2. Web 
+    - 공통 컴포넌트 기반
+        - 게시물 통계 (통계/리포팅, 모바일 지원인지 모르겠음.)
+            - 많이 방문한 지역을 통계 낼 수 있음
+        - 쿠키/세션
+            - 로그인
+        - 로그관리 (시스템 관리)
+            - 관리자의 모니터링용
+        - 메뉴관리
+        - 프로그램 관리
+        - 코드관리
+            - 이용자/관리자, 25개 구별 코드, 테마별 코드 등의 관리
+    - 외부 라이브러리
+        - starrr.js
+            - 게시자의 별점 평가
+            - https://github.com/dobtco/starrr
+        - slides.js
+            - 테마별 보기 상세 모달로 이미지 보여주는 방식으로 괜찮을 듯. (무료)
+            - https://slidesjs.com/
+        - ImageEditor
+            - 기능 몇 가지 빼서 워터마크 붙이기에 괜찮을듯
+            - 아니면 기능만 참고하는 걸로
+            - https://nhnent.github.io/tui.image-editor/latest/index.html
+        - JavaScript Use Canvas To Watermark Images
+            - http://cwestblog.com/2017/06/11/javascript-use-canvas-to-watermark-images/
+        - Watermark.js
+            - https://www.patrick-wied.at/static/watermarkjs/
+
+
+3. APP (공통 컴포넌트 기반)
+    - 마이페이지(개인화)
+    - 모바일 사진 앨범
+    - 위치정보 연계
+    - 멀티미디어 제어
+
+- - -
+### 게시판 디자인 참고
+- https://templated.co/visualize
+    - https://opentutorials.org/course/2473/13815
+    - WEB의 메인 페이지를 이런 모습으로 하고, 마우스 오버하면 장소 정보를 나오게 하면 심플해서 괜찮을 것 같음.
+
+
+- - -
+## 2/15 금요일
 
 ### 개발팀장님 교육
 
@@ -64,7 +149,7 @@ Item 발표(item 선정 먼저 해야 할 듯),
 안드로이드 앱 개발에 시간이 더 걸릴것으로 생각되어
 웹을 2주 안에 개발 해야 할 것이라고 예상 됨.
 
-구상중인 주제는 서울 명소 방문 인증과, 24개 구의 관광지 통계?
+구상중인 주제는 서울 명소 방문 인증과, 25개 구의 관광지 통계?
 가능하다면 구글 Map API 를 사용하고 싶음.
 웹에서 Javascript로 Stream을 열어서 웹캠으로 사진 찍는것만 오늘 테스트 해 보았고, 웹 구현은 가능하고, 나머지 앱 개발과 전체적 일정 조율은 고민 해 봐야 할 것 같음.
 
