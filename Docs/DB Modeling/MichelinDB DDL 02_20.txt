@@ -14,17 +14,29 @@ ALTER TABLE menu_board
 ALTER TABLE menu_board
 	DROP FOREIGN KEY FK_menu_TO_menu_board; -- 메뉴 -> 메뉴판
 
--- 신고
+-- 관리 요청
 ALTER TABLE rpt
-	DROP FOREIGN KEY FK_memb_TO_rpt; -- 회원 -> 신고
+	DROP FOREIGN KEY FK_memb_TO_rpt; -- 회원 -> 관리 요청
 
--- 레스토랑_사진
-ALTER TABLE rstrnt_phot
-	DROP FOREIGN KEY FK_rstrnt_TO_rstrnt_phot; -- 레스토랑 -> 레스토랑_사진
+-- 관리 요청
+ALTER TABLE rpt
+	DROP FOREIGN KEY FK_rstrnt_TO_rpt; -- 레스토랑 -> 관리 요청
 
--- 후기_사진
-ALTER TABLE rievew_phot
-	DROP FOREIGN KEY FK_review_TO_rievew_phot; -- 후기 -> 후기_사진
+-- 관리 요청
+ALTER TABLE rpt
+	DROP FOREIGN KEY FK_review_TO_rpt; -- 후기 -> 관리 요청
+
+-- 사진
+ALTER TABLE phot
+	DROP FOREIGN KEY FK_review_TO_phot; -- 후기 -> 사진
+
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	DROP FOREIGN KEY FK_rstrnt_TO_rst_pht; -- 레스토랑 -> 레스토랑 - 사진
+
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	DROP FOREIGN KEY FK_phot_TO_rst_pht; -- 사진 -> 레스토랑 - 사진
 
 -- 레스토랑
 ALTER TABLE rstrnt
@@ -46,17 +58,17 @@ ALTER TABLE menu
 ALTER TABLE menu_board
 	DROP PRIMARY KEY; -- 메뉴판 기본키
 
--- 신고
+-- 관리 요청
 ALTER TABLE rpt
-	DROP PRIMARY KEY; -- 신고 기본키
+	DROP PRIMARY KEY; -- 관리 요청 기본키
 
--- 레스토랑_사진
-ALTER TABLE rstrnt_phot
-	DROP PRIMARY KEY; -- 레스토랑_사진 기본키
+-- 사진
+ALTER TABLE phot
+	DROP PRIMARY KEY; -- 사진 기본키
 
--- 후기_사진
-ALTER TABLE rievew_phot
-	DROP PRIMARY KEY; -- 후기_사진 기본키
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	DROP PRIMARY KEY; -- 레스토랑 - 사진 기본키
 
 -- 레스토랑
 DROP TABLE IF EXISTS rstrnt RESTRICT;
@@ -73,14 +85,14 @@ DROP TABLE IF EXISTS menu RESTRICT;
 -- 메뉴판
 DROP TABLE IF EXISTS menu_board RESTRICT;
 
--- 신고
+-- 관리 요청
 DROP TABLE IF EXISTS rpt RESTRICT;
 
--- 레스토랑_사진
-DROP TABLE IF EXISTS rstrnt_phot RESTRICT;
+-- 사진
+DROP TABLE IF EXISTS phot RESTRICT;
 
--- 후기_사진
-DROP TABLE IF EXISTS rievew_phot RESTRICT;
+-- 레스토랑 - 사진
+DROP TABLE IF EXISTS rst_pht RESTRICT;
 
 -- 레스토랑
 CREATE TABLE rstrnt (
@@ -184,6 +196,7 @@ ALTER TABLE menu
 
 -- 메뉴판
 CREATE TABLE menu_board (
+	brd_no    INT NOT NULL COMMENT '메뉴판 번호', -- 메뉴판 번호
 	rstrnt_no INT NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
 	mn_no     INT NOT NULL COMMENT '메뉴 번호' -- 메뉴 번호
 )
@@ -193,77 +206,80 @@ COMMENT '메뉴판';
 ALTER TABLE menu_board
 	ADD CONSTRAINT PK_menu_board -- 메뉴판 기본키
 		PRIMARY KEY (
+			brd_no,    -- 메뉴판 번호
 			rstrnt_no, -- 레스토랑 번호
 			mn_no      -- 메뉴 번호
 		);
 
--- 신고
-CREATE TABLE rpt (
-	rpt_no    INT         NOT NULL COMMENT '신고 번호', -- 신고 번호
-	mno       INT         NOT NULL COMMENT '멤버 번호', -- 멤버 번호
-	trgt      VARCHAR(50) NOT NULL COMMENT '신고 대상', -- 신고 대상
-	trgt_no   INT         NOT NULL COMMENT '대상 번호', -- 대상 번호
-	rpt_cont  TEXT        NOT NULL COMMENT '신고 내용', -- 신고 내용
-	rpt_date  DATETIME    NULL     COMMENT '신고 일자 ', -- 신고 일자 
-	hndl      CHAR(1)     NULL     COMMENT '처리 여부', -- 처리 여부
-	hndl_cont TEXT        NULL     COMMENT '처리 내용' -- 처리 내용
-)
-COMMENT '신고';
+ALTER TABLE menu_board
+	MODIFY COLUMN brd_no INT NOT NULL AUTO_INCREMENT COMMENT '메뉴판 번호';
 
--- 신고
+ALTER TABLE menu_board
+	AUTO_INCREMENT = 1;
+
+-- 관리 요청
+CREATE TABLE rpt (
+	rpt_no    INT      NOT NULL COMMENT '요청 번호', -- 요청 번호
+	mno       INT      NOT NULL COMMENT '멤버 번호', -- 멤버 번호
+	rstrnt_no INT      NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
+	review_no INT      NULL     COMMENT '리뷰 번호', -- 리뷰 번호
+	rpt_cont  TEXT     NOT NULL COMMENT '요청 내용', -- 요청 내용
+	rpt_date  DATETIME NOT NULL COMMENT '요청 일자', -- 요청 일자
+	hndl      CHAR(1)  NOT NULL COMMENT '처리 여부', -- 처리 여부
+	hndl_cont TEXT     NOT NULL COMMENT '처리 내용' -- 처리 내용
+)
+COMMENT '관리 요청';
+
+-- 관리 요청
 ALTER TABLE rpt
-	ADD CONSTRAINT PK_rpt -- 신고 기본키
+	ADD CONSTRAINT PK_rpt -- 관리 요청 기본키
 		PRIMARY KEY (
-			rpt_no -- 신고 번호
+			rpt_no -- 요청 번호
 		);
 
 ALTER TABLE rpt
-	MODIFY COLUMN rpt_no INT NOT NULL AUTO_INCREMENT COMMENT '신고 번호';
+	MODIFY COLUMN rpt_no INT NOT NULL AUTO_INCREMENT COMMENT '요청 번호';
 
 ALTER TABLE rpt
 	AUTO_INCREMENT = 1;
 
--- 레스토랑_사진
-CREATE TABLE rstrnt_phot (
-	phot_no   INT          NOT NULL COMMENT '사진 번호', -- 사진 번호
-	rstrnt_no INT          NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
-	phot_nm   VARCHAR(255) NULL     COMMENT '사진 이름' -- 사진 이름
-)
-COMMENT '레스토랑_사진';
-
--- 레스토랑_사진
-ALTER TABLE rstrnt_phot
-	ADD CONSTRAINT PK_rstrnt_phot -- 레스토랑_사진 기본키
-		PRIMARY KEY (
-			phot_no -- 사진 번호
-		);
-
--- 레스토랑_사진 유니크 인덱스
-CREATE UNIQUE INDEX UIX_rstrnt_phot
-	ON rstrnt_phot ( -- 레스토랑_사진
-		phot_nm ASC -- 사진 이름
-	);
-
--- 후기_사진
-CREATE TABLE rievew_phot (
+-- 사진
+CREATE TABLE phot (
 	phot_no   INT          NOT NULL COMMENT '사진 번호', -- 사진 번호
 	review_no INT          NULL     COMMENT '리뷰 번호', -- 리뷰 번호
 	phot_nm   VARCHAR(255) NULL     COMMENT '사진 이름' -- 사진 이름
 )
-COMMENT '후기_사진';
+COMMENT '사진';
 
--- 후기_사진
-ALTER TABLE rievew_phot
-	ADD CONSTRAINT PK_rievew_phot -- 후기_사진 기본키
+-- 사진
+ALTER TABLE phot
+	ADD CONSTRAINT PK_phot -- 사진 기본키
 		PRIMARY KEY (
 			phot_no -- 사진 번호
 		);
 
--- 후기_사진 유니크 인덱스
-CREATE UNIQUE INDEX UIX_rievew_phot
-	ON rievew_phot ( -- 후기_사진
+-- 사진 유니크 인덱스
+CREATE UNIQUE INDEX UIX_phot
+	ON phot ( -- 사진
 		phot_nm ASC -- 사진 이름
 	);
+
+-- 레스토랑 - 사진
+CREATE TABLE rst_pht (
+	rp_no     INT NOT NULL COMMENT '레스토랑 사진 번호', -- 레스토랑 사진 번호
+	rstrnt_no INT NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	phot_no   INT NOT NULL COMMENT '사진 번호' -- 사진 번호
+)
+COMMENT '레스토랑 - 사진';
+
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	ADD CONSTRAINT PK_rst_pht -- 레스토랑 - 사진 기본키
+		PRIMARY KEY (
+			rp_no,     -- 레스토랑 사진 번호
+			rstrnt_no, -- 레스토랑 번호
+			phot_no    -- 사진 번호
+		);
 
 -- 후기
 ALTER TABLE review
@@ -305,9 +321,9 @@ ALTER TABLE menu_board
 			mn_no -- 메뉴 번호
 		);
 
--- 신고
+-- 관리 요청
 ALTER TABLE rpt
-	ADD CONSTRAINT FK_memb_TO_rpt -- 회원 -> 신고
+	ADD CONSTRAINT FK_memb_TO_rpt -- 회원 -> 관리 요청
 		FOREIGN KEY (
 			mno -- 멤버 번호
 		)
@@ -315,9 +331,9 @@ ALTER TABLE rpt
 			mno -- 멤버 번호
 		);
 
--- 레스토랑_사진
-ALTER TABLE rstrnt_phot
-	ADD CONSTRAINT FK_rstrnt_TO_rstrnt_phot -- 레스토랑 -> 레스토랑_사진
+-- 관리 요청
+ALTER TABLE rpt
+	ADD CONSTRAINT FK_rstrnt_TO_rpt -- 레스토랑 -> 관리 요청
 		FOREIGN KEY (
 			rstrnt_no -- 레스토랑 번호
 		)
@@ -325,12 +341,42 @@ ALTER TABLE rstrnt_phot
 			rstrnt_no -- 레스토랑 번호
 		);
 
--- 후기_사진
-ALTER TABLE rievew_phot
-	ADD CONSTRAINT FK_review_TO_rievew_phot -- 후기 -> 후기_사진
+-- 관리 요청
+ALTER TABLE rpt
+	ADD CONSTRAINT FK_review_TO_rpt -- 후기 -> 관리 요청
 		FOREIGN KEY (
 			review_no -- 리뷰 번호
 		)
 		REFERENCES review ( -- 후기
 			review_no -- 리뷰 번호
+		);
+
+-- 사진
+ALTER TABLE phot
+	ADD CONSTRAINT FK_review_TO_phot -- 후기 -> 사진
+		FOREIGN KEY (
+			review_no -- 리뷰 번호
+		)
+		REFERENCES review ( -- 후기
+			review_no -- 리뷰 번호
+		);
+
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	ADD CONSTRAINT FK_rstrnt_TO_rst_pht -- 레스토랑 -> 레스토랑 - 사진
+		FOREIGN KEY (
+			rstrnt_no -- 레스토랑 번호
+		)
+		REFERENCES rstrnt ( -- 레스토랑
+			rstrnt_no -- 레스토랑 번호
+		);
+
+-- 레스토랑 - 사진
+ALTER TABLE rst_pht
+	ADD CONSTRAINT FK_phot_TO_rst_pht -- 사진 -> 레스토랑 - 사진
+		FOREIGN KEY (
+			phot_no -- 사진 번호
+		)
+		REFERENCES phot ( -- 사진
+			phot_no -- 사진 번호
 		);
