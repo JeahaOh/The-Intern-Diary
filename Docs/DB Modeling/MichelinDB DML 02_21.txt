@@ -58,24 +58,26 @@ INSERT INTO `test`.`menu` (`menu`, `price`)
 VALUES ('궁중 신선로', 60000);
 -- 메뉴판
 INSERT INTO `test`.`menu_board` (`rstrnt_no`, `mn_no`)
-VALUES (2, 1);
-
--- 메뉴 삭제 SQL
-DELETE FROM `test`.`menu`
-WHERE mn_no = 1;
+VALUES (2, 4);
 
 -- 메뉴+판 삭제 SQL
-DELETE 
-FROM `test`.`menu` , `test`.`menu_board`
-USING `test`.`menu` AS `mn`
-JOIN `test`.`menu_board` AS `brd`
-ON `mn`.mn_no = `brd`.mn_no
-WHERE `mn`.mn_no = 1;
-
-
-DELETE `test`.`board`, `test`.`menu`
-FROM `test`.`board` brd
-inner join `test`.`menu` mn
-on mn.mn_no = brd.mn_no
+DELETE brd, mn
+FROM `menu_board` AS brd
+INNER JOIN `menu` AS mn
+ON brd.mn_no = mn.mn_no
 WHERE mn.mn_no = 1;
+
+SELECT mn_no, menu, price
+FROM menu;
+
+SELECT mn_no, rstrnt_no
+FROM menu_board;
+
+SELECT rst.rstrnt_name, mn.menu, mn.price
+FROM menu_board brd
+INNER JOIN menu mn
+ON brd.mn_no = mn.mn_no
+INNER JOIN rstrnt rst
+ON brd.rstrnt_no = rst.rstrnt_no;
+
 

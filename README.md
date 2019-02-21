@@ -38,6 +38,21 @@ CONVERT TO CHARACTER SET **charset_name** **[COLLATE collation_name]**;
 
 
 꼭!! Database table에 CHARACTER SET 확인 해야함.
+
+2시간 정도
+multi insert 와 multi delete를 시도 해 보았는데 Foreign Key 때문에 작동 하지 않음.
+
+insert는 따로 해줘야 할것으로 판단 되고
+
+delete는 
+ON DELETE CASCADE
+ON UPDATE CASCADE
+조건에 따라 설정을 해줘야 할것으로 판단 됨.
+
+통계 내야 하는 부분은
+ON DELETE NO ACTION
+으로 평점 정보는 남겨야 할 것 같음.
+
 ```
 
 - - -
