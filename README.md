@@ -1,6 +1,46 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 2/21 목요일
+### 프로젝트 기획과 발표
+```
+너무 준비를 안한것 같음.
+주제가 별로 좋지 않았던거 같지만 이미 시작해서...  OTL
+문서에 대한 지적만 받고 주제에 대한 얘기는 없었음.
+
+---
+
+산출물의 의미를 파악하라.
+통계를 좋아하시는 것 같음. 간단하게 쓸 수 있는 챠트 라이브러리를 찾아봐야 할 것 같음.
+주제가 시선을 끌지 못하니 "시선을 끌만한 무언가"가 있어야 하겠음.
+클라이언트의 성격을 분석해서 아이템을 선정 해야함.
+"Point가 있어야 하고, 딱 눈에 보여야 함"
+
+---
+
+현재 WBS에서 우선도가 바뀌면 일정 조정한것도 볼수 있게 만들어야함.
+
+---
+DB 모델링 후 테스트 하려는데 문자 셋 문제가 났음.
+utf8
+utf8_general_ci
+
+
+SET collation_server ='utf8_general_ci';
+
+ALTER DATABASE **DB_name** COLLATE = 'utf8_general_ci';
+
+ALTER TABLE **table_name**
+CONVERT TO CHARACTER SET **charset_name** **[COLLATE collation_name]**;
+
+
+참고 : https://mariadb.com/kb/en/library/setting-character-sets-and-collations/
+
+
+꼭!! Database table에 CHARACTER SET 확인 해야함.
+```
+
+- - -
 ## 2/20 수요일
 ```
 문서 작업, 발표 준비, 작업

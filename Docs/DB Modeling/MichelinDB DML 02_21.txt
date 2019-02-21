@@ -1,0 +1,81 @@
+
+-- 관리자 계정 생성
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'asdf1020', 'y', 'admin', password('asdf1020'), 'y');
+
+-- 회원 계정 생성 ex
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'ID', 'n', 'nickname', password('password'), 'y');
+
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'TestUser001', 'n', 'nickname', password('password'), 'y');
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'TestUser002', 'n', 'nickname', password('password'), 'y');
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'TestUser003', 'n', 'nickname', password('password'), 'y');
+INSERT INTO `test`.`memb`( `id`, `adm`, `nick`, `pwd`, `useyn`) VALUES ( 'TestUser004', 'n', 'nickname', password('password'), 'y');
+
+-- 레스토랑 정보 작성시 들어가야 할 SQL문
+-- 레스토랑 정보 생성 ex
+INSERT INTO `test`.`rstrnt` (`rstrnt_name`, `star`, `loc`, `loc_dtl`, `catg`, `tel`) VALUES ('Name', 0, '구', '상세주소', '요리유형', '전화번호');
+-- phot
+INSERT INTO `test`.`phot` (`phot_nm`) VALUES ('testphot000');
+-- rst_phot
+INSERT INTO `test`.`rst_pht` (`rstrnt_no`, `phot_no`) VALUES (2, 6);
+
+INSERT INTO `test`.`rstrnt` (`rstrnt_name`, `star`, `loc`, `loc_dtl`, `catg`, `tel`) VALUES ('가온', 3, '강남구', '강남구 도산대로 317, 호림아트센터 M층', '한식', '02-545-9845');
+INSERT INTO `test`.`rstrnt` (`rstrnt_name`, `star`, `loc`, `loc_dtl`, `catg`, `tel`) VALUES ('라연', 3, '중구', '중구 동호로 249, 신라호텔 23층', '한식', '02-2230-3367');
+
+-- 레스토랑 정보 READ ex
+SELECT `rstrnt`.`rstrnt_no`,
+    `rstrnt`.`rstrnt_name`,
+    `rstrnt`.`star`,
+    `rstrnt`.`loc`,
+    `rstrnt`.`loc_dtl`,
+    `rstrnt`.`catg`,
+    `rstrnt`.`tel`
+FROM `test`.`rstrnt`;
+
+
+-- 리뷰 작성시 들어가야 할 SQL 문
+INSERT INTO `test`.`review` (`mno`, `cont`, `cdt`) VALUES (2, 'TEST007', now());
+INSERT INTO `test`.`score` (`review_no`, `rstrnt_no`, `score`) VALUES (8, 2, 1);
+INSERT INTO `test`.`phot` (`review_no`, `phot_nm`) VALUES (9, 'testphot9');
+
+
+-- 관리요청 작성시 SQL
+-- 레스토랑 정보 관리 요청
+INSERT INTO `test`.`rpt` (`mno`, `rstrnt_no`, `rpt_cont`, `rpt_date`)
+VALUES (3, 1, '사진이 이상함', now());
+-- 후기 관리 요청
+INSERT INTO `test`.`rpt` (`mno`,`review_no`, `rpt_cont`, `rpt_date`)
+VALUES (4, 4, '배고픔', now());
+-- 후기 관리 처리
+UPDATE `test`.`rpt`
+SET
+`hndl` = 'Y',
+`hndl_cont` = '확인'
+WHERE `rpt_no` = 1;
+
+-- 메뉴 등록시 작성할 SQL
+-- 메뉴
+INSERT INTO `test`.`menu` (`menu`, `price`)
+VALUES ('궁중 신선로', 60000);
+-- 메뉴판
+INSERT INTO `test`.`menu_board` (`rstrnt_no`, `mn_no`)
+VALUES (2, 1);
+
+-- 메뉴 삭제 SQL
+DELETE FROM `test`.`menu`
+WHERE mn_no = 1;
+
+-- 메뉴+판 삭제 SQL
+DELETE 
+FROM `test`.`menu` , `test`.`menu_board`
+USING `test`.`menu` AS `mn`
+JOIN `test`.`menu_board` AS `brd`
+ON `mn`.mn_no = `brd`.mn_no
+WHERE `mn`.mn_no = 1;
+
+
+DELETE `test`.`board`, `test`.`menu`
+FROM `test`.`board` brd
+inner join `test`.`menu` mn
+on mn.mn_no = brd.mn_no
+WHERE mn.mn_no = 1;
+

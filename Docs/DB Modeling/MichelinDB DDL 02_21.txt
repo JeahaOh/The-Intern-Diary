@@ -1,9 +1,5 @@
 -- 후기
 ALTER TABLE review
-	DROP FOREIGN KEY FK_rstrnt_TO_review; -- 레스토랑 -> 후기
-
--- 후기
-ALTER TABLE review
 	DROP FOREIGN KEY FK_memb_TO_review; -- 회원 -> 후기
 
 -- 메뉴판
@@ -38,6 +34,14 @@ ALTER TABLE rst_pht
 ALTER TABLE rst_pht
 	DROP FOREIGN KEY FK_phot_TO_rst_pht; -- 사진 -> 레스토랑 - 사진
 
+-- 평점
+ALTER TABLE score
+	DROP FOREIGN KEY FK_review_TO_score; -- 후기 -> 평점
+
+-- 평점
+ALTER TABLE score
+	DROP FOREIGN KEY FK_rstrnt_TO_score; -- 레스토랑 -> 평점
+
 -- 레스토랑
 ALTER TABLE rstrnt
 	DROP PRIMARY KEY; -- 레스토랑 기본키
@@ -70,6 +74,10 @@ ALTER TABLE phot
 ALTER TABLE rst_pht
 	DROP PRIMARY KEY; -- 레스토랑 - 사진 기본키
 
+-- 평점
+ALTER TABLE score
+	DROP PRIMARY KEY; -- 평점 기본키
+
 -- 레스토랑
 DROP TABLE IF EXISTS rstrnt RESTRICT;
 
@@ -94,6 +102,9 @@ DROP TABLE IF EXISTS phot RESTRICT;
 -- 레스토랑 - 사진
 DROP TABLE IF EXISTS rst_pht RESTRICT;
 
+-- 평점
+DROP TABLE IF EXISTS score RESTRICT;
+
 -- 레스토랑
 CREATE TABLE rstrnt (
 	rstrnt_no   INT          NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
@@ -101,8 +112,8 @@ CREATE TABLE rstrnt (
 	star        INTEGER      NOT NULL COMMENT '별점', -- 별점
 	loc         VARCHAR(50)  NULL     COMMENT '지역', -- 지역
 	loc_dtl     VARCHAR(255) NOT NULL COMMENT '상세 주소', -- 상세 주소
-	type        VARCHAR(50)  NOT NULL COMMENT '요리유형', -- 요리유형
-	call        VARCHAR(30)  NULL     COMMENT '전화번호' -- 전화번호
+	catg        VARCHAR(50)  NOT NULL COMMENT '요리유형', -- 요리유형
+	tel         VARCHAR(30)  NULL     COMMENT '전화번호' -- 전화번호
 )
 COMMENT '레스토랑';
 
@@ -123,7 +134,7 @@ ALTER TABLE rstrnt
 CREATE TABLE memb (
 	mno   INT         NOT NULL COMMENT '멤버 번호', -- 멤버 번호
 	id    VARCHAR(50) NOT NULL COMMENT '아이디', -- 아이디
-	admin CHAR(1)     NULL     COMMENT '관리자', -- 관리자
+	adm   CHAR(1)     NULL     COMMENT '관리자', -- 관리자
 	nick  VARCHAR(50) NULL     COMMENT '닉네임', -- 닉네임
 	pwd   VARCHAR(50) NOT NULL COMMENT '비밀번호', -- 비밀번호
 	useyn CHAR(1)     NULL     COMMENT '사용여부' -- 사용여부
@@ -152,10 +163,8 @@ ALTER TABLE memb
 -- 후기
 CREATE TABLE review (
 	review_no INT      NOT NULL COMMENT '리뷰 번호', -- 리뷰 번호
-	rstrnt_no INT      NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
 	mno       INT      NULL     COMMENT '멤버 번호', -- 멤버 번호
 	cont      TEXT     NULL     COMMENT '내용', -- 내용
-	score     INTEGER  NULL     COMMENT '평점', -- 평점
 	cdt       DATETIME NULL     COMMENT '생성 일자' -- 생성 일자
 )
 COMMENT '후기';
@@ -247,7 +256,7 @@ ALTER TABLE rpt
 CREATE TABLE phot (
 	phot_no   INT          NOT NULL COMMENT '사진 번호', -- 사진 번호
 	review_no INT          NULL     COMMENT '리뷰 번호', -- 리뷰 번호
-	phot_nm   VARCHAR(255) NULL     COMMENT '사진 이름' -- 사진 이름
+	phot_nm   VARCHAR(255) NOT NULL COMMENT '사진 이름' -- 사진 이름
 )
 COMMENT '사진';
 
@@ -263,6 +272,12 @@ CREATE UNIQUE INDEX UIX_phot
 	ON phot ( -- 사진
 		phot_nm ASC -- 사진 이름
 	);
+
+ALTER TABLE phot
+	MODIFY COLUMN phot_no INT NOT NULL AUTO_INCREMENT COMMENT '사진 번호';
+
+ALTER TABLE phot
+	AUTO_INCREMENT = 1;
 
 -- 레스토랑 - 사진
 CREATE TABLE rst_pht (
@@ -281,15 +296,35 @@ ALTER TABLE rst_pht
 			phot_no    -- 사진 번호
 		);
 
--- 후기
-ALTER TABLE review
-	ADD CONSTRAINT FK_rstrnt_TO_review -- 레스토랑 -> 후기
-		FOREIGN KEY (
-			rstrnt_no -- 레스토랑 번호
-		)
-		REFERENCES rstrnt ( -- 레스토랑
-			rstrnt_no -- 레스토랑 번호
+ALTER TABLE rst_pht
+	MODIFY COLUMN rp_no INT NOT NULL AUTO_INCREMENT COMMENT '레스토랑 사진 번호';
+
+ALTER TABLE rst_pht
+	AUTO_INCREMENT = 1;
+
+-- 평점
+CREATE TABLE score (
+	scr_no    INT     NOT NULL COMMENT '평점 번호', -- 평점 번호
+	review_no INT     NOT NULL COMMENT '리뷰 번호', -- 리뷰 번호
+	rstrnt_no INT     NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	score     INTEGER NOT NULL COMMENT '평점' -- 평점
+)
+COMMENT '평점';
+
+-- 평점
+ALTER TABLE score
+	ADD CONSTRAINT PK_score -- 평점 기본키
+		PRIMARY KEY (
+			scr_no,    -- 평점 번호
+			review_no, -- 리뷰 번호
+			rstrnt_no  -- 레스토랑 번호
 		);
+
+ALTER TABLE score
+	MODIFY COLUMN scr_no INT NOT NULL AUTO_INCREMENT COMMENT '평점 번호';
+
+ALTER TABLE score
+	AUTO_INCREMENT = 1;
 
 -- 후기
 ALTER TABLE review
@@ -379,4 +414,24 @@ ALTER TABLE rst_pht
 		)
 		REFERENCES phot ( -- 사진
 			phot_no -- 사진 번호
+		);
+
+-- 평점
+ALTER TABLE score
+	ADD CONSTRAINT FK_review_TO_score -- 후기 -> 평점
+		FOREIGN KEY (
+			review_no -- 리뷰 번호
+		)
+		REFERENCES review ( -- 후기
+			review_no -- 리뷰 번호
+		);
+
+-- 평점
+ALTER TABLE score
+	ADD CONSTRAINT FK_rstrnt_TO_score -- 레스토랑 -> 평점
+		FOREIGN KEY (
+			rstrnt_no -- 레스토랑 번호
+		)
+		REFERENCES rstrnt ( -- 레스토랑
+			rstrnt_no -- 레스토랑 번호
 		);
