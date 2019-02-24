@@ -42,6 +42,14 @@ ALTER TABLE score
 ALTER TABLE score
 	DROP FOREIGN KEY FK_rstrnt_TO_score; -- 레스토랑 -> 평점
 
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP FOREIGN KEY FK_memb_TO_wnt_go; -- 회원 -> 가고싶다
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP FOREIGN KEY FK_rstrnt_TO_wnt_go; -- 레스토랑 -> 가고싶다
+
 -- 레스토랑
 ALTER TABLE rstrnt
 	DROP PRIMARY KEY; -- 레스토랑 기본키
@@ -78,6 +86,10 @@ ALTER TABLE rst_pht
 ALTER TABLE score
 	DROP PRIMARY KEY; -- 평점 기본키
 
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP PRIMARY KEY; -- 가고싶다 기본키
+
 -- 레스토랑
 DROP TABLE IF EXISTS rstrnt RESTRICT;
 
@@ -105,6 +117,9 @@ DROP TABLE IF EXISTS rst_pht RESTRICT;
 -- 평점
 DROP TABLE IF EXISTS score RESTRICT;
 
+-- 가고싶다
+DROP TABLE IF EXISTS wnt_go RESTRICT;
+
 -- 레스토랑
 CREATE TABLE rstrnt (
 	rstrnt_no   INT          NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
@@ -113,9 +128,15 @@ CREATE TABLE rstrnt (
 	loc         VARCHAR(50)  NULL     COMMENT '지역', -- 지역
 	loc_dtl     VARCHAR(255) NOT NULL COMMENT '상세 주소', -- 상세 주소
 	catg        VARCHAR(50)  NOT NULL COMMENT '요리유형', -- 요리유형
-	tel         VARCHAR(30)  NULL     COMMENT '전화번호' -- 전화번호
+	tel         VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
+	opn_tm      TIME         NULL     COMMENT '오픈시간', -- 오픈시간
+	brck_tm     TIME         NULL     COMMENT '쉬는 시간', -- 쉬는 시간
+	dnnr_tm     TIME         NULL     COMMENT '저녁 시간', -- 저녁 시간
+	lo_tm       TIME         NULL     COMMENT '마지막 주문' -- 마지막 주문
 )
-COMMENT '레스토랑';
+COMMENT '레스토랑'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 레스토랑
 ALTER TABLE rstrnt
@@ -139,7 +160,9 @@ CREATE TABLE memb (
 	pwd   VARCHAR(50) NOT NULL COMMENT '비밀번호', -- 비밀번호
 	useyn CHAR(1)     NULL     COMMENT '사용여부' -- 사용여부
 )
-COMMENT '회원';
+COMMENT '회원'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 회원
 ALTER TABLE memb
@@ -167,7 +190,9 @@ CREATE TABLE review (
 	cont      TEXT     NULL     COMMENT '내용', -- 내용
 	cdt       DATETIME NULL     COMMENT '생성 일자' -- 생성 일자
 )
-COMMENT '후기';
+COMMENT '후기'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 후기
 ALTER TABLE review
@@ -188,7 +213,9 @@ CREATE TABLE menu (
 	menu  VARCHAR(50) NOT NULL COMMENT '메뉴 이름', -- 메뉴 이름
 	price INTEGER     NOT NULL COMMENT '메뉴 가격' -- 메뉴 가격
 )
-COMMENT '메뉴';
+COMMENT '메뉴'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 메뉴
 ALTER TABLE menu
@@ -209,7 +236,9 @@ CREATE TABLE menu_board (
 	rstrnt_no INT NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
 	mn_no     INT NOT NULL COMMENT '메뉴 번호' -- 메뉴 번호
 )
-COMMENT '메뉴판';
+COMMENT '메뉴판'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 메뉴판
 ALTER TABLE menu_board
@@ -234,10 +263,12 @@ CREATE TABLE rpt (
 	review_no INT      NULL     COMMENT '리뷰 번호', -- 리뷰 번호
 	rpt_cont  TEXT     NOT NULL COMMENT '요청 내용', -- 요청 내용
 	rpt_date  DATETIME NOT NULL COMMENT '요청 일자', -- 요청 일자
-	hndl      CHAR(1)  NOT NULL COMMENT '처리 여부', -- 처리 여부
-	hndl_cont TEXT     NOT NULL COMMENT '처리 내용' -- 처리 내용
+	hndl      CHAR(1)  NOT NULL DEFAULT N COMMENT '처리 여부', -- 처리 여부
+	hndl_cont TEXT     NULL     COMMENT '처리 내용' -- 처리 내용
 )
-COMMENT '관리 요청';
+COMMENT '관리 요청'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 관리 요청
 ALTER TABLE rpt
@@ -258,7 +289,9 @@ CREATE TABLE phot (
 	review_no INT          NULL     COMMENT '리뷰 번호', -- 리뷰 번호
 	phot_nm   VARCHAR(255) NOT NULL COMMENT '사진 이름' -- 사진 이름
 )
-COMMENT '사진';
+COMMENT '사진'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 사진
 ALTER TABLE phot
@@ -309,7 +342,9 @@ CREATE TABLE score (
 	rstrnt_no INT     NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
 	score     INTEGER NOT NULL COMMENT '평점' -- 평점
 )
-COMMENT '평점';
+COMMENT '평점'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 평점
 ALTER TABLE score
@@ -325,6 +360,25 @@ ALTER TABLE score
 
 ALTER TABLE score
 	AUTO_INCREMENT = 1;
+
+-- 가고싶다
+CREATE TABLE wnt_go (
+	wg_no     INT NOT NULL COMMENT '가고싶다 번호', -- 가고싶다 번호
+	mno       INT NOT NULL COMMENT '멤버 번호', -- 멤버 번호
+	rstrnt_no INT NOT NULL COMMENT '레스토랑 번호' -- 레스토랑 번호
+)
+COMMENT '가고싶다'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT PK_wnt_go -- 가고싶다 기본키
+		PRIMARY KEY (
+			wg_no,     -- 가고싶다 번호
+			mno,       -- 멤버 번호
+			rstrnt_no  -- 레스토랑 번호
+		);
 
 -- 후기
 ALTER TABLE review
@@ -429,6 +483,26 @@ ALTER TABLE score
 -- 평점
 ALTER TABLE score
 	ADD CONSTRAINT FK_rstrnt_TO_score -- 레스토랑 -> 평점
+		FOREIGN KEY (
+			rstrnt_no -- 레스토랑 번호
+		)
+		REFERENCES rstrnt ( -- 레스토랑
+			rstrnt_no -- 레스토랑 번호
+		);
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT FK_memb_TO_wnt_go -- 회원 -> 가고싶다
+		FOREIGN KEY (
+			mno -- 멤버 번호
+		)
+		REFERENCES memb ( -- 회원
+			mno -- 멤버 번호
+		);
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT FK_rstrnt_TO_wnt_go -- 레스토랑 -> 가고싶다
 		FOREIGN KEY (
 			rstrnt_no -- 레스토랑 번호
 		)

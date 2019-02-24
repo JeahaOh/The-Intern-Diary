@@ -1,6 +1,29 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 2/24 일요일
+후기 평가는 3가지  
+- 맛있어요  1
+- 무난해요  0
+- 별로예요 -1
+
+"가고싶다"랑 "조회수"기능은 시간이 남으면 넣는 걸로.
+망고 플레이트를 벤치마킹 하기로.
+  
+참고? : https://www.slideshare.net/JngHwnLim/201706-77922496
+
+평점, 후기 남기기는 WEB Server 제작 완료시 Javascript로 For문과 Math.Random()을 이용해서 Fake data 넣기로.
+      
+
+Adroid connect to Spring Server by JSON 참고 
+- https://cocomo.tistory.com/412
+- http://www.mobileflow.co.kr/main/blog/220824582088
+- https://derveljunit.tistory.com/71
+- https://coding-factory.tistory.com/32
+- http://blog.naver.com/PostView.nhn?blogId=lmjing&logNo=220660414338
+
+
+- - -
 ## 2/23 토요일
 UI 구상중...  
 심플하게 해야 할것 같음
