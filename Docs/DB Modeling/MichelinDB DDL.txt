@@ -12,10 +12,6 @@ ALTER TABLE menu_board
 
 -- 관리 요청
 ALTER TABLE rpt
-	DROP FOREIGN KEY FK_memb_TO_rpt; -- 회원 -> 관리 요청
-
--- 관리 요청
-ALTER TABLE rpt
 	DROP FOREIGN KEY FK_rstrnt_TO_rpt; -- 레스토랑 -> 관리 요청
 
 -- 관리 요청
@@ -122,17 +118,18 @@ DROP TABLE IF EXISTS wnt_go RESTRICT;
 
 -- 레스토랑
 CREATE TABLE rstrnt (
-	rstrnt_no   INT          NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
-	rstrnt_name VARCHAR(50)  NOT NULL COMMENT '가게 이름', -- 가게 이름
-	star        INTEGER      NOT NULL COMMENT '별점', -- 별점
-	loc         VARCHAR(50)  NULL     COMMENT '지역', -- 지역
-	loc_dtl     VARCHAR(255) NOT NULL COMMENT '상세 주소', -- 상세 주소
-	catg        VARCHAR(50)  NOT NULL COMMENT '요리유형', -- 요리유형
-	tel         VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
-	opn_tm      TIME         NULL     COMMENT '오픈시간', -- 오픈시간
-	brck_tm     TIME         NULL     COMMENT '쉬는 시간', -- 쉬는 시간
-	dnnr_tm     TIME         NULL     COMMENT '저녁 시간', -- 저녁 시간
-	lo_tm       TIME         NULL     COMMENT '마지막 주문' -- 마지막 주문
+	rstrnt_no   INT                NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	rstrnt_name VARCHAR(50)        NOT NULL COMMENT '가게 이름', -- 가게 이름
+	star        INTEGER            NOT NULL COMMENT '별점', -- 별점
+	loc         VARCHAR(50)        NULL     COMMENT '지역', -- 지역
+	loc_dtl     VARCHAR(255)       NOT NULL COMMENT '상세 주소', -- 상세 주소
+	catg        VARCHAR(50)        NOT NULL COMMENT '요리유형', -- 요리유형
+	catag_dtl   <데이터 타입 없음> NULL     COMMENT '새 컬럼', -- 새 컬럼
+	tel         VARCHAR(30)        NULL     COMMENT '전화번호', -- 전화번호
+	opn_tm      TIME               NULL     COMMENT '오픈시간', -- 오픈시간
+	brck_tm     TIME               NULL     COMMENT '쉬는 시간', -- 쉬는 시간
+	dnnr_tm     TIME               NULL     COMMENT '저녁 시간', -- 저녁 시간
+	lo_tm       TIME               NULL     COMMENT '마지막 주문' -- 마지막 주문
 )
 COMMENT '레스토랑'
 DEFAULT CHARACTER SET = 'utf8'
@@ -258,9 +255,8 @@ ALTER TABLE menu_board
 -- 관리 요청
 CREATE TABLE rpt (
 	rpt_no    INT      NOT NULL COMMENT '요청 번호', -- 요청 번호
-	mno       INT      NOT NULL COMMENT '멤버 번호', -- 멤버 번호
 	rstrnt_no INT      NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
-	review_no INT      NULL     COMMENT '리뷰 번호', -- 리뷰 번호
+	review_no INT      NULL     COMMENT '후기 번호', -- 후기 번호
 	rpt_cont  TEXT     NOT NULL COMMENT '요청 내용', -- 요청 내용
 	rpt_date  DATETIME NOT NULL COMMENT '요청 일자', -- 요청 일자
 	hndl      CHAR(1)  NOT NULL DEFAULT N COMMENT '처리 여부', -- 처리 여부
@@ -318,7 +314,9 @@ CREATE TABLE rst_pht (
 	rstrnt_no INT NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
 	phot_no   INT NOT NULL COMMENT '사진 번호' -- 사진 번호
 )
-COMMENT '레스토랑 - 사진';
+COMMENT '레스토랑 - 사진'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
 
 -- 레스토랑 - 사진
 ALTER TABLE rst_pht
@@ -412,16 +410,6 @@ ALTER TABLE menu_board
 
 -- 관리 요청
 ALTER TABLE rpt
-	ADD CONSTRAINT FK_memb_TO_rpt -- 회원 -> 관리 요청
-		FOREIGN KEY (
-			mno -- 멤버 번호
-		)
-		REFERENCES memb ( -- 회원
-			mno -- 멤버 번호
-		);
-
--- 관리 요청
-ALTER TABLE rpt
 	ADD CONSTRAINT FK_rstrnt_TO_rpt -- 레스토랑 -> 관리 요청
 		FOREIGN KEY (
 			rstrnt_no -- 레스토랑 번호
@@ -434,7 +422,7 @@ ALTER TABLE rpt
 ALTER TABLE rpt
 	ADD CONSTRAINT FK_review_TO_rpt -- 후기 -> 관리 요청
 		FOREIGN KEY (
-			review_no -- 리뷰 번호
+			review_no -- 후기 번호
 		)
 		REFERENCES review ( -- 후기
 			review_no -- 리뷰 번호
