@@ -1,6 +1,50 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 2/26 화요일
+어제 UI 디자인을 하고 생각 해 보니 UI templeate Engine을 필수적으로 사용 해야 할 것 같다고 느끼게 되었음.  
+아마 Handlebars.js나 Handlebars.java를 이용 할 것 같음.  
+  
+- 참고
+    - https://sailboat-d.tistory.com/30
+    - https://rongscodinghistory.tistory.com/13
+    - http://blog.naver.com/PostView.nhn?blogId=tmondev&logNo=220402051411&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView
+  
+- DB Feedback
+    - 코드 관리 테이블
+    - 메뉴 - 메뉴판 관계 맞는지?
+    - 앱에서 회원 가입 로그인 기능 있는게 맞느것 같다.
+    - 후기와 평점과 레스토랑의 관계 이게 맞는건가?
+
+- API
+    - 프로그램과 프로그램을 연결해주는 일종의 다리 역할
+- 컴포넌트
+    - 각각의 독립된 모듈듈
+    - https://mommoo.tistory.com/55
+- 모듈
+    - 일종의 패키지 혹은 lib
+    - https://edu.goorm.io/learn/lecture/202/%EB%B0%94%EB%A1%9C-%EC%8B%A4%ED%96%89%ED%95%B4%EB%B3%B4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%8C%8C%EC%9D%B4%EC%8D%AC/lesson/26679/%EB%AA%A8%EB%93%88%EC%9D%B4%EB%9E%80
+
+```
+DB...
+
+
+```
+- MyBatis: Insert multiple rows if doesn’t exist otherwise update the existing rows
+    ```
+    <insert id="insertOrUpdateMultipleRecords" parameterType="HashMap">
+        INSERT INTO table1  ( field1, field2, created )
+        VALUES
+            <foreach collection="inputList" item="inputListItem" separator=",">
+                (#{inputListItem.itemfield1}, #{inputListItem.itemfield2} , NOW())
+            </foreach>
+        ON DUPLICATE KEY UPDATE field2 = VALUES(field2)
+    </insert>
+    ```
+
+
+
+- - -
 ## 2/25 월요일
 앱 UI proto 디자인은 끝냈음.  
 웹 UI가 문제인데, 관리자 기능에 대한 규칙과 UI에 대한 아이디어가 잘 떠오르지 않음.
