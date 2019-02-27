@@ -1,8 +1,41 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 2/27 수요일
+
+DB 서버를 AWS에 있는 DB를 쓸까 생각함.
+- Workbench를 이용하거나 phpMyAdmin을 이용할 수 있음.
+    - Workbench 연결 방법 : https://cloud.hosting.kr/mysql-workbench/
+    - phpMyAdmin 주소 : **http://13.125.217.122/phpMyAdmin/index.php**
+    - 접속 아이디와 비밀번호는 나의 "그것"임.
+  
+- 현재 있는 data
+    - rst, phot, menu, rst_catg
+    - DB 완료시 다 넣고 테스트
+- 넣어야 할 fake data
+    - 회원, 회원 관리 완료시 js for문으로 30개 정도 만들기
+    - 가고싶다, 회원 30개 data 넣은 후 rondom for문으로 만들기
+    - 후기, 사진, 후기 관리 완료시 넣기
+    - 관리 요청 다른것들 구현 후 기능 만들고 테스트
+
+CSV 파일로 rst 테이블에 데이터를 넣는 중에 시간 컬럼에 null 값이 있으면 들어가지 않는 문제가 있었음.  
+CSV 파일에서 00:00:00으로 넣고, Workbench 상에서 데이터를 지워주기로 했음.  
+```
+UPDATE `test`.`rst` SET `brck_tm` = NULL, `dnnr_tm` = NULL WHERE `brck_tm` = '00:00:00' AND `dnnr_tm` = '00:00:00' ;
+```
+근본적인 해결 방법을 찾아 보긴 해야 할거 같음.
+```
+기능 개발하기 바쁘니 디자인은 신경 쓰지 말라
+맛집 통계를 내서 따로 규칙을 만들어 자체적인 별점은 줘라.
+
+조회수, 가고싶어요 수, 맛있어요, 무난해요, 별로예요
+```
+- https://okky.kr/article/400750
+- 
+
+- - -
 ## 2/26 화요일
-어제 UI 디자인을 하고 생각 해 보니 UI templeate Engine을 필수적으로 사용 해야 할 것 같다고 느끼게 되었음.  
+어제 UI 디자인을 하고 생각 해 보니 UI Templeate Engine을 필수적으로 사용 해야 할 것 같다고 느끼게 되었음.  
 아마 Handlebars.js나 Handlebars.java를 이용 할 것 같음.  
   
 - 참고

@@ -212,7 +212,7 @@ CREATE TABLE rpt (
 	rvw_no    INT      NULL     COMMENT '후기 번호', -- 후기 번호
 	rpt_cont  TEXT     NOT NULL COMMENT '요청 내용', -- 요청 내용
 	rpt_date  DATETIME NOT NULL COMMENT '요청 일자', -- 요청 일자
-	hndl      CHAR(1)  NOT NULL DEFAULT N COMMENT '처리 여부', -- 처리 여부
+	hndl      CHAR(1)  NOT NULL DEFAULT 'N' COMMENT '처리 여부', -- 처리 여부
 	hndl_cont TEXT     NULL     COMMENT '처리 내용' -- 처리 내용
 )
 COMMENT '관리 요청'
