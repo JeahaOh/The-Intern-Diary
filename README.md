@@ -7,6 +7,19 @@
 
 - https://aljjabaegi.tistory.com/category/Programing/egovFramework
 
+- 이클립스 콘솔로그 파일로 남기기
+```
+서버 더블 클릭 > Overview > Open launch configuration > Common >
+Output File > File System > 로그가 남겨질 파일 생성 > 파일에 로그가 쌓임.
+```
+- Spring Properties 설명과 사용
+    - https://jinyoung8806.github.io/spring/spring_properties/
+- Spring MyBatis에 log4jdbc-log4j2 설정하기
+    - https://blog.hanumoka.net/2018/07/27/spring-20180727-Spring-add-log4jdbc-log4j2-in-mysql-mybatis/
+- 괜찮아 보이는 블로그
+    - https://aljjabaegi.tistory.com/
+
+
 - - -
 ## 2/27 수요일
 
