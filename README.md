@@ -3,7 +3,16 @@
 - - -
 ## 2/28 목요일
 이클립스 워크스페이스 설정
-- https://marga.tistory.com/592
+```
+이클립스 사용시 프로그램 로딩 등의 속도 개선을 위해서는 Workspace를 프로젝트별로 구분하여 가볍게 유지하는 것이 좋다.
+
+하지만, 문제는 Workspace를 새로 추가하면 편의를 위해 구성해 두었던 Workspace설정을 다시 해야 한다는 것이다.
+
+다시 설정하는 번거로움 없이 기존 설정을 그대로 사용하려면, 기존 Workspace의 .plugins 폴더를 복사하면 된다.
+
+workspace > .metadata > .plugins 에 위치해 있으며, .plugins 폴더를 새로운 Workspace의 .metadata에 복사하면 기존에 사용하던 환경 그대로 사용할 수 있다.
+
+```
 
 - - -
 ## 2/27 수요일
