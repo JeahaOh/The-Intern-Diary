@@ -93,6 +93,13 @@ Output File > File System > 로그가 남겨질 파일 생성 > 파일에 로그
         + 1969fdf...f4e7c43 master -> master (forced update)
     ```
 
+    - MyBatis 로 DB연결 성공 했음.  
+        근데 CDATA? 본적 없는 구문이 있었음.  
+        XML 파일 상에서 MyBatis 비교연산자나 부등호 처리할 때 구분을 하기위해,  
+        CDATA 태그 안의 쿼리릴 다 문자열로 치환하는 문법인것 같음.
+        전자정부 프레임 워크 프로젝트의 구조를 파악하는 시간이 필요 할것 같음.
+        - https://epthffh.tistory.com/entry/Mybatis-%EC%97%90%EC%84%9C-CDATA-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
 - - -
 ## 2/27 수요일
 
