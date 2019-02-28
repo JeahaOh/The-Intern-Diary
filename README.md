@@ -20,6 +20,79 @@ Output File > File System > 로그가 남겨질 파일 생성 > 파일에 로그
     - https://aljjabaegi.tistory.com/
 
 
+- git push 취소하기
+    1. commit을 되돌린다.
+        - 가장 최근의 commit을 취소하고 워킹 디렉토리를 되돌린다.
+        ```
+        git reset HEAD^
+        ```
+        - 원하는 시점으로 워킹 디렉토리를 되돌린다.
+        ```
+        git reset [COMMIT ID]
+        ```
+    2. 커밋 취소한 목적 수행한다.
+    3. 되돌려진 상태에서 다시 commit.
+        ```
+        git commit -m '[COMMIT MSG]'
+        ```
+    4. 강제 push
+        ```
+        git push origin [BRANCH NAME] -f
+        또는
+        git push origin +master
+        ```
+    ```
+    ➜  The-Intern-Diary git:(master) git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+
+        Docs/Daily Record/
+
+    nothing added to commit but untracked files present (use "git add" to track)
+    ➜  The-Intern-Diary git:(master) ✗ git add .
+    ➜  The-Intern-Diary git:(master) ✗ git commit -m '.'
+    [master 1969fdf] .
+    2 files changed, 0 insertions(+), 0 deletions(-)
+        -- 여기서 DB 정보가 담긴 이미지를 그냥 올려버렸음.
+    create mode 100644 Docs/Daily Record/2019-02-28 DB TEST RESULT.png
+    create mode 100644 Docs/Daily Record/2019-02-28 DB TEST.png
+    ➜  The-Intern-Diary git:(master) git push
+        
+        -- 중간생략 --
+
+    ➜  The-Intern-Diary git:(master) git reset HEAD^
+        -- commit 되돌리기
+    ➜  The-Intern-Diary git:(master) ✗ git log --oneline --graph --all
+        -- commit ID 확인
+    ➜  The-Intern-Diary git:(master) ✗ git reset 7b4bcb5
+        -- commit 취소하기
+    
+        -- 중간 생략 --
+
+    ➜  The-Intern-Diary git:(master) git add .
+    ➜  The-Intern-Diary git:(master) ✗ git commit -m '.'
+    [master f4e7c43] .
+    2 files changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 Docs/Daily Record/2019-02-28 DB TEST RESULT.png
+    create mode 100644 Docs/Daily Record/2019-02-28 DB TEST.png
+
+    ➜  The-Intern-Diary git:(master) git push origin master -f
+        -- 강제 push
+
+        Enumerating objects: 8, done.
+        Counting objects: 100% (8/8), done.
+        Delta compression using up to 12 threads
+        Compressing objects: 100% (6/6), done.
+        Writing objects: 100% (6/6), 357.63 KiB | 29.80 MiB/s, done.
+        Total 6 (delta 2), reused 0 (delta 0)
+        remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+        To https://github.com/JeahaOh/The-Intern-Diary.git
+        + 1969fdf...f4e7c43 master -> master (forced update)
+    ```
+
 - - -
 ## 2/27 수요일
 
