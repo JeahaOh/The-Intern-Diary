@@ -1,6 +1,18 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 3/1 금요일
+공통 컴포넌트를 사용하기 위해서 DB에 공통 컴포넌트에서 만들어주는 테이블과 데이터를 넣어야 하는 것 같음.  
+공통 컴포넌트를 그대로 사용하는건 아니지만 일단 테스트를 위해서 DB를 연결 해 줘야 할듯.  
+이클립스 Perspective 창 중에서 Data Source Explorer에서 Database Connections -> new 해서 db Connector 잡아 주고, db 설정값 입력해줌.
+- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:imp:editor:dbio_editor:data_source_explorer#data_source_explorer
+이미 수업때 배웠던거 임. 혹시 기억 못할까바 링크 걸어둠.
+
+DB 설정후 공통 컴포넌트 설치
+- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:imp:editor:common_component
+
+
+- - -
 ## 2/28 목요일
 이클립스 워크스페이스 설정  
 효율 적인 방법 없나?
