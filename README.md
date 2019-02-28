@@ -5,6 +5,8 @@
 이클립스 워크스페이스 설정  
 효율 적인 방법 없나?
 
+- https://aljjabaegi.tistory.com/category/Programing/egovFramework
+
 - - -
 ## 2/27 수요일
 
