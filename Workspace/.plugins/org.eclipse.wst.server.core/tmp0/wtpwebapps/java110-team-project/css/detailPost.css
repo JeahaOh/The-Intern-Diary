@@ -1,0 +1,126 @@
+/* ========== 댓글 관련  ========== */
+.comment-main {
+    max-height: 20rem;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.comment-main ul {
+    list-style: none;
+}
+
+.main-cmt-img {
+    width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 50%;
+}
+
+.user-comment {
+    background-color: #f3f3f3 !important;
+}
+
+.dSbtn {
+    height: 3rem;
+    padding: 0 .5rem;
+}
+
+.insideCard {
+    padding: .5rem;
+}
+
+.cmt-date {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.wbw {
+    word-break: break-word;
+}
+
+.edcmt {
+    height: 3rem;
+    padding: 0 .5rem;
+}
+
+/* ========== 그외  ========== */
+#detailModal{
+z-index:9999999999;
+}
+#nickwrap {
+    list-style: none;
+}
+
+.likeColor {
+    color: red;
+}
+
+#dCont {
+    border: 1px solid #c0c0c075;
+    
+}
+
+.hash {
+    color: blue;
+    font-weight: bold;
+}
+
+.reviewCont {
+	overflow: auto;
+	overflow-x:hidden;
+    height: 13rem;
+    padding:0.9rem;
+    line-height:1.8rem;
+    word-break: break-word;
+    margin-bottom: 0.5rem;
+}
+
+.rprofileImg {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.sStar {
+    font-size: 1.5rem;
+    color: #FFD119;
+}
+
+.btmIcon {
+    padding: 0 0.4rem 1rem 1rem;
+    font-size: 1.3rem;
+    vertical-align: sub;
+}
+
+.dptitle {
+    float: right;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.carouselHeight {
+    height: 44rem;
+}
+
+#rModal {
+    max-width: 70rem;
+}
+
+#mh-p {
+    float: right;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+#ownerImg {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.carousel-inner {
+    position: relative;
+    width: 91%;
+    overflow: hidden;
+    margin-left: 2em;
+}

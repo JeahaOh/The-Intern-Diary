@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ReportTypeDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.java110.cms.dao.ReportTypeDao">
+
+    <insert id="insert" parameterType="map">
+        insert into mv_rpt_type(rptno, type)
+        values(#{rptno},#{type})
+    </insert>
+    
+    <select id="findByNo" resultType="reportType" parameterType="int">
+         select rptno, type
+           from mv_rpt_type
+          where rptno = #{value}
+    </select>
+    
+    
+</mapper>

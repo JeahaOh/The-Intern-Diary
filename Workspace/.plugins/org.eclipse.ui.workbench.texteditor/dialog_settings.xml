@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="  " key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="&#x09;"/>
+			<item value="openEditingModal"/>
+			<item value=".return-top"/>
+			<item value="commonConfirm"/>
+			<item value="chevron"/>
+			<item value="cheron"/>
+			<item value="return"/>
+			<item value="top"/>
+			<item value="새ㅔ"/>
+			<item value="src=&quot;return"/>
+			<item value="return-up"/>
+			<item value="alert"/>
+			<item value="75"/>
+			<item value="lastpstno"/>
+			<item value="lstpstno"/>
+		</list>
+		<list key="replacehistory">
+			<item value="  "/>
+			<item value="#top"/>
+			<item value="    "/>
+			<item value=""/>
+			<item value="list"/>
+			<item value="error"/>
+			<item value="commonAlert(&apos;error&apos;, "/>
+			<item value="페이지를 새로고침 해주세요."/>
+			<item value="잠시 에러가 발생했습니다. 페이지를 새로고침 해주세요"/>
+			<item value="잠시 에러가 발생 했습니다. 페이지를 새로고침 해주세요"/>
+			<item value="잠시 에러가 발생 했습니다. 페이지를 새로고침 해주세요."/>
+			<item value="h4"/>
+			<item value="reviewModal"/>
+			<item value="editingMadal"/>
+			<item value=",&#x0A;"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="290" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="409" key="DIALOG_HEIGHT"/>
+		<item value="47" key="DIALOG_X_ORIGIN"/>
+		<item value="516" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

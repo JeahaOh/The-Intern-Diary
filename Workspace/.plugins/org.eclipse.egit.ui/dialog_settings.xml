@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="HARD" key="ResetTargetSelectionDialog.resetType"/>
+	<list key="CommitDialog.authorValues">
+		<item value="JeahaOh &lt;jeaha1217@gmail.com&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="JeahaOh &lt;jeaha1217@gmail.com&gt;"/>
+	</list>
+	<section name="org.eclipse.egit.ui.internal.dialogs.RebaseTargetSelectionDialog.dialogBounds">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="512" key="DIALOG_HEIGHT"/>
+		<item value="698" key="DIALOG_X_ORIGIN"/>
+		<item value="199" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.dialogs.ResetTargetSelectionDialog.dialogBounds">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="728" key="DIALOG_HEIGHT"/>
+		<item value="-4" key="DIALOG_X_ORIGIN"/>
+		<item value="-360" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.merge.MergeResultDialog.dialogBounds">
+		<item value="516" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="171" key="DIALOG_HEIGHT"/>
+		<item value="702" key="DIALOG_X_ORIGIN"/>
+		<item value="426" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="GitCommitMessageComponent">
+		<list key="/Users/Jeaha/git/java110-team-project/.git">
+			<item value="false"/>
+			<item value="JeahaOh &lt;jeaha1217@gmail.com&gt;"/>
+			<item value="Merge branch &apos;j1&apos;&#x0A;&#x0A;# Please enter a commit message to explain why this merge is necessary,&#x0A;# especially if it merges an updated upstream into a topic branch.&#x0A;#&#x0A;# Lines starting with &apos;#&apos; will be ignored, and an empty message aborts&#x0A;# the commit.&#x0A;"/>
+			<item value="JeahaOh &lt;jeaha1217@gmail.com&gt;"/>
+			<item value="3f4fdb000714eea120fce84438cffc40052c403e"/>
+			<item value="0"/>
+		</list>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
+		<item value="false" key="sortItemState"/>
+		<item value="500,500" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
+	</section>
+</section>

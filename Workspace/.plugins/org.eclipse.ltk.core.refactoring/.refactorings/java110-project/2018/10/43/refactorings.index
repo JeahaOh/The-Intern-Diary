@@ -1,0 +1,55 @@
+1540168129212	Delete element
+1540174550162	Delete element
+1540176987006	Copy compilation unit
+1540177281192	Rename type 'ManagerListServlet'
+1540178056398	Delete element
+1540178065031	Copy compilation unit
+1540178072100	Rename type 'ManagerDetailServlet'
+1540178251588	Delete element
+1540178398082	Copy compilation units
+1540178406114	Rename type 'LoginServlet'
+1540178412891	Rename type 'LogoutServlet'
+1540178417428	Delete element
+1540178987847	Copy compilation unit
+1540178995000	Rename type 'ManagerAddServlet'
+1540178997883	Delete element
+1540179512801	Copy compilation unit
+1540179519429	Delete element
+1540179528328	Rename type 'ManagerDeleteServlet'
+1540179745109	Copy compilation units
+1540179750165	Copy compilation units
+1540179773528	Delete element
+1540179777150	Delete element
+1540179844957	Copy compilation units
+1540179848669	Delete element
+1540179854108	Copy compilation units
+1540179857382	Delete element
+1540183175460	Rename type 'StudentAddServlet'
+1540183179374	Rename type 'StudentDeleteServlet'
+1540183183428	Rename type 'StudentDetailServlet'
+1540183187140	Rename type 'StudentListServlet'
+1540183192843	Rename type 'TeacherAddServlet'
+1540183196256	Rename type 'TeacherDeleteServlet'
+1540183199685	Rename type 'TeacherDetailServlet'
+1540183203963	Rename type 'TeacherListServlet'
+1540186961401	Move compilation unit
+1540193088539	Delete element
+1540193446037	Copy compilation unit
+1540193452868	Rename type 'ManagerAddController'
+1540193547313	Delete element
+1540193555279	Copy compilation unit
+1540193562531	Rename type 'StudentListController'
+1540193651102	Delete element
+1540193666792	Copy compilation unit
+1540193675807	Rename type 'TeacherListController'
+1540193734394	Delete element
+1540193751786	Copy compilation unit
+1540193760721	Rename type 'LoginController'
+1540193800763	Delete element
+1540257083434	Extract method 'convertValue'
+1540262239861	Delete element
+1540262268231	Delete element
+1540263609524	Delete element
+1540263623624	Delete element
+1540264664170	Delete element
+1540266252153	Copy file
