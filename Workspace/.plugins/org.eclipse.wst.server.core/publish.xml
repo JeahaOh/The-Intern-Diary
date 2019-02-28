@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<publish-info>
+  <server id="lecture-project" path="publish2.dat"/>
+  <server id="Spring-WebMVC" path="publish4.dat"/>
+  <server id="TEAM-PROJECT" path="publish0.dat"/>
+  <server id="ServletTest" path="publish3.dat"/>
+</publish-info>

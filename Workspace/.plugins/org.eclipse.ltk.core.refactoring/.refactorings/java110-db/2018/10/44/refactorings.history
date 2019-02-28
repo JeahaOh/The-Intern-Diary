@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;java110-db/Modeling/ex.exerd&apos; to &apos;ex23.exerd&apos;" description="Rename resource &apos;ex.exerd&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Modeling/ex.exerd" name="ex23.exerd" stamp="1540953917244" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;java110-db/Modeling/ex23.exerd&apos; to &apos;ex24.exerd&apos;" description="Rename resource &apos;ex23.exerd&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Modeling/ex23.exerd" name="ex24.exerd" stamp="1540954507251" updateReferences="true"/>
+</session>

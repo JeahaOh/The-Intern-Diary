@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.wPost {
+    background: white;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.1);
+    margin: 2rem 4rem;
+    width: 45rem;
+}
+#drop {
+    float: right;
+    
+}
+.dropCss{
+    position: relative;
+    left: 0.7rem;
+    top: -0.5rem;
+    padding:1rem;
+
+}
+/* .dropdown-menu {
+    transform: translate3d(0px, 23px, 0px);
+    margin: 0px;
+    padding: 0px;
+} */
+button btn btn-xs {
+    width: 4rem;
+}
+.dropdown-flex {
+    min-width: 0;
+    width: 5rem;
+}
