@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move &apos;mariadb-setting.txt&apos; to &apos;project-model&apos;" description="Move &apos;mariadb-setting.txt&apos; to &apos;project-model&apos;" destination="project-model" element1="mariadb-setting.txt" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1541385879310" updateReferences="true"/>
-</session>
