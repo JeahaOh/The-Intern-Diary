@@ -3,12 +3,29 @@
 - - -
 ## 3/02 토요일
 MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
-설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음...  
+설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음... 
+
+```
+3월 02, 2019 2:13:12 오후 org.apache.catalina.core.StandardContext listenerStop
+심각: Exception sending context destroyed event to listener instance of class [org.springframework.web.context.ContextLoaderListener]
+java.lang.IllegalStateException: BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext
+```
+
+
 
 공통 컴포넌트 설치 법
 - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.7:imp:editor:common_component
 공통 컴포넌트 커스터마이징 방안
 - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95_%EB%B0%A9%EC%95%88
+
+현재 윈도우랑 맥에서 동시 작업을 하고 있는데, repository에 작업 파일을 올리지 않고 있어서 이것도 문제 사항인것 같음...  
+
+일단 현제 이슈 사항 해결하면, 필히 repository에 올려서 버젼 관리를 하며 작업 해야겠음
+  
+  
+아무래도 공통 컴포넌트를 끌어 들이면서 사용 하지 않을 컴포넌트까지 끌어들인게 이것 저것 꼬이게 한 것 같음.
+일단 마이바티스를 통한 DB연결, 로그 까지 설정 했었는데 프로젝트를 repository에서 처음부터 다시 설정하고, 시작해야겠음.
+
 
 - - -
 ## 3/01 금요일
