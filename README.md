@@ -26,6 +26,7 @@ java.lang.IllegalStateException: BeanFactory not initialized or already closed -
 아무래도 공통 컴포넌트를 끌어 들이면서 사용 하지 않을 컴포넌트까지 끌어들인게 이것 저것 꼬이게 한 것 같음.
 일단 마이바티스를 통한 DB연결, 로그 까지 설정 했었는데 프로젝트를 repository에서 처음부터 다시 설정하고, 시작해야겠음.
 
+**나 진짜 삽질 많이 한다...**
 
 - - -
 ## 3/01 금요일
