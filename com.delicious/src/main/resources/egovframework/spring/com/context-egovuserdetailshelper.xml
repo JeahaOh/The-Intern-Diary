@@ -26,9 +26,9 @@
     </bean>
 
     <!-- 0. 세션/시큐리티를 제외한 테스트위한 인증(더미)을 사용하는 빈 -->
-    <!--
+    
     <bean id="egovTestUserDetailsService" class="egovframework.com.cmm.service.impl.EgovTestUserDetailsServiceImpl"/>
-	-->
+	<!---->
 
     <!-- 1. 세션을 이용한 인증을 사용하는 빈 -->
     <bean id="egovUserDetailsSessionService" class="egovframework.com.cmm.service.impl.EgovUserDetailsSessionServiceImpl"/>

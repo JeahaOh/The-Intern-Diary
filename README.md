@@ -33,6 +33,18 @@ java.lang.IllegalStateException: BeanFactory not initialized or already closed -
 .gitignore에 엉뚱한 파일 이름만 올린것임...  
 전자 정부 프레임 워크 대체 왜 쓰는거죠..?  
   
+github security 문제를 해결하고, 서버를 돌리니 회원 관리 하려면 설치해야하는 컴포넌트가 또 다른것 같음...  
+공통 컴포넌트 문제 = 묶어 쓰는게 많다.  
+설명이 친절하지 않다.  
+너무나도 한국적이다.  
+극혐;
+  
+  전자정부 프레임 워크는 스프링 시큐리티나 세션관리 로 회원, 로그인을 관리 하는 것 같음.
+  Spring Security에 관한 설명
+  - https://okky.kr/article/382738
+
+  2009년에 만들어지고 2011년에 마지막으로 업데이트 된걸 쓰고 있다는게 참 멍청이 같음...
+  MyBatis 쓰고싶은데 iBatis로 설정 되있는것도 참 어처구니가 없음..
 
 - - -
 ## 3/01 금요일
