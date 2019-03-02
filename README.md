@@ -28,6 +28,12 @@ java.lang.IllegalStateException: BeanFactory not initialized or already closed -
 
 **나 진짜 삽질 많이 한다...**
 
+공통 컴포넌트 프로젝트 재 시작후 github에 올리니 security warnning이 떴음...  
+대충 보니 공통 컴포넌트는 DB 정보를 globals.properties에 저장하는 것으로 보임...  
+.gitignore에 엉뚱한 파일 이름만 올린것임...  
+전자 정부 프레임 워크 대체 왜 쓰는거죠..?  
+  
+
 - - -
 ## 3/01 금요일
 공통 컴포넌트를 사용하기 위해서 DB에 공통 컴포넌트에서 만들어주는 테이블과 데이터를 넣어야 하는 것 같음.  

@@ -17,6 +17,7 @@ hs_err_pid*
 .chache/
 
 **/db.properties
+**/globals.properties
 
 node_modules/
 .vscode/
