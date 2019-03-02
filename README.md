@@ -1,7 +1,12 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
-## 3/1 금요일
+## 3/02 토요일
+MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
+설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음...
+
+- - -
+## 3/01 금요일
 공통 컴포넌트를 사용하기 위해서 DB에 공통 컴포넌트에서 만들어주는 테이블과 데이터를 넣어야 하는 것 같음.  
 공통 컴포넌트를 그대로 사용하는건 아니지만 일단 테스트를 위해서 DB를 연결 해 줘야 할듯.  
 이클립스 Perspective 창 중에서 Data Source Explorer에서 Database Connections -> new 해서 db Connector 잡아 주고, db 설정값 입력해줌.
@@ -10,7 +15,6 @@
 
 DB 설정후 공통 컴포넌트 설치
 - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:imp:editor:common_component
-
 
 - - -
 ## 2/28 목요일
