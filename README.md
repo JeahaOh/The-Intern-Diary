@@ -3,7 +3,12 @@
 - - -
 ## 3/02 토요일
 MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
-설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음...
+설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음...  
+
+공통 컴포넌트 설치 법
+- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.7:imp:editor:common_component
+공통 컴포넌트 커스터마이징 방안
+- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95_%EB%B0%A9%EC%95%88
 
 - - -
 ## 3/01 금요일
