@@ -13,14 +13,14 @@ java.lang.IllegalStateException: BeanFactory not initialized or already closed -
 
 
 
-공통 컴포넌트 설치 법
-- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.7:imp:editor:common_component
-공통 컴포넌트 커스터마이징 방안
-- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95_%EB%B0%A9%EC%95%88
+- 공통 컴포넌트 설치 법
+    - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.7:imp:editor:common_component
+- 공통 컴포넌트 커스터마이징 방안
+    - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95_%EB%B0%A9%EC%95%88
 
 현재 윈도우랑 맥에서 동시 작업을 하고 있는데, repository에 작업 파일을 올리지 않고 있어서 이것도 문제 사항인것 같음...  
 
-일단 현제 이슈 사항 해결하면, 필히 repository에 올려서 버젼 관리를 하며 작업 해야겠음
+이슈 사항 해결하면, 필히 repository에 올려서 버젼 관리를 하며 작업 해야겠음
   
   
 아무래도 공통 컴포넌트를 끌어 들이면서 사용 하지 않을 컴포넌트까지 끌어들인게 이것 저것 꼬이게 한 것 같음.
@@ -32,7 +32,8 @@ java.lang.IllegalStateException: BeanFactory not initialized or already closed -
 대충 보니 공통 컴포넌트는 DB 정보를 globals.properties에 저장하는 것으로 보임...  
 .gitignore에 엉뚱한 파일 이름만 올린것임...  
 전자 정부 프레임 워크 대체 왜 쓰는거죠..?  
-  
+- - -
+아무래도 공통 컴포넌트는 안 쓰는게 나을 것 같단 생각이 듦.
 
 - - -
 ## 3/01 금요일
