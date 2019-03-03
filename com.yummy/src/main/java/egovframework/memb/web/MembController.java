@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.memb.service.MembService;
 
 /**
@@ -39,9 +40,10 @@ public class MembController {
    * @exception Exception
    */
   @RequestMapping(value="/memb/login.do", method= RequestMethod.POST)
-  public Boolean login(@RequestParam String id, @RequestParam String pwd)  throws Exception {
+  public @ResponseBody String login(@RequestParam String id, @RequestParam String pwd)  throws Exception {
     logger.info(id);
     System.out.println("login\n" + id + "\n" + pwd);
-    return true;
+    // return "error";
+    return "egovSampleList.do";
   }
 }

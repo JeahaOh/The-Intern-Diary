@@ -56,7 +56,7 @@
                 </div>
                 <div>
                     <button type="reset" id="reset">취소</button>
-                    <button type="submit" id="submit">로그인</button>
+                    <button type="button" id="submit">로그인</button>
                 </div>
             </form>
 
@@ -65,19 +65,29 @@
     </div>
 </body>
 <script>
-  $('#submit').on('click', function() {
-	  
+  $('#submit').click( function ( event ) {
+    event.preventDefault();
+    
     var idVal = $('#id').val();
     var pwdVal = $('#pwd').val();
+    
     if (idVal.length <= 0 || idVal == "") {
       alert("아이디를 입력하세요.");
-      $('#userId').focus();
+      $('#id').focus();
     } else if (pwdVal.length <= 0 || pwdVal == "") {
       alert("비밀번호를 입력하세요.");
-      $('#userPwd').focus();
+      $('#pwd').focus();
     } else {
-      $('#userForm').attr('action', 'memb/login.do');
+      var url = 'memb/login.do';
+      var data = $('#userForm').serialize();
+      
+      $.post( url, data ).done(function( data ) {
+        
+        /* console.log(document.location.href + data); */
+        window.location.href = document.location.href + data;
+      });
     }
+    
   });
 </script>
 </html>

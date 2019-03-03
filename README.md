@@ -37,6 +37,12 @@ iBatis / MyBatis 설정 바꾸는 부분을 발견 했음... 좀더 연구 해 �
   
   학원에서 배웠던 Gradle로 build한 Spring과 따로 했던 Maven으로 build한 Spring, egovFrame의 구조가 많이 다름...
 
+  jquery를 이용한 loginForm Submit을 했음.
+  참고  
+  - https://zetawiki.com/wiki/JQuery_%ED%8F%BC_submit
+  - https://www.codingfactory.net/10691
+  - https://88240.tistory.com/36
+
 - - -
 ## 3/02 토요일
 MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
