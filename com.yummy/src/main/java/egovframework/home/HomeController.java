@@ -1,4 +1,4 @@
-package egovframework.home.web;
+package egovframework.home;
 
 import java.text.DateFormat;
 import java.util.Date;

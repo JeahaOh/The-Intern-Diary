@@ -24,7 +24,12 @@ ViewResolver의 문제인데,
 - https://stackoverflow.com/questions/7527607/how-to-use-multiple-places-in-spring-viewresolver 
 처럼 return 하는 String에 경로를 추가 해 주면 됨  
 이부분 해결하는데 또 2시간 소요 했음.
-ViewResolver에 관한 설명 : https://m.blog.naver.com/PostView.nhn?blogId=chocolleto&logNo=30086936956&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+ViewResolver에 관한 설명 : https://m.blog.naver.com/PostView.nhn?blogId=chocolleto&logNo=30086936956&proxyReferer=https%3A%2F%2Fwww.google.com%2F  
+  
+AWS DB에 데이터 넣었음.
+생각 보다 속도가 나지 않음.  
+이러다 제대로 못만들거 예상 되고, 인턴 끝나면 전자정부를 공부 하던지 스프링을 다시 공부하던지 해야겠음..  
+
 
 - - -
 ## 3/02 토요일
