@@ -30,6 +30,12 @@ AWS DB에 데이터 넣었음.
 생각 보다 속도가 나지 않음.  
 이러다 제대로 못만들거 예상 되고, 인턴 끝나면 전자정부를 공부 하던지 스프링을 다시 공부하던지 해야겠음..  
 
+회원 로그인 기능 구현 중...  
+src/main/java/egovframework/example/sample Package 참고 해서 만들 던 중,  
+iBatis / MyBatis 설정 바꾸는 부분을 발견 했음... 좀더 연구 해 봐야 할 것 같음.
+  
+  
+  학원에서 배웠던 Gradle로 build한 Spring과 따로 했던 Maven으로 build한 Spring, egovFrame의 구조가 많이 다름...
 
 - - -
 ## 3/02 토요일

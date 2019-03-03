@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LogIn</title>
+    <style>
+        .main {
+            text-align: center;
+        }
+        .login {
+            display: inline-block;
+        }
+        form {
+            margin: 0 auto;
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+        }
+        form div+div {
+            margin-top: 1em;
+        }
+        label {
+            display: inline-block;
+            width: 90px;
+            text-align: center;
+        }
+        input {
+            font: 1em sans-serif;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="login">
+            <h1>관리자 페이지</h1>
+            <form action="#" method="post" class="login">
+                <div>
+                    <label for="ID">ID</label>
+                    <input type="text" id="ID" name="ID" value="ID" alt="ID">
+                </div>
+                <div>
+                    <label for="PWD">PWD</label>
+                    <input type="password" id="PWD" name="PWD" class="PWD" alt="password">
+                </div>
+                <div>
+                    <button type="reset" id="reset">취소</button>
+                    <button type="submit" id="submit">로그인</button>
+                </div>
+            </form>
+
+            <p>The time on the server is 00시 00분 00초.</p>
+        </div>
+    </div>
+</body>
+</html>

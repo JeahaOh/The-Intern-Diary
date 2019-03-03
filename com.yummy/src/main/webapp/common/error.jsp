@@ -42,7 +42,7 @@
           cellspacing="0"
           cellpadding="0">
           <tr>
-            <td class="<spring:message code='image.errorBg' />"><span
+            <td class="<spring:message code='fail.common.msg' />"><span
               style="font-family: Tahoma; font-weight: bold; color: #000000; line-height: 150%; width: 440px; height: 70px;"></span>
             </td>
           </tr>
