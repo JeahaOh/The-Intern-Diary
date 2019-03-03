@@ -35,6 +35,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("sampleDAO")
 public class SampleDAO extends EgovAbstractDAO {
+//public class SampleDAO extends EgovAbstractMapper {
 
   /**
    * 글을 등록한다.
