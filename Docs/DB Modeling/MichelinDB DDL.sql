@@ -1,0 +1,405 @@
+-- 레스토랑
+ALTER TABLE rst
+	DROP FOREIGN KEY FK_rst_catag_TO_rst; -- 분류 -> 레스토랑
+
+-- 후기
+ALTER TABLE rvw
+	DROP FOREIGN KEY FK_memb_TO_rvw; -- 회원 -> 후기
+
+-- 후기
+ALTER TABLE rvw
+	DROP FOREIGN KEY FK_rst_TO_rvw; -- 레스토랑 -> 후기
+
+-- 메뉴
+ALTER TABLE menu
+	DROP FOREIGN KEY FK_rst_TO_menu; -- 레스토랑 -> 메뉴
+
+-- 관리 요청
+ALTER TABLE rpt
+	DROP FOREIGN KEY FK_rst_TO_rpt; -- 레스토랑 -> 관리 요청
+
+-- 관리 요청
+ALTER TABLE rpt
+	DROP FOREIGN KEY FK_rvw_TO_rpt; -- 후기 -> 관리 요청
+
+-- 사진
+ALTER TABLE phot
+	DROP FOREIGN KEY FK_rvw_TO_phot; -- 후기 -> 사진
+
+-- 사진
+ALTER TABLE phot
+	DROP FOREIGN KEY FK_rst_TO_phot; -- 레스토랑 -> 사진
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP FOREIGN KEY FK_memb_TO_wnt_go; -- 회원 -> 가고싶다
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP FOREIGN KEY FK_rst_TO_wnt_go; -- 레스토랑 -> 가고싶다
+
+-- 분류
+ALTER TABLE rst_catag
+	DROP FOREIGN KEY FK_rst_catag_TO_rst_catag; -- 분류 -> 분류
+
+-- 레스토랑
+ALTER TABLE rst
+	DROP PRIMARY KEY; -- 레스토랑 기본키
+
+-- 회원
+ALTER TABLE memb
+	DROP PRIMARY KEY; -- 회원 기본키
+
+-- 후기
+ALTER TABLE rvw
+	DROP PRIMARY KEY; -- 후기 기본키
+
+-- 메뉴
+ALTER TABLE menu
+	DROP PRIMARY KEY; -- 메뉴 기본키
+
+-- 관리 요청
+ALTER TABLE rpt
+	DROP PRIMARY KEY; -- 관리 요청 기본키
+
+-- 사진
+ALTER TABLE phot
+	DROP PRIMARY KEY; -- 사진 기본키
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	DROP PRIMARY KEY; -- 가고싶다 기본키
+
+-- 분류
+ALTER TABLE rst_catag
+	DROP PRIMARY KEY; -- 분류 기본키
+
+-- 레스토랑
+DROP TABLE IF EXISTS rst RESTRICT;
+
+-- 회원
+DROP TABLE IF EXISTS memb RESTRICT;
+
+-- 후기
+DROP TABLE IF EXISTS rvw RESTRICT;
+
+-- 메뉴
+DROP TABLE IF EXISTS menu RESTRICT;
+
+-- 관리 요청
+DROP TABLE IF EXISTS rpt RESTRICT;
+
+-- 사진
+DROP TABLE IF EXISTS phot RESTRICT;
+
+-- 가고싶다
+DROP TABLE IF EXISTS wnt_go RESTRICT;
+
+-- 분류
+DROP TABLE IF EXISTS rst_catag RESTRICT;
+
+-- 레스토랑
+CREATE TABLE rst (
+	rst_no   INT          NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	rst_name VARCHAR(50)  NOT NULL COMMENT '가게 이름', -- 가게 이름
+	star     INTEGER      NOT NULL COMMENT '별점', -- 별점
+	loc      VARCHAR(50)  NULL     COMMENT '지역', -- 지역
+	loc_dtl  VARCHAR(255) NOT NULL COMMENT '상세 주소', -- 상세 주소
+	catag_no INT          NULL     COMMENT '요리 분류', -- 요리 분류
+	tel      VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
+	opn_tm   TIME         NULL     COMMENT '오픈시간', -- 오픈시간
+	brck_tm  TIME         NULL     COMMENT '쉬는 시간', -- 쉬는 시간
+	dnnr_tm  TIME         NULL     COMMENT '저녁 시간', -- 저녁 시간
+	lo_tm    TIME         NULL     COMMENT '주문 마감 시간' -- 주문 마감 시간
+)
+COMMENT '레스토랑'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 레스토랑
+ALTER TABLE rst
+	ADD CONSTRAINT PK_rst -- 레스토랑 기본키
+		PRIMARY KEY (
+			rst_no -- 레스토랑 번호
+		);
+
+ALTER TABLE rst
+	MODIFY COLUMN rst_no INT NOT NULL AUTO_INCREMENT COMMENT '레스토랑 번호';
+
+ALTER TABLE rst
+	AUTO_INCREMENT = 1;
+
+-- 회원
+CREATE TABLE memb (
+	id    VARCHAR(50) NOT NULL COMMENT '아이디', -- 아이디
+	adm   CHAR(1)     NULL     COMMENT '관리자', -- 관리자
+	nick  VARCHAR(50) NULL     COMMENT '닉네임', -- 닉네임
+	pwd   VARCHAR(50) NOT NULL COMMENT '비밀번호', -- 비밀번호
+	useyn CHAR(1)     NULL     COMMENT '사용여부' -- 사용여부
+)
+COMMENT '회원'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 회원
+ALTER TABLE memb
+	ADD CONSTRAINT PK_memb -- 회원 기본키
+		PRIMARY KEY (
+			id -- 아이디
+		);
+
+-- 회원 유니크 인덱스
+CREATE UNIQUE INDEX UIX_memb
+	ON memb ( -- 회원
+		id ASC -- 아이디
+	);
+
+-- 후기
+CREATE TABLE rvw (
+	rvw_no INT         NOT NULL COMMENT '리뷰 번호', -- 리뷰 번호
+	rst_no INT         NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	id     VARCHAR(50) NULL     COMMENT '아이디', -- 아이디
+	cont   TEXT        NULL     COMMENT '내용', -- 내용
+	cdt    DATETIME    NULL     COMMENT '생성 일자', -- 생성 일자
+	score  INTEGER     NOT NULL COMMENT '평점', -- 평점
+	useyn  CHAR(1)     NOT NULL COMMENT '사용여부' -- 사용여부
+)
+COMMENT '후기'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 후기
+ALTER TABLE rvw
+	ADD CONSTRAINT PK_rvw -- 후기 기본키
+		PRIMARY KEY (
+			rvw_no -- 리뷰 번호
+		);
+
+ALTER TABLE rvw
+	MODIFY COLUMN rvw_no INT NOT NULL AUTO_INCREMENT COMMENT '리뷰 번호';
+
+ALTER TABLE rvw
+	AUTO_INCREMENT = 1;
+
+-- 메뉴
+CREATE TABLE menu (
+	mn_no  INT         NOT NULL COMMENT '메뉴 번호', -- 메뉴 번호
+	rst_no INT         NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
+	menu   VARCHAR(50) NOT NULL COMMENT '메뉴 이름', -- 메뉴 이름
+	price  INTEGER     NOT NULL COMMENT '메뉴 가격' -- 메뉴 가격
+)
+COMMENT '메뉴'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 메뉴
+ALTER TABLE menu
+	ADD CONSTRAINT PK_menu -- 메뉴 기본키
+		PRIMARY KEY (
+			mn_no -- 메뉴 번호
+		);
+
+ALTER TABLE menu
+	MODIFY COLUMN mn_no INT NOT NULL AUTO_INCREMENT COMMENT '메뉴 번호';
+
+ALTER TABLE menu
+	AUTO_INCREMENT = 1;
+
+-- 관리 요청
+CREATE TABLE rpt (
+	rpt_no    INT      NOT NULL COMMENT '요청 번호', -- 요청 번호
+	rst_no    INT      NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
+	rvw_no    INT      NULL     COMMENT '후기 번호', -- 후기 번호
+	rpt_cont  TEXT     NOT NULL COMMENT '요청 내용', -- 요청 내용
+	rpt_date  DATETIME NOT NULL COMMENT '요청 일자', -- 요청 일자
+	hndl      CHAR(1)  NOT NULL DEFAULT 'N' COMMENT '처리 여부', -- 처리 여부
+	hndl_cont TEXT     NULL     COMMENT '처리 내용' -- 처리 내용
+)
+COMMENT '관리 요청'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 관리 요청
+ALTER TABLE rpt
+	ADD CONSTRAINT PK_rpt -- 관리 요청 기본키
+		PRIMARY KEY (
+			rpt_no -- 요청 번호
+		);
+
+ALTER TABLE rpt
+	MODIFY COLUMN rpt_no INT NOT NULL AUTO_INCREMENT COMMENT '요청 번호';
+
+ALTER TABLE rpt
+	AUTO_INCREMENT = 1;
+
+-- 사진
+CREATE TABLE phot (
+	phot_no INT NOT NULL COMMENT '사진 이름', -- 사진 이름
+	rst_no  INT NULL     COMMENT '레스토랑 번호', -- 레스토랑 번호
+	rvw_no  INT NULL     COMMENT '리뷰 번호' -- 리뷰 번호
+)
+COMMENT '사진'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 사진
+ALTER TABLE phot
+	ADD CONSTRAINT PK_phot -- 사진 기본키
+		PRIMARY KEY (
+			phot_no -- 사진 이름
+		);
+
+-- 사진 유니크 인덱스
+CREATE UNIQUE INDEX UIX_phot
+	ON phot ( -- 사진
+	);
+
+ALTER TABLE phot
+	MODIFY COLUMN phot_no INT NOT NULL AUTO_INCREMENT COMMENT '사진 이름';
+
+ALTER TABLE phot
+	AUTO_INCREMENT = 1;
+
+-- 가고싶다
+CREATE TABLE wnt_go (
+	rst_no INT         NOT NULL COMMENT '레스토랑 번호', -- 레스토랑 번호
+	id     VARCHAR(50) NOT NULL COMMENT '아이디' -- 아이디
+)
+COMMENT '가고싶다'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT PK_wnt_go -- 가고싶다 기본키
+		PRIMARY KEY (
+			rst_no, -- 레스토랑 번호
+			id      -- 아이디
+		);
+
+-- 분류
+CREATE TABLE rst_catag (
+	catag_no INT         NOT NULL COMMENT '요리 분류', -- 요리 분류
+	upper_no INT         NULL     COMMENT '상위 분류', -- 상위 분류
+	catag_nm VARCHAR(50) NULL     COMMENT '분류 명' -- 분류 명
+)
+COMMENT '분류'
+DEFAULT CHARACTER SET = 'utf8'
+DEFAULT COLLATE = 'utf8_general_ci';
+
+-- 분류
+ALTER TABLE rst_catag
+	ADD CONSTRAINT PK_rst_catag -- 분류 기본키
+		PRIMARY KEY (
+			catag_no -- 요리 분류
+		);
+
+-- 레스토랑
+ALTER TABLE rst
+	ADD CONSTRAINT FK_rst_catag_TO_rst -- 분류 -> 레스토랑
+		FOREIGN KEY (
+			catag_no -- 요리 분류
+		)
+		REFERENCES rst_catag ( -- 분류
+			catag_no -- 요리 분류
+		);
+
+-- 후기
+ALTER TABLE rvw
+	ADD CONSTRAINT FK_memb_TO_rvw -- 회원 -> 후기
+		FOREIGN KEY (
+			id -- 아이디
+		)
+		REFERENCES memb ( -- 회원
+			id -- 아이디
+		);
+
+-- 후기
+ALTER TABLE rvw
+	ADD CONSTRAINT FK_rst_TO_rvw -- 레스토랑 -> 후기
+		FOREIGN KEY (
+			rst_no -- 레스토랑 번호
+		)
+		REFERENCES rst ( -- 레스토랑
+			rst_no -- 레스토랑 번호
+		);
+
+-- 메뉴
+ALTER TABLE menu
+	ADD CONSTRAINT FK_rst_TO_menu -- 레스토랑 -> 메뉴
+		FOREIGN KEY (
+			rst_no -- 레스토랑 번호
+		)
+		REFERENCES rst ( -- 레스토랑
+			rst_no -- 레스토랑 번호
+		);
+
+-- 관리 요청
+ALTER TABLE rpt
+	ADD CONSTRAINT FK_rst_TO_rpt -- 레스토랑 -> 관리 요청
+		FOREIGN KEY (
+			rst_no -- 레스토랑 번호
+		)
+		REFERENCES rst ( -- 레스토랑
+			rst_no -- 레스토랑 번호
+		);
+
+-- 관리 요청
+ALTER TABLE rpt
+	ADD CONSTRAINT FK_rvw_TO_rpt -- 후기 -> 관리 요청
+		FOREIGN KEY (
+			rvw_no -- 후기 번호
+		)
+		REFERENCES rvw ( -- 후기
+			rvw_no -- 리뷰 번호
+		);
+
+-- 사진
+ALTER TABLE phot
+	ADD CONSTRAINT FK_rvw_TO_phot -- 후기 -> 사진
+		FOREIGN KEY (
+			rvw_no -- 리뷰 번호
+		)
+		REFERENCES rvw ( -- 후기
+			rvw_no -- 리뷰 번호
+		);
+
+-- 사진
+ALTER TABLE phot
+	ADD CONSTRAINT FK_rst_TO_phot -- 레스토랑 -> 사진
+		FOREIGN KEY (
+			rst_no -- 레스토랑 번호
+		)
+		REFERENCES rst ( -- 레스토랑
+			rst_no -- 레스토랑 번호
+		);
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT FK_memb_TO_wnt_go -- 회원 -> 가고싶다
+		FOREIGN KEY (
+			id -- 아이디
+		)
+		REFERENCES memb ( -- 회원
+			id -- 아이디
+		);
+
+-- 가고싶다
+ALTER TABLE wnt_go
+	ADD CONSTRAINT FK_rst_TO_wnt_go -- 레스토랑 -> 가고싶다
+		FOREIGN KEY (
+			rst_no -- 레스토랑 번호
+		)
+		REFERENCES rst ( -- 레스토랑
+			rst_no -- 레스토랑 번호
+		);
+
+-- 분류
+ALTER TABLE rst_catag
+	ADD CONSTRAINT FK_rst_catag_TO_rst_catag -- 분류 -> 분류
+		FOREIGN KEY (
+			upper_no -- 상위 분류
+		)
+		REFERENCES rst_catag ( -- 분류
+			catag_no -- 요리 분류
+		);
