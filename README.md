@@ -9,7 +9,22 @@
 
 작업 참고 :
 - http://blog.daum.net/janustop/86
-- https://sharedstoryit.tistory.com/entry/%EC%A0%84%EC%9E%90%EC%A0%95%EB%B6%80-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%84%A4%EC%A0%951
+- 전자정부 프레임워크 호나경 설정 설명 :
+    - https://sharedstoryit.tistory.com/entry/%EC%A0%84%EC%9E%90%EC%A0%95%EB%B6%80-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%84%A4%EC%A0%951
+
+컨트롤러 접근은 하지만 jsp 파일에 접근 못 하는 일이 생김.
+dispathcer-servlet.xml에서 설정이
+```
+<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
+    p:viewClass="org.springframework.web.servlet.view.JstlView"
+    p:prefix="/WEB-INF/jsp/egovframework/example/" p:suffix=".jsp"/>
+```
+이렇게 되서 인데, 'example/' 이부분을 넣고 빼고에 차이가 있었음... 
+ViewResolver의 문제인데,
+- https://stackoverflow.com/questions/7527607/how-to-use-multiple-places-in-spring-viewresolver 
+처럼 return 하는 String에 경로를 추가 해 주면 됨  
+이부분 해결하는데 또 2시간 소요 했음.
+ViewResolver에 관한 설명 : https://m.blog.naver.com/PostView.nhn?blogId=chocolleto&logNo=30086936956&proxyReferer=https%3A%2F%2Fwww.google.com%2F
 
 - - -
 ## 3/02 토요일
