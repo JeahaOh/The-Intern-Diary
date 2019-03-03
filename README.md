@@ -1,6 +1,17 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
 - - -
+## 3/03 일요일
+아이바티스로 연결된것을 마이바티스로 바꾸려 했으나 잘 모르겠음. 시간 낭비 하는 것 같아서 일단 로그인 페이지 만드는것 부터 해야 겠음.  
+  
+전자정부 프레임 워크는 src/main/java/egovframework 이하에 있는 컨트롤러에만 반응을 함. (여기서 1시간 이상 삽질 했음)  
+.do가 붙지 않으면 요청에 응답 하지 않음.
+
+작업 참고 :
+- http://blog.daum.net/janustop/86
+- https://sharedstoryit.tistory.com/entry/%EC%A0%84%EC%9E%90%EC%A0%95%EB%B6%80-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%84%A4%EC%A0%951
+
+- - -
 ## 3/02 토요일
 MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
 설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음... 
@@ -10,8 +21,6 @@ MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 �
 심각: Exception sending context destroyed event to listener instance of class [org.springframework.web.context.ContextLoaderListener]
 java.lang.IllegalStateException: BeanFactory not initialized or already closed - call 'refresh' before accessing beans via the ApplicationContext
 ```
-
-
 
 - 공통 컴포넌트 설치 법
     - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev3.7:imp:editor:common_component
