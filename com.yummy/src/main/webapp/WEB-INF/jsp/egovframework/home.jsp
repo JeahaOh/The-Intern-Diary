@@ -82,9 +82,11 @@
       var data = $('#userForm').serialize();
       
       $.post( url, data ).done(function( data ) {
-        
-        /* console.log(document.location.href + data); */
-        window.location.href = document.location.href + data;
+        if( data === 'loginError') {
+        	alert('LogIn Error\n관리자에게 문의하세요.')
+        }  else {
+        	  window.location.href = document.location.href + data;
+        }
       });
     }
     
