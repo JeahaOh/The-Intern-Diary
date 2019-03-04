@@ -16,10 +16,40 @@
     FROM
       memb
     WHERE
-      id=#{id}
+      id = #{id}
     AND
-      pwd=password(#{pwd})
+      pwd = password(#{pwd})
     AND
-      adm='Y'
+      adm = 'Y'
   </select>
+  
+  <select id="login" parameterType="String" resultMap="memb">
+    SELECT
+      id, nick, adm, useyn
+    FROM
+      memb
+    WHERE
+      id = #{id}
+    AND
+      pwd = password(#{pwd})
+    AND
+      adm = 'N'
+  </select>
+  
+  <select id="idCheck" parameterType="String" resultType="Boolean">
+    SELECT
+      id
+    FROM
+      memb
+    WHERE
+      id = #{id}
+  </select> 
+  
+  <insert id="signUp" parameterType="String">
+    INSERT INTO memb
+      ( `id`, `adm`, `nick`, `pwd`, `useyn`)
+    VALUES
+      ( #{id}, 'N', #{nick}, password(#{pwd}), 'Y')
+  </insert>
+  
 </mapper>

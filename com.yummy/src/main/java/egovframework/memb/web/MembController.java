@@ -60,4 +60,24 @@ public class MembController {
     session.setAttribute("loginUser", user);
     return "rst/list";
   }
+  
+  @RequestMapping(value="/login", method= RequestMethod.POST)
+  public @ResponseBody String login(
+      @RequestParam String id,
+      @RequestParam String pwd,
+      HttpSession session)
+          throws Exception {
+    logger.info(session.toString());
+    
+    Memb user = (Memb) membService.login(id, pwd);
+    
+    if( user == null ) {
+      return "loginError";
+    }
+    
+//    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
+    session.setAttribute("loginUser", user);
+    return "rst/list";
+  }
+  
 }

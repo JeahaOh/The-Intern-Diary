@@ -16,6 +16,7 @@ import egovframework.memb.vo.Memb;
  */
 
 public interface MembService {
+  
   /**
    * 관리자 로그인을 한다.
    * 
@@ -26,4 +27,33 @@ public interface MembService {
    */
   Memb adminLogin(String id, String pwd) throws Exception;
   
+  /**
+   * 일반 회원 로그인을 한다.
+   * 
+   * @param id  - 회원의 id
+   * @param pwd - 회원의 pwd
+   * @return  로그인 한 회원
+   * @throws Exception
+   */
+  Memb login(String id, String pwd) throws Exception;
+  
+  /**
+   * id값이 있는지 확인 한다.
+   * 
+   * @param id  - 확인 할 id 값
+   * @return id의 존재 여부
+   * @throws Exception
+   */
+  Boolean idCheck(String id) throws Exception;
+  
+  /**
+   * 일반 회원의 회원 가입을 한다.
+   * 
+   * @param id  - memb의 ID
+   * @param pwd - memb의 PWD
+   * @param nick- memb의 nick
+   * @return  회원 가입 성공 여부
+   * @throws Exception
+   */
+  Boolean signUp(String id, String pwd, String nick) throws Exception;
 }
