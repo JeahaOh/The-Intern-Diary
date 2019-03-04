@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
+<!-- MyBatis configLocation Property >> context-mapper.xml -->
+<!-- MyBatis에서 자바 타입에 대한 짧은 별칭을 지정 해 주는 것. -->
 <configuration>
   <typeAliases>
     <typeAlias alias="egovMap"
@@ -9,5 +10,11 @@
       type="egovframework.example.sample.service.SampleDefaultVO" />
     <typeAlias alias="sampleVO"
       type="egovframework.example.sample.service.SampleVO" />
+    
+    <!--
+       @Author JeahaOH
+        제하 정의 타입.
+     -->
+    <typeAlias alias="memb" type="egovframework.memb.vo.Memb" />
   </typeAliases>
 </configuration>
