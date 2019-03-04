@@ -80,4 +80,6 @@ public class MembController {
     return "rst/list";
   }
   
+  
+  
 }

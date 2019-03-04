@@ -56,4 +56,6 @@ public interface MembService {
    * @throws Exception
    */
   Boolean signUp(String id, String pwd, String nick) throws Exception;
+  
+  void signOut(String id) throws Exception;
 }

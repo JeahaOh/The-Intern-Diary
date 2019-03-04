@@ -21,6 +21,8 @@
       pwd = password(#{pwd})
     AND
       adm = 'Y'
+    AND
+      useyn = 'Y'
   </select>
   
   <select id="login" parameterType="String" resultMap="memb">
@@ -34,6 +36,8 @@
       pwd = password(#{pwd})
     AND
       adm = 'N'
+    AND
+      useyn = 'Y'
   </select>
   
   <select id="idCheck" parameterType="String" resultType="Boolean">
@@ -47,9 +51,27 @@
   
   <insert id="signUp" parameterType="String">
     INSERT INTO memb
-      ( `id`, `adm`, `nick`, `pwd`, `useyn`)
+      ( id, adm, nick, pwd, useyn)
     VALUES
       ( #{id}, 'N', #{nick}, password(#{pwd}), 'Y')
   </insert>
-  
+
+  <update id="signOut" parameterType="String">
+    UPDATE memb
+    SET
+      useyn = 'N'
+    WHERE
+      id = #{id}
+  </update>
+<!--   
+  <update id="updateMemb" parameterType="String">
+    UPDATE memb
+    SET
+      nick = #{nick},
+      pwd = PASSWORD(#{pwd}),
+      useyn = 'N'
+    WHERE
+      id = #{id}
+  </update>
+   -->
 </mapper>

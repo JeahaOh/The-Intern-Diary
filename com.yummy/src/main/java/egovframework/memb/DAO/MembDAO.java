@@ -62,4 +62,6 @@ public interface MembDAO {
   Boolean signUp(
      @Param("id") String id, @Param("pwd") String pwd, @Param("nick") String nick
      ) throws Exception;
+  
+  void signOut(@Param("id") String id) throws Exception;
 }

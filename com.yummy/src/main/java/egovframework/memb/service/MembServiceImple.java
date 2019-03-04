@@ -86,4 +86,14 @@ public class MembServiceImple implements MembService {
     return membDao.signUp(id, pwd, nick);
   }
   
+  /**
+   * 일반 회원의 탈퇴 기능
+   * @Param id  - memb의 ID
+   * @Throws Exception
+   */
+  @Override
+  public void signOut(String id) throws Exception {
+    logger.info(id);
+    membDao.signOut(id);
+  }
 }
