@@ -93,6 +93,21 @@ DAO에 @Mapper("membDao") annotation을 붙여주고,
 ServiceImple에 @Resource(name="membDao") annotation을 붙여주고,
 sql-mapper-config.xml에 <typeAlias alias="memb" type="egovframework.memb.vo.Memb" /> 로 타입을 정의 해 줌.
 
+
+### 13:30
+DAO와 ServiceImple 간의 연결 에러.  
+DAO에 @Mapper("membDao") annotation을 붙여주고,  
+ServiceImple에 @Resource(name="membDao") annotation을 붙여주고,  
+sql-mapper-config.xml에 <typeAlias alias="memb" type="egovframework.memb.vo.Memb" /> 로 타입을 정의 해 줌.  
+  
+### 14:30
+git tag 삭제  
+- 로컬 tag 삭제
+    - git tag -d [tag name]
+- 원격 저장소 tag 삭제
+    - git push origin :[tag name]
+
+
 - - -
 ## 3/03 일요일
 아이바티스로 연결된것을 마이바티스로 바꾸려 했으나 잘 모르겠음. 시간 낭비 하는 것 같아서 일단 로그인 페이지 만드는것 부터 해야 겠음.  
