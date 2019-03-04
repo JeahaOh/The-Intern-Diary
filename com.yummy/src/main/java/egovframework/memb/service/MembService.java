@@ -44,7 +44,7 @@ public interface MembService {
    * @return id의 존재 여부
    * @throws Exception
    */
-  Boolean idCheck(String id) throws Exception;
+  String idCheck(String id) throws Exception;
   
   /**
    * 일반 회원의 회원 가입을 한다.

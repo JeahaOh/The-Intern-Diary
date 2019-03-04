@@ -91,5 +91,26 @@
     }
     
   });
+  
+  /**
+   * id 확인을 위한 Function
+   * @Param target  - id 확인 할 대상 id
+   * @return  - 사용 가능 여부 반환
+   * 
+   */
+  function idCheck( target ) {
+    var url = 'memb/idCheck';
+    var param = { id: target };
+  
+    $.post( url, param ).done( function( data ) {
+      if( !data ) {
+    	  console.log( '사용 가능' );
+      } else {
+    	  console.log( '사용 불가능' );
+      }
+    });
+  }
+  
+  
 </script>
 </html>

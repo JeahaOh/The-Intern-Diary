@@ -66,7 +66,7 @@ public class MembServiceImple implements MembService {
    * @throws Exception
    */
   @Override
-  public Boolean idCheck(String id) throws Exception {
+  public String idCheck(String id) throws Exception {
     logger.info(id);
     return membDao.idCheck(id);
   }

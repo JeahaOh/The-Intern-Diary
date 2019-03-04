@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.memb.service.MembService;
 import egovframework.memb.vo.Memb;
+import egovframework.util.PatternTest;
 
 /**
  * @Class Name  : MembController.java
@@ -33,6 +34,9 @@ public class MembController {
   
   @Resource(name = "membService")
   private MembService membService;
+  
+  @Resource(name = "patternTest")
+  private PatternTest patternTest;
   
   /**
    * 관리자 로그인을 한다.
@@ -80,6 +84,16 @@ public class MembController {
     return "rst/list";
   }
   
-  
+  @RequestMapping(value="/idCheck", method= RequestMethod.POST)
+  public @ResponseBody String idCheck(@RequestParam String id) throws Exception {
+    System.out.println("idCheck");
+    logger.info(id);
+    if(id != null && id != ""){
+      if( patternTest.test(id) ) {
+        return membService.idCheck(id);
+      }
+    }
+    return "false";
+  }
   
 }
