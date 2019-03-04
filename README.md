@@ -107,6 +107,9 @@ git tag 삭제
 - 원격 저장소 tag 삭제
     - git push origin :[tag name]
 
+### 15:00
+- git stage에 올라 가지 않은, 수정한 파일들 수정 이전으로 되돌리기
+    - git reset --hard
 
 - - -
 ## 3/03 일요일

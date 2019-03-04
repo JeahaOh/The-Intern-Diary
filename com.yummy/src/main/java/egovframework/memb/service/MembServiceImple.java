@@ -40,6 +40,7 @@ public class MembServiceImple implements MembService {
    */
   @Override
   public Memb adminLogin(String id, String pwd) throws Exception {
+    logger.info(id);
     return membDao.adminLogin(id, pwd);
   }
 
