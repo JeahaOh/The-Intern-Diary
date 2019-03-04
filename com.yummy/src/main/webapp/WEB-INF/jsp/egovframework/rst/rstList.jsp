@@ -18,9 +18,9 @@
     var="rst"
     items="${rstList}"
     varStatus="status">
-  <div>
-    ${rst.rst_name} 
-  </div>
+      <div>
+        ${rst.rst_name}
+      </div>
   </c:forEach>
 </body>
 </html>

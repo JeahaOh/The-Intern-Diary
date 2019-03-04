@@ -126,6 +126,10 @@ git tag 삭제
 ### 21:45
 - memb 회원 가입, 탈퇴 기능, ServerSide 구현. 
 
+### 22:10
+내일 rstList 페이지와 rst 관리 기능들 만들 것임.  
+WBS 상으로는 APP을 만들어야 하지만, rst의 기능들을 구현 한 후, APP을 만드는게 훨씬 효율적이라고 판단 되었음...
+
 - - -
 ## 3/03 일요일
 아이바티스로 연결된것을 마이바티스로 바꾸려 했으나 잘 모르겠음. 시간 낭비 하는 것 같아서 일단 로그인 페이지 만드는것 부터 해야 겠음.  
@@ -135,7 +139,7 @@ git tag 삭제
 
 작업 참고 :
 - http://blog.daum.net/janustop/86
-- 전자정부 프레임워크 호나경 설정 설명 :
+- 전자정부 프레임워크 환경 설정 설명 :
     - https://sharedstoryit.tistory.com/entry/%EC%A0%84%EC%9E%90%EC%A0%95%EB%B6%80-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%84%A4%EC%A0%951
 
 컨트롤러 접근은 하지만 jsp 파일에 접근 못 하는 일이 생김.
@@ -149,7 +153,7 @@ dispathcer-servlet.xml에서 설정이
 ViewResolver의 문제인데,
 - https://stackoverflow.com/questions/7527607/how-to-use-multiple-places-in-spring-viewresolver 
 처럼 return 하는 String에 경로를 추가 해 주면 됨  
-이부분 해결하는데 또 2시간 소요 했음.
+이 부분 해결하는데 또 2시간 소요 했음.
 ViewResolver에 관한 설명 : https://m.blog.naver.com/PostView.nhn?blogId=chocolleto&logNo=30086936956&proxyReferer=https%3A%2F%2Fwww.google.com%2F  
   
 AWS DB에 데이터 넣었음.
@@ -252,7 +256,7 @@ Output File > File System > 로그가 남겨질 파일 생성 > 파일에 로그
 
 
 - git push 취소하기
-    1. commit을 되돌린다.
+    1. commit을 되돌린다.
         - 가장 최근의 commit을 취소하고 워킹 디렉토리를 되돌린다.
         ```
         git reset HEAD^
