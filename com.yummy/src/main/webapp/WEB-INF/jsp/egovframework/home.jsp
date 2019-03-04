@@ -99,8 +99,8 @@
    * 
    */
   function idCheck( target ) {
-    var url = 'memb/idCheck';
-    var param = { id: target };
+    let url = 'memb/idCheck';
+    let param = { id: target };
   
     $.post( url, param ).done( function( data ) {
       if( !data ) {
@@ -111,6 +111,47 @@
     });
   }
   
+  /**
+   * 회원 가입을 위한 Function
+   * 
+   * 예외 처리를 다시 해야함.
+   */
+  function signUp( id, pwd, nick ) {
+    let url = 'memb/signUp';
+    let param = {
+      id : id,
+      pwd: pwd,
+      nick: nick
+    }
+    
+    console.log( param );
+    try{
+      $.post( url, param ).done( function( data ) {
+          console.log( data );
+          if (data === 'success' ) {
+            alert('회원 가입 성공');
+          }
+          
+      });
+    } catch( err ) {
+    	console.log( err );
+    	alert('회원 가입 실패\n관리자에게 문의하세요');
+    }
+  }
+  
+  /**
+   * 회원 탈퇴를 위한 Function
+   * 
+   * 예외 처리, detail한 처리 다시 해야함.
+   */
+  function signOut( param ) {
+	  let url = 'memb/signOut';
+	  let id = { id : param };
+	  
+	  console.log( param );
+	  
+	  $.post( url, id ).done();
+  }
   
 </script>
 </html>

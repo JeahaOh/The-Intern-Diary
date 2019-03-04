@@ -29,15 +29,15 @@ import egovframework.util.PatternTest;
 @Controller
 @RequestMapping("/memb")
 public class MembController {
-  
+
   private static final Logger logger = LoggerFactory.getLogger(MembController.class);
-  
+
   @Resource(name = "membService")
   private MembService membService;
-  
+
   @Resource(name = "patternTest")
   private PatternTest patternTest;
-  
+
   /**
    * 관리자 로그인을 한다.
    * 
@@ -53,18 +53,26 @@ public class MembController {
       HttpSession session)
           throws Exception {
     logger.info(session.toString());
-    
+
     Memb user = (Memb) membService.adminLogin(id, pwd);
-    
+
     if( user == null ) {
       return "loginError";
     }
-    
-//    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
+
+    //    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
     session.setAttribute("loginUser", user);
     return "rst/list";
   }
-  
+
+  /**
+   * 일반 사용자 로그인을 한다.
+   * 
+   * @param id  - 로그인 할 id
+   * @param pwd - memb의 비밀번호
+   * @return 
+   * @exception Exception
+   */
   @RequestMapping(value="/login", method= RequestMethod.POST)
   public @ResponseBody String login(
       @RequestParam String id,
@@ -72,28 +80,77 @@ public class MembController {
       HttpSession session)
           throws Exception {
     logger.info(session.toString());
-    
+
     Memb user = (Memb) membService.login(id, pwd);
-    
+
     if( user == null ) {
       return "loginError";
     }
-    
-//    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
+
+    //    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
     session.setAttribute("loginUser", user);
     return "rst/list";
   }
-  
+
+  /**
+   * id값이 있는지 확인 한다.
+   * 
+   * @param id  - 확인 할 id 값
+   * @return id의 존재 여부
+   * @throws Exception
+   */
   @RequestMapping(value="/idCheck", method= RequestMethod.POST)
   public @ResponseBody String idCheck(@RequestParam String id) throws Exception {
-    System.out.println("idCheck");
     logger.info(id);
+
     if(id != null && id != ""){
-      if( patternTest.test(id) ) {
+      if( patternTest.idTest(id) ) {
         return membService.idCheck(id);
       }
     }
+
     return "false";
   }
+
+  /**
+   * 회원 가입을 한다.
+   * 예외 처리를 다시 해야함.
+   * 
+   * @param id  - 회원 가입 할 id
+   * @param pwd - 회원 가입 할 pwd
+   * @param nick- 회원 가입 할 nick
+   * @return 회원 가입 결과
+   * @throws Exception
+   */
+  @RequestMapping(value="/signUp", method= RequestMethod.POST)
+  public @ResponseBody String signUp(
+      @RequestParam String id,
+      @RequestParam String pwd,
+      @RequestParam String nick)
+          throws Exception {
+    logger.info(id, nick);
+
+    if( patternTest.pwdTest(id, pwd) ) {
+      return "signUp/error";
+    }
+    if( membService.signUp(id, pwd, nick) ) {
+      return "success";
+    } else {
+      return "signUp/fail";
+    }
+  }
   
+  /**
+   * 회원 탈퇴를 기능.
+   * @param id  - 탈퇴할 회원의 id
+   * @param session
+   * @throws Exception
+   */
+  @RequestMapping(value="/signOut", method=RequestMethod.POST)
+  public void signOut ( @RequestParam String id, HttpSession session) throws Exception {
+    logger.info(id, session);
+    membService.signOut(id);
+    session.removeAttribute("loginUser");
+    System.out.println(id + "\nSIGN OUT!!");
+  }
 }

@@ -119,6 +119,12 @@ git tag 삭제
 
 ### 20:30
 - memb 회원 가입시 idCheck 기능, ServerSide에서 id의 정규 표현식 확인 기능 제작
+    - https://highcode.tistory.com/6
+    - https://cofs.tistory.com/358?category=627148
+    - 
+
+### 21:45
+- memb 회원 가입, 탈퇴 기능, ServerSide 구현. 
 
 - - -
 ## 3/03 일요일
