@@ -1,5 +1,53 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
+
+- - -
+## 3/04 월요일
+### 09:30
+egovframwork/example Package에 연결된 iBatis / MyBatis 설정 파일들을 찾았음.  
+iBatis 설정 파일들을 주석 처리 하고, MyBatis를 연결, 서버 작동 제대로 함.
+- 각 파일에 참조하는 파일의 경로가 있음.
+- iBatis 설정 파일
+    - egovframework/example/sample/service/impl/SampleDAO.java
+    - \resources\egovframework\spring\context-sqlMap.xml
+    - \resources\egovframework\sqlmap\example\sql-map-config.xml
+    - \resources\egovframework\sqlmap\example\sample\EgovSample_Sample_SQL.xml
+- MyBatis 설정 파일
+    - \resources\egovframework\sqlmap\example\sample\EgovSample_Sample_SQL.xml
+        ```
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!-- MyBatis 설정 파일  -->
+
+        <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+            <!-- SqlSession setup for MyBatis Database Layer -->
+            <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="dataSource" />
+                <property name="configLocation" value="classpath:/egovframework/sqlmap/example/sql-mapper-config.xml" />
+                <property name="mapperLocations" value="classpath:/egovframework/sqlmap/example/mappers/*.xml" />
+            </bean>
+
+            <!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+            <bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+                <property name="basePackage" value="egovframework.example.sample.service.impl" />
+            </bean>
+            
+        </beans>
+        ```
+    - \resources\egovframework\sqlmap\example\sql-mapper-config.xml
+    - \resources\egovframework\sqlmap\example\mappers\EgovSample_Sample_SQL.xm  
+  
+- \webapp\WEB-INF\web.xml
+    - URL action에 .do가 아닌 일반 경로로 ("/") 설정함.
+    ```
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <!-- <url-pattern>*.do</url-pattern> -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    ```
+
+
 - - -
 ## 3/03 일요일
 아이바티스로 연결된것을 마이바티스로 바꾸려 했으나 잘 모르겠음. 시간 낭비 하는 것 같아서 일단 로그인 페이지 만드는것 부터 해야 겠음.  

@@ -10,11 +10,7 @@
       type="egovframework.example.sample.service.SampleDefaultVO" />
     <typeAlias alias="sampleVO"
       type="egovframework.example.sample.service.SampleVO" />
-    
-    <!--
-       @Author JeahaOH
-        제하 정의 타입.
-     -->
+
     <typeAlias alias="memb" type="egovframework.memb.vo.Memb" />
   </typeAliases>
 </configuration>

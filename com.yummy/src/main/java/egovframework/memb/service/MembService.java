@@ -1,5 +1,7 @@
 package egovframework.memb.service;
 
+import egovframework.memb.vo.Memb;
+
 /**
  * @Class Name  : MemvService.java
  * @Discription : MembService Class
@@ -15,13 +17,13 @@ package egovframework.memb.service;
 
 public interface MembService {
   /**
-   * 로그인을 한다.
+   * 관리자 로그인을 한다.
    * 
    * @param id  - 회원의 id
    * @param pwd - 회원의 pwd
-   * @return  로그인 시도 결과
+   * @return  로그인 한 회원
    * @throws Exception
    */
-  Boolean login(String id, String pwd) throws Exception;
+  Memb adminLogin(String id, String pwd) throws Exception;
   
 }

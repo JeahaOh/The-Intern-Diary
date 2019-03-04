@@ -78,7 +78,7 @@
       alert("비밀번호를 입력하세요.");
       $('#pwd').focus();
     } else {
-      var url = 'memb/login.do';
+      var url = 'memb/adminLogin';
       var data = $('#userForm').serialize();
       
       $.post( url, data ).done(function( data ) {

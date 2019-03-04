@@ -4,17 +4,17 @@ public class Memb {
   String id;
   String pwd;
   String nick;
-  Boolean admin;
+  Boolean adm;
   Boolean useyn;
   
   public Memb() { }
   
-  public Memb(String id, String pwd, String nick, Boolean admin, Boolean useyn) {
+  public Memb(String id, String pwd, String nick, Boolean adm, Boolean useyn) {
     super();
     this.id = id;
     this.pwd = pwd;
     this.nick = nick;
-    this.admin = admin;
+    this.adm = adm;
     this.useyn = useyn;
   }
   
@@ -36,11 +36,11 @@ public class Memb {
   public void setNick(String nick) {
     this.nick = nick;
   }
-  public Boolean getAdmin() {
-    return admin;
+  public Boolean getadm() {
+    return adm;
   }
-  public void setAdmin(Boolean admin) {
-    this.admin = admin;
+  public void setadm(Boolean adm) {
+    this.adm = adm;
   }
   public Boolean getUseyn() {
     return useyn;
@@ -51,7 +51,7 @@ public class Memb {
   
   @Override
   public String toString() {
-    return "Memb [id=" + id + ", pwd=" + pwd + ", nick=" + nick + ", admin=" + admin + ", useyn="
+    return "Memb [id=" + id + ", pwd=" + pwd + ", nick=" + nick + ", adm=" + adm + ", useyn="
         + useyn + "]";
   }
 }
