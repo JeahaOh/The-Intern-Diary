@@ -32,7 +32,7 @@ public class HomeController {
    * @param 없음
    * @return "home"
    */
-  @RequestMapping(value = "/home.do")
+  @RequestMapping(value = "/home")
   public String home(Locale locale, Model model)  throws Exception {
     logger.info("Welcome home! The client locale is {}.", locale);
 

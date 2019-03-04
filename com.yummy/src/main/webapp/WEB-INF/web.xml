@@ -46,9 +46,15 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <!-- **
+       * JeahaOh
+       * 19.03.04
+       *  action에 *.do가 아닌 일반 경로로 변경
+   -->
   <servlet-mapping>
     <servlet-name>action</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <!-- <url-pattern>*.do</url-pattern> -->
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

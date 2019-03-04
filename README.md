@@ -6,12 +6,13 @@
 ### 09:30
 egovframwork/example Package에 연결된 iBatis / MyBatis 설정 파일들을 찾았음.  
 iBatis 설정 파일들을 주석 처리 하고, MyBatis를 연결, 서버 작동 제대로 함.
+- 각 파일에 참조하는 파일의 경로가 있음.
 - iBatis 설정 파일
+    - egovframework/example/sample/service/impl/SampleDAO.java
     - \resources\egovframework\spring\context-sqlMap.xml
     - \resources\egovframework\sqlmap\example\sql-map-config.xml
     - \resources\egovframework\sqlmap\example\sample\EgovSample_Sample_SQL.xml
 - MyBatis 설정 파일
-    - 각 파일에 참조하는 파일의 경로가 있음.
     - \resources\egovframework\sqlmap\example\sample\EgovSample_Sample_SQL.xml
         ```
         <?xml version="1.0" encoding="UTF-8"?>
@@ -34,8 +35,17 @@ iBatis 설정 파일들을 주석 처리 하고, MyBatis를 연결, 서버 작�
         </beans>
         ```
     - \resources\egovframework\sqlmap\example\sql-mapper-config.xml
-    - \resources\egovframework\sqlmap\example\mappers\EgovSample_Sample_SQL.xm
-
+    - \resources\egovframework\sqlmap\example\mappers\EgovSample_Sample_SQL.xm  
+  
+- \webapp\WEB-INF\web.xml
+    - URL action에 .do가 아닌 일반 경로로 ("/") 설정함.
+    ```
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <!-- <url-pattern>*.do</url-pattern> -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    ```
 
 
 - - -
