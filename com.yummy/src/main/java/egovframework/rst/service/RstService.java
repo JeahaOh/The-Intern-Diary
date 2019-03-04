@@ -1,5 +1,7 @@
 package egovframework.rst.service;
 
+import java.util.List;
+import egovframework.rst.vo.Rst;
 
 /**
  * @Class Name  : RstService.java
@@ -23,6 +25,6 @@ public interface RstService {
    * @return  로그인 한 회원
    * @throws Exception
    */
-//  Memb adminLogin(String id, String pwd) throws Exception;
-  
+  List<Rst> getList() throws Exception;
+
 }

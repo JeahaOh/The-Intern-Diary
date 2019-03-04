@@ -1,5 +1,6 @@
 package egovframework.rst.web;
 
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import egovframework.rst.service.RstService;
+import egovframework.rst.vo.Rst;
 
 /**
  * @Class Name  : RstController.java
@@ -43,6 +45,11 @@ public class RstController {
   @RequestMapping(value="/list", method= RequestMethod.GET)
   public String rstList(HttpSession session, Model model) throws Exception {
     logger.info(session.toString());
+    
+    
+    List<Rst> rstList = rstService.getList();
+    
+    model.addAttribute("rstList", rstList);
     
     return "rst/rstList";
   }

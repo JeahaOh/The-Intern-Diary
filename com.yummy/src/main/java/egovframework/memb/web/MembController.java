@@ -58,6 +58,6 @@ public class MembController {
     
 //    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
     session.setAttribute("loginUser", user);
-    return "egovSampleList.do";
+    return "rst/list";
   }
 }

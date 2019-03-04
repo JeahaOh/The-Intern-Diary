@@ -1,9 +1,13 @@
 package egovframework.rst.service;
 
+import java.util.List;
+import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import egovframework.rst.dao.RstDAO;
+import egovframework.rst.vo.Rst;
 
 /**
  * @Class Name  : MemvServiceImple.java
@@ -24,8 +28,22 @@ public class RstServiceImple implements RstService {
 
   private static final Logger logger = LoggerFactory.getLogger(RstServiceImple.class);
 
-//  @Resource(name="rstDao")
-//  private RstDAO rstDao;
+  @Resource(name="rstDao")
+  private RstDAO rstDao;
+  
+  /**
+   * Rst의 리스트를 반환
+   * 
+   * @return Rst의 List
+   * @throws Exception
+   */
+  @Override
+  public List<Rst> getList() throws Exception {
+    
+    return rstDao.getList();
+  }
+
+
   
   /**
    * 관리자 로그인을 한다.

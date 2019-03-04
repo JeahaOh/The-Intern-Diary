@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.rst.dao.RstDAO">
+<!-- 
+  <resultMap type="rst" id="egovframework.rst.vo.Rst">
+    <id property="rst_no" column="rst_no"/>
+    <result property="rst_name" column="rst_name"/>
+    <result property="star" column="star"/>
+    <result property="loc" column="loc"/>
+    <result property="loc_dtl" column="loc_dtl"/>
+    <result property="catag_no" column="catag_no"/>
+    <result property="tel" column="tel"/>
+    <result property="opn_tm" column="opn_tm"/>
+    <result property="brck_tm" column="brck_tm"/>
+    <result property="dnnr_tm" column="dnnr_tm"/>
+    <result property="lo_tm" column="lo_tm"/>
+  </resultMap>
+    
+   -->
+  <select id="getList" resultType="rst">
+    SELECT
+      rst_no,
+      rst_name,
+      star,
+      loc,
+      loc_dtl,
+      catag_no,
+      tel,
+      opn_tm,
+      brck_tm,
+      dnnr_tm,
+      lo_tm
+    FROM `rst`
+    WHERE 1
+  </select>
+
+</mapper>

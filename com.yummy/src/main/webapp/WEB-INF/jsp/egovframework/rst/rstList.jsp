@@ -9,11 +9,18 @@
 <!DOCTYPE html>
 <html lang="kor">
 <head>
-    <meta charset="UTF-8">
-    <title>Restaurant List</title>
-    <style></style>
+<meta charset="UTF-8">
+<title>Restaurant List</title>
+<style></style>
 </head>
 <body>
-
+  <c:forEach
+    var="rst"
+    items="${rstList}"
+    varStatus="status">
+  <div>
+    ${rst.rst_name} 
+  </div>
+  </c:forEach>
 </body>
 </html>

@@ -12,5 +12,6 @@
       type="egovframework.example.sample.service.SampleVO" />
 
     <typeAlias alias="memb" type="egovframework.memb.vo.Memb" />
+    <typeAlias alias="rst" type="egovframework.rst.vo.Rst" />
   </typeAliases>
 </configuration>
