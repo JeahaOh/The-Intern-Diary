@@ -1,5 +1,27 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
+- - -
+## 03/05 화요일
+### 09:45
+egovSampleList.jsp 파일을 참고해서 jsp 파일을 작성 하고자, 분석중.  
+egovSampleList.jsp가 js 파일이나, img, css 파일의 경로를 못 찾고 404 error를 내고 있음...
+
+### 10:10
+CSS 경로 잡기는 나중에 하기로... c:url을 걸든 그냥 href를 쓰던 경로에 대한 공부를 좀 해야 할 듯.
+
+### 10:50
+c:url?
+- https://offbyone.tistory.com/319
+
+### 11:10
+c:out?
+- https://okky.kr/article/209612
+- https://needjarvis.tistory.com/51
+단순히 출력 되는 것으로 판단 하면 안됨..
+
+### 11:45
+javax.servlet.jsp.JspTagException: No message found under code 'title.rst.id' for locale 'ko_KR'.
+spring:message TAG를 사용 하려는데 이런 에러가 뜸...
 
 - - -
 ## 3/04 월요일
