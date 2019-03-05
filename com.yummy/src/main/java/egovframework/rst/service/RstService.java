@@ -18,13 +18,20 @@ import egovframework.rst.vo.Rst;
 
 public interface RstService {
   /**
-   * 관리자 로그인을 한다.
+   * 식당 목록을 가져온다.
    * 
-   * @param id  - 회원의 id
-   * @param pwd - 회원의 pwd
-   * @return  로그인 한 회원
+   * @return 식당 목록
    * @throws Exception
    */
   List<Rst> getList() throws Exception;
+  
+  /**
+   * 식당 상세 정보를 가져온다.
+   * 
+   * @param id  - 식당 id
+   * @return  Rst
+   * @throws Exception
+   */
+  Rst getDetail(int id) throws Exception;
 
 }

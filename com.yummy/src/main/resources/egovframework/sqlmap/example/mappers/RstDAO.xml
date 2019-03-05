@@ -19,19 +19,43 @@
    -->
   <select id="getList" resultType="rst">
     SELECT
-      rst_no,
-      rst_name,
-      star,
-      loc,
-      loc_dtl,
-      catag_no,
-      tel,
-      opn_tm,
-      brck_tm,
-      dnnr_tm,
-      lo_tm
-    FROM `rst`
+      rst.rst_no,
+      rst.rst_name,
+      rst.star,
+      rst.loc,
+      rst.loc_dtl,
+      rst.catag_no,
+      catag.catag_nm,
+      rst.tel,
+      rst.opn_tm,
+      rst.brck_tm,
+      rst.dnnr_tm,
+      rst.lo_tm
+    FROM rst rst
+    INNER JOIN rst_catag catag
+    ON rst.catag_no = catag.catag_no
     WHERE 1
+    ORDER BY rst.rst_no ASC
+  </select>
+  
+  <select id="getDetail" parameterType="int" resultType="rst">
+    SELECT
+      rst.rst_no,
+      rst.rst_name,
+      rst.star,
+      rst.loc,
+      rst.loc_dtl,
+      rst.catag_no,
+      catag.catag_nm,
+      rst.tel,
+      rst.opn_tm,
+      rst.brck_tm,
+      rst.dnnr_tm,
+      rst.lo_tm
+    FROM rst rst
+    INNER JOIN rst_catag catag
+    ON rst.catag_no = catag.catag_no
+    WHERE rst.rst_no = #{id}
   </select>
 
 </mapper>

@@ -7,7 +7,7 @@ public class Rst {
   String loc;
   String loc_dtl;
   int catag_no;
-  String catag_name;
+  String catag_nm;
   String tel;
   String opn_tm;
   String brck_tm;
@@ -17,7 +17,7 @@ public class Rst {
   public Rst() {}
 
   public Rst(int rst_no, String rst_name, int star, String loc, String loc_dtl, int catag_no,
-      String catag_name, String tel, String opn_tm, String brck_tm, String dnnr_tm, String lo_tm) {
+      String catag_nm, String tel, String opn_tm, String brck_tm, String dnnr_tm, String lo_tm) {
     super();
     this.rst_no = rst_no;
     this.rst_name = rst_name;
@@ -25,7 +25,7 @@ public class Rst {
     this.loc = loc;
     this.loc_dtl = loc_dtl;
     this.catag_no = catag_no;
-    this.catag_name = catag_name;
+    this.catag_nm = catag_nm;
     this.tel = tel;
     this.opn_tm = opn_tm;
     this.brck_tm = brck_tm;
@@ -81,12 +81,12 @@ public class Rst {
     this.catag_no = catag_no;
   }
 
-  public String getCatag_name() {
-    return catag_name;
+  public String getcatag_nm() {
+    return catag_nm;
   }
 
-  public void setCatag_name(String catag_name) {
-    this.catag_name = catag_name;
+  public void setcatag_nm(String catag_nm) {
+    this.catag_nm = catag_nm;
   }
 
   public String getTel() {
@@ -132,8 +132,17 @@ public class Rst {
   @Override
   public String toString() {
     return "Rst [rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
-        + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", catag_name=" + catag_name
+        + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", catag_nm=" + catag_nm
         + ", tel=" + tel + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm
         + ", lo_tm=" + lo_tm + "]";
   }
 }
+/*
+    if( this.getStar() == -1 ) {
+      this.star_name = "Bib Groumand";
+    } else if ( this.getStar() == -2 ) {
+      this.star_name = "The Plate";
+    } else {
+      this.star_name = Integer.toString(this.getStar());
+    }
+*/

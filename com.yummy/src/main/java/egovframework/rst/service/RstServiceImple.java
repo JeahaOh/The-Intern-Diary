@@ -43,20 +43,16 @@ public class RstServiceImple implements RstService {
     return rstDao.getList();
   }
 
-
-  
   /**
-   * 관리자 로그인을 한다.
+   * 식당 상세 정보를 가져온다.
    * 
-   * @param id  - 회원의 id
-   * @param pwd - 회원의 pwd
-   * @return  로그인 한 회원
+   * @param id  - 식당 id
+   * @return  Rst
    * @throws Exception
    */
-//  @Override
-//  public Memb adminLogin(String id, String pwd) throws Exception {
-//    return membDao.adminLogin(id, pwd);
-//  }
-
-  
+  @Override
+  public Rst getDetail(int id) throws Exception {
+    logger.info(Integer.toString(id));
+    return rstDao.getDetail(id);
+  }
 }

@@ -46,11 +46,20 @@ public class RstController {
   public String rstList(HttpSession session, Model model) throws Exception {
     logger.info(session.toString());
     
-    
     List<Rst> rstList = rstService.getList();
+    logger.info(rstList.toString());
     
     model.addAttribute("rstList", rstList);
     
     return "rst/rstList";
+  }
+  
+  @RequestMapping(value="/detail", method= RequestMethod.GET)
+  public String rstDetail(HttpSession session, Model model, int id) throws Exception {
+    logger.info(session.toString(), model, id);
+    
+    model.addAttribute("rst", rstService.getDetail(id));
+    
+    return "rst/rstDetail";
   }
 }

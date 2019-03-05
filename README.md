@@ -22,6 +22,10 @@ c:out?
 ### 11:45
 javax.servlet.jsp.JspTagException: No message found under code 'title.rst.id' for locale 'ko_KR'.
 spring:message TAG를 사용 하려는데 이런 에러가 뜸...
+- https://yangtaeho.tistory.com/entry/Spring-message-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%B8%EC%A7%80-%EA%B4%80%EB%A6%AC
+
+### 14:30
+http://localhost:8888/yummy/rst/detail?id=10 URL로 식당 상세정보 DB에서 가져오는 것 까지 성공 했고 화면으로 출력 하지는 않음.
 
 - - -
 ## 3/04 월요일

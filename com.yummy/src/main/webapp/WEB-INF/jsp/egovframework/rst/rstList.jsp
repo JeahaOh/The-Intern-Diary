@@ -11,7 +11,7 @@
 <style>
 * {margin:0;padding:0;}
 * html {height:1px;}
-body {margin:0; padding:0; font-family:"굴림"; font-size:12px; color:#666; scroll:auto;}
+body {margin:0; padding:0; font-family:"굴림"; font-size:12px; color:#666; scroll:auto; text-align: center;}
 table, tr, td, th {font-family:"돋움"; font-size:11px; color:#333333;}
 .listtd {padding:10px 5px 8px 5px; border-bottom:1px solid #e5e5e5;}
 th {background-color:#F3F5E0; background:url(../../images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
@@ -104,29 +104,21 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 </style>
 </head>
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
-  <c:forEach
-    var="rst"
-    items="${rstList}"
-    varStatus="status">
-      <div>
-        ${rst.rst_name}
-      </div>
-  </c:forEach>
-  
+
   <%-- 여기서부터  rst List를 출력할 TABLE --%>
-  <div id="table">
+  <div id="table" style="display: inline-block">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" summary="rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블">
       <caption style="visibility: hidden">rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블</caption>
       <colgroup>
+        <%-- <col width="40" /> --%>
         <col width="40" />
-        <col width="100" />
-        <col width="150" />
-        <col width="80" />
         <col width="?" />
-        <col width="60" />
+        <col width="80" />
+        <col width="80" />
+        <col width="120" />
       </colgroup>
       <tr>
-        <th align="center">No</th>
+        <!-- <th align="center">No</th> -->
         <th align="center"><spring:message code="title.rst.id" /></th>
         <th align="center"><spring:message code="title.rst.name" /></th>
         <th align="center"><spring:message code="title.rst.star" /></th>
@@ -134,10 +126,12 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
         <th align="center"><spring:message code="title.rst.catag" /></th>
       </tr>
       <c:forEach var="result" items="${rstList}" varStatus="status">
-        <tr>
+        <tr onClick="toRstDetail('${result.rst_no}');">
+          <%--
           <td align="center" class="listtd">
             <c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" />
           </td>
+          --%>
           <td align="center" class="listtd">
             <a href="javascript:fn_egov_select('<c:out value="${result.rst_no}"/>')">
               <c:out value="${result.rst_no}" />
@@ -146,11 +140,17 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
           <td align="left" class="listtd"><c:out value="${result.rst_name}" />&nbsp;</td>
           <td align="center" class="listtd"><c:out value="${result.star}" />&nbsp;</td>
           <td align="center" class="listtd"><c:out value="${result.loc}" />&nbsp;</td>
-          <td align="center" class="listtd"><c:out value="${result.catag_no}" />&nbsp;</td>
+          <td align="center" class="listtd"><c:out value="${result.catag_nm}" />&nbsp;</td>
         </tr>
       </c:forEach>
     </table>
   </div>
   <%-- 여기까지  rst List를 출력하는 TABLE --%>
+  <script>
+    function toRstDetail( data ) {
+      console.log( data );
+      location.href = "/yummy/rst/detail?id=" + data
+    }
+  </script>
 </body>
 </html>

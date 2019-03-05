@@ -30,4 +30,13 @@ public interface RstDAO {
    */
 //  Memb adminLogin(@Param("id") String id, @Param("pwd")String pwd) throws Exception;
   List<Rst> getList() throws Exception;
+  
+  /**
+   * 식당 상세 정보를 가져온다.
+   * 
+   * @param id  - 식당 id
+   * @return  Rst
+   * @throws Exception
+   */
+  Rst getDetail(int id);
 }
