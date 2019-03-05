@@ -139,14 +139,14 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
             <c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" />
           </td>
           <td align="center" class="listtd">
-            <a href="javascript:fn_egov_select('<c:out value="${rst.rst_id}"/>')">
-              <c:out value="${rst.rst_id}" />
+            <a href="javascript:fn_egov_select('<c:out value="${result.rst_no}"/>')">
+              <c:out value="${result.rst_no}" />
             </a>
           </td>
-          <td align="left" class="listtd"><c:out value="${rst.rst_name}" />&nbsp;</td>
-          <td align="center" class="listtd"><c:out value="${rst.star}" />&nbsp;</td>
-          <td align="center" class="listtd"><c:out value="${rst.loc}" />&nbsp;</td>
-          <td align="center" class="listtd"><c:out value="${rst.catag}" />&nbsp;</td>
+          <td align="left" class="listtd"><c:out value="${result.rst_name}" />&nbsp;</td>
+          <td align="center" class="listtd"><c:out value="${result.star}" />&nbsp;</td>
+          <td align="center" class="listtd"><c:out value="${result.loc}" />&nbsp;</td>
+          <td align="center" class="listtd"><c:out value="${result.catag_no}" />&nbsp;</td>
         </tr>
       </c:forEach>
     </table>
