@@ -166,23 +166,28 @@
                 </tr>
                 <tr>
                   <td class="tbtd_caption">
-                    <input type="text" id="rst_name" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
+                    <input type="text" id="rst_name" class="rst_form" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
                   </td>
                   <td class="tbtd_caption">
-                    <select name="catag" id="catag">
+                    <select name="catag" id="catag" class="rst_form" >
                       <!-- !!!! -->
+                      
+                      <c:forEach var="catag" items="${catagList}">
+                        
+                      </c:forEach>
+                      
                     </select>
                   </td>
                   <td class="tbtd_caption">
-                    <input type="tel" id="tel" name="tel" alt="<spring:message code="title.rst.tel"/>" value="<c:out value="${rst.tel}"/>" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                    <input type="tel" id="tel" class="rst_form" name="tel" alt="<spring:message code="title.rst.tel"/>" value="<c:out value="${rst.tel}"/>" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
                   </td>
                   <td class="tbtd_caption">
-                    <select name="star" id="star" required>
-                      <option value="1"><spring:message code="star.1"/></option>
-                      <option value="2"><spring:message code="star.2"/></option>
-                      <option value="3"><spring:message code="star.3"/></option>
-                      <option value="-1"><spring:message code="star.-1"/></option>
-                      <option value="-2"><spring:message code="star.-2"/></option>
+                    <select name="star" id="star" class="rst_form" required>
+                      <option value="1" <c:if test="${rst.star eq 1}">selected</c:if>><spring:message code="star.1"/></option>
+                      <option value="2" <c:if test="${rst.star eq 2}">selected</c:if>><spring:message code="star.2"/></option>
+                      <option value="3" <c:if test="${rst.star eq 3}">selected</c:if>><spring:message code="star.3"/></option>
+                      <option value="-1" <c:if test="${rst.star eq -1}">selected</c:if>><spring:message code="star.-1"/></option>
+                      <option value="-2" <c:if test="${rst.star eq -2}">selected</c:if>><spring:message code="star.-2"/></option>
                     </select>
                   </td>
                 </tr>
@@ -196,10 +201,10 @@
                 </tr>
                 <tr>
                   <td class="tbtd_caption">
-                    <input type="text" id="loc" name="loc" alt="<spring:message code="title.rst.loc"/>" value="<c:out value="${rst.loc}"/>">
+                    <input type="text" id="loc" class="rst_form" name="loc" alt="<spring:message code="title.rst.loc"/>" value="<c:out value="${rst.loc}"/>">
                   </td>
                   <td class="tbtd_caption" colspan="4">
-                    <input type="text" id="loc_dtl" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 300px;" required>
+                    <input type="text" id="loc_dtl" class="rst_form" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 300px;" required>
                   </td>
                 </tr>
                 <tr>
@@ -218,19 +223,19 @@
                 </tr>
                 <tr>
                   <td class="tbtd_caption">
-                    <input type="file" id="img" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                    <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="opn_tm" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="opn_tm" class="rst_form" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="brck_tm" name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" value="<c:out value="${rst.brck_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="brck_tm" class="rst_form" name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" value="<c:out value="${rst.brck_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="dnnr_tm" name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" value="<c:out value="${rst.dnnr_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="dnnr_tm" class="rst_form" name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" value="<c:out value="${rst.dnnr_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="lo_tm" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="lo_tm" class="rst_form" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
                 </tr>
               </table>
@@ -241,6 +246,10 @@
       </div>
     </div>
     <script>
+      $(function(){
+        $('.rst_form').attr('disabled', 'disabled');
+      });
+    
       $( "#img" ).change(function() {
         pic( this );
       });
