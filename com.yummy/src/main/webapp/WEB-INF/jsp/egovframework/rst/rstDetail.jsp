@@ -1,37 +1,38 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
-<%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%--
    /**
-    * @Class Name : rstDetail.jsp
-    * @Description : Rst 상세 정보 화면
-    * @Modification Information
-    *
-    *   수정일         수정자                   수정내용
-    *  -------    --------    ---------------------------
-    *  2019.03.05            최초 생성
-    *
-    * author JeahaOh
-    * since 2019.03.05
-    *
-    * Copyright (C) 2019 by JeahaOh  All right reserved.
-    */
+  * @Class Name : rstDetail.jsp
+  * @Description : Rst 상세 정보 화면
+  * @Modification Information
+  *
+  *   수정일     수정자           수정내용
+  *  -------  --------  ---------------------------
+  *  2019.03.05      최초 생성
+  *
+  * author JeahaOh
+  * since 2019.03.05
+  *
+  * Copyright (C) 2019 by JeahaOh  All right reserved.
+  */
 --%>
 
 <!DOCTYPE html>
 <html lang="kor">
   <head>
-    <meta charset="UTF-8">
-    <title>${rst.rst_name} 상세 정보 관리</title>
-    <%--
-    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
-    --%>
-    <style>
+  <meta charset="UTF-8">
+  <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
+  <%--
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
+  --%>
+  <style>
   * {margin:0;padding:0;}
   * html {height:1px;}
   body {margin:0; padding:0; font-family:"굴림"; font-size:12px; color:#666; scroll:auto;}
+  table {/* width="100%" border="1" cellpadding="0" cellspacing="0" style=" */bordercolor: #D3E2EC; bordercolordark: #FFFFFF; BORDER-TOP: #C2D0DB 2px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-RIGHT: #ffffff 1px solid; BORDER-BOTTOM: #C2D0DB 1px solid; border-collapse: collapse; margin: auto; text-align: center;}
   table, tr, td, th {font-family:"돋움"; font-size:11px; color:#333333;}
   .listtd {padding:10px 5px 8px 5px; border-bottom:1px solid #e5e5e5;}
   th {background-color:#F3F5E0; background:url(../../images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
@@ -66,7 +67,7 @@
   .menu .on a.top:visited {font-family:"굴림"; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;}
   .menu .on a.top:hover {font-family:"굴림"; font-weight:bold; color: #00CCFF; text-decoration:none; font-size:12px;} 
   .menu .on a.top:active {font-family:"굴림"; font-weight:bold; color:#00CCFF; text-decoration:none; font-size:12px;} 
-      
+    
   .right_area {float:right; height:38px; margin:0; padding:0 8px 0 0; background:url(../../images/egovframework/example/civilappeal_topmn_bg11.jpg) right no-repeat;}
   #sub {float:left; padding:10px 10px 10px 10px; /*overflow:hidden;*/width:180px; margin-right:30px;}
   #sub .login {width:180px; height:70px; text-align:left; vertical-align:top; padding:5px 0 0 0; background:url(../../images/egovframework/example/civilappeal_login_bg.jpg) right no-repeat; margin-bottom:10px;}
@@ -119,12 +120,163 @@
   .tbtd_content {background-color:#F5F8FA; padding:7px 10px 5px 10px; margin:0;}
   .tbtd_caption_re {font-weight:bold; color:#666633; background-color:#F6F5E5; text-align:right; padding:10px 10px 9px 5px; margin:0;}
   .tbtd_content_re {background-color:#F9F9F2; padding:7px 10px 5px 10px; margin:0;}
-  input.txt               {height:18px; background-color:#FFF; border:1px solid #BCC8D8; padding-top:2px; color:#5e5e5e; cursor:text;}
+  input.txt         {height:18px; background-color:#FFF; border:1px solid #BCC8D8; padding-top:2px; color:#5e5e5e; cursor:text;}
   input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BCC8D8; padding-top:2px; color:#000; cursor:text;}
-    </style>
-    <script></script>
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
-  <body>
-    
+  <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
+    <div id="outter_container">
+      <div id="inner_container">
+        <form id="detailForm" name="detailForm">
+          <div id="rst_btn_container" class="right_area" style="margin-top: 10px;">
+            <label for="update_rst" class="btn_blue_r">
+              <button type="button" id="update_rst" onclick=""><spring:message code="button.modify" /></button>
+            </label>
+            <label for="remove_rst" class="btn_blue_r">
+              <button type="button" id="remove_rst" onclick=""><spring:message code="button.delete" /></button>
+            </label>
+            <label for="save_rst" class="btn_blue_r">
+              <button type="button" id="save_rst" onclick=""><spring:message code="button.save" /></button>
+            </label>
+          </div>
+          <div id="content_pop">
+            <div id="table">
+              <form id="rst_form" method="post">
+              <table>
+                <colgroup>
+                  <col width="150"/>
+                  <col width="150"/>
+                  <col width="100"/>
+                  <col width="90"/>
+                  <col width="90"/>
+                  <col width="90"/>
+                </colgroup>
+                <tr>
+                  <td class="tbtd_caption" rowspan="5">
+                    <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
+                    </div>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="rst_name"><spring:message code="title.rst.name"/></label>
+                  </td>
+                  <%-- 
+                  <td class="tbtd_caption">
+                    <label for="upper_catag"><spring:message code="title.rst.upper_catag"/></label>
+                  </td>
+                   --%>
+                  <td class="tbtd_caption">
+                    <label for="catag"><spring:message code="title.rst.catag"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="tel"><spring:message code="title.rst.tel"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="star"><spring:message code="title.rst.star"/></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tbtd_caption">
+                    <input type="text" id="rst_name" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
+                  </td>
+                  <!--              
+                  <td class="tbtd_caption">
+                    <select name="upper_catag" id="upper_catag">
+                      !!!!
+                    </select>
+                  </td>
+                  -->
+                  <td class="tbtd_caption">
+                    <select name="catag" id="catag">
+                      <!-- !!!! -->
+                    </select>
+                  </td>
+                  <td class="tbtd_caption">
+                    <input type="tel" id="tel" name="tel" alt="<spring:message code="title.rst.tel"/>" value="<c:out value="${rst.tel}"/>" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                  </td>
+                  <td class="tbtd_caption">
+                    <select name="star" id="star" required>
+                      <option value="1"><spring:message code="star.1"/></option>
+                      <option value="2"><spring:message code="star.2"/></option>
+                      <option value="3"><spring:message code="star.3"/></option>
+                      <option value="-1"><spring:message code="star.-1"/></option>
+                      <option value="-2"><spring:message code="star.-2"/></option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tbtd_caption">
+                    <label for="loc"><spring:message code="title.rst.loc"/></label>
+                  </td>
+                  <td class="tbtd_caption" colspan="4">
+                    <label for="loc_dtl"><spring:message code="title.rst.loc_dtl"/></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tbtd_caption">
+                    <input type="text" id="loc" name="loc" alt="<spring:message code="title.rst.loc"/>" value="<c:out value="${rst.loc}"/>">
+                  </td>
+                  <td class="tbtd_caption" colspan="4">
+                    <input type="text" id="loc_dtl" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 300px;" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tbtd_caption">
+                    <label for="opn_tm"><spring:message code="title.rst.opn_tm"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="brck_tm"><spring:message code="title.rst.brck_tm"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="dnnr_tm"><spring:message code="title.rst.dnnr_tm"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for="lo_tm"><spring:message code="title.rst.lo_tm"/></label>
+                  </td>
+                  <%-- <td class="tbtd_caption">빈 공간</td> --%>
+                </tr>
+                <tr>
+                  <td class="tbtd_caption">
+                    <input type="file" id="img" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                  </td>
+                  <td class="tbtd_caption">
+                    <input type="time" id="opn_tm" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                  </td>
+                  <td class="tbtd_caption">
+                    <input type="time" id="brck_tm" name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" value="<c:out value="${rst.brck_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                  </td>
+                  <td class="tbtd_caption">
+                    <input type="time" id="dnnr_tm" name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" value="<c:out value="${rst.dnnr_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                  </td>
+                  <td class="tbtd_caption">
+                    <input type="time" id="lo_tm" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                  </td>
+                  <%-- <td class="tbtd_caption">빈 공간</td> --%>
+                </tr>
+              </table>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $( "#img" ).change(function() {
+        pic( this );
+      });
+      
+      function pic( input ) {
+        if ( input.files && input.files[0] ) {
+          var reader = new FileReader();
+          reader.onload = function( e ) {
+          	console.log(e.target.result);
+          $('#preview').css('background-image', 'url('+e.target.result +')');
+          $('#preview').hide();
+          $('#preview').fadeIn(650);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
   </body>
 </html>

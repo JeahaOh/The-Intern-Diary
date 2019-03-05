@@ -63,6 +63,9 @@ rstDetail.jsp UI 작업...
 rstDetail.jsp UI 작업...
 - https://www.sitepoint.com/community/t/form-drop-down-menus-select-other-and-make-a-textbox-appear/2789
 
+### 22:45
+rstDetail.jsp UI 작업...
+
 - - -
 ## 3/04 월요일
 ### 09:30
