@@ -16,10 +16,10 @@
 hs_err_pid*
 .chache/
 
-*.properties
-**.properties
-**/*.properties
-**/globals.properties
+# *.properties
+# **.properties
+# **/*.properties
+# **/globals.properties
 **/db.properties
 
 node_modules/

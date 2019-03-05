@@ -1,44 +1,54 @@
-<%@ page
-  language="java"
-  contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%>
-<%@ taglib
-  uri="http://java.sun.com/jsp/jstl/core"
-  prefix="c"%>
-<%@ page session="false"%>
+<%@ page    contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib  prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page    session="false"%>
+<%--
+   /**
+    * @Class Name : home.jsp
+    * @Description : home 화면
+    * @Modification Information
+    *
+    *   수정일         수정자                   수정내용
+    *  -------    --------    ---------------------------
+    *  2019.03.03            최초 생성
+    *
+    * author JeahaOh
+    * since 2019.03.03
+    *
+    * Copyright (C) 2019 by JeahaOh  All right reserved.
+    */
+--%>
 <!DOCTYPE html>
 <html lang="kor">
-
 <head>
-    <meta charset="UTF-8">
-    <title>LogIn</title>
-    <style>
-        .main {
-            text-align: center;
-        }
-        .login {
-            display: inline-block;
-        }
-        form {
-            margin: 0 auto;
-            padding: 1em;
-            border: 1px solid #CCC;
-            border-radius: 1em;
-        }
-        form div+div {
-            margin-top: 1em;
-        }
-        label {
-            display: inline-block;
-            width: 90px;
-            text-align: center;
-        }
-        input {
-            font: 1em sans-serif;
-            width: 150px;
-        }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>LogIn</title>
+  <style>
+    .main {
+      text-align: center;
+    }
+    .login {
+      display: inline-block;
+    }
+    form {
+      margin: 0 auto;
+      padding: 1em;
+      border: 1px solid #CCC;
+      border-radius: 1em;
+    }
+    form div+div {
+      margin-top: 1em;
+    }
+    label {
+      display: inline-block;
+      width: 90px;
+      text-align: center;
+    }
+    input {
+      font: 1em sans-serif;
+      width: 150px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>

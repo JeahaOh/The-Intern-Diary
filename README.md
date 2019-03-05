@@ -27,6 +27,9 @@ spring:message TAG를 사용 하려는데 이런 에러가 뜸...
 ### 14:30
 http://localhost:8888/yummy/rst/detail?id=10 URL로 식당 상세정보 DB에서 가져오는 것 까지 성공 했고 화면으로 출력 하지는 않음.
 
+### 13:30
+jsp 파일 주석 처리와 properties 파일 editor 색깔 설정
+
 - - -
 ## 3/04 월요일
 ### 09:30

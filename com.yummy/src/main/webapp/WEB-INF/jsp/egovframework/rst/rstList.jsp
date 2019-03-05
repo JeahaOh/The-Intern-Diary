@@ -3,6 +3,22 @@
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
+<%--
+   /**
+    * @Class Name : rstList.jsp
+    * @Description : rst List 화면
+    * @Modification Information
+    *
+    *   수정일         수정자                   수정내용
+    *  -------    --------    ---------------------------
+    *  2019.03.05            최초 생성
+    *
+    * author JeahaOh
+    * since 2019.03.05
+    *
+    * Copyright (C) 2019 by JeahaOh  All right reserved.
+    */
+--%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
