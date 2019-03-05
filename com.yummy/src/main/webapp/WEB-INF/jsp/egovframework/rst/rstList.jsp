@@ -23,7 +23,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Restaurant List</title>
+<title>레스토랑 목록</title>
 <style>
 * {margin:0;padding:0;}
 * html {height:1px;}

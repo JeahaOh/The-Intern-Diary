@@ -27,8 +27,33 @@ spring:message TAG를 사용 하려는데 이런 에러가 뜸...
 ### 14:30
 http://localhost:8888/yummy/rst/detail?id=10 URL로 식당 상세정보 DB에서 가져오는 것 까지 성공 했고 화면으로 출력 하지는 않음.
 
-### 13:30
+### 15:30
 jsp 파일 주석 처리와 properties 파일 editor 색깔 설정
+
+### 15:45
+egovSampleRegister.jsp에서
+```
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+```
+태그를 발견함.  
+- https://offbyone.tistory.com/325
+바로 사용 할 수 있을 지는 모르겠음.
+
+### 16:00
+egovSampleRegister.jsp에서
+```
+<c:set var="registerFlag" value="${empty sampleVO.id ? 'create' : 'modify'}"/>
+<title>Sample   <c:if test="${registerFlag == 'create'}"><spring:message code="button.create" /></c:if>
+                <c:if test="${registerFlag == 'modify'}"><spring:message code="button.modify" /></c:if>
+</title>                
+```
+태그 발견...
+- http://blog.naver.com/PostView.nhn?blogId=wonminst&logNo=90096004269&categoryNo=0&parentCategoryNo=40&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+c:set의 3항 연산자에 따라 title이 바뀌는 것 같음.. 호?  
+사용 하는데 오래 걸릴 것 같음...
+
+### 17:20
+rstDetail.jsp UI 작업...
 
 - - -
 ## 3/04 월요일

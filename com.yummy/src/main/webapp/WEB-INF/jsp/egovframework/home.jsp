@@ -18,7 +18,7 @@
     */
 --%>
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>LogIn</title>

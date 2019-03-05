@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link type="text/css" rel="stylesheet" href="sample.css">
+
+<body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
+    <form id="detailForm" name="detailForm">
+        <div id="content_pop">
+            <div id="table">
+                <table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor: #D3E2EC; bordercolordark: #FFFFFF; BORDER-TOP: #C2D0DB 2px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-RIGHT: #ffffff 1px solid; BORDER-BOTTOM: #C2D0DB 1px solid; border-collapse: collapse;">
+                    <colgroup>
+                        <col width="150"/>
+                        <col width="?"/>
+                        <col width="90"/>
+                        <col width="90"/>
+                        <col width="90"/>
+                    </colgroup>
+
+                    <tr>
+                        <td class="tbtd_caption">
+                            <label for="name">
+                                식당 이름
+                            </label>
+                        </td>
+                        <td class="tbtd_content">
+                            <input id="name" name="name" class="txt" type="text" value="" maxlength="30" />
+                            &nbsp;
+                            <span id="name.errors">식당 이름 은 필수 입력값입니다.</span>
+                        </td>
+                        <td>asdf</td>
+                        <td>asdf</td>
+                        <td>zxcv</td>
+                        <td>zzzz</td>
+                    </tr>
+                    <tr>
+                        <td class="tbtd_caption">
+                            <label for="useYn">
+                                사용여부
+                            </label>
+                        </td>
+                        <td class="tbtd_content">
+                            <select id="useYn" name="useYn" class="use">
+                                <option value="Y">Yes</option>
+                                <option value="N">No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tbtd_caption">
+                            <label for="description">
+                                설명
+                            </label>
+                        </td>
+                        <td class="tbtd_content">
+                            <textarea id="description" name="description" rows="5" cols="58"></textarea>
+                            &nbsp;
+                            <span id="description.errors">설명 은 필수 입력값입니다.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tbtd_caption">
+                            <label for="regUser">
+                                등록자
+                            </label>
+                        </td>
+                        <td class="tbtd_content">
+
+
+                            <input id="regUser" name="regUser" class="txt" type="text" value="" maxlength="10" />
+                            &nbsp;
+                            <span id="regUser.errors">등록자 은 필수 입력값입니다.</span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
