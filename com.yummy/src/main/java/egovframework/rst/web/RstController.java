@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import egovframework.catag.service.CatagService;
 import egovframework.rst.service.RstService;
 import egovframework.rst.vo.Rst;
 
@@ -33,6 +34,9 @@ public class RstController {
   
   @Resource(name = "rstService")
   private RstService rstService;
+  
+  @Resource(name = "catagService")
+  private CatagService catagService;
   
   /**
    * rst목록을 출력
@@ -59,6 +63,7 @@ public class RstController {
     logger.info(session.toString(), model, id);
     
     model.addAttribute("rst", rstService.getDetail(id));
+    model.addAttribute("catagList", catagService.getList());
     
     return "rst/rstDetail";
   }

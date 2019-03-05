@@ -111,7 +111,7 @@
   #idwrap {float:left; padding-top:0px; padding-bottom:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; margin-top:0px; padding-left:0px; padding-right:0px; }
   #idwrap ul {float:left; padding:0; margin:0;}
   #idwrap li {list-style-type:none; float:left; margin:0; padding-right:3px;}
-  button {cursor:hand; border:0px solid #FFFFFF; padding:0px 0px 0px 0px; background-color:#FFFFFF; white-space:nowrap;}
+  button {cursor:hand; border:1px solid #14293a; padding:5px; background-color:#FFFFFF; white-space:nowrap;}
   .btn_blue_l {float:left; background:url(../../images/egovframework/example/btn_bg_l.gif) 0 0 no-repeat; height:20px; padding:0px 0px 0px 10px; margin:0px 0px 0px 0px;}
   .btn_blue_r {float:left; background:url(../../images/egovframework/example/btn_bg_r.gif) 0 0 no-repeat; background-position:right; height:20px; font-family:"돋움"; font-size:11px; color:#000000; margin:0px 0px 0px 0px; padding-top:0px; _padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:0px; text-align:center;}
   input { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
@@ -130,15 +130,9 @@
       <div id="inner_container">
         <form id="detailForm" name="detailForm">
           <div id="rst_btn_container" class="right_area" style="margin-top: 10px;">
-            <label for="update_rst" class="btn_blue_r">
               <button type="button" id="update_rst" onclick=""><spring:message code="button.modify" /></button>
-            </label>
-            <label for="remove_rst" class="btn_blue_r">
               <button type="button" id="remove_rst" onclick=""><spring:message code="button.delete" /></button>
-            </label>
-            <label for="save_rst" class="btn_blue_r">
               <button type="button" id="save_rst" onclick=""><spring:message code="button.save" /></button>
-            </label>
           </div>
           <div id="content_pop">
             <div id="table">
@@ -160,11 +154,6 @@
                   <td class="tbtd_caption">
                     <label for="rst_name"><spring:message code="title.rst.name"/></label>
                   </td>
-                  <%-- 
-                  <td class="tbtd_caption">
-                    <label for="upper_catag"><spring:message code="title.rst.upper_catag"/></label>
-                  </td>
-                   --%>
                   <td class="tbtd_caption">
                     <label for="catag"><spring:message code="title.rst.catag"/></label>
                   </td>
@@ -179,13 +168,6 @@
                   <td class="tbtd_caption">
                     <input type="text" id="rst_name" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
                   </td>
-                  <!--              
-                  <td class="tbtd_caption">
-                    <select name="upper_catag" id="upper_catag">
-                      !!!!
-                    </select>
-                  </td>
-                  -->
                   <td class="tbtd_caption">
                     <select name="catag" id="catag">
                       <!-- !!!! -->
@@ -233,7 +215,6 @@
                   <td class="tbtd_caption">
                     <label for="lo_tm"><spring:message code="title.rst.lo_tm"/></label>
                   </td>
-                  <%-- <td class="tbtd_caption">빈 공간</td> --%>
                 </tr>
                 <tr>
                   <td class="tbtd_caption">
@@ -251,7 +232,6 @@
                   <td class="tbtd_caption">
                     <input type="time" id="lo_tm" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
-                  <%-- <td class="tbtd_caption">빈 공간</td> --%>
                 </tr>
               </table>
               </form>

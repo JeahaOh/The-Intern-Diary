@@ -38,5 +38,5 @@ public interface RstDAO {
    * @return  Rst
    * @throws Exception
    */
-  Rst getDetail(int id);
+  Rst getDetail(int id) throws Exception;
 }

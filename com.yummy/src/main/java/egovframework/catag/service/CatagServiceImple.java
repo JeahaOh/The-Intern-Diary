@@ -1,0 +1,40 @@
+package egovframework.catag.service;
+
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import egovframework.catag.dao.CatagDAO;
+import egovframework.catag.vo.Catag;
+
+/**
+ * @Class Name  : CatagServiceImple.java
+ * @Discription : CatagServiceImple Class
+ * @ @ 수정일 수정자 수정내용 @ --------- --------- ------------------------------- @ 2019.03.06 최초생성
+ *
+ * @author 제하
+ * @since 2019. 03.06
+ * @version 1.0
+ * @see
+ *
+ *      Copyright (C) by JeahaOh All right reserved.
+ */
+
+@Service("catagService")
+@Component
+public class CatagServiceImple implements CatagService {
+  
+  @Resource(name="catagDao")
+  private CatagDAO catagDao;
+  
+  @Override
+  public List<Catag> getList() throws Exception {
+    
+    /**
+     * Catag List를 반환
+     * @return
+     * @throws Exception
+     */
+    return catagDao.getList() ;
+  }
+}
