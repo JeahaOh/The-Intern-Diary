@@ -6,133 +6,155 @@
     <title>Document</title>
 </head>
 <link type="text/css" rel="stylesheet" href="sample.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
-    <form id="detailForm" name="detailForm">
-        <div id="content_pop">
-            <div id="table">
-                <table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor: #D3E2EC; bordercolordark: #FFFFFF; BORDER-TOP: #C2D0DB 2px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-RIGHT: #ffffff 1px solid; BORDER-BOTTOM: #C2D0DB 1px solid; border-collapse: collapse; margin: auto; text-align: center;">
-                    <colgroup>
-                        <col width="150"/>
-                        <col width="150"/>
-                        <col width="?"/>
-                        <col width="90"/>
-                        <col width="90"/>
-                        <col width="90"/>
-                    </colgroup>
-                    
-                    <tr>
-                        <td class="tbtd_caption" rowspan="5">사진 들어 올 자리</td>
-                        <td class="tbtd_caption">레스토랑 이름</td>
-                        <td class="tbtd_caption">요리 유형 대분류</td>
-                        <td class="tbtd_caption">요리 유형 소분류</td>
-                        <td class="tbtd_caption">전화번호</td>
-                        <td class="tbtd_caption">미슐랭 별점</td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption">지역</td>
-                        <td class="tbtd_caption" colspan="4">상세 주소</td>
-<!--
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
--->
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption" colspan="4"> </td>
-<!--
-                        
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
--->
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption">오픈 시간</td>
-                        <td class="tbtd_caption">쉬는 시간</td>
-                        <td class="tbtd_caption">저녁 영업 시간</td>
-                        <td class="tbtd_caption">주문 마감 시간</td>
-                        <td class="tbtd_caption"> </td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                        <td class="tbtd_caption"> </td>
-                    </tr>
-                    
-<!--
-                    <tr>
-                        <td class="tbtd_caption">
-                            <label for="name">
-                                식당 이름
-                            </label>
-                        </td>
-                        <td class="tbtd_content">
-                            <input id="name" name="name" class="txt" type="text" value="" maxlength="30" />
-                            &nbsp;
-                            <span id="name.errors">식당 이름 은 필수 입력값입니다.</span>
-                        </td>
-                        <td>asdf</td>
-                        <td>asdf</td>
-                        <td>zxcv</td>
-                        <td>zzzz</td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption">
-                            <label for="useYn">
-                                사용여부
-                            </label>
-                        </td>
-                        <td class="tbtd_content">
-                            <select id="useYn" name="useYn" class="use">
-                                <option value="Y">Yes</option>
-                                <option value="N">No</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption">
-                            <label for="description">
-                                설명
-                            </label>
-                        </td>
-                        <td class="tbtd_content">
-                            <textarea id="description" name="description" rows="5" cols="58"></textarea>
-                            &nbsp;
-                            <span id="description.errors">설명 은 필수 입력값입니다.</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tbtd_caption">
-                            <label for="regUser">
-                                등록자
-                            </label>
-                        </td>
-                        <td class="tbtd_content">
+    <div id="outter_container">
+        <div id="inner_container">
+            <form id="detailForm" name="detailForm">
+                <div id="rst_btn_container" class="right_area" style="margin-top: 10px;">
+                    <label for="update_rst" class="btn_blue_r">
+                        <button type="button" id="update_rst" onclick="">수정</button>
+                    </label>
+                    <label for="remove_rst" class="btn_blue_r">
+                        <button type="button" id="remove_rst" onclick="">삭제</button>
+                    </label>
+                    <label for="save_rst" class="btn_blue_r">
+                        <button type="button" id="save_rst" onclick="">저장</button>
+                    </label>
+                </div>
+                <div id="content_pop">
+                    <div id="table">
+                        <form id="rst_form" method="post">
+                        <table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor: #D3E2EC; bordercolordark: #FFFFFF; BORDER-TOP: #C2D0DB 2px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-RIGHT: #ffffff 1px solid; BORDER-BOTTOM: #C2D0DB 1px solid; border-collapse: collapse; margin: auto; text-align: center;">
+        <!--
 
+                            <colgroup>
+                                <col width="150"/>
+                                <col width="150"/>
+                                <col width="100"/>
+                                <col width="90"/>
+                                <col width="90"/>
+                                <col width="90"/>
+                            </colgroup>
 
-                            <input id="regUser" name="regUser" class="txt" type="text" value="" maxlength="10" />
-                            &nbsp;
-                            <span id="regUser.errors">등록자 은 필수 입력값입니다.</span>
-
-                        </td>
-                    </tr>
-                    -->
-                </table>
-            </div>
+        -->
+                            <tr>
+                                <td class="tbtd_caption" rowspan="5">
+                                    <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
+                                    </div>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="rst_name">레스토랑 이름</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="upper_catag">요리 유형 대분류</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="catag">요리 유형 소분류</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="tel">전화번호</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="star">미슐랭 별점</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbtd_caption">
+                                    <input type="text" id="rst_name" name="rst_name" alt="레스토랑 이름" required>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <select name="upper_catag" id="upper_catag"></select>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <select name="catag" id="catag"></select>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <input type="tel" id="tel" name="tel" alt="전화번호" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                                </td>
+                                <td class="tbtd_caption">
+                                    <select name="star" id="star" required>
+                                        <option value="1">1 Star</option>
+                                        <option value="2">2 Star</option>
+                                        <option value="3">3 Star</option>
+                                        <option value="-1">Bib Gourmand</option>
+                                        <option value="-2">The Plate</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbtd_caption">
+                                    <label for="loc">지역</label>
+                                </td>
+                                <td class="tbtd_caption" colspan="4">
+                                    <label for="loc_dtl">상세 주소</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbtd_caption">
+                                    <input type="text" id="loc" name="loc" alt="지역">
+                                </td>
+                                <td class="tbtd_caption" colspan="4">
+                                    <input type="text" id="loc_dtl" name="loc_dtl" alt="상세 주소" style="width: 300px;" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbtd_caption">
+                                    <label for="opn_tm">오픈 시간</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="brck_tm">쉬는 시간</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="dnnr_tm">저녁 영업 시간</label>
+                                </td>
+                                <td class="tbtd_caption">
+                                    <label for="lo_tm">주문 마감 시간</label>
+                                </td>
+                                <td class="tbtd_caption"> </td>
+                            </tr>
+                            <tr>
+                                <td class="tbtd_caption">
+                                    <input type="file" id="img" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                                </td>
+                                <td class="tbtd_caption">
+                                    <input type="time" id="opn_tm" name="opn_tm" alt="오픈 시간" pattern="[0-9]{2}:[0-9]{2}">
+                                </td>
+                                <td class="tbtd_caption">
+                                    <input type="time" id="brck_tm" name="brck_tm" alt="쉬는 시간" pattern="[0-9]{2}:[0-9]{2}">
+                                </td>
+                                <td class="tbtd_caption">
+                                    <input type="time" id="dnnr_tm" name="dnnr_tm" alt="저녁 영업 시간" pattern="[0-9]{2}:[0-9]{2}">
+                                </td>
+                                <td class="tbtd_caption">
+                                    <input type="time" id="lo_tm" name="lo_tm" alt="주문 마감 시간" pattern="[0-9]{2}:[0-9]{2}">
+                                </td>
+                                <td class="tbtd_caption"> </td>
+                            </tr>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <script>
+        $( "#img" ).change(function() {
+            pic( this );
+        });
+        
+        function pic( input ) {
+          if ( input.files && input.files[0] ) {
+            var reader = new FileReader();
+            reader.onload = function( e ) {
+              $('#preview').css('background-image', 'url('+e.target.result +')');
+              $('#preview').hide();
+              $('#preview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+    </script>
 </body>
 
 </html>

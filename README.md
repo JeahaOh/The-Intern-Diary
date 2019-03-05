@@ -55,6 +55,14 @@ c:set의 3항 연산자에 따라 title이 바뀌는 것 같음.. 호?
 ### 17:20
 rstDetail.jsp UI 작업...
 
+### 20:20
+rstDetail.jsp UI 작업...
+- https://code.i-harness.com/ko/docs/html/element/input/time
+
+### 21:30
+rstDetail.jsp UI 작업...
+- https://www.sitepoint.com/community/t/form-drop-down-menus-select-other-and-make-a-textbox-appear/2789
+
 - - -
 ## 3/04 월요일
 ### 09:30
