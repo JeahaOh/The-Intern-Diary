@@ -627,7 +627,7 @@ select {
     font-weight: bold;
     color: #003366;
     background-color: #E5EDF3;
-    text-align: right;
+    text-align: left;
     padding: 10px 10px 9px 5px;
     margin: 0;
 }
