@@ -64,7 +64,8 @@ ON DUPLICATE KEY UPDATE
 ```
 - https://wkdgusdn3.tistory.com/entry/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%8C-autoincrement-%EA%B0%92-%EB%B0%9B%EC%95%84%EC%98%A4%EA%B8%B0
 
-
+### 02:40
+rst delete 해야함...
 
 
 - - -

@@ -52,10 +52,50 @@
     ON rst.catag_no = catag.catag_no
     WHERE rst.rst_no = #{id}
   </select>
-  <!-- 
-  <insert id="save">
-INSERT INTO rst (rst_no, rst_name, star, loc, loc_dtl, catag_no, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) VALUES (188, 'insertTest', -2, '동안구', '안양시', 10, '010-1020-4332', '11:00:00', '00:00:00', '00:00:00', '21:00:00') ON DUPLICATE KEY UPDATE rst_name = 'insertTest', star = -2, loc = '동안구', loc_dtl = '안양시', catag_no = 10, tel = '010-3430-8902', opn_tm = '09:00:00', brck_tm = '00:00:00', dnnr_tm = '00:00:00', lo_tm = '22:00:00'
-    
+  
+  <select id="getLastRstNo" resultType="int">
+    SELECT
+      MAX(rst_no)
+    FROM rst
+  </select>
+  
+  <insert id="save" parameterType="map" >
+    INSERT INTO rst
+      (rst_no, rst_name, star, catag_no, loc, loc_dtl, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) 
+    VALUES (
+      #{rst_no},
+      #{rst_name},
+      #{star},
+      #{catag_no},
+      <trim suffixOverrides=",">
+        <if test="loc != null">#{loc},</if>
+        <if test="loc_dtl != null">#{loc_dtl},</if>
+        <if test="tel != null">#{tel},</if>
+        <if test="opn_tm != null">#{opn_tm},</if>
+        <if test="brck_tm != null">#{brck_tm},</if>
+        <if test="dnnr_tm != null">#{dnnr_tm},</if>
+        <if test="lo_tm != null">#{lo_tm}</if>
+      </trim>
+      )
+    ON DUPLICATE KEY 
+    UPDATE
+      rst_no = #{rst_no},
+      rst_name = #{rst_name},
+      star = #{star},
+      catag_no = #{catag_no},
+      <trim suffixOverrides=",">
+        <if test="loc != null">loc = #{loc},</if>
+        <if test="loc_dtl != null">loc_dtl = #{loc_dtl},</if>
+        <if test="tel != null">tel = #{tel},</if>
+        <if test="opn_tm != null">opn_tm = #{opn_tm},</if>
+        <if test="brck_tm != null">brck_tm = #{brck_tm},</if>
+        <if test="dnnr_tm != null">dnnr_tm = #{dnnr_tm},</if>
+        <if test="lo_tm != null">lo_tm = #{lo_tm}</if>
+      </trim>
   </insert>
-   -->
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM rst WHERE rst_no = #{rst_no}
+  </delete>
+  
 </mapper>

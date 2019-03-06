@@ -15,6 +15,8 @@ public class Rst {
   String dnnr_tm;
   String lo_tm;
   
+  //String[] pht_nm;
+  
   public Rst() {}
 
   public Rst(int rst_no, String rst_name, int star, String loc, String loc_dtl, int catag_no, int upper_no,
@@ -112,7 +114,11 @@ public class Rst {
   }
 
   public void setOpn_tm(String opn_tm) {
-    this.opn_tm = opn_tm;
+    if ( opn_tm == "" || opn_tm == null || opn_tm.length() < 0 ) {
+      this.opn_tm = "00:00";
+    } else {
+      this.opn_tm = opn_tm;
+    }
   }
 
   public String getBrck_tm() {
@@ -120,7 +126,12 @@ public class Rst {
   }
 
   public void setBrck_tm(String brck_tm) {
-    this.brck_tm = brck_tm;
+    if ( brck_tm == "" || brck_tm == null || brck_tm.length() < 0 ) {
+      System.out.println("\n\n brck_tm = null");
+      this.brck_tm = "00:00";
+    } else {
+      this.brck_tm = brck_tm;
+    }
   }
 
   public String getDnnr_tm() {
@@ -128,7 +139,12 @@ public class Rst {
   }
 
   public void setDnnr_tm(String dnnr_tm) {
-    this.dnnr_tm = dnnr_tm;
+    if ( dnnr_tm == "" || dnnr_tm == null  || dnnr_tm.length() < 0 ) {
+      this.dnnr_tm = "00:00";
+    } else {
+      this.dnnr_tm = dnnr_tm;
+    }
+    
   }
 
   public String getLo_tm() {
@@ -136,7 +152,11 @@ public class Rst {
   }
 
   public void setLo_tm(String lo_tm) {
-    this.lo_tm = lo_tm;
+    if ( lo_tm == "" || lo_tm == null || lo_tm.length() < 0) {
+      this.lo_tm = "00:00";
+    } else {
+      this.lo_tm = lo_tm;
+    }
   }
 
   @Override

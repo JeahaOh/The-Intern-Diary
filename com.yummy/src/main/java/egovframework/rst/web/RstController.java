@@ -93,28 +93,24 @@ public class RstController {
   }
   
   @RequestMapping(value="/save", method= RequestMethod.POST)
-  public @ResponseBody String saveRst(
-      /*
-      @RequestParam int rst_no,
-      @RequestParam String rst_name,
-      @RequestParam int star,
-      @RequestParam String loc,
-      @RequestParam String log_dtl,
-      @RequestParam int catag_no,
-      @RequestParam String tel,
-      @RequestParam String opn_tm,
-      @RequestParam String brck_tm,
-      @RequestParam String dnnr_tm,
-      @RequestParam String lo_tm
-      */
-      @RequestBody Rst rst
-      ) throws Exception {
+  public @ResponseBody String saveRst( @RequestBody Rst rst ) throws Exception {
     
     System.out.println("save");
     System.out.println(rst.toString());
     
-    rstService.save(rst);
+    if( rstService.save(rst) ) {
+      return "true";
+    }
     
-    return null;
+    return "false";
+  }
+  
+  @RequestMapping(value="/delete", method= RequestMethod.POST)
+  public @ResponseBody String deleteRst( @RequestBody int rst_no ) throws Exception {
+    
+    if( rstService.delete( rst_no ) ) {
+      return "true";
+    }
+    return "false";
   }
 }

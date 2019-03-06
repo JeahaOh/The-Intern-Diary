@@ -125,7 +125,7 @@
   input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BCC8D8; padding-top:2px; color:#000; cursor:text;}
   
   
-  #catag {width: 145px;}
+  #catag_no {width: 145px;}
   
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -147,7 +147,7 @@
             <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             <div class="right_area">
               <c:if test="${mode eq 'Modify'}">
-                <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}">
+                <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}" required>
                 <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
                 <button type="button" id="remove_rst" onclick="removeRst()"><spring:message code="button.delete"/></button>
               </c:if>
@@ -179,7 +179,7 @@
                     <label for=""><spring:message code="title.rst.upper_catag"/></label>
                   </td>
                   <td class="tbtd_caption">
-                    <label for="catag"><spring:message code="title.rst.catag"/></label>
+                    <label for="catag_no"><spring:message code="title.rst.catag"/></label>
                   </td>
                   <td class="tbtd_caption">
                     <label for="tel"><spring:message code="title.rst.tel"/></label>
@@ -195,15 +195,15 @@
                   </td>
                   
                   <td class="tbtd_caption">
-                    <select name="upper_catag" id="upper_catag" class="rst_form" >
-                      <c:forEach var="catag" items="${upperCatagList}" varStatus="status">
+                    <select name="upper_catag" id="upper_catag" class="rst_form" required>
+                      <c:forEach var="catag" items="${upperCatagList}" varStatus="status" >
                         <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>${catag.catag_nm}</option>
                       </c:forEach>
                     </select>
                   </td>
                   
                   <td class="tbtd_caption">
-                    <select name="catag" id="catag" class="rst_form" >
+                    <select name="catag_no" id="catag_no" class="rst_form" required>
                       <c:if test="${catagList ne null || catagList != ''}">
                         <c:forEach var="catag" items="${catagList}" varStatus="status">
                           <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>${catag.catag_nm}</option>
@@ -265,7 +265,7 @@
                     <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="opn_tm" class="rst_form" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="opn_tm" class="rst_form" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}" required>
                   </td>
                   <td class="tbtd_caption">
                     <input type="time" id="brck_tm" class="rst_form" name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" value="<c:out value="${rst.brck_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
@@ -274,7 +274,7 @@
                     <input type="time" id="dnnr_tm" class="rst_form" name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" value="<c:out value="${rst.dnnr_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="lo_tm" class="rst_form" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="lo_tm" class="rst_form" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}" required>
                   </td>
                   <td class="tbtd_caption"></td>
                 </tr>
@@ -360,10 +360,6 @@
         }
       }
       
-      function catag( param ) {
-    	  console.log('change');
-    	  console.log( param );
-      }
       
       $('#upper_catag').change( function () {
         $.ajax("/yummy/catag/get" , {
@@ -373,9 +369,8 @@
           },
           dataType: "json",
           success: function ( data ) {
-            /* console.log( data ); */
             
-            $('#catag').empty();
+            $('#catag_no').empty();
             
             if(data === null || data == '' || data.length < 1) {
               return;
@@ -385,7 +380,7 @@
               var options = $("<option></option");
               options.append(data[i].catag_nm);
               options.attr('value', data[i].catag_no);
-              $('#catag').append(options);
+              $('#catag_no').append(options);
             }
             
           },
@@ -398,7 +393,6 @@
       });
       
       $.fn.serializeObject = function() {
-    	  "rst"
     	  var result = {}
     	  var extend = function(i, element) {
     	    var node = result[element.name]
@@ -418,11 +412,45 @@
     	}
       
       function saveRst(){
-        //var form = $('#rstForm').serializeArray();
+        let cnfrm;
+        
+        if ( $('#rst_name').val() === '' || $('#rst_name').val().length < 0 ) {
+          alert('필수 값 누락!');
+          $('#rst_name').focus();
+          return;
+        }
+        
+        if ( $('#catag_no').val() === '' || $('#catag_no').val() < 0 || typeof $('#catag_no') === "undefined" || $('#catag_no') === null ) {
+          alert('필수 값 누락!');
+          $('#upper_catag').focus();
+          return;
+        }
+        
+        if ( $('#opn_tm').val() === '' || $('#opn_tm').val().length < 0 ) {
+          alert('필수 값 누락!');
+          $('#opn_tm').focus();
+          return;
+        }
+        
+        if ( $('#lo_tm').val() === '' || $('#lo_tm').val().length < 0 ) {
+          alert('필수 값 누락!');
+          $('#lo_tm').focus();
+          return;
+        }
+        
+        if ( rst_formStatus ) {
+          alert('수정 가능한 상태가 아닙니다.');
+          return;
+        } else {
+          cnfrm = confirm('${rst.rst_name} 식당 정보를 저장 하시겠 습니까?');
+        }
+        
+        if ( !cnfrm ) {
+            alert('${rst.rst_name} 식당 정보 저장을 취소 하셨 습니다.');
+            return;
+          }
         
         var form = $('#rstForm').serializeObject();
-        
-        console.log( form );
         
         $.ajax("/yummy/rst/save" , {
           headers: {
@@ -434,6 +462,11 @@
             dataType: "json",
             success: function ( data ) {
               console.log( data ); 
+              if( $('#mode').hasClass('modify') ) {
+                window.location.href = document.location.href;
+              } else {
+            	  window.location.href = '/yummy/rst/list'
+              }
               
             },
             error: function(xhr, status, msg) {

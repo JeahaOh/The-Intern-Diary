@@ -59,9 +59,20 @@ public class RstServiceImple implements RstService {
   @Override
   public Boolean save(Rst rst) throws Exception {
     logger.info("Service {} ",rst.toString());
-    //rstDao.save(rst);
-    return null;
+    
+    if( rst.getRst_no() == 0 ){
+      rst.setRst_no( rstDao.getLastRstNo() +1 );
+    }
+    
+    return rstDao.save(rst);
   }
+
+  @Override
+  public Boolean delete(int rst_no) throws Exception {
+    return rstDao.delete(rst_no);
+  }
+  
+  
   
   
 }

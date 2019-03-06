@@ -40,5 +40,9 @@ public interface RstDAO {
    */
   Rst getDetail(int id) throws Exception;
   
-  //Boolean save(Rst rst) throws Exception;
+  Boolean save(Rst rst) throws Exception;
+  
+  int getLastRstNo() throws Exception;
+  
+  Boolean delete(int rst_no) throws Exception;
 }
