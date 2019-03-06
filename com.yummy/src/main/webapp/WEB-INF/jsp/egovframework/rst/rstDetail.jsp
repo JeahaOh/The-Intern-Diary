@@ -122,6 +122,10 @@
   .tbtd_content_re {background-color:#F9F9F2; padding:7px 10px 5px 10px; margin:0;}
   input.txt         {height:18px; background-color:#FFF; border:1px solid #BCC8D8; padding-top:2px; color:#5e5e5e; cursor:text;}
   input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BCC8D8; padding-top:2px; color:#000; cursor:text;}
+  
+  
+  #catag {width: 145px;}
+  
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
@@ -141,9 +145,12 @@
             </c:choose>
             <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             <div class="right_area">
-              <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
-              <button type="button" id="remove_rst" onclick="removeRst()"><spring:message code="button.delete"/></button>
-              <button type="button" id="save_rst" onclick=""><spring:message code="button.save"/></button>
+              <c:if test="${mode eq 'Modify'}">
+                <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}">
+                <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
+                <button type="button" id="remove_rst" onclick="removeRst()"><spring:message code="button.delete"/></button>
+              </c:if>
+              <button type="button" id="save_rst" onclick="saveRst()"><spring:message code="button.save"/></button>
             </div>
           </div>
           <div id="content_pop">
@@ -187,9 +194,8 @@
                   </td>
                   
                   <td class="tbtd_caption">
-                    <select name="upper_catag" id="upper_catag" class="rst_form">
+                    <select name="upper_catag" id="upper_catag" class="rst_form" >
                       <c:forEach var="catag" items="${upperCatagList}" varStatus="status">
-                      
                         <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>${catag.catag_nm}</option>
                       </c:forEach>
                     </select>
@@ -197,9 +203,11 @@
                   
                   <td class="tbtd_caption">
                     <select name="catag" id="catag" class="rst_form" >
-                      <c:forEach var="catag" items="${catagList}" varStatus="status">
-                        <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>${catag.catag_nm}</option>
-                      </c:forEach>
+                      <c:if test="${catagList ne null || catagList != ''}">
+                        <c:forEach var="catag" items="${catagList}" varStatus="status">
+                          <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>${catag.catag_nm}</option>
+                        </c:forEach>
+                      </c:if>
                     </select>
                   </td>
                   
@@ -316,7 +324,26 @@
           alert('${rst.rst_name} 식당 정보 삭제를 취소 하셨 습니다.');
           return;
         } else {
-          console.log('rst_form 삭제  AJAX 처리 할 곳.')
+          console.log('rst_form 삭제  AJAX 처리 할 곳.');
+          
+          console.log($('#rst_no').val());
+          
+          $.ajax("/yummy/rst/delete" , {
+            method: "POST",
+            data:{
+              "rst_no": $('#rst_no').val()
+            },
+            dataType: "json",
+            success: function ( data ) {
+              console.log( data );
+              
+            },
+            error: function(xhr, status, msg) {
+              console.log('xhr:\n ' + xhr);
+              console.log('status:\n ' + status);
+              console.log('msg:\n ' + msg);
+            }
+          });
         }
       }
       
@@ -324,13 +351,55 @@
         if ( input.files && input.files[0] ) {
           var reader = new FileReader();
           reader.onload = function( e ) {
-            $('#preview').css('background-image', 'url('+e.target.result +')');
+            $('#preview').css( 'background-image', 'url(' + e.target.result + ')' );
             $('#preview').hide();
             $('#preview').fadeIn(650);
           }
           reader.readAsDataURL(input.files[0]);
         }
       }
+      
+      function catag( param ) {
+    	  console.log('change');
+    	  console.log( param );
+      }
+      
+      $('#upper_catag').change( function () {
+        $.ajax("/yummy/catag/get" , {
+          method: "POST",
+          data:{
+            "upper_no": $(this).val()
+          },
+          dataType: "json",
+          success: function ( data ) {
+            /* console.log( data ); */
+            
+            $('#catag').empty();
+            
+            if(data === null || data == '' || data.length < 1) {
+              return;
+            }
+            
+            for (i = 0; i < data.length; i++) {
+              var options = $("<option></option");
+              options.append(data[i].catag_nm);
+              options.attr('value', data[i].catag_no);
+              $('#catag').append(options);
+            }
+            
+          },
+          error: function(xhr, status, msg) {
+            console.log('xhr:\n ' + xhr);
+            console.log('status:\n ' + status);
+            console.log('msg:\n ' + msg);
+          }
+        });
+      });
+      
+      function saveRst(){
+        console.log('asdf');
+      }
+      
     </script>
   </body>
 </html>

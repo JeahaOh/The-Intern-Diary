@@ -58,10 +58,16 @@ public class RstController {
     return "rst/rstList";
   }
   
+  /**
+   * rst 상세 정보 출력
+   * 
+   * @param model
+   * @param id    - 출력 할 rst의 id
+   * @return      - rst
+   * @throws Exception
+   */
   @RequestMapping(value="/detail", method= RequestMethod.GET)
-  public String rstDetail(HttpSession session, Model model, int id) throws Exception {
-    logger.info(session.toString(), model, id);
-    
+  public String rstDetail(Model model, int id) throws Exception {
     Rst rst = rstService.getDetail(id);
     model.addAttribute("rst", rst);
     
@@ -70,6 +76,21 @@ public class RstController {
     model.addAttribute("catagList", catagService.getRstLowerCatagList(rst.getUpper_no()));
     model.addAttribute("mode", "Modify");
     
+    logger.info(model.toString(), id);
     return "rst/rstDetail";
+  }
+  
+  @RequestMapping(value="create", method= RequestMethod.GET)
+  public String rstCreate(Model model) throws Exception {
+    model.addAttribute("upperCatagList", catagService.getRstUpperCatagList());
+    model.addAttribute("mode", "Create");
+    logger.info(model.toString());
+    return "rst/rstDetail";
+  }
+  
+  @RequestMapping(value="create", method= RequestMethod.POST)
+  public String rstCreate(String name) throws Exception {
+    
+    return null;
   }
 }

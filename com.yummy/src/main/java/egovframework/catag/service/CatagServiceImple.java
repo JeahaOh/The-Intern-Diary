@@ -2,6 +2,8 @@ package egovframework.catag.service;
 
 import java.util.List;
 import javax.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import egovframework.catag.dao.CatagDAO;
@@ -24,6 +26,8 @@ import egovframework.catag.vo.Catag;
 @Component
 public class CatagServiceImple implements CatagService {
   
+  private static final Logger logger = LoggerFactory.getLogger(CatagServiceImple.class);
+  
   @Resource(name="catagDao")
   private CatagDAO catagDao;
   
@@ -45,6 +49,7 @@ public class CatagServiceImple implements CatagService {
 
   @Override
   public List<Catag> getRstLowerCatagList(int upper_no) throws Exception {
+    logger.info(Integer.toString(upper_no));
     return catagDao.getRstCatagList(upper_no);
   }
 }

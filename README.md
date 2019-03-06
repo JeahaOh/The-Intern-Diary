@@ -40,6 +40,12 @@ REST API 서버를 먼저 만들고 Client Side WEB 구현, APP은 나중에 구
 
 - ***https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html***
 
+### 19:50 Spring Ajax에 Json으로 응답 하기
+- https://victorydntmd.tistory.com/172
+
+### 20:30 rst 저장, 삭제 기능 구현중..
+- https://github.com/JeahaOh/java110-team-project/blob/master/src/main/resources/bitcamp/java110/cms/mapper/MemberDao.xml
+- https://stackoverflow.com/questions/4205181/insert-into-a-mysql-table-or-update-if-exists
 
 
 
