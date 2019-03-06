@@ -1,7 +1,5 @@
 package com.yummy.jeaha.yummy;
 
-import com.yummy.jeaha.yummy.Contributor;
-
 import java.util.List;
 
 import retrofit2.Call;
