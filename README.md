@@ -16,12 +16,17 @@ rstDetail.jsp 요리 유형 작업중 나온 에러
 rstDetail.jsp 에서 rst삭제 js 준비 까지만 했음.  
 생성, 삭제, 수정 기능 들어가야 하며, 생성 폼에서는 대분류 선택시 소분류 카테고리 AJAX로 출력 해야 함.  
   
-### 14:00 Androide Studio Project 생성
+### 14:00 Android Studio Project 생성
 
 ### 14:30 App Login 만들기
 - https://jizard.tistory.com/104
 
-### 14:50 Androide Studio Project 재생성
+### 14:50 Android Studio Project 재생성
+
+### 16:00 Android Project 앱 생성 예제 성공.
+- https://jizard.tistory.com/104
+
+
 
 - - -
 ## 03/05 화요일
