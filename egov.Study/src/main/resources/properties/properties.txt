@@ -1,8 +1,0 @@
-
-@ JEAHA
-db.properties 파일이 위치 하는곳.
-
-db.driver=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-db.url=jdbc:log4jdbc:mysql://13.125.217.122:3306/projectdb
-db.username=
-db.password=

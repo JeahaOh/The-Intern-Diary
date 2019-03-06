@@ -28,6 +28,9 @@ node_modules/
 .settings/
 bin/
 build/
+/build
 temp/
 Debug/
 Release/
+
+#!build.gradle

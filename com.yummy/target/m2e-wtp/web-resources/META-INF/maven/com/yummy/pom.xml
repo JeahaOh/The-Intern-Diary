@@ -133,7 +133,6 @@
       <version>1.16</version>
     </dependency>
 
-
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
@@ -160,6 +159,20 @@
     <!-- <dependency> <groupId>ojdbc</groupId> <artifactId>ojdbc</artifactId> 
       <version>14</version> <scope>system</scope> <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath> 
       </dependency> -->
+      
+      <!-- JSON -->
+      <dependency>
+         <groupId>net.sf.json-lib</groupId>
+         <artifactId>json-lib</artifactId>
+         <version>2.4</version>
+         <classifier>jdk15</classifier>
+      </dependency>
+      
+      <dependency>
+         <groupId>org.codehaus.jackson</groupId>
+         <artifactId>jackson-mapper-asl</artifactId>
+         <version>1.9.13</version>
+      </dependency>
   </dependencies>
 
   <build>
