@@ -26,6 +26,22 @@ rstDetail.jsp 에서 rst삭제 js 준비 까지만 했음.
 ### 16:00 Android Project 앱 생성 예제 성공.
 - https://jizard.tistory.com/104
 
+### 16:45 예제 찾음
+- 설명
+    - https://dev-juyoung.github.io/2017/11/10/android-retrofit-basic/
+- 코드
+    - https://github.com/dev-juyoung/retrofit-sample
+
+### 17:25
+- https://java.ihoney.pe.kr/283
+Controller에서 JSON 으로 인자를 받거나 반환 하는 것에 대해서 찾아 봤음.  
+이미 확신 하고 있었지만 맞았다는거..  
+REST API 서버를 먼저 만들고 Client Side WEB 구현, APP은 나중에 구현 하는게 나을 것 같음.
+
+- ***https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html***
+
+
+
 
 
 - - -
