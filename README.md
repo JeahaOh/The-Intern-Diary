@@ -18,6 +18,11 @@ rstDetail.jsp 에서 rst삭제 js 준비 까지만 했음.
   
 ### 14:00 Androide Studio Project 생성
 
+### 14:30 App Login 만들기
+- https://jizard.tistory.com/104
+
+### 14:50 Androide Studio Project 재생성
+
 - - -
 ## 03/05 화요일
 ### 09:45
