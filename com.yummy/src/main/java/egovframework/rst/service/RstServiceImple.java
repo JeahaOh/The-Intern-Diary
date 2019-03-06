@@ -55,4 +55,13 @@ public class RstServiceImple implements RstService {
     logger.info(Integer.toString(id));
     return rstDao.getDetail(id);
   }
+
+  @Override
+  public Boolean save(Rst rst) throws Exception {
+    logger.info("Service {} ",rst.toString());
+    //rstDao.save(rst);
+    return null;
+  }
+  
+  
 }

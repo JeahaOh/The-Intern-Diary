@@ -39,4 +39,6 @@ public interface RstDAO {
    * @throws Exception
    */
   Rst getDetail(int id) throws Exception;
+  
+  //Boolean save(Rst rst) throws Exception;
 }

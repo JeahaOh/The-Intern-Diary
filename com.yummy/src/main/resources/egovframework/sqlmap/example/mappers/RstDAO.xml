@@ -52,5 +52,10 @@
     ON rst.catag_no = catag.catag_no
     WHERE rst.rst_no = #{id}
   </select>
-
+  <!-- 
+  <insert id="save">
+INSERT INTO rst (rst_no, rst_name, star, loc, loc_dtl, catag_no, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) VALUES (188, 'insertTest', -2, '동안구', '안양시', 10, '010-1020-4332', '11:00:00', '00:00:00', '00:00:00', '21:00:00') ON DUPLICATE KEY UPDATE rst_name = 'insertTest', star = -2, loc = '동안구', loc_dtl = '안양시', catag_no = 10, tel = '010-3430-8902', opn_tm = '09:00:00', brck_tm = '00:00:00', dnnr_tm = '00:00:00', lo_tm = '22:00:00'
+    
+  </insert>
+   -->
 </mapper>

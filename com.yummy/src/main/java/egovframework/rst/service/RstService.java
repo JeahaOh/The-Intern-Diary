@@ -34,4 +34,5 @@ public interface RstService {
    */
   Rst getDetail(int id) throws Exception;
 
+  Boolean save(Rst rst) throws Exception;
 }

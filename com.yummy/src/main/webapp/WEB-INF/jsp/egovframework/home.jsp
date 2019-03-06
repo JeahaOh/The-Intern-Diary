@@ -1,6 +1,7 @@
 <%@ page    contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib  prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page    session="false"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%--
    /**
     * @Class Name : home.jsp
@@ -78,8 +79,8 @@
   $('#submit').click( function ( event ) {
     event.preventDefault();
     
-    var idVal = $('#id').val();
-    var pwdVal = $('#pwd').val();
+    let idVal = $('#id').val();
+    let pwdVal = $('#pwd').val();
     
     if (idVal.length <= 0 || idVal == "") {
       alert("아이디를 입력하세요.");
@@ -88,10 +89,12 @@
       alert("비밀번호를 입력하세요.");
       $('#pwd').focus();
     } else {
-      var url = 'memb/adminLogin';
-      var data = $('#userForm').serialize();
+      const url = 'memb/adminLogin';
+      let form = $('#userForm').serializeArray();
       
-      $.post( url, data ).done(function( data ) {
+      console.log( form );
+      
+      $.post( url, form ).done(function( data ) {
         if( data === 'loginError') {
         	alert('LogIn Error\n관리자에게 문의하세요.')
         }  else {
@@ -99,7 +102,6 @@
         }
       });
     }
-    
   });
   
   /**

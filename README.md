@@ -47,6 +47,23 @@ REST API 서버를 먼저 만들고 Client Side WEB 구현, APP은 나중에 구
 - https://github.com/JeahaOh/java110-team-project/blob/master/src/main/resources/bitcamp/java110/cms/mapper/MemberDao.xml
 - https://stackoverflow.com/questions/4205181/insert-into-a-mysql-table-or-update-if-exists
 
+### 22:10
+```
+INSERT INTO rst (rst_no, rst_name, star, loc, loc_dtl, catag_no, tel, opn_tm, brck_tm, dnnr_tm, lo_tm)
+VALUES (188, 'insertTest', -2, '동안구', '안양시', 10, '010-1020-4332', '11:00:00', '00:00:00', '00:00:00', '21:00:00')
+ON DUPLICATE KEY UPDATE
+    rst_name = 'insertTest',
+    star = -2, loc = '동안구',
+    loc_dtl = '안양시',
+    catag_no = 10,
+    tel = '010-3430-8902',
+    opn_tm = '09:00:00',
+    brck_tm = '00:00:00',
+    dnnr_tm = '00:00:00',
+    lo_tm = '22:00:00'
+```
+- https://wkdgusdn3.tistory.com/entry/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%8C-autoincrement-%EA%B0%92-%EB%B0%9B%EC%95%84%EC%98%A4%EA%B8%B0
+
 
 
 

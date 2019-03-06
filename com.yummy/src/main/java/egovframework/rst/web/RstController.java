@@ -1,14 +1,18 @@
 package egovframework.rst.web;
 
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.catag.service.CatagService;
 import egovframework.rst.service.RstService;
 import egovframework.rst.vo.Rst;
@@ -80,16 +84,36 @@ public class RstController {
     return "rst/rstDetail";
   }
   
-  @RequestMapping(value="create", method= RequestMethod.GET)
-  public String rstCreate(Model model) throws Exception {
+  @RequestMapping(value="/save", method= RequestMethod.GET)
+  public String saveRst(Model model) throws Exception {
     model.addAttribute("upperCatagList", catagService.getRstUpperCatagList());
     model.addAttribute("mode", "Create");
     logger.info(model.toString());
     return "rst/rstDetail";
   }
   
-  @RequestMapping(value="create", method= RequestMethod.POST)
-  public String rstCreate(String name) throws Exception {
+  @RequestMapping(value="/save", method= RequestMethod.POST)
+  public @ResponseBody String saveRst(
+      /*
+      @RequestParam int rst_no,
+      @RequestParam String rst_name,
+      @RequestParam int star,
+      @RequestParam String loc,
+      @RequestParam String log_dtl,
+      @RequestParam int catag_no,
+      @RequestParam String tel,
+      @RequestParam String opn_tm,
+      @RequestParam String brck_tm,
+      @RequestParam String dnnr_tm,
+      @RequestParam String lo_tm
+      */
+      @RequestBody Rst rst
+      ) throws Exception {
+    
+    System.out.println("save");
+    System.out.println(rst.toString());
+    
+    rstService.save(rst);
     
     return null;
   }

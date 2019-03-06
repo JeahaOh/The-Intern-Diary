@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%--
    /**
   * @Class Name : rstDetail.jsp
@@ -132,7 +133,7 @@
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
     <div id="outter_container">
       <div id="inner_container">
-        <form id="detailForm" name="detailForm">
+        <form id="rstForm" name="rstForm">
           <div id="rst_btn_container" class="top" style="margin-top: 10px;">
             <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             <c:choose>
@@ -396,8 +397,53 @@
         });
       });
       
+      $.fn.serializeObject = function() {
+    	  "rst"
+    	  var result = {}
+    	  var extend = function(i, element) {
+    	    var node = result[element.name]
+    	    if ("undefined" !== typeof node && node !== null) {
+    	      if ($.isArray(node)) {
+    	        node.push(element.value)
+    	      } else {
+    	        result[element.name] = [node, element.value]
+    	      }
+    	    } else {
+    	      result[element.name] = element.value
+    	    }
+    	  }
+
+    	  $.each(this.serializeArray(), extend)
+    	  return result
+    	}
+      
       function saveRst(){
-        console.log('asdf');
+        //var form = $('#rstForm').serializeArray();
+        
+        var form = $('#rstForm').serializeObject();
+        
+        console.log( form );
+        
+        $.ajax("/yummy/rst/save" , {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+            method: "POST",
+            data: JSON.stringify(form),
+            dataType: "json",
+            success: function ( data ) {
+              console.log( data ); 
+              
+            },
+            error: function(xhr, status, msg) {
+              console.log('xhr:\n ' + xhr);
+              console.log('status:\n ' + status);
+              console.log('msg:\n ' + msg);
+            }
+          });
+        
+        console.log( form );
       }
       
     </script>
