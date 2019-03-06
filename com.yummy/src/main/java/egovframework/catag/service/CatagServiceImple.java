@@ -27,14 +27,27 @@ public class CatagServiceImple implements CatagService {
   @Resource(name="catagDao")
   private CatagDAO catagDao;
   
+  /**
+   * 모든 Catag List를 반환
+   * @return
+   * @throws Exception
+   */
+  
   @Override
   public List<Catag> getList() throws Exception {
-    
-    /**
-     * Catag List를 반환
-     * @return
-     * @throws Exception
-     */
     return catagDao.getList() ;
   }
+
+  @Override
+  public List<Catag> getRstUpperCatagList() throws Exception {
+    return catagDao.getRstUpperCatagList();
+  }
+
+  @Override
+  public List<Catag> getRstLowerCatagList(int upper_no) throws Exception {
+    return catagDao.getRstLowerCatagList(upper_no);
+  }
+  
+  
+
 }

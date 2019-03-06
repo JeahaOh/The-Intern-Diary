@@ -18,9 +18,11 @@ import egovframework.catag.vo.Catag;
 public interface CatagService {
   
   /**
-   * Catag List를 반환
+   * 모든 Catag List를 반환
    * @return
    * @throws Exception
    */
   List<Catag> getList() throws Exception;
+  List<Catag> getRstUpperCatagList() throws Exception;
+  List<Catag> getRstLowerCatagList(int upper_no) throws Exception;
 }

@@ -63,7 +63,8 @@ public class RstController {
     logger.info(session.toString(), model, id);
     
     model.addAttribute("rst", rstService.getDetail(id));
-    model.addAttribute("catagList", catagService.getList());
+    model.addAttribute("catagList", catagService.getRstUpperCatagList());
+    model.addAttribute("mode", "Modify");
     
     return "rst/rstDetail";
   }

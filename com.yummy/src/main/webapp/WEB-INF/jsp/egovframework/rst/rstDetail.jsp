@@ -129,23 +129,34 @@
     <div id="outter_container">
       <div id="inner_container">
         <form id="detailForm" name="detailForm">
-          <div id="rst_btn_container" class="right_area" style="margin-top: 10px;">
-              <button type="button" id="update_rst" onclick=""><spring:message code="button.modify" /></button>
-              <button type="button" id="remove_rst" onclick=""><spring:message code="button.delete" /></button>
-              <button type="button" id="save_rst" onclick=""><spring:message code="button.save" /></button>
+          <div id="rst_btn_container" class="top" style="margin-top: 10px;">
+            <c:choose>
+              <c:when test="${mode eq 'Create'}">
+                <h4 id="mode" class="title create"><spring:message code="mode.create"/></h4>
+              </c:when>
+              <c:otherwise>
+                <h4 id="mode" class="title modify"><spring:message code="mode.modify"/></h4>
+              </c:otherwise>
+            </c:choose>
+            <div class="right_area">
+              <button type="button" id="update_rst" onclick=""><spring:message code="button.modify"/></button>
+              <button type="button" id="remove_rst" onclick=""><spring:message code="button.delete"/></button>
+              <button type="button" id="save_rst" onclick=""><spring:message code="button.save"/></button>
+            </div>
           </div>
           <div id="content_pop">
             <div id="table">
               <form id="rst_form" method="post">
               <table>
                 <colgroup>
-                  <col width="150"/>
-                  <col width="150"/>
+                  <col width="200"/>
+                  <col width="100"/>
                   <col width="100"/>
                   <col width="90"/>
                   <col width="90"/>
                   <col width="90"/>
                 </colgroup>
+                
                 <tr>
                   <td class="tbtd_caption" rowspan="5">
                     <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
@@ -153,6 +164,9 @@
                   </td>
                   <td class="tbtd_caption">
                     <label for="rst_name"><spring:message code="title.rst.name"/></label>
+                  </td>
+                  <td class="tbtd_caption">
+                    <label for=""><spring:message code="title.rst.upper_catag"/></label>
                   </td>
                   <td class="tbtd_caption">
                     <label for="catag"><spring:message code="title.rst.catag"/></label>
@@ -164,20 +178,26 @@
                     <label for="star"><spring:message code="title.rst.star"/></label>
                   </td>
                 </tr>
+                
                 <tr>
                   <td class="tbtd_caption">
                     <input type="text" id="rst_name" class="rst_form" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
                   </td>
+                  
                   <td class="tbtd_caption">
-                    <select name="catag" id="catag" class="rst_form" >
-                      <!-- !!!! -->
-                      
-                      <c:forEach var="catag" items="${catagList}">
-                        
-                      </c:forEach>
-                      
+                    <select name="upper_catag" id="upper_catag" class="rst_form">
+                        <option >
                     </select>
                   </td>
+                  
+                  <td class="tbtd_caption">
+                    <select name="catag" id="catag" class="rst_form" >
+                      <c:forEach var="catag" items="${catagList}">
+                        <option value="" <c:if test="${asdf}">selected</c:if>>${asdf}</option>
+                      </c:forEach>
+                    </select>
+                  </td>
+                  
                   <td class="tbtd_caption">
                     <input type="tel" id="tel" class="rst_form" name="tel" alt="<spring:message code="title.rst.tel"/>" value="<c:out value="${rst.tel}"/>" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
                   </td>
@@ -191,6 +211,7 @@
                     </select>
                   </td>
                 </tr>
+                
                 <tr>
                   <td class="tbtd_caption">
                     <label for="loc"><spring:message code="title.rst.loc"/></label>
@@ -199,14 +220,16 @@
                     <label for="loc_dtl"><spring:message code="title.rst.loc_dtl"/></label>
                   </td>
                 </tr>
+                
                 <tr>
                   <td class="tbtd_caption">
                     <input type="text" id="loc" class="rst_form" name="loc" alt="<spring:message code="title.rst.loc"/>" value="<c:out value="${rst.loc}"/>">
                   </td>
                   <td class="tbtd_caption" colspan="4">
-                    <input type="text" id="loc_dtl" class="rst_form" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 300px;" required>
+                    <input type="text" id="loc_dtl" class="rst_form" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 475px;" required>
                   </td>
                 </tr>
+                
                 <tr>
                   <td class="tbtd_caption">
                     <label for="opn_tm"><spring:message code="title.rst.opn_tm"/></label>
@@ -220,7 +243,9 @@
                   <td class="tbtd_caption">
                     <label for="lo_tm"><spring:message code="title.rst.lo_tm"/></label>
                   </td>
+                  <td class="tbtd_caption"></td>
                 </tr>
+                
                 <tr>
                   <td class="tbtd_caption">
                     <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
@@ -237,6 +262,7 @@
                   <td class="tbtd_caption">
                     <input type="time" id="lo_tm" class="rst_form" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
                   </td>
+                  <td class="tbtd_caption"></td>
                 </tr>
               </table>
               </form>
@@ -247,21 +273,24 @@
     </div>
     <script>
       $(function(){
-        $('.rst_form').attr('disabled', 'disabled');
+        if( $('#mode').hasClass('modify') ) {
+          $('.rst_form').attr('disabled', 'disabled');
+        }
       });
     
       $( "#img" ).change(function() {
         pic( this );
       });
       
+      /* $('.rst_form').removeAttr('disabled'); */
+      
       function pic( input ) {
         if ( input.files && input.files[0] ) {
           var reader = new FileReader();
           reader.onload = function( e ) {
-          	console.log(e.target.result);
-          $('#preview').css('background-image', 'url('+e.target.result +')');
-          $('#preview').hide();
-          $('#preview').fadeIn(650);
+            $('#preview').css('background-image', 'url('+e.target.result +')');
+            $('#preview').hide();
+            $('#preview').fadeIn(650);
           }
           reader.readAsDataURL(input.files[0]);
         }
