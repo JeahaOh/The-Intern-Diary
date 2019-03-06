@@ -6,6 +6,7 @@ public class Rst {
   int star;
   String loc;
   String loc_dtl;
+  int upper_no;
   int catag_no;
   String catag_nm;
   String tel;
@@ -16,7 +17,7 @@ public class Rst {
   
   public Rst() {}
 
-  public Rst(int rst_no, String rst_name, int star, String loc, String loc_dtl, int catag_no,
+  public Rst(int rst_no, String rst_name, int star, String loc, String loc_dtl, int catag_no, int upper_no,
       String catag_nm, String tel, String opn_tm, String brck_tm, String dnnr_tm, String lo_tm) {
     super();
     this.rst_no = rst_no;
@@ -26,6 +27,7 @@ public class Rst {
     this.loc_dtl = loc_dtl;
     this.catag_no = catag_no;
     this.catag_nm = catag_nm;
+    this.upper_no = upper_no;
     this.tel = tel;
     this.opn_tm = opn_tm;
     this.brck_tm = brck_tm;
@@ -80,6 +82,14 @@ public class Rst {
   public void setCatag_no(int catag_no) {
     this.catag_no = catag_no;
   }
+  
+  public int getUpper_no() {
+    return upper_no;
+  }
+
+  public void setUpper_no(int upper_no) {
+    this.upper_no = upper_no;
+  }
 
   public String getcatag_nm() {
     return catag_nm;
@@ -131,8 +141,8 @@ public class Rst {
 
   @Override
   public String toString() {
-    return "Rst [rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
-        + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", catag_nm=" + catag_nm
+    return "Rst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
+        + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
         + ", tel=" + tel + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm
         + ", lo_tm=" + lo_tm + "]";
   }

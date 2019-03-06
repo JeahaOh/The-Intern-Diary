@@ -51,7 +51,7 @@ public class RstController {
     logger.info(session.toString());
     
     List<Rst> rstList = rstService.getList();
-    logger.info(rstList.toString());
+    logger.info("\n\t\t"+rstList.toString());
     
     model.addAttribute("rstList", rstList);
     
@@ -61,9 +61,11 @@ public class RstController {
   @RequestMapping(value="/detail", method= RequestMethod.GET)
   public String rstDetail(HttpSession session, Model model, int id) throws Exception {
     logger.info(session.toString(), model, id);
-    
-    model.addAttribute("rst", rstService.getDetail(id));
-    model.addAttribute("catagList", catagService.getRstUpperCatagList());
+    Rst rst = rstService.getDetail(id);
+    model.addAttribute("rst", rst);
+    logger.info(rst.toString());
+    model.addAttribute("upperCatagList", catagService.getRstUpperCatagList());
+    model.addAttribute("catagList", catagService.getRstLowerCatagList(rst.getUpper_no()));
     model.addAttribute("mode", "Modify");
     
     return "rst/rstDetail";

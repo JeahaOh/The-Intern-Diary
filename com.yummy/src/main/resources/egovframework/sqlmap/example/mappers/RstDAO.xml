@@ -47,6 +47,7 @@
       rst.loc_dtl,
       rst.catag_no,
       catag.catag_nm,
+      catag.upper_no,
       rst.tel,
       rst.opn_tm,
       rst.brck_tm,

@@ -5,6 +5,15 @@
 ### 10:00
 어제 못했던 rstDetail.jsp UI 작업 마저 하는 중...
 
+### 11:00
+```
+javax.el.PropertyNotFoundException: Property [upper_no] not readable on type [egovframework.rst.vo.Rst]
+```
+rstDetail.jsp 요리 유형 작업중 나온 에러
+- Rst.class수정 하면서 upper_no에 대한 getter, setter, consturctor 설정을 안잡아 줘서 그럼.
+
+
+
 - - -
 ## 03/05 화요일
 ### 09:45

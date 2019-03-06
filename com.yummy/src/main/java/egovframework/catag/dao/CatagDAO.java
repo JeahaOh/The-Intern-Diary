@@ -25,7 +25,6 @@ public interface CatagDAO {
    * @throws Exception
    */
   List<Catag> getList() throws Exception;
-  List<Catag> getRstUpperCatagList() throws Exception;
-  List<Catag> getRstLowerCatagList(int upper_no) throws Exception;
+  List<Catag> getRstCatagList(int param) throws Exception;
   
 }

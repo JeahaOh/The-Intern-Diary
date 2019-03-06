@@ -114,7 +114,7 @@
   button {cursor:hand; border:1px solid #14293a; padding:5px; background-color:#FFFFFF; white-space:nowrap;}
   .btn_blue_l {float:left; background:url(../../images/egovframework/example/btn_bg_l.gif) 0 0 no-repeat; height:20px; padding:0px 0px 0px 10px; margin:0px 0px 0px 0px;}
   .btn_blue_r {float:left; background:url(../../images/egovframework/example/btn_bg_r.gif) 0 0 no-repeat; background-position:right; height:20px; font-family:"돋움"; font-size:11px; color:#000000; margin:0px 0px 0px 0px; padding-top:0px; _padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:0px; text-align:center;}
-  input { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
+  input, select { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
   select {font-family:'돋움'; font-size:12px; margin-top:0px; height:20px; padding-top:0px;}
   .tbtd_caption {font-weight:bold; color:#003366; background-color:#E5EDF3; text-align:right; padding:10px 10px 9px 5px; margin:0;}
   .tbtd_content {background-color:#F5F8FA; padding:7px 10px 5px 10px; margin:0;}
@@ -186,14 +186,17 @@
                   
                   <td class="tbtd_caption">
                     <select name="upper_catag" id="upper_catag" class="rst_form">
-                        <option >
+                      <c:forEach var="catag" items="${upperCatagList}" varStatus="status">
+                      
+                        <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>${catag.catag_nm}</option>
+                      </c:forEach>
                     </select>
                   </td>
                   
                   <td class="tbtd_caption">
                     <select name="catag" id="catag" class="rst_form" >
-                      <c:forEach var="catag" items="${catagList}">
-                        <option value="" <c:if test="${asdf}">selected</c:if>>${asdf}</option>
+                      <c:forEach var="catag" items="${catagList}" varStatus="status">
+                        <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>${catag.catag_nm}</option>
                       </c:forEach>
                     </select>
                   </td>

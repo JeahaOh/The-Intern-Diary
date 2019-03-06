@@ -40,14 +40,11 @@ public class CatagServiceImple implements CatagService {
 
   @Override
   public List<Catag> getRstUpperCatagList() throws Exception {
-    return catagDao.getRstUpperCatagList();
+    return catagDao.getRstCatagList(10);
   }
 
   @Override
   public List<Catag> getRstLowerCatagList(int upper_no) throws Exception {
-    return catagDao.getRstLowerCatagList(upper_no);
+    return catagDao.getRstCatagList(upper_no);
   }
-  
-  
-
 }

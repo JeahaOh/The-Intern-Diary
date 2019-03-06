@@ -12,4 +12,14 @@
     ORDER BY catag_no ASC
   </select>
   
+  <select id="getRstCatagList" parameterType="int" resultType="catag">
+    SELECT
+      catag_no,
+      upper_no,
+      catag_nm
+    FROM rst_catag
+    WHERE upper_no = #{param}
+    ORDER BY catag_no ASC
+  </select>
+  
 </mapper>
