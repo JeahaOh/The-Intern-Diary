@@ -141,7 +141,7 @@ public class Rst {
 
   @Override
   public String toString() {
-    return "Rst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
+    return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
         + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
         + ", tel=" + tel + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm
         + ", lo_tm=" + lo_tm + "]";

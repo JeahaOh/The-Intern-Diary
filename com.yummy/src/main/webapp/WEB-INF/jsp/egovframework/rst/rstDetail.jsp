@@ -130,6 +130,7 @@
       <div id="inner_container">
         <form id="detailForm" name="detailForm">
           <div id="rst_btn_container" class="top" style="margin-top: 10px;">
+            <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             <c:choose>
               <c:when test="${mode eq 'Create'}">
                 <h4 id="mode" class="title create"><spring:message code="mode.create"/></h4>
@@ -138,9 +139,10 @@
                 <h4 id="mode" class="title modify"><spring:message code="mode.modify"/></h4>
               </c:otherwise>
             </c:choose>
+            <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             <div class="right_area">
-              <button type="button" id="update_rst" onclick=""><spring:message code="button.modify"/></button>
-              <button type="button" id="remove_rst" onclick=""><spring:message code="button.delete"/></button>
+              <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
+              <button type="button" id="remove_rst" onclick="removeRst()"><spring:message code="button.delete"/></button>
               <button type="button" id="save_rst" onclick=""><spring:message code="button.save"/></button>
             </div>
           </div>
@@ -275,9 +277,14 @@
       </div>
     </div>
     <script>
+      
+      let rst_formStatus;
+      
+      
       $(function(){
         if( $('#mode').hasClass('modify') ) {
           $('.rst_form').attr('disabled', 'disabled');
+          rst_formStatus = true;
         }
       });
     
@@ -285,7 +292,33 @@
         pic( this );
       });
       
-      /* $('.rst_form').removeAttr('disabled'); */
+      function updateRst() {
+        if ( rst_formStatus ) {
+          $('.rst_form').removeAttr('disabled');
+          rst_formStatus = false;
+        } else {
+          $('.rst_form').attr('disabled', 'disabled');
+          rst_formStatus = true;
+        }
+      }
+      
+      function removeRst() {
+        let cnfrm;
+        
+        if ( rst_formStatus ) {
+          alert('삭제 가능한 상태가 아닙니다.');
+          return;
+        } else {
+          cnfrm = confirm('${rst.rst_name} 식당 정보를 삭제 하시겠 습니까?');
+        }
+        
+        if ( !cnfrm ) {
+          alert('${rst.rst_name} 식당 정보 삭제를 취소 하셨 습니다.');
+          return;
+        } else {
+          console.log('rst_form 삭제  AJAX 처리 할 곳.')
+        }
+      }
       
       function pic( input ) {
         if ( input.files && input.files[0] ) {

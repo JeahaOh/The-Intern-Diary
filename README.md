@@ -12,6 +12,10 @@ javax.el.PropertyNotFoundException: Property [upper_no] not readable on type [eg
 rstDetail.jsp 요리 유형 작업중 나온 에러
 - Rst.class수정 하면서 upper_no에 대한 getter, setter, consturctor 설정을 안잡아 줘서 그럼.
 
+### 13:20 !! rstDetail Form ISSUE !!
+rstDetail.jsp 에서 rst삭제 js 준비 까지만 했음.  
+생성, 삭제, 수정 기능 들어가야 하며, 생성 폼에서는 대분류 선택시 소분류 카테고리 AJAX로 출력 해야 함.  
+  
 
 
 - - -

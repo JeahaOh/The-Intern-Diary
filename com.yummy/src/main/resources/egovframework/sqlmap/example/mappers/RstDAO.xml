@@ -23,14 +23,8 @@
       rst.rst_name,
       rst.star,
       rst.loc,
-      rst.loc_dtl,
       rst.catag_no,
-      catag.catag_nm,
-      rst.tel,
-      rst.opn_tm,
-      rst.brck_tm,
-      rst.dnnr_tm,
-      rst.lo_tm
+      catag.catag_nm
     FROM rst rst
     INNER JOIN rst_catag catag
     ON rst.catag_no = catag.catag_no
