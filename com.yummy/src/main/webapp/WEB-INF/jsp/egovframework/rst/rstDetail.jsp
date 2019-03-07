@@ -112,10 +112,10 @@
   #idwrap {float:left; padding-top:0px; padding-bottom:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; margin-top:0px; padding-left:0px; padding-right:0px; }
   #idwrap ul {float:left; padding:0; margin:0;}
   #idwrap li {list-style-type:none; float:left; margin:0; padding-right:3px;}
-  button {cursor:hand; border:1px solid #14293a; padding:5px; background-color:#FFFFFF; white-space:nowrap;}
+  button {padding: 0px 10px; white-space:nowrap;}
   .btn_blue_l {float:left; background:url(../../images/egovframework/example/btn_bg_l.gif) 0 0 no-repeat; height:20px; padding:0px 0px 0px 10px; margin:0px 0px 0px 0px;}
   .btn_blue_r {float:left; background:url(../../images/egovframework/example/btn_bg_r.gif) 0 0 no-repeat; background-position:right; height:20px; font-family:"돋움"; font-size:11px; color:#000000; margin:0px 0px 0px 0px; padding-top:0px; _padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:0px; text-align:center;}
-  input, select { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
+  input select { height:20px; font-family:"돋움"; font-size:12px; color:#000000; padding:2px 2px 0px 2px; margin-top:0px; _margin-top:-1px;}
   select {font-family:'돋움'; font-size:12px; margin-top:0px; height:20px; padding-top:0px;}
   .tbtd_caption {font-weight:bold; color:#003366; background-color:#E5EDF3; text-align:right; padding:10px 10px 9px 5px; margin:0;}
   .tbtd_content {background-color:#F5F8FA; padding:7px 10px 5px 10px; margin:0;}
@@ -134,29 +134,8 @@
     <div id="outter_container">
       <div id="inner_container">
         <form id="rstForm" name="rstForm">
-          <div id="rst_btn_container" class="top" style="margin-top: 10px;">
-            <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
-            <c:choose>
-              <c:when test="${mode eq 'Create'}">
-                <h4 id="mode" class="title create"><spring:message code="mode.create"/></h4>
-              </c:when>
-              <c:otherwise>
-                <h4 id="mode" class="title modify"><spring:message code="mode.modify"/></h4>
-              </c:otherwise>
-            </c:choose>
-            <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
-            <div class="right_area">
-              <c:if test="${mode eq 'Modify'}">
-                <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}" required>
-                <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
-                <button type="button" id="remove_rst" onclick="removeRst()"><spring:message code="button.delete"/></button>
-              </c:if>
-              <button type="button" id="save_rst" onclick="saveRst()"><spring:message code="button.save"/></button>
-            </div>
-          </div>
           <div id="content_pop">
             <div id="table">
-              <form id="rst_form" method="post">
               <table>
                 <colgroup>
                   <col width="200"/>
@@ -167,6 +146,34 @@
                   <col width="90"/>
                 </colgroup>
                 
+                <tr>
+                  <td class="tbtd_caption" colspan="3">
+                    <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
+                    <c:choose>
+                      <c:when test="${mode eq 'Create'}">
+                        <h4 id="mode" class="title create"><spring:message code="mode.create"/></h4>
+                      </c:when>
+                      <c:otherwise>
+                        <h4 id="mode" class="title modify"><spring:message code="mode.modify"/></h4>
+                      </c:otherwise>
+                    </c:choose>
+                    <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
+                  </td>
+                  <td class="tbtd_caption">
+                    <c:if test="${mode eq 'Modify'}">
+                      <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}" required>
+                    </c:if>
+                  </td>
+                  <td class="tbtd_caption">
+                    <c:if test="${mode eq 'Modify'}">
+                      <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
+                      <button type="button" id="remove_rst" class="rst_form" onclick="removeRst()"><spring:message code="button.delete"/></button>
+                    </c:if>
+                  </td>
+                  <td class="tbtd_caption">
+                    <button type="button" id="save_rst" class="rst_form" onclick="saveRst()"><spring:message code="button.save"/></button>
+                  </td>
+                </tr>
                 <tr>
                   <td class="tbtd_caption" rowspan="5">
                     <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
@@ -279,7 +286,6 @@
                   <td class="tbtd_caption"></td>
                 </tr>
               </table>
-              </form>
             </div>
           </div>
         </form>
@@ -336,8 +342,7 @@
       }
       
       /**
-       * 
-       * 
+       * 게시물을 삭제하기 위한 function.
        */
       function removeRst() {
         let cnfrm;
@@ -346,25 +351,21 @@
           alert('삭제 가능한 상태가 아닙니다.');
           return;
         } else {
-          cnfrm = confirm('${rst.rst_name} 식당 정보를 삭제 하시겠 습니까?');
+          cnfrm = confirm( $('#rst_name').val() + ' 식당 정보를 삭제 하시겠 습니까?' );
         }
-        
         if ( !cnfrm ) {
-          alert('${rst.rst_name} 식당 정보 삭제를 취소 하셨 습니다.');
+          alert( $('#rst_name').val() + ' 식당 정보 삭제를 취소 하셨 습니다.' );
           return;
         } else {
-          console.log('rst_form 삭제  AJAX 처리 할 곳.');
-          
           let rst_no = { rst_no: $('#rst_no').val() };
-          
-          console.log( rst_no );
           
           $.post( "/yummy/rst/delete", rst_no ).done( function( data ) {
             console.log( data );
             if (data === 'true' ) {
-            	window.location.href = '/yummy/rst/list';
+              window.location.href = '/yummy/rst/list';
+            } else {
+              alert( data );
             }
-            
           });
         }
       }
@@ -382,7 +383,6 @@
           },
           dataType: "json",
           success: function ( data ) {
-            
             console.log( data );
             
             $('#catag_no').empty();
@@ -397,7 +397,6 @@
               options.attr('value', data[i].catag_no);
               $('#catag_no').append(options);
             }
-            
           },
           error: function(xhr, status, msg) {
             alert('오류가 발생 했습니다.\n다시 시도해 주세요.');
@@ -469,20 +468,18 @@
           alert('수정 가능한 상태가 아닙니다.');
           return;
         } else {
-          cnfrm = confirm($('#rst_name').val() + ' 식당 정보를 저장 하시겠 습니까?');
+          cnfrm = confirm($('#rst_name').val() + ' 식당 정보를 저장 하시겠 습니까?' );
         }
         
         //  재차 확인
         if ( !cnfrm ) {
-          alert( $('#rst_name').val() + ' 식당 정보 저장을 취소 하셨 습니다.');
+          alert( $('#rst_name').val() + ' 식당 정보 저장을 취소 하셨 습니다.' );
           return;
         }
         
         //  form의 data를 JSON 형태로 변환
         var form = $('#rstForm').serializeObject();
         console.log( 'serializeObject\n' + form );
-/*         console.log( 'Stringigy \n' + JSON.Stringify( form ) );
- */        
         //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
         $.ajax("/yummy/rst/save" , {
           headers: {
@@ -501,14 +498,13 @@
               window.location.href = '/yummy/rst/detail?id=' + data;
             }
           },
-            error: function(xhr, status, msg) {
+          error: function(xhr, status, msg) {
             console.log('xhr:\n ' + xhr);
             console.log('status:\n ' + status);
             console.log('msg:\n ' + msg);
           }
         });
       }
-      
     </script>
   </body>
 </html>

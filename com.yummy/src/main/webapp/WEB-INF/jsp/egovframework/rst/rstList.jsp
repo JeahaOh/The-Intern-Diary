@@ -134,6 +134,12 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
         <col width="120" />
       </colgroup>
       <tr>
+        <td colspan="4"></td>
+        <td>
+          <button type="button" id="create" onclick="createRst()"><spring:message code="title.rst.create"/></button>
+        </td>
+      </tr>
+      <tr>
         <!-- <th align="center">No</th> -->
         <th align="center"><spring:message code="title.rst.id" /></th>
         <th align="center"><spring:message code="title.rst.name" /></th>
@@ -169,6 +175,10 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
     function toRstDetail( data ) {
       console.log( data );
       location.href = "/yummy/rst/detail?id=" + data
+    }
+    
+    function createRst() {
+    	location.href = "/yummy/rst/save"
     }
   </script>
 </body>

@@ -51,7 +51,6 @@
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-
 <body>
     <div class="main">
         <div class="login">
@@ -70,7 +69,6 @@
                     <button type="button" id="submit">로그인</button>
                 </div>
             </form>
-
             <p>The time on the server is ${serverTime}.</p>
         </div>
     </div>
@@ -96,9 +94,9 @@
       
       $.post( url, form ).done(function( data ) {
         if( data === 'loginError') {
-        	alert('ID와 비밀 번호를 확인 해 주세요.')
+          alert('ID와 비밀 번호를 확인 해 주세요.')
         }  else {
-        	  window.location.href = document.location.href + data;
+          window.location.href = document.location.href + data;
         }
       });
     }
@@ -116,9 +114,9 @@
   
     $.post( url, param ).done( function( data ) {
       if( !data ) {
-    	  console.log( '사용 가능' );
+        console.log( '사용 가능' );
       } else {
-    	  console.log( '사용 불가능' );
+        console.log( '사용 불가능' );
       }
     });
   }
@@ -139,15 +137,14 @@
     console.log( param );
     try{
       $.post( url, param ).done( function( data ) {
-          console.log( data );
-          if (data === 'success' ) {
-            alert('회원 가입 성공');
-          }
-          
+        console.log( data );
+        if (data === 'success' ) {
+          alert('회원 가입 성공');
+        }
       });
     } catch( err ) {
-    	console.log( err );
-    	alert('회원 가입 실패\n관리자에게 문의하세요');
+      console.log( err );
+      alert('회원 가입 실패\n관리자에게 문의하세요');
     }
   }
   
@@ -157,12 +154,12 @@
    * 예외 처리, detail한 처리 다시 해야함.
    */
   function signOut( param ) {
-	  let url = 'memb/signOut';
-	  let id = { id : param };
-	  
-	  console.log( param );
-	  
-	  $.post( url, id ).done();
+    let url = 'memb/signOut';
+    let id = { id : param };
+    
+    console.log( param );
+    
+    $.post( url, id ).done();
   }
   
 </script>
