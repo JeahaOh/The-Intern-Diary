@@ -14,5 +14,6 @@
     <typeAlias alias="memb" type="egovframework.memb.vo.Memb" />
     <typeAlias alias="rst" type="egovframework.rst.vo.Rst" />
     <typeAlias alias="catag" type="egovframework.catag.vo.Catag"/>
+    <typeAlias alias="rvw" type="egovframework.rvw.vo.Rvw"/>
   </typeAliases>
 </configuration>

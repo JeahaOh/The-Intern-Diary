@@ -166,12 +166,18 @@
                   </td>
                   <td class="tbtd_caption">
                     <c:if test="${mode eq 'Modify'}">
-                      <button type="button" id="update_rst" onclick="updateRst()"><spring:message code="button.modify"/></button>
-                      <button type="button" id="remove_rst" class="rst_form" onclick="removeRst()"><spring:message code="button.delete"/></button>
+                      <button type="button" id="update_rst" onclick="updateRst()">
+                        <spring:message code="button.modify"/>
+                      </button>
+                      <button type="button" id="remove_rst" class="rst_form" onclick="removeRst()">
+                        <spring:message code="button.delete"/>
+                      </button>
                     </c:if>
                   </td>
                   <td class="tbtd_caption">
-                    <button type="button" id="save_rst" class="rst_form" onclick="saveRst()"><spring:message code="button.save"/></button>
+                    <button type="button" id="save_rst" class="rst_form" onclick="saveRst()">
+                      <spring:message code="button.save"/>
+                    </button>
                   </td>
                 </tr>
                 <tr>
@@ -198,13 +204,17 @@
                 
                 <tr>
                   <td class="tbtd_caption">
-                    <input type="text" id="rst_name" class="rst_form" name="rst_name" alt="<spring:message code="title.rst.name"/>" value="<c:out value="${rst.rst_name}"/>" required>
+                    <input type="text" id="rst_name" class="rst_form"
+                        name="rst_name" value="<c:out value="${rst.rst_name}"/>" required>
                   </td>
                   
                   <td class="tbtd_caption">
                     <select name="upper_catag" id="upper_catag" class="rst_form" required>
                       <c:forEach var="catag" items="${upperCatagList}" varStatus="status" >
-                        <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>${catag.catag_nm}</option>
+                        <option value="${catag.catag_no}"
+                            <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>
+                                ${catag.catag_nm}
+                        </option>
                       </c:forEach>
                     </select>
                   </td>
@@ -213,22 +223,37 @@
                     <select name="catag_no" id="catag_no" class="rst_form" required>
                       <c:if test="${catagList ne null || catagList != ''}">
                         <c:forEach var="catag" items="${catagList}" varStatus="status">
-                          <option value="${catag.catag_no}" <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>${catag.catag_nm}</option>
+                          <option value="${catag.catag_no}"
+                              <c:if test="${catag.catag_no eq rst.catag_no}">selected</c:if>>
+                                  ${catag.catag_nm}
+                          </option>
                         </c:forEach>
                       </c:if>
                     </select>
                   </td>
                   
                   <td class="tbtd_caption">
-                    <input type="tel" id="tel" class="rst_form" name="tel" alt="<spring:message code="title.rst.tel"/>" value="<c:out value="${rst.tel}"/>" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+                    <input type="tel" id="tel" class="rst_form" name="tel"
+                        alt="<spring:message code="title.rst.tel"/>" 
+                        value="<c:out value="${rst.tel}"/>">
                   </td>
                   <td class="tbtd_caption">
                     <select name="star" id="star" class="rst_form" required>
-                      <option value="1" <c:if test="${rst.star eq 1}">selected</c:if>><spring:message code="star.1"/></option>
-                      <option value="2" <c:if test="${rst.star eq 2}">selected</c:if>><spring:message code="star.2"/></option>
-                      <option value="3" <c:if test="${rst.star eq 3}">selected</c:if>><spring:message code="star.3"/></option>
-                      <option value="-1" <c:if test="${rst.star eq -1}">selected</c:if>><spring:message code="star.-1"/></option>
-                      <option value="-2" <c:if test="${rst.star eq -2}">selected</c:if>><spring:message code="star.-2"/></option>
+                      <option value="1" <c:if test="${rst.star eq 1}">selected</c:if>>
+                        <spring:message code="star.1"/>
+                        </option>
+                      <option value="2" <c:if test="${rst.star eq 2}">selected</c:if>>
+                        <spring:message code="star.2"/>
+                      </option>
+                      <option value="3" <c:if test="${rst.star eq 3}">selected</c:if>>
+                       <spring:message code="star.3"/>
+                      </option>
+                      <option value="-1" <c:if test="${rst.star eq -1}">selected</c:if>>
+                       <spring:message code="star.-1"/>
+                      </option>
+                      <option value="-2" <c:if test="${rst.star eq -2}">selected</c:if>>
+                        <spring:message code="star.-2"/>
+                      </option>
                     </select>
                   </td>
                 </tr>
@@ -244,10 +269,14 @@
                 
                 <tr>
                   <td class="tbtd_caption">
-                    <input type="text" id="loc" class="rst_form" name="loc" alt="<spring:message code="title.rst.loc"/>" value="<c:out value="${rst.loc}"/>">
+                    <input type="text" id="loc" class="rst_form"
+                        name="loc" alt="<spring:message code="title.rst.loc"/>"
+                        value="<c:out value="${rst.loc}"/>">
                   </td>
                   <td class="tbtd_caption" colspan="4">
-                    <input type="text" id="loc_dtl" class="rst_form" name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>" value="<c:out value="${rst.loc_dtl}"/>" style="width: 475px;" required>
+                    <input type="text" id="loc_dtl" class="rst_form"
+                        name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>"
+                        value="<c:out value="${rst.loc_dtl}"/>" style="width: 475px;" required>
                   </td>
                 </tr>
                 
@@ -272,16 +301,24 @@
                     <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="opn_tm" class="rst_form" name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" value="<c:out value="${rst.opn_tm}"/>" pattern="[0-9]{2}:[0-9]{2}" required>
+                    <input type="time" id="opn_tm" class="rst_form" 
+                        name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" 
+                        value="<c:out value="${rst.opn_tm}"/>" required>
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="brck_tm" class="rst_form" name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" value="<c:out value="${rst.brck_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="brck_tm" class="rst_form" 
+                        name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" 
+                        value="<c:out value="${rst.brck_tm}"/>" >
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="dnnr_tm" class="rst_form" name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" value="<c:out value="${rst.dnnr_tm}"/>" pattern="[0-9]{2}:[0-9]{2}">
+                    <input type="time" id="dnnr_tm" class="rst_form" 
+                        name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" 
+                        value="<c:out value="${rst.dnnr_tm}"/>">
                   </td>
                   <td class="tbtd_caption">
-                    <input type="time" id="lo_tm" class="rst_form" name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" value="<c:out value="${rst.lo_tm}"/>" pattern="[0-9]{2}:[0-9]{2}" required>
+                    <input type="time" id="lo_tm" class="rst_form" 
+                        name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" 
+                        value="<c:out value="${rst.lo_tm}"/>" required>
                   </td>
                   <td class="tbtd_caption"></td>
                 </tr>

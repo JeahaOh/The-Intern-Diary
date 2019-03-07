@@ -74,6 +74,7 @@
     </div>
 </body>
 <script>
+  // 로그인 기능
   $('#submit').click( function ( event ) {
     event.preventDefault();
     

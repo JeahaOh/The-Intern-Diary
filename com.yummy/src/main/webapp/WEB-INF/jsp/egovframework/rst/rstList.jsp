@@ -123,8 +123,11 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 
   <%-- 여기서부터  rst List를 출력할 TABLE --%>
   <div id="table" style="display: inline-block">
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" summary="rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블">
-      <caption style="visibility: hidden">rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블</caption>
+    <table width="100%" border="0" cellpadding="0" 
+        cellspacing="0" summary="rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블">
+      <caption style="visibility: hidden">
+        rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블
+      </caption>
       <colgroup>
         <%-- <col width="40" /> --%>
         <col width="40" />
@@ -136,7 +139,9 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
       <tr>
         <td colspan="4"></td>
         <td>
-          <button type="button" id="create" onclick="createRst()"><spring:message code="title.rst.create"/></button>
+          <button type="button" id="create" onclick="createRst()">
+            <spring:message code="title.rst.create"/>
+          </button>
         </td>
       </tr>
       <tr>
