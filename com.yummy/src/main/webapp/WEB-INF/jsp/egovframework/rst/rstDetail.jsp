@@ -355,23 +355,16 @@
         } else {
           console.log('rst_form 삭제  AJAX 처리 할 곳.');
           
-          console.log($('#rst_no').val());
+          let rst_no = { rst_no: $('#rst_no').val() };
           
-          $.ajax("/yummy/rst/delete" , {
-            method: "POST",
-            data:{
-              "rst_no": $('#rst_no').val()
-            },
-            dataType: "json",
-            success: function ( data ) {
-              console.log( data );
-              
-            },
-            error: function(xhr, status, msg) {
-              console.log('xhr:\n ' + xhr);
-              console.log('status:\n ' + status);
-              console.log('msg:\n ' + msg);
+          console.log( rst_no );
+          
+          $.post( "/yummy/rst/delete", rst_no ).done( function( data ) {
+            console.log( data );
+            if (data === 'true' ) {
+            	window.location.href = '/yummy/rst/list';
             }
+            
           });
         }
       }
@@ -497,9 +490,9 @@
             'Content-Type': 'application/json'
           },
           method: "POST",
-          data: JSON.stringify( form ),
           dataType: "json",
           contentType : 'application/json; charset=UTF-8',
+          data: JSON.stringify( form ),
           success: function ( data ) {
             console.log( data ); 
             if( $('#mode').hasClass('modify') ) {

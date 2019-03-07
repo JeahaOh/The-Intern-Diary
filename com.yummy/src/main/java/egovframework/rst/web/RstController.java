@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.catag.service.CatagService;
 import egovframework.rst.service.RstService;
@@ -121,7 +122,7 @@ public class RstController {
    * @throws Exception
    */
   @RequestMapping(value="/delete", method= RequestMethod.POST)
-  public @ResponseBody String deleteRst( @RequestBody int rst_no ) throws Exception {
+  public @ResponseBody String deleteRst( @RequestParam int rst_no ) throws Exception {
     logger.info("/rst/delete {}", rst_no);
     if( rstService.delete( rst_no ) ) {
       return "true";
