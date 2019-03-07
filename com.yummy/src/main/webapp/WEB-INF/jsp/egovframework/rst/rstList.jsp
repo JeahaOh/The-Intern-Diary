@@ -24,13 +24,14 @@
 <head>
 <meta charset="UTF-8">
 <title>레스토랑 목록</title>
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
 <style>
 * {margin:0;padding:0;}
 * html {height:1px;}
 body {margin:0; padding:0; font-family:"굴림"; font-size:12px; color:#666; scroll:auto; text-align: center;}
 table, tr, td, th {font-family:"돋움"; font-size:11px; color:#333333;}
 .listtd {padding:10px 5px 8px 5px; border-bottom:1px solid #e5e5e5;}
-th {background-color:#F3F5E0; background:url(../../images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
+th {background-color:#F3F5E0; background:url(/yummy/images/egovframework/example/th_bg.gif) 0 0 repeat; height:26px; text-align:center; vertical-align:middle; color:#003366;}
 img {border:0; vertical-align:middle;}
 p { height:20px; margin:0; padding:5 0 0 0;}
 .check ul {margin:0; padding:0; float:left;}

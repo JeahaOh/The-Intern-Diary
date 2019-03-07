@@ -27,8 +27,11 @@
   <meta charset="UTF-8">
   <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
   <%--
-  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
+  <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/egovframework/sample.css"/>
+  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/egovframework/sample.css"/>
   --%>
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
+  
   <style>
   * {margin:0;padding:0;}
   * html {height:1px;}

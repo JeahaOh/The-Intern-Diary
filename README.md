@@ -20,6 +20,39 @@ Feedback : 통계나 해라.
 ### 15:50
 RVW Package 생성
 
+### 16:50
+- https://www.google.com/search?q=net+error_aborted+404+c%3Aurl&rlz=1C1CHBD_koKR836KR836&oq=net+error_aborted+404+c%3Aurl&aqs=chrome..69i57.5531j0j1&sourceid=chrome&ie=UTF-8
+- https://blockcahin.tistory.com/62
+c:url이 깨지는 현상을 잡고 싶은데...  
+- src\main\webapp\WEB-INF\config\egovframework\springmvc\dispatcher-servlet.xml
+이 녀석이 문제 인것 같음..
+
+beans:beans로 잡으면 잡히지만, 다른 properties는 잡히지 않음..
+
+  <mvc:resources location="/resources/" mapping="/resources/**"/> ??
+
+[org.springframework.web.servlet.PageNotFound] No mapping found for HTTP request with URI
+
+- https://lng1982.tistory.com/97
+- http://toby.epril.com/?p=1107
+!!!!!!!!!!!!!!!!!!!
+- ***https://okky.kr/article/219699***
+!!!!!!!!!!!!!!!!!!!
+```
+web.xml에서 url-pattern에 /를 넣은 이유가 있나요? 특별한 이유가 없으면 /를 넣은 url 패턴을 빼세요../ 때문에 css나 js도 DispatcherServlet에서 처리할려고 그런겁니다..만약 /를 넣어야 할 이유가 있으시다면 web.xml에 css나 js는 Tomcat의 기본 서블릿에서 처리하도록 다음과 같이 하세요..
+
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+</servlet-mapping>
+```
+
+
 - - -
 ## 03/06 수요일
 ### 10:00
