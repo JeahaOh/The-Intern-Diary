@@ -33,8 +33,20 @@ public interface RstService {
    * @throws Exception
    */
   Rst getDetail(int id) throws Exception;
-
+  
+  /**
+   * rst를 등록하기 위한 Service
+   * @param   rst - 등록할 rst 갹체 
+   * @return  성공 여부
+   * @throws  Exception
+   */
   Boolean save(Rst rst) throws Exception;
   
+  /**
+   * rst를 삭제하기 위한 Service
+   * @param   rst_no  - 삭제 할 rst의 no
+   * @return  성공 여부
+   * @throws Exception
+   */
   Boolean delete(int rst_no) throws Exception;
 }

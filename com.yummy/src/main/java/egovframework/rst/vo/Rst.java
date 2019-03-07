@@ -122,12 +122,14 @@ public class Rst {
   }
 
   public String getBrck_tm() {
+    if( brck_tm == dnnr_tm ) {
+      brck_tm = "00:00";
+    }
     return brck_tm;
   }
 
   public void setBrck_tm(String brck_tm) {
     if ( brck_tm == "" || brck_tm == null || brck_tm.length() < 0 ) {
-      System.out.println("\n\n brck_tm = null");
       this.brck_tm = "00:00";
     } else {
       this.brck_tm = brck_tm;
@@ -135,6 +137,9 @@ public class Rst {
   }
 
   public String getDnnr_tm() {
+    if( brck_tm == dnnr_tm ) {
+      dnnr_tm = "00:00";
+    }
     return dnnr_tm;
   }
 

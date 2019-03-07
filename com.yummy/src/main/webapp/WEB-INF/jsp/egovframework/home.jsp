@@ -96,7 +96,7 @@
       
       $.post( url, form ).done(function( data ) {
         if( data === 'loginError') {
-        	alert('LogIn Error\n관리자에게 문의하세요.')
+        	alert('ID와 비밀 번호를 확인 해 주세요.')
         }  else {
         	  window.location.href = document.location.href + data;
         }

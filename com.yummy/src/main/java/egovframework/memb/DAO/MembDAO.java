@@ -63,5 +63,10 @@ public interface MembDAO {
      @Param("id") String id, @Param("pwd") String pwd, @Param("nick") String nick
      ) throws Exception;
   
+  /**
+   * 일반 회원의 탈퇴 기능
+   * @Param id  - memb의 ID
+   * @Throws Exception
+   */
   void signOut(@Param("id") String id) throws Exception;
 }

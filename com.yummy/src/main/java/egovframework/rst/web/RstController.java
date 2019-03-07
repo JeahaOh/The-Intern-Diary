@@ -67,7 +67,7 @@ public class RstController {
    * 
    * @param model
    * @param id    - 출력 할 rst의 id
-   * @return      - rst
+   * @return      - rstDetail.jsp
    * @throws Exception
    */
   @RequestMapping(value="/detail", method= RequestMethod.GET)
@@ -84,30 +84,46 @@ public class RstController {
     return "rst/rstDetail";
   }
   
+  /**
+   * rst 등록 페이지를 출력
+   * 
+   * @param   model - 상위 분류와 rstDetail.jsp의 상태지정을 위한 data 전달
+   * @return  rstDetail.jsp
+   * @throws  Exception
+   */
   @RequestMapping(value="/save", method= RequestMethod.GET)
   public String saveRst(Model model) throws Exception {
     model.addAttribute("upperCatagList", catagService.getRstUpperCatagList());
     model.addAttribute("mode", "Create");
+
     logger.info(model.toString());
     return "rst/rstDetail";
   }
   
+  /**
+   * rst를 등록하기 위한 POST URL
+   * @param   rst - 등록할 rst 
+   * @return  JSON 객체 true / false
+   * @throws  Exception
+   */
   @RequestMapping(value="/save", method= RequestMethod.POST)
   public @ResponseBody String saveRst( @RequestBody Rst rst ) throws Exception {
-    
-    System.out.println("save");
-    System.out.println(rst.toString());
-    
+    logger.info("/rst/save {}", rst.toString());
     if( rstService.save(rst) ) {
       return "true";
     }
-    
     return "false";
   }
   
+  /**
+   * rst를 삭제하기 위한 POST URL
+   * @param   rst_no  - 삭제 할 rst의 no
+   * @return  JSON 객체 true / false
+   * @throws Exception
+   */
   @RequestMapping(value="/delete", method= RequestMethod.POST)
   public @ResponseBody String deleteRst( @RequestBody int rst_no ) throws Exception {
-    
+    logger.info("/rst/delete {}", rst_no);
     if( rstService.delete( rst_no ) ) {
       return "true";
     }

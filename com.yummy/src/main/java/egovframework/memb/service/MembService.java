@@ -57,5 +57,10 @@ public interface MembService {
    */
   Boolean signUp(String id, String pwd, String nick) throws Exception;
   
+  /**
+   * 회원 탈퇴를 기능.
+   * @param id  - 탈퇴할 회원의 id
+   * @throws Exception
+   */
   void signOut(String id) throws Exception;
 }

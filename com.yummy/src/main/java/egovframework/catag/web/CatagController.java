@@ -21,6 +21,12 @@ public class CatagController {
   @Resource(name = "catagService")
   private CatagService catagService;
   
+  /**
+   * upper_no에 대한 하위 catag List를 보내준다
+   * @param upper_no - catag의 부모 catag_no
+   * @return JSON 객체 배열 형태의 catag
+   * @throws Exception
+   */
   @RequestMapping(value="/get", method= RequestMethod.POST, produces = "application/json;charset=utf-8")
   public @ResponseBody List<Catag> getCatag(
       @RequestParam(value="upper_no", required=true) int upper_no)

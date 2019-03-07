@@ -23,6 +23,19 @@ public interface CatagService {
    * @throws Exception
    */
   List<Catag> getList() throws Exception;
+  
+  /**
+   * 하위 catag에 대한 상위 catag List를 보내준다
+   * @return catag List
+   * @throws Exception
+   */
   List<Catag> getRstUpperCatagList() throws Exception;
+  
+  /**
+   * upper_no에 대한 하위 catag List를 보내준다
+   * @param upper_no - catag의 부모 catag_no
+   * @return catag List
+   * @throws Exception
+   */
   List<Catag> getRstLowerCatagList(int upper_no) throws Exception;
 }

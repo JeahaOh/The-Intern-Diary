@@ -20,15 +20,13 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
  */
 @Mapper("rstDao")
 public interface RstDAO {
+  
   /**
-   * 관리자 로그인을 한다.
+   * Rst의 리스트를 반환
    * 
-   * @param id  - memb의 ID
-   * @param pwd - memb의 PWD
-   * @return 로그인한 memb
+   * @return Rst의 List
    * @throws Exception
    */
-//  Memb adminLogin(@Param("id") String id, @Param("pwd")String pwd) throws Exception;
   List<Rst> getList() throws Exception;
   
   /**
@@ -40,9 +38,26 @@ public interface RstDAO {
    */
   Rst getDetail(int id) throws Exception;
   
+  /**
+   * rst를 등록하기 위한 Service
+   * @param   rst - 등록할 rst 갹체 
+   * @return  성공 여부
+   * @throws  Exception
+   */
   Boolean save(Rst rst) throws Exception;
   
+  /**
+   * rst_no의 마지막 값을 가져온다.
+   * @return  rst_no
+   * @throws Exception
+   */
   int getLastRstNo() throws Exception;
   
+  /**
+   * rst를 삭제하기 위한 Service
+   * @param   rst_no  - 삭제 할 rst의 no
+   * @return  성공 여부
+   * @throws Exception
+   */
   Boolean delete(int rst_no) throws Exception;
 }
