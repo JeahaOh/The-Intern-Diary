@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //  min (포함) 과 max (포함) 사이의 임의 정수를 반환
+        //  Math.round() 를 사용하면 고르지 않은 분포를 얻게된다!
+        function getRandomIntInclusive(min, max) {
+          return Math.round(Math.random() * (max - min + 1)) + min;
+        }
+        
+        //  setTimeout()은 지연시간을 발생시킨 후 특정 함수를 호출
+        var showAlert = setTimeout(function() {
+            clearInterval(getRandomNo);
+            alert('Wow!!!');
+        }, 10000);
+        
+        //  setInterval(){} 일정 시간마다 반복 실행하는 함수.
+        //  setInterval(function() { ... }, 지연시간);
+        getRandomNo = setInterval(function() {
+            let r = getRandomIntInclusive(1, 10);
+            console.log(r);   
+        }, 500);
+        
+        //  타이머 중지.
+        //  clearInterval(getRandomNo);
+    </script> 
+</body>
+</html>
