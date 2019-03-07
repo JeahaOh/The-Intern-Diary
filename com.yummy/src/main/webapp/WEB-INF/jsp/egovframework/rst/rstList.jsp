@@ -163,6 +163,9 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
   </div>
   <%-- 여기까지  rst List를 출력하는 TABLE --%>
   <script>
+    /**
+     * Rst 상세 페이지로 이동하기 위한 function
+     */
     function toRstDetail( data ) {
       console.log( data );
       location.href = "/yummy/rst/detail?id=" + data

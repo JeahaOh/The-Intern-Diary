@@ -1,7 +1,6 @@
 package egovframework.rst.web;
 
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.catag.service.CatagService;
 import egovframework.rst.service.RstService;
@@ -107,12 +105,13 @@ public class RstController {
    * @throws  Exception
    */
   @RequestMapping(value="/save", method= RequestMethod.POST)
-  public @ResponseBody String saveRst( @RequestBody Rst rst ) throws Exception {
-    logger.info("/rst/save {}", rst.toString());
-    if( rstService.save(rst) ) {
-      return "true";
-    }
-    return "false";
+  public @ResponseBody int saveRst( @RequestBody Rst rst ) throws Exception {
+    logger.info("\n/rst/save {}", rst.toString());
+//    if( rstService.save(rst) ) {
+//      return "true";
+//    }
+//    return "false";
+    return rstService.save(rst);
   }
   
   /**

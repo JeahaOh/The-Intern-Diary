@@ -40,7 +40,7 @@ public interface RstService {
    * @return  성공 여부
    * @throws  Exception
    */
-  Boolean save(Rst rst) throws Exception;
+  int save(Rst rst) throws Exception;
   
   /**
    * rst를 삭제하기 위한 Service

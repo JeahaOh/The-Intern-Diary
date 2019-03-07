@@ -63,12 +63,17 @@ public class RstServiceImple implements RstService {
    * @throws  Exception
    */
   @Override
-  public Boolean save(Rst rst) throws Exception {
+  public int save(Rst rst) throws Exception {
     logger.info("Service {} ",rst.toString());
     if( rst.getRst_no() == 0 ){
-      rst.setRst_no( rstDao.getLastRstNo() +1 );
+      rst.setRst_no( rstDao.getLastRstNo() + 1 );
     }
-    return rstDao.save(rst);
+    
+    if ( rstDao.save(rst) ) {
+      return rst.getRst_no();
+    }
+    
+    return 0;
   }
   
   /**
