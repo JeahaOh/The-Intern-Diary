@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import egovframework.rvw.dao.RvwDAO;
+import egovframework.rvw.vo.Rvw;
 
 /**
  * @Class Name  : RvwServiceImple.java
@@ -28,6 +29,12 @@ public class RvwServiceImple implements RvwService {
   
   @Resource(name = "rvwDao")
   private RvwDAO rvwDao;
+
+  @Override
+  public Boolean save(Rvw rvw) throws Exception {
+    logger.info("\n/rvwService/receive {}", rvw.toString());
+    return rvwDao.save(rvw);
+  }
   
   
 }

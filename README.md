@@ -14,6 +14,12 @@ java.lang.IllegalStateException: Neither BindingResult nor plain target object f
 - https://okky.kr/article/236304
 - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:ptl:view:paginationtag
 
+- https://addio3305.tistory.com/91
+
+### 16:30
+rvw insert 기능 구현,  
+rvw, memb에 가짜 데이터 삽입.
+
 
 - - -
 ## 03/07 목요일

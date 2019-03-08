@@ -207,9 +207,9 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
       console.log( data );
       location.href = "/yummy/rst/detail?id=" + data
     }
-    
+  
     function createRst() {
-    	location.href = "/yummy/rst/save"
+      location.href = "/yummy/rst/save"
     }
   </script>
 </body>

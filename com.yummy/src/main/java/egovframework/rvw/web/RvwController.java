@@ -1,13 +1,18 @@
 package egovframework.rvw.web;
 
+import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rvw.service.RvwService;
+import egovframework.rvw.vo.Rvw;
 
 /**
  * @Class Name  : RvwController.java
@@ -39,7 +44,28 @@ public class RvwController {
   @Resource(name = "beanValidator")
   protected DefaultBeanValidator beanValidator;
   
- // @RequestMapping(value = "/")
+  @RequestMapping("/test")
+  public String test() throws Exception {
+    System.out.println("rvwTest");
+    return "rvwTest";
+  }
+  
+  @RequestMapping(value = "/save", method = RequestMethod.POST)
+  public @ResponseBody Boolean createRvw( @RequestBody Rvw rvw ) throws Exception {
+    logger.info("\n\t/rvw/receive {}", rvw.toString());
+    
+    return rvwService.save(rvw);
+  }
+  
+  
+  @RequestMapping(value = "/getRvwList", method = RequestMethod.GET)
+  public List<Rvw> rvwList() {
+    
+    
+    return null;
+  }
+  
+  
   
   
 }

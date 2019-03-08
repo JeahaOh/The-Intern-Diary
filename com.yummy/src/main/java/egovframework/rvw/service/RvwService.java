@@ -1,5 +1,7 @@
 package egovframework.rvw.service;
 
+import egovframework.rvw.vo.Rvw;
+
 /**
  * @Class Name  : RvwService.java
  * @Discription : RvwService Class
@@ -14,5 +16,5 @@ package egovframework.rvw.service;
  */
 
 public interface RvwService {
-  
+  Boolean save(Rvw rvw) throws Exception;
 }

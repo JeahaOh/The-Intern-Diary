@@ -17,9 +17,26 @@
     WHERE 1
   </select>
    -->
-   <insert id="">
-   
-   </insert>
-   
+  <insert id="save" parameterType="rvw" >
+    INSERT INTO rvw
+      (rst_no, id, cont, cdt, score, useyn)
+    VALUES (
+      #{rst_no},
+      #{id},
+      #{cont},
+      now(),
+      #{score},
+      'Y'
+      )
+    ON DUPLICATE KEY 
+    UPDATE
+      <trim suffixOverrides=",">
+        <if test="rst_no != null">rst_no = #{rst_no},</if>
+        <if test="id != null">id = #{id},</if>
+        <if test="cont != null">cont = #{cont},</if>
+        <if test="score != null">score = #{score},</if>
+      </trim>
+  </insert>
+  
 
 </mapper>

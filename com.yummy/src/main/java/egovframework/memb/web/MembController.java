@@ -128,7 +128,7 @@ public class MembController {
       @RequestParam String pwd,
       @RequestParam String nick)
           throws Exception {
-    logger.info(id, nick);
+    logger.info("\n\t/memb/signUp {}", id);
 
     if( patternTest.pwdTest(id, pwd) ) {
       return "signUp/error";

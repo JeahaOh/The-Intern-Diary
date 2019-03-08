@@ -1,6 +1,7 @@
 package egovframework.rvw.dao;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
+import egovframework.rvw.vo.Rvw;
 
 /**
  * @Class Name  : RvwDAO.java
@@ -16,5 +17,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
  */
 @Mapper("rvwDao")
 public interface RvwDAO {
+  
+  Boolean save(Rvw rvw) throws Exception;
 
 }
