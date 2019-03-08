@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import egovframework.dflt.DefaultVO;
 import egovframework.rst.dao.RstDAO;
 import egovframework.rst.vo.Rst;
 
@@ -85,5 +86,15 @@ public class RstServiceImple implements RstService {
   @Override
   public Boolean delete(int rst_no) throws Exception {
     return rstDao.delete(rst_no);
+  }
+  
+  /**
+   * rst의 총 갯수를 조회한다.
+   * @param rst  - 조회할 정보가 담긴 VO
+   * @return 글의 총 갯수
+   */
+  @Override
+  public int getTotCnt(DefaultVO searchVO) {
+    return rstDao.getTotCnt(searchVO);
   }
 }

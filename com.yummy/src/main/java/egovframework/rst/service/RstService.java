@@ -1,6 +1,7 @@
 package egovframework.rst.service;
 
 import java.util.List;
+import egovframework.dflt.DefaultVO;
 import egovframework.rst.vo.Rst;
 
 /**
@@ -49,4 +50,11 @@ public interface RstService {
    * @throws Exception
    */
   Boolean delete(int rst_no) throws Exception;
+  
+  /**
+   * rst의 총 갯수를 조회한다.
+   * @param rst  - 조회할 정보가 담긴 VO
+   * @return 글의 총 갯수
+   */
+  int getTotCnt(DefaultVO searchVO);
 }

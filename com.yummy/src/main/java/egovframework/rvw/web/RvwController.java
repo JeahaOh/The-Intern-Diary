@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springmodules.validation.commons.DefaultBeanValidator;
+import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rvw.service.RvwService;
 
 /**
@@ -28,6 +30,16 @@ public class RvwController {
   
   @Resource(name = "rvwService")
   private RvwService rvwService;
+  
+  /** EgovPropertyService */
+  @Resource(name = "propertiesService")
+  protected EgovPropertyService propertiesService;
+
+  /** Validator */
+  @Resource(name = "beanValidator")
+  protected DefaultBeanValidator beanValidator;
+  
+ // @RequestMapping(value = "/")
   
   
 }

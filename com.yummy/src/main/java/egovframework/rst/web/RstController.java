@@ -7,14 +7,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.catag.service.CatagService;
+import egovframework.dflt.DefaultVO;
 import egovframework.rst.service.RstService;
 import egovframework.rst.vo.Rst;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
  * @Class Name  : RstController.java
@@ -41,6 +47,14 @@ public class RstController {
   @Resource(name = "catagService")
   private CatagService catagService;
   
+  /** EgovPropertyService */
+  @Resource(name = "propertiesService")
+  protected EgovPropertyService propertiesService;
+
+  /** Validator */
+  @Resource(name = "beanValidator")
+  protected DefaultBeanValidator beanValidator;
+  
   /**
    * rst목록을 출력
    * 
@@ -50,14 +64,30 @@ public class RstController {
    * @exception Exception
    */
   @RequestMapping(value="/list", method= RequestMethod.GET)
-  public String rstList(HttpSession session, Model model) throws Exception {
-    logger.info(session.toString());
+  public String rstList(
+      @ModelAttribute("searchVO") DefaultVO searchVO, ModelMap model
+          ) throws Exception {
+    
+    searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
+    searchVO.setPageSize(propertiesService.getInt("pageSize"));
+    
+    PaginationInfo paginationInfo = new PaginationInfo();
+    paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+    paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
+    paginationInfo.setPageSize(searchVO.getPageSize());
+    
+    searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+    searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
+    searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
     
     List<Rst> rstList = rstService.getList();
-    logger.info(rstList.toString());
-    
     model.addAttribute("rstList", rstList);
     
+    int totCnt = rstService.getTotCnt(searchVO);
+    paginationInfo.setTotalRecordCount(totCnt);
+    model.addAttribute("paginationInfo", paginationInfo);
+    
+    logger.info(rstList.toString());
     return "rst/rstList";
   }
   

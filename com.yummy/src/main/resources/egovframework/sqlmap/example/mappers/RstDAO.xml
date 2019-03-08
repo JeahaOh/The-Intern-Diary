@@ -98,4 +98,20 @@
     DELETE FROM rst WHERE rst_no = #{rst_no}
   </delete>
   
+  <select id="getTotCnt" parameterType="searchVO" resultType="int">
+    SELECT COUNT(*) tstcnt
+    FROM rst
+    WHERE 1=1
+    <if test="searchKeyword != null and searchKeyword != ''">
+      <choose>
+        <when test="searchCondition == 0">
+          AND rst_no LIKE '%' || #{searchKeyword} || '%'
+        </when>
+        <when test="searchCondition == 1">
+          AND rst_name LIKE '%' || #{searchKeyword} || '%'
+        </when>
+      </choose>
+    </if>
+  </select>
+  
 </mapper>

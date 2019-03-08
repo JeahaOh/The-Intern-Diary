@@ -1,6 +1,11 @@
 package egovframework.rvw.vo;
 
-public class Rvw {
+import egovframework.dflt.DefaultVO;
+
+public class Rvw extends DefaultVO {
+  
+  private static final long serialVersionUID = 1L;
+  
   int rvw_no;
   int rst_no;
   String id;
@@ -65,7 +70,7 @@ public class Rvw {
   }
   @Override
   public String toString() {
-    return "Rvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
+    return "\nRvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
         + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + "]";
   }
 }

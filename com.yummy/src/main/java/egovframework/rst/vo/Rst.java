@@ -1,6 +1,11 @@
 package egovframework.rst.vo;
 
-public class Rst {
+import egovframework.dflt.DefaultVO;
+
+public class Rst  extends DefaultVO {
+  
+  private static final long serialVersionUID = 1L;
+  
   int rst_no;
   String rst_name;
   int star;

@@ -155,54 +155,49 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 </head>
 
 <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
-  <form:form
-    commandName="searchVO"
-    id="listForm"
-    name="listForm"
-    method="post">
-    <input
-      type="hidden"
-      name="selectedId" />
+  <form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+    <input type="hidden" name="selectedId" />
     <div id="content_pop">
       <!-- 타이틀 -->
       <div id="title">
         <ul>
-          <li><img
-            src="<c:url value='/images/egovframework/example/title_dot.gif'/>"
-            alt="" />
-          <spring:message code="list.sample" /></li>
+          <li>
+            <img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt="" />
+            <spring:message code="list.sample" />
+          </li>
         </ul>
       </div>
       <!-- // 타이틀 -->
       <div id="search">
         <ul>
-          <li><label
-            for="searchCondition"
-            style="visibility: hidden;"><spring:message code="search.choose" /></label> <form:select
-              path="searchCondition"
-              cssClass="use">
-              <form:option
-                value="1"
-                label="Name" />
-              <form:option
-                value="0"
-                label="ID" />
-            </form:select></li>
-          <li><label
-            for="searchKeyword"
-            style="visibility: hidden; display: none;"><spring:message code="search.keyword" /></label>
-            <form:input
-              path="searchKeyword"
-              cssClass="txt" /></li>
-          <li><span class="btn_blue_l"> <a href="javascript:fn_egov_selectList();"><spring:message
-                  code="button.search" /></a> <img
-              src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>"
-              style="margin-left: 6px;"
-              alt="" />
-          </span></li>
+          <li>
+            <label for="searchCondition" style="visibility: hidden;">
+              <spring:message code="search.choose" />
+            </label>
+            <form:select path="searchCondition" cssClass="use">
+              <form:option value="1" label="Name" />
+              <form:option value="0" label="ID" />
+            </form:select>
+          </li>
+          <li>
+            <label for="searchKeyword" style="visibility: hidden; display: none;">
+              <spring:message code="search.keyword" />
+            </label>
+            <form:input path="searchKeyword" cssClass="txt" />
+          </li>
+          <li>
+            <span class="btn_blue_l">
+              <a href="javascript:fn_egov_selectList();">
+                <spring:message  code="button.search" />
+              </a>
+              <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" 
+                    style="margin-left: 6px;"
+                    alt="" />
+            </span>
+          </li>
         </ul>
       </div>
-      <!-- List -->
+<%-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --%>
       <div id="table">
         <table
           width="100%"
@@ -228,6 +223,7 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
             <th align="center"><spring:message code="title.sample.description" /></th>
             <th align="center"><spring:message code="title.sample.regUser" /></th>
           </tr>
+<%-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --%>
           <c:forEach
             var="result"
             items="${resultList}"
@@ -259,21 +255,23 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
         </table>
       </div>
       <!-- /List -->
+
       <div id="paging">
-        <ui:pagination
-          paginationInfo="${paginationInfo}"
-          type="image"
-          jsFunction="fn_egov_link_page" />
+        <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
         <form:hidden path="pageIndex" />
       </div>
       <div id="sysbtn">
         <ul>
-          <li><span class="btn_blue_l"> <a href="javascript:fn_egov_addView();"><spring:message
-                  code="button.create" /></a> <img
-              src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>"
-              style="margin-left: 6px;"
-              alt="" />
-          </span></li>
+          <li>
+            <span class="btn_blue_l">
+              <a href="javascript:fn_egov_addView();">
+                <spring:message code="button.create" />
+              </a>
+              <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>"
+                  style="margin-left: 6px;"
+                  alt="" />
+            </span>
+          </li>
         </ul>
       </div>
     </div>

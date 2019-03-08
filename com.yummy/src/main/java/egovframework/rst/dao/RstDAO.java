@@ -1,6 +1,7 @@
 package egovframework.rst.dao;
 
 import java.util.List;
+import egovframework.dflt.DefaultVO;
 import egovframework.rst.vo.Rst;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
@@ -60,4 +61,11 @@ public interface RstDAO {
    * @throws Exception
    */
   Boolean delete(int rst_no) throws Exception;
+  
+  /**
+   * rst의 총 갯수를 조회한다.
+   * @param rst  - 조회할 정보가 담긴 VO
+   * @return 글의 총 갯수
+   */
+  int getTotCnt(DefaultVO searchVO);
 }

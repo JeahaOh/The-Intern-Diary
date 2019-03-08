@@ -1,5 +1,20 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
+
+- - -
+## 03/08 금요일
+### 10:20 paging 처리 실패?
+시간적으로 크게 중요하지 않은거 같아서 일단 스킵 하기로 함.
+
+```
+2019-03-08 10:33:10,482 ERROR [org.springframework.web.servlet.tags.form.HiddenInputTag] Neither BindingResult nor plain target object for bean name 'pageIndex' available as request attribute
+java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name 'pageIndex' available as request attribute
+```
+- https://addio3305.tistory.com/89
+- https://okky.kr/article/236304
+- http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte:ptl:view:paginationtag
+
+
 - - -
 ## 03/07 목요일
 ### 09:50

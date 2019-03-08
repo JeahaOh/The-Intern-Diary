@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 <%--
    /**
     * @Class Name : rstList.jsp
@@ -140,7 +141,7 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
       <tr>
         <td colspan="4"></td>
         <td>
-          <button type="button" id="create" onclick="createRst()">
+          <button type="button" id="create" onclick="createRst();">
             <spring:message code="title.rst.create"/>
           </button>
         </td>
@@ -174,6 +175,30 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
     </table>
   </div>
   <%-- 여기까지  rst List를 출력하는 TABLE --%>
+  <%-- PAGING --%>
+  <%-- 
+  <div id="paging">
+    <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
+    <form:hidden path="pageIndex" />
+  </div>
+
+  <div id="sysbtn">
+    <ul>
+      <li>
+        <span class="btn_blue_l">
+          <a href="javascript:fn_egov_addView();">
+            <spring:message code="button.create" />
+          </a>
+          <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>"
+              style="margin-left: 6px;"
+              alt="" />
+        </span>
+      </li>
+    </ul>
+  </div>
+   --%>
+  <%-- PAGING --%>
+
   <script>
     /**
      * Rst 상세 페이지로 이동하기 위한 function
