@@ -1,29 +1,19 @@
-//min (포함) 과 max (포함) 사이의 임의 정수를 반환
-//Math.round() 를 사용하면 고르지 않은 분포를 얻게된다!
+/*
+
+//  min (포함) 과 max (포함) 사이의 임의 정수를 반환하는 함수.
 function getRandomIntInclusive(min, max) {
-	return Math.round(Math.random() * (max - min + 1)) + min;
+  return Math.round(Math.random() * (max - min + 1)) + min;
+  //  Math.round() 고르지 않은 분포의 난수를 생성한다.
 }
 
-//setTimeout()은 지연시간을 발생시킨 후 특정 함수를 호출
-/*
+//  setTimeout()은 지연시간을 발생시킨 후 특정 함수를 호출함.
+
 var showAlert = setTimeout(function() {
     clearInterval(getRandomNo);
     alert('Wow!!!');
 }, 10000);
- */
 
-//setInterval(){} 일정 시간마다 반복 실행하는 함수.
-//setInterval(function() { ... }, 지연시간);
-/*
-getRandomNo = setInterval(function() {
-    let r = getRandomIntInclusive(1, 10);
-    console.log(r);   
-}, 500);
- */
-
-//타이머 중지.
-//clearInterval(getRandomNo);
-
+*/
 
 
 function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
@@ -61,42 +51,28 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
 	}, 500);
 }
 
-function signUp( id, pwd, nick ) {
-	let url = '/yummy/memb/signUp';
-	let param = {
-			id : id,
-			pwd: pwd,
-			nick: nick
-	}
 
-	try{
-		$.post( url, param ).done( function( data ) {
-			console.log( data );
-		});
-	} catch( err ) {
-	}
+function getRvwList(){
+	let rst_no = JSON.stringify($('#rst_no').val());
+	console.log('rst_no : ' + rst_no);
+	
+	$.ajax("/yummy/rvw/getRvwList" , {
+	    method: "POST",
+	    data:{
+	      "rst_no": $('#rst_no').val()
+	    },
+	    dataType: "json",
+	    success: function ( data ) {
+	      console.log( data );
+	    },
+	    error: function(xhr, status, msg) {
+	      console.log('xhr:\n ' + xhr);
+	      console.log('status:\n ' + status);
+	      console.log('msg:\n ' + msg);
+	    }
+	  });
 }
 
-
-var cnt = 0;
-function callbackInsert( cycle ) {
-	if( cnt < cycle ){
-		setTimeout(function(){
-			cnt++;
-			let id = 'TestUser9-' + cnt;
-			let nick = 'TestUser9-' + cnt; 
-			let pwd = 1111;
-
-			signUp( id, pwd, nick );
-
-			for (let j = 0; j <= 100; j++) {
-				setTimeout( function() {
-					let cont = cnt + '\n' + id + '의 Review Test - ' + j + '임';
-					saveRvw( id, cont );
-				}, 500);
-			}
-			callbackInsert( cycle );
-
-		}, 1000);
-	}
-}
+$(document).ready(function() {
+	getRvwList();
+});

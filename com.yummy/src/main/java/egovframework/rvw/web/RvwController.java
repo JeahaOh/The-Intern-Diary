@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -52,17 +53,19 @@ public class RvwController {
   
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public @ResponseBody Boolean createRvw( @RequestBody Rvw rvw ) throws Exception {
-    logger.info("\n\t/rvw/receive {}", rvw.toString());
+    logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
     
     return rvwService.save(rvw);
   }
   
   
-  @RequestMapping(value = "/getRvwList", method = RequestMethod.GET)
-  public List<Rvw> rvwList() {
-    
-    
-    return null;
+  @RequestMapping(value = "/getRvwList", method = RequestMethod.POST)
+  @ResponseBody
+  public List<Rvw> getRvwList( @RequestParam(value="rst_no") int rst_no ) throws Exception {
+    System.out.println("call");
+    List<Rvw> list = rvwService.getRvwList(rst_no);
+    logger.info("\n\t/rvw/getRvwList Return {}", list.size() );
+    return list;
   }
   
   

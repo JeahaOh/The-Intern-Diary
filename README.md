@@ -20,6 +20,10 @@ java.lang.IllegalStateException: Neither BindingResult nor plain target object f
 rvw insert 기능 구현,  
 rvw, memb에 가짜 데이터 삽입.
 
+### 17:45
+- https://aljjabaegi.tistory.com/191
+- https://aljjabaegi.tistory.com/190
+
 
 - - -
 ## 03/07 목요일

@@ -38,5 +38,12 @@
       </trim>
   </insert>
   
+  <select id="getRvwList" parameterType="int" resultType="rvw">
+    SELECT rvw_no, id, cont, cdt, score
+    FROM rvw
+    WHERE useyn = 'Y'
+    AND rst_no = #{rst_no}
+  </select>
+  
 
 </mapper>

@@ -13,6 +13,6 @@
 </head>
 
 <body>
-  <script src="<c:url value='/js/rvw.js'/>"></script>
+  <script src="<c:url value='/js/rvwTEST.js'/>"></script>
 </body>
 </html>

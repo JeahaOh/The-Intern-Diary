@@ -1,5 +1,6 @@
 package egovframework.rvw.service;
 
+import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,11 @@ public class RvwServiceImple implements RvwService {
   public Boolean save(Rvw rvw) throws Exception {
     logger.info("\n/rvwService/receive {}", rvw.toString());
     return rvwDao.save(rvw);
+  }
+
+  @Override
+  public List<Rvw> getRvwList(int rst_no) throws Exception {
+    return rvwDao.getRvwList(rst_no);
   }
   
   

@@ -1,5 +1,6 @@
 package egovframework.rvw.dao;
 
+import java.util.List;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import egovframework.rvw.vo.Rvw;
 
@@ -19,5 +20,6 @@ import egovframework.rvw.vo.Rvw;
 public interface RvwDAO {
   
   Boolean save(Rvw rvw) throws Exception;
+  List<Rvw> getRvwList(int rst_no) throws Exception;
 
 }

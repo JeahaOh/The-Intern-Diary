@@ -330,7 +330,13 @@
           </div>
         </form>
       </div>
+      <div>
+        <table id="rvwTable">
+          
+        </table>
+      </div>
     </div>
     <script src="<c:url value='/js/rstDetail.js'/>"></script>
+    <script src="<c:url value='/js/rvw.js'/>"></script>
   </body>
 </html>

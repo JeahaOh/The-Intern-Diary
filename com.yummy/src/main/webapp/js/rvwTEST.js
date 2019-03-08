@@ -15,6 +15,10 @@ var showAlert = setTimeout(function() {
 
 */
 
+function getRandomIntInclusive(min, max) {
+  return Math.round(Math.random() * (max - min + 1)) + min;
+}
+
 //  rvw 테이블에 AJAX로 id, cont 값을 입력 시키는 함수.
 function saveRvw( id, cont){
   //  1 ~ 187사이의 난수를 발생 시켜서 rst_no값으로 준다.
@@ -66,8 +70,8 @@ function callbackInsert( cycle ) {
   if( cnt < cycle ){
     setTimeout(function(){
       cnt++;
-      let id = 'TestUser10-' + cnt;
-      let nick = 'TestUser10-' + cnt; 
+      let id = 'TestUser11-' + cnt;
+      let nick = 'TestUser11-' + cnt; 
       let pwd = 1111;
 
       signUp( id, pwd, nick );

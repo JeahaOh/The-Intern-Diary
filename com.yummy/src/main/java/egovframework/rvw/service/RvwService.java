@@ -1,5 +1,6 @@
 package egovframework.rvw.service;
 
+import java.util.List;
 import egovframework.rvw.vo.Rvw;
 
 /**
@@ -17,4 +18,5 @@ import egovframework.rvw.vo.Rvw;
 
 public interface RvwService {
   Boolean save(Rvw rvw) throws Exception;
+  List<Rvw> getRvwList(int rst_no) throws Exception;
 }

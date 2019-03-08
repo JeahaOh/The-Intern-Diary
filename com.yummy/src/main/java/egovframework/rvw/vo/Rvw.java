@@ -70,7 +70,7 @@ public class Rvw extends DefaultVO {
   }
   @Override
   public String toString() {
-    return "\nRvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
+    return "\n\tRvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
         + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + "]";
   }
 }
