@@ -17,6 +17,7 @@
   </resultMap>
     
    -->
+  <!-- <select id="getList" parameterType="serachVO" resultType="egovMap"> -->
   <select id="getList" resultType="rst">
     SELECT
       rst.rst_no,
@@ -30,6 +31,20 @@
     ON rst.catag_no = catag.catag_no
     WHERE 1
     ORDER BY rst.rst_no ASC
+    <if test="searchKeyword != null and searchKeyword != ''">
+      <choose>
+        <when test="searchCondition == 0">
+          AND ID LIKE '%' || #{searchKeyword} || '%'
+        </when>
+        <when test="searchCondition == 1">
+          AND NAME LIKE '%' || #{searchKeyword} || '%'
+        </when>
+      </choose>
+    </if>
+<!--  
+   LIMIT
+      #{recordCountPerPage} OFFSET #{firstIndex}
+      -->
   </select>
   
   <select id="getDetail" parameterType="int" resultType="rst">
