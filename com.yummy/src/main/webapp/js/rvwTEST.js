@@ -78,7 +78,7 @@ function callbackInsert( cycle ) {
 
       for (let j = 0; j <= 75; j++) {
         setTimeout( function() {
-          let cont = cnt + '\n' + id + '의 Review Test - ' + j + '임';
+          let cont = '\n' + id + '의 Review Test - ' + j + '임';
           saveRvw( id, cont );
         }, 500);
       }

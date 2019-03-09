@@ -53,17 +53,63 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
 
 
 function getRvwList(){
-	let rst_no = JSON.stringify($('#rst_no').val());
-	console.log('rst_no : ' + rst_no);
-	
-	$.ajax("/yummy/rvw/getRvwList" , {
+  let rst_no = JSON.stringify($('#rst_no').val());
+
+  $.ajax("/yummy/rvw/getRvwList" , {
+    method: "POST",
+    data:{
+      "rst_no": $('#rst_no').val()
+    },
+    dataType: "json",
+    success: function ( data ) {
+      /*console.log( data );*/
+      if ( data === null || data.length < 0 ) {
+        return;
+      }
+      let html;
+      for ( i = 0; i < data.length; i++ ) {
+        html += '<tr onclick="rvw_manage(' + data[i].rvw_no + ')">';
+        html += '<td class="tbtd_caption rvw_id">' + data[i].id +'</td>';
+        html += '<td class="tbtd_caption rvw_cont">'+ data[i].cont + '</td>';
+        html += '<td class="tbtd_caption rvw_score">' + data[i].score+'</td>';
+        html += '<td class="tbtd_caption vrw_cdt">'+ data[i].cdt +'</td>';
+        html += '</tr>';
+      }
+      $('#rvw').append(html);
+    },
+    error: function(xhr, status, msg) {
+      console.log('xhr:\n ' + xhr);
+      console.log('status:\n ' + status);
+      console.log('msg:\n ' + msg);
+    }
+  });
+}
+
+function getRvwInfo(){
+  console.log('getRvwInfo');
+	  let rst_no = JSON.stringify($('#rst_no').val());
+
+	  $.ajax("/yummy/rvw/getRvwInfo" , {
 	    method: "POST",
 	    data:{
 	      "rst_no": $('#rst_no').val()
 	    },
 	    dataType: "json",
 	    success: function ( data ) {
-	      console.log( data );
+	      /*console.log( data );*/
+	      if ( data === null || data.length < 0 ) {
+	        return;
+	      }
+	      let html;
+	      for ( i = 0; i < data.rvwList.length; i++ ) {
+	        html += '<tr onclick="rvw_manage(' + data.rvwList[i].rvw_no + ')">';
+	        html += '<td class="tbtd_caption rvw_id">' + data.rvwList[i].id +'</td>';
+	        html += '<td class="tbtd_caption rvw_cont">'+ data.rvwList[i].cont + '</td>';
+	        html += '<td class="tbtd_caption rvw_score">' + data.rvwList[i].score+'</td>';
+	        html += '<td class="tbtd_caption vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
+	        html += '</tr>';
+	      }
+	      $('#rvw').append(html);
 	    },
 	    error: function(xhr, status, msg) {
 	      console.log('xhr:\n ' + xhr);
@@ -71,8 +117,13 @@ function getRvwList(){
 	      console.log('msg:\n ' + msg);
 	    }
 	  });
+	}
+
+function rvw_manage(rvw_no) {
+  console.log(rvw_no);
 }
 
 $(document).ready(function() {
-	getRvwList();
+	//getRvwList();
+	getRvwInfo();
 });

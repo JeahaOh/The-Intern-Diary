@@ -45,5 +45,14 @@
     AND rst_no = #{rst_no}
   </select>
   
+  <!-- 
+    SELECT COUNT(score)
+    FROM rvw
+    WHERE
+      rst_no = 156
+    AND
+      score = 1
+   -->
+  
 
 </mapper>

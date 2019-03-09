@@ -30,8 +30,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
-    <div id="outter_container">
-      <div id="inner_container">
+    <div class="outter_container">
+      <div class="inner_container">
         <form id="rstForm" name="rstForm">
           <div id="content_pop">
             <div id="table">
@@ -225,11 +225,42 @@
             </div>
           </div>
         </form>
-      </div>
-      <div>
-        <table id="rvwTable">
-          
-        </table>
+        <hr>
+        <c:if test="${mode eq 'Modify'}">
+          <%-- <jsp:include page="<c:url value='/jsp/egovframework/rvw/rvw.jsp'/>"/> --%>
+          <div class="inner_container">
+            <table id="eval">
+              <colgroup>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="100"/>
+              </colgroup>
+              
+            </table>
+          </div>
+          <hr>
+          <div class="inner_container">
+            <table id="rvwTable">
+              <colgroup>
+                <col width="100"/>
+                <col width="500"/>
+                <col width="50"/>
+                <col width="200"/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <td class="tbtd_caption"><spring:message code="rvw.id"/></td>
+                  <td class="tbtd_caption"><spring:message code="rvw.cont"/></td>
+                  <td class="tbtd_caption"><spring:message code="rvw.score"/></td>
+                  <td class="tbtd_caption"><spring:message code="rvw.cdt"/></td>
+                </tr>
+              </thead>
+              <tbody id="rvw">
+              </tbody>
+            </table>
+          </div>
+        </c:if>
       </div>
     </div>
     <script src="<c:url value='/js/rstDetail.js'/>"></script>

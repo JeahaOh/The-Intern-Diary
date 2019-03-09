@@ -98,7 +98,7 @@ $('#upper_catag').change( function () {
       }
 
       for (i = 0; i < data.length; i++) {
-        var options = $("<option></option");
+        var options = $("<option></option>");
         options.append(data[i].catag_nm);
         options.attr('value', data[i].catag_no);
         $('#catag_no').append(options);

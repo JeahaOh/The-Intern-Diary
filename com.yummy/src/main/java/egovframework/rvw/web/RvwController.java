@@ -1,6 +1,9 @@
 package egovframework.rvw.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,24 +54,38 @@ public class RvwController {
     return "rvwTest";
   }
   
+  @ResponseBody
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public @ResponseBody Boolean createRvw( @RequestBody Rvw rvw ) throws Exception {
+  public Boolean createRvw( @RequestBody Rvw rvw ) throws Exception {
     logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
     
     return rvwService.save(rvw);
   }
   
   
-  @RequestMapping(value = "/getRvwList", method = RequestMethod.POST)
   @ResponseBody
+  @RequestMapping(value = "/getRvwList", method = RequestMethod.POST)
   public List<Rvw> getRvwList( @RequestParam(value="rst_no") int rst_no ) throws Exception {
     System.out.println("call");
     List<Rvw> list = rvwService.getRvwList(rst_no);
-    logger.info("\n\t/rvw/getRvwList Return {}", list.size() );
+    logger.info("\n\t/rvw/getRvwList Return {} RVWs..", list.size() );
     return list;
   }
   
-  
+  @ResponseBody
+  @RequestMapping(value = "/getRvwInfo", method = RequestMethod.POST)
+  public Map<String, Object> getRvwInfo( @RequestParam(value="rst_no") int rst_no ) throws Exception {
+    List<Rvw> list = rvwService.getRvwList(rst_no);
+    
+    Map<String, Object> map = new HashMap<String, Object>();
+    List<Integer> rating = new ArrayList<>();
+    
+    
+    map.put("rvwList", list);
+    
+    logger.info("\n\t/rvw/getRvwList Return {} RVWs..", list.size() );
+    return map;
+  }
   
   
 }
