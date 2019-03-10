@@ -24,14 +24,14 @@ function saveRvw( id, cont){
   //  1 ~ 187사이의 난수를 발생 시켜서 rst_no값으로 준다.
   let rst_no = getRandomIntInclusive(1, 187);
   //  1 ~ 3 사이의 난수를 발생 시켜서 score값으로 준다.
-  let score = getRandomIntInclusive(1, 2);
+  let score = 1;
   param = JSON.stringify({
     "rst_no": rst_no,
     "id": id,
     "cont": cont,
     "score": score
   })
-  
+  console.log( param );
   setTimeout(function(){
     $.ajax("/yummy/rvw/save" , {
       method: "POST",
@@ -47,7 +47,7 @@ function saveRvw( id, cont){
         console.debug('msg:\n ' + msg);
       }
     });
-  }, 500);
+  }, 250);
 }
 
 function signUp( id, pwd, nick ) {
@@ -70,8 +70,8 @@ function callbackInsert( cycle ) {
   if( cnt < cycle ){
     setTimeout(function(){
       cnt++;
-      let id = 'TestUser11-' + cnt;
-      let nick = 'TestUser11-' + cnt; 
+      let id = 'TestUser12-' + cnt;
+      let nick = 'TestUser12-' + cnt; 
       let pwd = 1111;
 
       signUp( id, pwd, nick );
@@ -80,9 +80,9 @@ function callbackInsert( cycle ) {
         setTimeout( function() {
           let cont = '\n' + id + '의 Review Test - ' + j + '임';
           saveRvw( id, cont );
-        }, 500);
+        }, 250);
       }
       callbackInsert( cycle );
-    }, 1000);
+    }, 250);
   }
 }
