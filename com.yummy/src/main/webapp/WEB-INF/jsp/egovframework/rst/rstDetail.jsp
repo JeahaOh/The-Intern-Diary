@@ -27,6 +27,7 @@
   <meta charset="UTF-8">
   <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/modal.css'/>"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
@@ -250,8 +251,8 @@
               </colgroup>
               <thead>
                 <tr>
+                  <td class="tbtd_caption"><spring:message code="rvw.no"/></td>
                   <td class="tbtd_caption"><spring:message code="rvw.id"/></td>
-                  <td class="tbtd_caption"><spring:message code="rvw.cont"/></td>
                   <td class="tbtd_caption"><spring:message code="rvw.score"/></td>
                   <td class="tbtd_caption"><spring:message code="rvw.cdt"/></td>
                 </tr>
@@ -263,7 +264,15 @@
         </c:if>
       </div>
     </div>
+    <%-- Modal --%>
+    <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <%-- ModalContent --%>
+      <div class="modal_content">
+      </div>
+    </div>
     <script src="<c:url value='/js/rstDetail.js'/>"></script>
     <script src="<c:url value='/js/rvw.js'/>"></script>
+    <script src="<c:url value='/js/modal.js'/>"></script>
   </body>
 </html>

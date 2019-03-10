@@ -52,6 +52,9 @@ rating(K1,K2,K3)=C×m+total number of starsC+number of reviews
 ### 17:40
 rvw ServerSide delete, detail 기능 구현
 
+### 18:30
+모달 띄우기
+
 
 - - -
 ## 03/09 토요일

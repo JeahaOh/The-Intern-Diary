@@ -69,8 +69,8 @@ function getRvwList(){
       let html;
       for ( i = 0; i < data.length; i++ ) {
         html += '<tr onclick="rvw_manage(' + data[i].rvw_no + ')">';
+        html += '<td class="tbtd_caption rvw_no">' + data[i].rvw_no +'</td>';
         html += '<td class="tbtd_caption rvw_id">' + data[i].id +'</td>';
-        html += '<td class="tbtd_caption rvw_cont">'+ data[i].cont + '</td>';
         html += '<td class="tbtd_caption rvw_score">' + data[i].score+'</td>';
         html += '<td class="tbtd_caption vrw_cdt">'+ data[i].cdt +'</td>';
         html += '</tr>';
@@ -96,15 +96,15 @@ function getRvwInfo(){
     },
     dataType: "json",
     success: function ( data ) {
-      /*console.log( data );*/
+      console.log( data );
       if ( data === null || data.length < 0 ) {
         return;
       }
       let html;
       for ( i = 0; i < data.rvwList.length; i++ ) {
         html += '<tr onclick="rvw_manage(' + data.rvwList[i].rvw_no + ')">';
+        html += '<td class="tbtd_caption rvw_no">' + data.rvwList[i].rvw_no +'</td>';
         html += '<td class="tbtd_caption rvw_id">' + data.rvwList[i].id +'</td>';
-        html += '<td class="tbtd_caption rvw_cont">'+ data.rvwList[i].cont + '</td>';
         html += '<td class="tbtd_caption rvw_score">' + data.rvwList[i].score+'</td>';
         html += '<td class="tbtd_caption vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
         html += '</tr>';
@@ -157,6 +157,7 @@ function deleteRvw( rvw_no ) {
 
 function rvw_manage(rvw_no) {
   console.log(rvw_no);
+  openModal();
 }
 
 $(document).ready(function() {
