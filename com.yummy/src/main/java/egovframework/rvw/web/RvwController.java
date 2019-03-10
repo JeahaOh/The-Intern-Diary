@@ -56,10 +56,12 @@ public class RvwController {
   
   @ResponseBody
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public Boolean createRvw( @RequestBody Rvw rvw ) throws Exception {
+  public String createRvw( @RequestBody Rvw rvw ) throws Exception {
     logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
-    
-    return rvwService.save(rvw);
+    if( rvwService.save(rvw)) {
+      return "success";
+    } 
+    return "fail";
   }
   
   
@@ -85,6 +87,24 @@ public class RvwController {
     
     logger.info("\n\t/rvw/getRvwList Return {} RVWs..", list.size() );
     return map;
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/getRvwDtl", method = RequestMethod.POST)
+  public Rvw getRvwDtl ( @RequestParam(value="rvw_no") int rvw_no ) throws Exception {
+    Rvw rvw = rvwService.getRvwDtl(rvw_no);
+    logger.info("\n\t/rvw/getRvwDtl Return {} RVW..", rvw.toString() );
+    return rvw;
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public String delete ( @RequestParam(value = "rvw_no")  int rvw_no ) throws Exception {
+    logger.info("\n\t/rvw/delete receive --> {}", Integer.toString(rvw_no));
+    if( rvwService.delete(rvw_no)) {
+      return "true";
+    }
+    return "fail";
   }
   
   

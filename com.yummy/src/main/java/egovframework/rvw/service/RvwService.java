@@ -19,4 +19,6 @@ import egovframework.rvw.vo.Rvw;
 public interface RvwService {
   Boolean save(Rvw rvw) throws Exception;
   List<Rvw> getRvwList(int rst_no) throws Exception;
+  Boolean delete( int rvw_no ) throws Exception;
+  Rvw getRvwDtl( int rvw_no ) throws Exception;
 }

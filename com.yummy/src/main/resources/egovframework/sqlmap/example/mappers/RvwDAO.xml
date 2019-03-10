@@ -45,6 +45,22 @@
     AND rst_no = #{rst_no}
   </select>
   
+  <select id="getRvwDtl" parameterType="int" resultType="rvw">
+    SELECT rvw_no, id, cont, cdt, score
+    FROM rvw
+    WHERE useyn = 'Y'
+    AND rvw_no = #{rvw_no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE
+    FROM
+      rvw
+    WHERE rvw_no = #{rvw_no}
+  </delete>
+  
+  
+  
   <!-- 
     SELECT COUNT(score)
     FROM rvw

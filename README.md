@@ -49,6 +49,8 @@ rating(K1,K2,K3)=C×m+total number of starsC+number of reviews
 (점수 합계 X 평가자 수) / (평가자의 선택 범위 X 평가자 수)
 ```
 
+### 17:40
+rvw ServerSide delete, detail 기능 구현
 
 
 - - -

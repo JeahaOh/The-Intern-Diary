@@ -20,11 +20,11 @@ function getRandomIntInclusive(min, max) {
 }
 
 //  rvw 테이블에 AJAX로 id, cont 값을 입력 시키는 함수.
-function saveRvw( id, cont){
+function saveRvw( id, cont ){
   //  1 ~ 187사이의 난수를 발생 시켜서 rst_no값으로 준다.
   let rst_no = getRandomIntInclusive(1, 187);
   //  1 ~ 3 사이의 난수를 발생 시켜서 score값으로 준다.
-  let score = 1;
+  let score = getRandomIntInclusive(1, 3);
   param = JSON.stringify({
     "rst_no": rst_no,
     "id": id,
@@ -32,7 +32,7 @@ function saveRvw( id, cont){
     "score": score
   })
   console.log( param );
-  setTimeout(function(){
+  
     $.ajax("/yummy/rvw/save" , {
       method: "POST",
       data: param,
@@ -47,7 +47,7 @@ function saveRvw( id, cont){
         console.debug('msg:\n ' + msg);
       }
     });
-  }, 250);
+  
 }
 
 function signUp( id, pwd, nick ) {
@@ -70,8 +70,8 @@ function callbackInsert( cycle ) {
   if( cnt < cycle ){
     setTimeout(function(){
       cnt++;
-      let id = 'TestUser12-' + cnt;
-      let nick = 'TestUser12-' + cnt; 
+      let id = 'TestUser15-' + cnt;
+      let nick = 'TestUser15-' + cnt; 
       let pwd = 1111;
 
       signUp( id, pwd, nick );

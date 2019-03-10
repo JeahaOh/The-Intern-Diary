@@ -87,37 +87,73 @@ function getRvwList(){
 
 function getRvwInfo(){
   console.log('getRvwInfo');
-	  let rst_no = JSON.stringify($('#rst_no').val());
+  let rst_no = JSON.stringify($('#rst_no').val());
 
-	  $.ajax("/yummy/rvw/getRvwInfo" , {
-	    method: "POST",
-	    data:{
-	      "rst_no": $('#rst_no').val()
-	    },
-	    dataType: "json",
-	    success: function ( data ) {
-	      /*console.log( data );*/
-	      if ( data === null || data.length < 0 ) {
-	        return;
-	      }
-	      let html;
-	      for ( i = 0; i < data.rvwList.length; i++ ) {
-	        html += '<tr onclick="rvw_manage(' + data.rvwList[i].rvw_no + ')">';
-	        html += '<td class="tbtd_caption rvw_id">' + data.rvwList[i].id +'</td>';
-	        html += '<td class="tbtd_caption rvw_cont">'+ data.rvwList[i].cont + '</td>';
-	        html += '<td class="tbtd_caption rvw_score">' + data.rvwList[i].score+'</td>';
-	        html += '<td class="tbtd_caption vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
-	        html += '</tr>';
-	      }
-	      $('#rvw').append(html);
-	    },
-	    error: function(xhr, status, msg) {
-	      console.log('xhr:\n ' + xhr);
-	      console.log('status:\n ' + status);
-	      console.log('msg:\n ' + msg);
-	    }
-	  });
-	}
+  $.ajax("/yummy/rvw/getRvwInfo" , {
+    method: "POST",
+    data:{
+      "rst_no": $('#rst_no').val()
+    },
+    dataType: "json",
+    success: function ( data ) {
+      /*console.log( data );*/
+      if ( data === null || data.length < 0 ) {
+        return;
+      }
+      let html;
+      for ( i = 0; i < data.rvwList.length; i++ ) {
+        html += '<tr onclick="rvw_manage(' + data.rvwList[i].rvw_no + ')">';
+        html += '<td class="tbtd_caption rvw_id">' + data.rvwList[i].id +'</td>';
+        html += '<td class="tbtd_caption rvw_cont">'+ data.rvwList[i].cont + '</td>';
+        html += '<td class="tbtd_caption rvw_score">' + data.rvwList[i].score+'</td>';
+        html += '<td class="tbtd_caption vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
+        html += '</tr>';
+      }
+      $('#rvw').append(html);
+    },
+    error: function(xhr, status, msg) {
+      console.log('xhr:\n ' + xhr);
+      console.log('status:\n ' + status);
+      console.log('msg:\n ' + msg);
+    }
+  });
+}
+
+function getRvwDtl( rvw_no ) {
+  $.ajax("/yummy/rvw/getRvwDtl" , {
+    method: "POST",
+    data:{
+      "rvw_no": rvw_no
+    },
+    dataType: "json",
+    success: function ( data ) {
+      console.log( data );
+    },
+    error: function(xhr, status, msg) {
+      console.log('xhr:\n ' + xhr);
+      console.log('status:\n ' + status);
+      console.log('msg:\n ' + msg);
+    }
+  });
+}
+
+function deleteRvw( rvw_no ) {
+  $.ajax("/yummy/rvw/delete" , {
+    method: "POST",
+    data:{
+    	"rvw_no": rvw_no
+    },
+    dataType: "json",
+    success: function ( data ) {
+      console.log( data );
+    },
+    error: function(xhr, status, msg) {
+      console.log('xhr:\n ' + xhr);
+      console.log('status:\n ' + status);
+      console.log('msg:\n ' + msg);
+    }
+  });
+}
 
 function rvw_manage(rvw_no) {
   console.log(rvw_no);

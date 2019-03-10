@@ -42,5 +42,13 @@ public class RvwServiceImple implements RvwService {
     return rvwDao.getRvwList(rst_no);
   }
   
-  
+  @Override
+  public Boolean delete(int rvw_no) throws Exception {
+    return rvwDao.delete(rvw_no);
+  }
+
+  @Override
+  public Rvw getRvwDtl(int rvw_no) throws Exception {
+    return rvwDao.getRvwDtl(rvw_no);
+  }
 }
