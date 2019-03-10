@@ -1,8 +1,58 @@
 # The-Intern-Diary
 **2019년 02/11 ~ 04/11 인턴 기록**
- 
+
 - - -
-##03/09 토요일
+## 03/10 일요일
+- 전체 평점에 상대적인 평가 점수
+- 전체 평가 인원에 상대적인 평가 인원 수
+
+- 전체 식당에 평가자 수  
+- 평가 대상인 식당의 수  
+```
+-- 전체 평가 점수, 전체 평가자 수
+SELECT
+	SUM(score),
+    COUNT(score)
+FROM rvw;
+
+-- 해당 식당에 대한 평가 점수, 평가자 수
+SELECT
+	SUM(score),
+    COUNT(score)
+FROM
+	rvw
+WHERE
+	rst_no = 156;
+
+-- 평점이 있는 가게의 수
+SELECT
+	COUNT(DISTINCT rst_no)
+FROM
+	rvw;
+```
+
+전체 가게들이 평가자 수에 비해 총 몇점을 받았는데,  
+해당 가게는 평가자 수에 비해 몇점을 받았다.  
+  
+화면에 나와야 하는 것 
+별로, 평범, 좋아, 평가자 수, 
+
+```
+rating(K1,K2,K3)=C×m+total number of starsC+number of reviews
+
+
+
+{ 평가 범위 X 평가 범위의 평균 + (평점 X 평가자 수) } / { 평가 범위 + 리뷰 수 }
+
+{ 3 X 0 + 3800 } / { 3 + 2432 }
+
+(점수 합계 X 평가자 수) / (평가자의 선택 범위 X 평가자 수)
+```
+
+
+
+- - -
+## 03/09 토요일
 ### 14:10
 *.js  
 sample.css 파일 정리
@@ -13,6 +63,56 @@ sample.css 파일 정리
 
 ### 17:10
 평점에 대해서 계속 고민중...
+
+### 18:00
+```
+SELECT
+	COUNT(score) AS sum,
+    (SELECT
+		COUNT(score)
+     FROM
+		rvw
+	WHERE
+		score = 1
+	AND
+		rst_no = 156) AS three,
+	(SELECT
+		COUNT(score)
+     FROM
+		rvw
+	WHERE
+		score = 0
+	AND
+		rst_no = 156) AS two,
+	(SELECT
+		COUNT(score)
+     FROM
+		rvw
+	WHERE
+		score = -1
+	AND
+		rst_no = 156) AS one
+	
+FROM
+	rvw
+WHERE
+	rst_no = 156;
+
+
+SELECT
+	SUM(score)
+    
+FROM rvw
+WHERE
+	rst_no = 156;
+
+```
+
+전체 식당에 평가자 수  
+평가 대상인 식당의 수  
+해당 식당에 대한 총 평가자 수  
+해당 식당에 대한 평가 점수  
+해당 평가에 해당 평가를 내린 사람의 수  
 
 - - -
 ## 03/08 금요일
