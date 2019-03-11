@@ -92,6 +92,14 @@ public class RstController {
     return "rst/rstList";
   }
   
+  @ResponseBody
+  @RequestMapping(value="/rstList", method= RequestMethod.GET)
+  public List<Rst> list() throws Exception {
+    logger.info("\n\trst/rstList return");
+    return rstService.getList();
+  }
+  
+  
   /**
    * rst 상세 정보 출력
    * 

@@ -19,6 +19,9 @@ RVW update 구현
 - https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html
 따라 하는 중
 
+### 21:00
+아.. 안돼....
+
 - - -
 ## 03/10 일요일
 - 전체 평점에 상대적인 평가 점수

@@ -98,7 +98,7 @@ function getRvwInfo(){
     success: function ( data ) {
       console.log( data );
       console.log( Object.keys( data ).length );
-      if ( data === null || Object.keys( data ).length <= 1 ) {
+      if ( data === null || Object.keys( data.rvwList ).length <= 2 ) {
         console.log('data == null or <= 1');
         $('#rvwTable').hide();
         return;
