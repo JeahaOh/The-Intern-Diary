@@ -226,7 +226,6 @@
             </div>
           </div>
         </form>
-        <hr>
         <c:if test="${mode eq 'Modify'}">
           <%-- <jsp:include page="<c:url value='/jsp/egovframework/rvw/rvw.jsp'/>"/> --%>
           <div class="inner_container">
@@ -242,6 +241,7 @@
           </div>
           <hr>
           <div class="inner_container">
+        <hr>
             <table id="rvwTable">
               <colgroup>
                 <col width="100"/>

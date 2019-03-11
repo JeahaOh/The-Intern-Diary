@@ -97,7 +97,10 @@ function getRvwInfo(){
     dataType: "json",
     success: function ( data ) {
       console.log( data );
-      if ( data === null || data.length < 0 ) {
+      console.log( Object.keys( data ).length );
+      if ( data === null || Object.keys( data ).length <= 1 ) {
+        console.log('data == null or <= 1');
+        $('#rvwTable').hide();
         return;
       }
       let html;
@@ -109,6 +112,7 @@ function getRvwInfo(){
         html += '<td class="tbtd_content  vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
         html += '</tr>';
       }
+      console.log('append');
       $('#rvw').append(html);
     },
     error: function(xhr, status, msg) {
@@ -174,7 +178,6 @@ function deleteRvw(  ) {
 
 
 function rvw_manage(rvw_no) {
-  console.log(rvw_no);
   getRvwDtl( rvw_no );
   openModal();
 }
@@ -227,6 +230,5 @@ function rvw_update(){
 
 
 $(document).ready(function() {
-  //getRvwList();
   getRvwInfo();
 });
