@@ -1,5 +1,5 @@
 
- // 로그인 기능
+ // 관리자 로그인 기능
   $('#submit').click( function ( event ) {
     event.preventDefault();
     
@@ -18,15 +18,40 @@
       
       console.log( form );
       
-      $.post( url, form ).done(function( data ) {
+      $.post( url, form ).done(( data ) => {
         if( data === 'loginError') {
-          alert('ID와 비밀 번호를 확인 해 주세요.')
+          alert('ID와 비밀 번호를 확인 해 주세요.');
         }  else {
           window.location.href = document.location.href + data;
         }
       });
     }
   });
+  
+  /**
+   * 회원 로그인 기능
+   */
+  function membLogin(id, pwd){
+	  let param = {
+	          "id": id,
+	          "pwd": pwd
+	      }
+	  console.log( param );
+	  $.ajax("/yummy/memb/membLogin" , {
+	      method: "POST",
+	      data: param,
+	      entType : "application/json; charset=UTF-8",
+	      dataType: "json",
+	      success: function ( data ) {
+	        console.log( data );
+	      },
+	      error: function(xhr, status, msg) {
+	        console.debug('xhr:\n ' + xhr);
+	        console.debug('status:\n ' + status);
+	        console.debug('msg:\n ' + msg);
+	      }
+	    });
+  }
 
   /**
    * id 확인을 위한 Function

@@ -95,7 +95,7 @@ public class RstController {
   @ResponseBody
   @RequestMapping(value="/rstList", method= RequestMethod.GET)
   public List<Rst> list() throws Exception {
-    logger.info("\n\trst/rstList return");
+    logger.info("\n\trst/rstList return rstService.getList()");
     return rstService.getList();
   }
   
@@ -123,6 +123,20 @@ public class RstController {
   }
   
   /**
+   * rst JSON 객체 return
+   * @param rst_no  - return할 rst의 rst_no
+   * @return  JSON형식의 rst
+   * @throws Exception
+   */
+  @ResponseBody
+  @RequestMapping(value = "/rstDetail", method = RequestMethod.POST)
+  public Rst rstDetail( @RequestParam int rst_no) throws Exception {
+    Rst rst = rstService.getDetail(rst_no);
+    logger.info("\n\t/rst/rstDetail return {}", rst.toString());
+    return rst;
+  }
+  
+  /**
    * rst 등록 페이지를 출력
    * 
    * @param   model - 상위 분류와 rstDetail.jsp의 상태지정을 위한 data 전달
@@ -147,11 +161,11 @@ public class RstController {
   @RequestMapping(value="/save", method= RequestMethod.POST)
   public @ResponseBody int saveRst( @RequestBody Rst rst ) throws Exception {
     logger.info("\n/rst/save {}", rst.toString());
-//    if( rstService.save(rst) ) {
-//      return "true";
-//    }
-//    return "false";
-    return rstService.save(rst);
+    int result = rstService.save(rst);
+    if( result != 0 ) {
+      return result;
+    }
+    return 0;
   }
   
   /**

@@ -200,7 +200,11 @@ function saveRst(){
       console.log( data ); 
       if( $('#mode').hasClass('modify') ) {
         window.location.href = document.location.href;
-      } else {
+      }
+      if( data === 0 ) {
+    	  window.location.href = '/yummy/rst/error';
+      }
+      else {
         window.location.href = '/yummy/rst/detail?id=' + data;
       }
     },
@@ -210,4 +214,30 @@ function saveRst(){
       console.log('msg:\n ' + msg);
     }
   });
+}
+
+/**
+ * rst 상세정보 JSON객체를 요청하는 함수
+ */
+function getRstDetail( rst_no ) {
+  let param = {
+    "rst_no" : rst_no
+  }
+  
+  console.log( param );
+  
+  $.ajax("/yummy/rst/rstDetail" , {
+      method: "POST",
+      data: param,
+      entType : "application/json; charset=UTF-8",
+      dataType: "json",
+      success: function ( data ) {
+        console.log( data );
+      },
+      error: function(xhr, status, msg) {
+        console.debug('xhr:\n ' + xhr);
+        console.debug('status:\n ' + status);
+        console.debug('msg:\n ' + msg);
+      }
+    });
 }

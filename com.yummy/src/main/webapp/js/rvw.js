@@ -230,5 +230,7 @@ function rvw_update(){
 
 
 $(document).ready(function() {
-  getRvwInfo();
+  if( $('#mode').hasClass('modify') ) {
+    getRvwInfo();
+  }
 });

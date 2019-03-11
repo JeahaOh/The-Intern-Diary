@@ -73,23 +73,24 @@ public class MembController {
    * @return 
    * @exception Exception
    */
-  @RequestMapping(value="/login", method= RequestMethod.POST)
-  public @ResponseBody String login(
+  @ResponseBody
+  @RequestMapping(value="/membLogin", method= RequestMethod.POST)
+  public Memb login(
       @RequestParam String id,
       @RequestParam String pwd,
       HttpSession session)
           throws Exception {
-    logger.info(session.toString());
-
+    System.out.println(id + pwd);
     Memb user = (Memb) membService.login(id, pwd);
 
     if( user == null ) {
-      return "loginError";
+      return null;
     }
 
     //    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
     session.setAttribute("loginUser", user);
-    return "rst/list";
+    logger.info("\n\t/memb/membLogin return -> {}", user.toString());
+    return user;
   }
 
   /**
