@@ -36,7 +36,7 @@ FROM rvw;
 -- 해당 식당에 대한 평가 점수, 평가자 수
 SELECT
 	SUM(score),
-    COUNT(score)
+    COUNT03(score)
 FROM
 	rvw
 WHERE
