@@ -81,7 +81,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="tbtd_caption" rowspan="5">
+                  <td class="tbtd_content" rowspan="5">
                     <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
                     </div>
                   </td>
@@ -103,12 +103,12 @@
                 </tr>
                 
                 <tr>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="text" id="rst_name" class="rst_form"
                         name="rst_name" value="<c:out value="${rst.rst_name}"/>" required>
                   </td>
                   
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <select name="upper_catag" id="upper_catag" class="rst_form" required>
                       <c:forEach var="catag" items="${upperCatagList}" varStatus="status" >
                         <option value="${catag.catag_no}"
@@ -119,7 +119,7 @@
                     </select>
                   </td>
                   
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <select name="catag_no" id="catag_no" class="rst_form" required>
                       <c:if test="${catagList ne null || catagList != ''}">
                         <c:forEach var="catag" items="${catagList}" varStatus="status">
@@ -132,12 +132,12 @@
                     </select>
                   </td>
                   
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="tel" id="tel" class="rst_form" name="tel"
                         alt="<spring:message code="title.rst.tel"/>" 
                         value="<c:out value="${rst.tel}"/>">
                   </td>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <select name="star" id="star" class="rst_form" required>
                       <option value="1" <c:if test="${rst.star eq 1}">selected</c:if>>
                         <spring:message code="star.1"/>
@@ -168,12 +168,12 @@
                 </tr>
                 
                 <tr>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="text" id="loc" class="rst_form"
                         name="loc" alt="<spring:message code="title.rst.loc"/>"
                         value="<c:out value="${rst.loc}"/>">
                   </td>
-                  <td class="tbtd_caption" colspan="4">
+                  <td class="tbtd_content" colspan="4">
                     <input type="text" id="loc_dtl" class="rst_form"
                         name="loc_dtl" alt="<spring:message code="title.rst.loc_dtl"/>"
                         value="<c:out value="${rst.loc_dtl}"/>" style="width: 475px;" required>
@@ -197,30 +197,30 @@
                 </tr>
                 
                 <tr>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
                   </td>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="time" id="opn_tm" class="rst_form" 
                         name="opn_tm" alt="<spring:message code="title.rst.opn_tm"/>" 
                         value="<c:out value="${rst.opn_tm}"/>" required>
                   </td>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="time" id="brck_tm" class="rst_form" 
                         name="brck_tm" alt="<spring:message code="title.rst.brck_tm"/>" 
                         value="<c:out value="${rst.brck_tm}"/>" >
                   </td>
-                  <td class="tbtd_caption">
+                  <td class="tbtd_content">
                     <input type="time" id="dnnr_tm" class="rst_form" 
                         name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" 
                         value="<c:out value="${rst.dnnr_tm}"/>">
                   </td>
-                  <td class="tbtd_caption">
+                  <td class=tbtd_content>
                     <input type="time" id="lo_tm" class="rst_form" 
                         name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" 
                         value="<c:out value="${rst.lo_tm}"/>" required>
                   </td>
-                  <td class="tbtd_caption"></td>
+                  <td class="tbtd_content"></td>
                 </tr>
               </table>
             </div>
@@ -266,9 +266,60 @@
     </div>
     <%-- Modal --%>
     <div id="modal" class="modal">
-    <span class="close">&times;</span>
-    <%-- ModalContent --%>
+      <span class="close">&times;</span>
+      <%-- ModalContent --%>
       <div class="modal_content">
+        <h2><spring:message code="rvw.dtl"/></h2>
+        <table>
+          <tr>
+            <td class="tbtd_caption">
+              <spring:message code="rvw.no"/>
+            </td>
+            <td class="rvw_dtl tbtd_content">
+              <input type="text" id="rvw_no" name="rvw_no" readonly="readonly"/>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbtd_caption">
+              <spring:message code="rvw.id"/>
+            </td>
+            <td class="rvw_dtl tbtd_content">
+              <input type="text" id="id" name="id" readonly="readonly"/>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbtd_caption">
+              <spring:message code="rvw.score"/>
+            </td>
+            <td class="rvw_dtl tbtd_content">
+              <input type="text" id="score" name="score" readonly="readonly"/>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbtd_caption">
+              <spring:message code="rvw.cont"/>
+            </td>
+            <td class="rvw_dtl tbtd_content">
+              <textarea id="cont" name="cont" cols="40" rows="8" readonly="readonly"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbtd_caption">
+              <spring:message code="rvw.cdt"/>
+            </td>
+            <td class="rvw_dtl tbtd_content">
+              <input type="datetime" id="cdt" name="cdt" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button onclick="rvw_edit()">수정</button>
+              <button onclick="rvw_update()">저장</button>
+              <button onclick="deleteRvw()">삭제</button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
     <script src="<c:url value='/js/rstDetail.js'/>"></script>
