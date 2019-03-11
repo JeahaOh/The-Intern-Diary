@@ -28,14 +28,6 @@
       #{score},
       'Y'
       )
-    ON DUPLICATE KEY 
-    UPDATE
-      <trim suffixOverrides=",">
-        <if test="rst_no != null">rst_no = #{rst_no},</if>
-        <if test="id != null">id = #{id},</if>
-        <if test="cont != null">cont = #{cont},</if>
-        <if test="score != null">score = #{score},</if>
-      </trim>
   </insert>
   
   <select id="getRvwList" parameterType="int" resultType="rvw">
@@ -58,6 +50,17 @@
       rvw
     WHERE rvw_no = #{rvw_no}
   </delete>
+  
+  <update id="update" parameterType="rvw">
+    UPDATE rvw
+    SET
+      <trim suffixOverrides=",">
+        <if test="cont != null" >cont = #{cont},</if>
+        <if test="score != null">score = #{score},</if>
+      </trim>
+    WHERE
+      rvw_no = #{rvw_no}
+  </update>
   
   
   

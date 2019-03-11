@@ -102,10 +102,19 @@ public class RvwController {
   public String delete ( @RequestParam(value = "rvw_no")  int rvw_no ) throws Exception {
     logger.info("\n\t/rvw/delete receive --> {}", Integer.toString(rvw_no));
     if( rvwService.delete(rvw_no)) {
-      return "true";
+      return "success";
     }
     return "fail";
   }
   
-  
+  @ResponseBody
+  @RequestMapping(value = "/update", method = RequestMethod.POST)
+  public String update ( @RequestBody Rvw rvw ) throws Exception {
+    logger.info("\n\t/rvw/update recieve --> {}", rvw.toString() );
+    
+    if( rvwService.update(rvw) ) {
+      return "success";
+    }
+    return "fail";
+  }
 }

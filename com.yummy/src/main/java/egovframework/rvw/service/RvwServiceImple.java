@@ -51,4 +51,9 @@ public class RvwServiceImple implements RvwService {
   public Rvw getRvwDtl(int rvw_no) throws Exception {
     return rvwDao.getRvwDtl(rvw_no);
   }
+
+  @Override
+  public Boolean update(Rvw rvw) throws Exception {
+    return rvwDao.update(rvw);
+  }
 }

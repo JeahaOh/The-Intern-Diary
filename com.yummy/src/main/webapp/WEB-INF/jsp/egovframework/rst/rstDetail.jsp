@@ -300,7 +300,7 @@
               <spring:message code="rvw.cont"/>
             </td>
             <td class="rvw_dtl tbtd_content">
-              <textarea id="cont" name="cont" cols="40" rows="8" readonly="readonly"></textarea>
+              <textarea id="cont" name="cont" cols="40" rows="8" readonly="readonly" style="resize: none;"></textarea>
             </td>
           </tr>
           <tr>
@@ -317,6 +317,7 @@
               <button onclick="rvw_edit()">수정</button>
               <button onclick="rvw_update()">저장</button>
               <button onclick="deleteRvw()">삭제</button>
+              
             </td>
           </tr>
         </table>

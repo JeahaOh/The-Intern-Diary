@@ -6,6 +6,8 @@
 ### 11:20
 RVW detail modal창, delete 구현.
 
+### 13:00
+RVW update 구현
 
 - - -
 ## 03/10 일요일

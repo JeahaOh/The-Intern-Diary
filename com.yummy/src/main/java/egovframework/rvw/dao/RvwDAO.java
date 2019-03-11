@@ -23,4 +23,5 @@ public interface RvwDAO {
   List<Rvw> getRvwList(int rst_no) throws Exception;
   Rvw getRvwDtl(int rvw_no) throws Exception;
   Boolean delete(int rvw_no) throws Exception;
+  Boolean update(Rvw rvw) throws Exception;
 }

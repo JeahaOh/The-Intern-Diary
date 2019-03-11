@@ -156,7 +156,7 @@ function deleteRvw(  ) {
     dataType: "json",
     success: function ( data ) {
     	console.log(data);
-      if( data === "true" ) {
+      if( data === "success" ) {
     	  alert( '게시번호' + $('#rvw_no').val() + '를 삭제하였습니다.' );
     	  window.location.href = document.location.href;
       }	else {
@@ -194,7 +194,35 @@ function rvw_update(){
 		console.log('수정 불가능한 상태입니다.');
 		return
 	}
-//	수정?
+	  param = JSON.stringify({
+	    "rvw_no": $('#rvw_no').val(),
+	    "rst_no": $('#rst_no').val(),
+	    "cont": $('#cont').val(),
+	    "score": $('#score').val()
+	  });
+	  
+	  
+	  
+    $.ajax("/yummy/rvw/update" , {
+        method: "POST",
+        data: param,
+        contentType : "application/json; charset=UTF-8",
+        dataType: "json",
+        success: function ( data ) {
+          console.log( data );
+          if( data === "success" ) {
+        	  alert( '게시번호' + $('#rvw_no').val() + '를 수정하였습니다.' );
+        	  window.location.href = document.location.href;
+          }	else {
+        	  alert( '게시번호' + $('#rvw_no').val() + '의 수정을 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
+          }
+        },
+        error: function(xhr, status, msg) {
+          console.debug('xhr:\n ' + xhr);
+          console.debug('status:\n ' + status);
+          console.debug('msg:\n ' + msg);
+        }
+      });
 }
 
 
