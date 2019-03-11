@@ -18,6 +18,20 @@ android {
     }
 }
 
+// Project Level Gradle.
+/**
+ * 사용 하는 의존성들에 대한 버전 관리를 조금 더 편리하게 하기 위해,
+ * Project Level의 Gradle에 ext를 추가.
+ */
+ext {
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.9.0'
+}
+
+// App Level Gradle.
+/**
+ * 실제 Lib의 의존성 주입을 위해 App Level의 Gradle에 Lib추가.
+ */
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -25,4 +39,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //  REST API와 통신을 도와주는 LIB
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    //  Java Object를 JSON으로 바꿔주는 컨버터
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    //  Header정보에 Token정보를 설정해 주거나, 로깅과 관련된 추가적인 Lib를 프로젝트에 추가 및 설정하여 사용.
+    implementation "com.squareup.okhttp3:okhttp:3.9.0"
+
+
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+
 }

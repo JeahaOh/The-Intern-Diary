@@ -15,6 +15,10 @@ RVW update 구현
 ### 14:35
 안드로이드 새로운 예제
 
+### 15:50
+- https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html
+따라 하는 중
+
 - - -
 ## 03/10 일요일
 - 전체 평점에 상대적인 평가 점수
