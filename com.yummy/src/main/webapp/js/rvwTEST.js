@@ -79,3 +79,35 @@ function callbackInsert( cycle ) {
     }, 250);
   }
 }
+
+function fn_insert_review(){
+  var param = JSON.stringify({
+    "hpt_id" : 10,
+    "hpt_rate" : '10',
+    "rv_title" : 'ho',
+    "rv_content" : 'asdf1020',
+    "pet_type" : 'asdf1020',
+    "visit_date" : '10.10',
+    "visit_is_new" : 1
+  });
+
+ console.log( param );
+
+   $.ajax({
+     url : '/yummy/rvw/insertReview.do',
+     method : 'POST',
+     dataType : 'json',
+     contentType : 'application/json; charset=UTF-8',
+     data : param,
+     success : function( data ) {
+        console.log('data'+data);
+     },
+     error : function(xhr, status, msg) {
+       console.debug('xhr:\n ' + xhr);
+       console.debug('status:\n ' + status);
+       console.debug('msg:\n ' + msg);
+     }
+   }); 
+    
+      
+}

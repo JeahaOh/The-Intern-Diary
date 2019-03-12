@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+import egovframework.dflt.ReviewVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rvw.service.RvwService;
 import egovframework.rvw.vo.Rvw;
@@ -144,4 +145,21 @@ public class RvwController {
     }
     return "fail";
   }
+  
+  
+  /**
+   * 유진씨꺼 예제
+   * @param vo
+   * @return
+   * @throws Exception
+   */
+  @ResponseBody
+  @RequestMapping(value="/insertReview.do", method=RequestMethod.POST)
+  public String insert (@RequestBody ReviewVO vo ) throws Exception{
+  System.out.println("call");
+  System.out.println(vo.toString());
+     
+     return "successs";
+  }
+  
 }
