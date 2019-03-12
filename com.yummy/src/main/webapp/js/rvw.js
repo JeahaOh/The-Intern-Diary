@@ -14,7 +14,9 @@ var showAlert = setTimeout(function() {
 }, 10000);
 
 */
-
+function getRandomIntInclusive(min, max) {
+  return Math.round(Math.random() * (max - min + 1)) + min;
+}
 
 function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
 //  let rvw_no;
@@ -27,11 +29,12 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
 //  let score;
   let score = getRandomIntInclusive(1, 2);
   param = JSON.stringify({
-    "rst_no": rst_no,
-    "id": id,
-    "cont": cont,
-    "score": score
-  })
+    rst_no: rst_no,
+    id: id,
+    cont: cont,
+    score: score
+  });
+  console.log( param );
   
   setTimeout(function(){
     $.ajax("/yummy/rvw/save" , {
@@ -52,47 +55,13 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
 }
 
 
-function getRvwList(){
-  let rst_no = JSON.stringify($('#rst_no').val());
-
-  $.ajax("/yummy/rvw/getRvwList" , {
-    method: "POST",
-    data:{
-      "rst_no": $('#rst_no').val()
-    },
-    dataType: "json",
-    success: function ( data ) {
-      /*console.log( data );*/
-      if ( data === null || data.length < 0 ) {
-        return;
-      }
-      let html;
-      for ( i = 0; i < data.length; i++ ) {
-        html += '<tr onclick="rvw_manage(' + data[i].rvw_no + ')">';
-        html += '<td class="tbtd_caption rvw_no">' + data[i].rvw_no +'</td>';
-        html += '<td class="tbtd_caption rvw_id">' + data[i].id +'</td>';
-        html += '<td class="tbtd_caption rvw_score">' + data[i].score+'</td>';
-        html += '<td class="tbtd_caption vrw_cdt">'+ data[i].cdt +'</td>';
-        html += '</tr>';
-      }
-      $('#rvw').append(html);
-    },
-    error: function(xhr, status, msg) {
-      console.log('xhr:\n ' + xhr);
-      console.log('status:\n ' + status);
-      console.log('msg:\n ' + msg);
-    }
-  });
-}
-
 function getRvwInfo(){
   console.log('getRvwInfo');
-  let rst_no = JSON.stringify($('#rst_no').val());
 
   $.ajax("/yummy/rvw/getRvwInfo" , {
     method: "POST",
     data:{
-      "rst_no": $('#rst_no').val()
+      rst_no: $('#rst_no').val()
     },
     dataType: "json",
     success: function ( data ) {
@@ -124,10 +93,11 @@ function getRvwInfo(){
 }
 
 function getRvwDtl( rvw_no ) {
+	console.log('{ rvw_no: ' + rvw_no + ' }');
   $.ajax("/yummy/rvw/getRvwDtl" , {
     method: "POST",
     data:{
-      "rvw_no": rvw_no
+      rvw_no: rvw_no
     },
     dataType: "json",
     success: function ( data ) {
@@ -204,7 +174,7 @@ function rvw_update(){
 	    "score": $('#score').val()
 	  });
 	  
-	  
+	  console.log(param);
 	  
     $.ajax("/yummy/rvw/update" , {
         method: "POST",

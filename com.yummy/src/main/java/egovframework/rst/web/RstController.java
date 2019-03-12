@@ -169,17 +169,17 @@ public class RstController {
   }
   
   /**
-   * rst를 삭제하기 위한 POST URL
+//   * rst를 삭제하기 위한 POST URL
    * @param   rst_no  - 삭제 할 rst의 no
    * @return  JSON 객체 true / false
    * @throws Exception
    */
   @RequestMapping(value="/delete", method= RequestMethod.POST)
   public @ResponseBody String deleteRst( @RequestParam int rst_no ) throws Exception {
-    logger.info("/rst/delete {}", rst_no);
+    logger.info("\n\t/rst/delete {}", rst_no);
     if( rstService.delete( rst_no ) ) {
-      return "true";
+      return "success";
     }
-    return "false";
+    return "fail";
   }
 }

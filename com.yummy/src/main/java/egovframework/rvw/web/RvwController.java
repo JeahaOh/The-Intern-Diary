@@ -55,6 +55,22 @@ public class RvwController {
   }
   
   @ResponseBody
+  @RequestMapping(value = "/getRvwInfo", method = RequestMethod.POST)
+  public Map<String, Object> getRvwInfo( @RequestParam(value="rst_no") int rst_no ) throws Exception {
+    Map<String, Object> map = new HashMap<String, Object>();
+    
+    List<Rvw> list = rvwService.getRvwList(rst_no);
+    map.put("rvwList", list);
+    
+    List<Integer> rating = new ArrayList<>();
+//  rating에 들어 가야 할 것..?
+    
+    
+    logger.info("\n\t/rvw/getRvwList Return {}\tAND\t{} RVWs..", rating.toString(), list.size() );
+    return map;
+  }
+  
+  @ResponseBody
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String createRvw( @RequestBody Rvw rvw ) throws Exception {
     logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
@@ -62,31 +78,6 @@ public class RvwController {
       return "success";
     } 
     return "fail";
-  }
-  
-  
-  @ResponseBody
-  @RequestMapping(value = "/getRvwList", method = RequestMethod.POST)
-  public List<Rvw> getRvwList( @RequestParam(value="rst_no") int rst_no ) throws Exception {
-    System.out.println("call");
-    List<Rvw> list = rvwService.getRvwList(rst_no);
-    logger.info("\n\t/rvw/getRvwList Return {} RVWs..", list.size() );
-    return list;
-  }
-  
-  @ResponseBody
-  @RequestMapping(value = "/getRvwInfo", method = RequestMethod.POST)
-  public Map<String, Object> getRvwInfo( @RequestParam(value="rst_no") int rst_no ) throws Exception {
-    List<Rvw> list = rvwService.getRvwList(rst_no);
-    
-    Map<String, Object> map = new HashMap<String, Object>();
-    List<Integer> rating = new ArrayList<>();
-    
-    
-    map.put("rvwList", list);
-    
-    logger.info("\n\t/rvw/getRvwList Return {} RVWs..", list.size() );
-    return map;
   }
   
   @ResponseBody
@@ -98,21 +89,21 @@ public class RvwController {
   }
   
   @ResponseBody
-  @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public String delete ( @RequestParam(value = "rvw_no")  int rvw_no ) throws Exception {
-    logger.info("\n\t/rvw/delete receive --> {}", Integer.toString(rvw_no));
-    if( rvwService.delete(rvw_no)) {
+  @RequestMapping(value = "/update", method = RequestMethod.POST)
+  public String update ( @RequestBody Rvw rvw ) throws Exception {
+    logger.info("\n\t/rvw/update recieve --> {}", rvw.toString() );
+    
+    if( rvwService.update(rvw) ) {
       return "success";
     }
     return "fail";
   }
   
   @ResponseBody
-  @RequestMapping(value = "/update", method = RequestMethod.POST)
-  public String update ( @RequestBody Rvw rvw ) throws Exception {
-    logger.info("\n\t/rvw/update recieve --> {}", rvw.toString() );
-    
-    if( rvwService.update(rvw) ) {
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public String delete ( @RequestParam(value = "rvw_no")  int rvw_no ) throws Exception {
+    logger.info("\n\t/rvw/delete receive --> {}", Integer.toString(rvw_no));
+    if( rvwService.delete(rvw_no)) {
       return "success";
     }
     return "fail";

@@ -67,7 +67,7 @@ function removeRst() {
 
     $.post( "/yummy/rst/delete", rst_no ).done( function( data ) {
       console.log( data );
-      if (data === 'true' ) {
+      if (data === 'success' ) {
         window.location.href = '/yummy/rst/list';
       } else {
         alert( data );
@@ -185,7 +185,7 @@ function saveRst(){
 
   //  form의 data를 JSON 형태로 변환
   var form = $('#rstForm').serializeObject();
-  console.log( 'serializeObject\n' + form );
+  console.log( 'serializeObject\n' +JSON.stringify( form ));
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
   $.ajax("/yummy/rst/save" , {
     headers: {
