@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,9 +19,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList<AndroidVersion> data;
+    private List<AndroidVersion> data;
     private DataAdapter adapter;
-    private String url = "http://172.30.106.14:8888/yummy";
+    private String url = "http://192.168.1.33:8080";
+    private Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {    //  onCreate : 앱을 생성함.
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         //  res/layout/activity_main.xml 파일의 내용을 불러옴.
 
         initViews();
+        init();
+
     }
 
     private void initViews() {
@@ -40,16 +44,34 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
 
-    private void loadJSON(){
-        Retrofit retrofit = new Retrofit.Builder()
+    public void init() {
+        retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    private void loadJSON(){
+
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<JSONResponse> call = request.getJSON();
-        call.enqueue(new Callback<JSONResponse>() {
+        Call<List<AndroidVersion>> call = request.getJSON();
+        call.enqueue(new Callback<List<AndroidVersion>>() {
+                         @Override
+                         public void onResponse(Call<List<AndroidVersion>> call, Response<List<AndroidVersion>> response) {
+                             data = response.body();
+                             adapter = new DataAdapter(data);
+                             recyclerView.setAdapter(adapter);
+                         }
+
+                         @Override
+                         public void onFailure(Call<List<AndroidVersion>> call, Throwable t) {
+                             Log.d("Error",t.getMessage());
+                         }
+                     });
+
+        /*{
             @Override
-            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+            public void onResponse(Call<List<AndroidVersion>> call, Response<J> response) {
 
                 JSONResponse jsonResponse = response.body();
                 data = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
@@ -61,6 +83,6 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<JSONResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
-        });
+        });*/
     }
 }
