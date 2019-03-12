@@ -2,6 +2,27 @@
 let rst_formStatus;
 
 /**
+ * form의 input 값을 JSON형태로 바꾸는 function.
+ */
+$.fn.serializeObject = function() {
+  var result = {}
+  var extend = function(i, element) {
+    var node = result[element.name]
+    if ("undefined" !== typeof node && node !== null) {
+      if ($.isArray(node)) {
+        node.push(element.value)
+      } else {
+        result[element.name] = [node, element.value]
+      }
+    } else {
+      result[element.name] = element.value
+    }
+  }
+  $.each(this.serializeArray(), extend)
+  return result
+}
+
+/**
  * rstDetail.jsp가 로드 될 때,
  * 'modify' 모드 라면
  * form의 input들에 disabled 속성을 줌.
@@ -114,28 +135,6 @@ $('#upper_catag').change( function () {
 });
 
 /**
- * form의 input 값을 JSON형태로 바꾸는 function.
- */
-$.fn.serializeObject = function() {
-  var result = {}
-  var extend = function(i, element) {
-    var node = result[element.name]
-    if ("undefined" !== typeof node && node !== null) {
-      if ($.isArray(node)) {
-        node.push(element.value)
-      } else {
-        result[element.name] = [node, element.value]
-      }
-    } else {
-      result[element.name] = element.value
-    }
-  }
-  $.each(this.serializeArray(), extend)
-  return result
-}
-
-
-/**
  * 새로 만들거나 수정된 rst정보를 저장
  */
 function saveRst(){
@@ -229,7 +228,7 @@ function getRstDetail( rst_no ) {
   $.ajax("/yummy/rst/rstDetail" , {
       method: "POST",
       data: param,
-      entType : "application/json; charset=UTF-8",
+      contentType : "application/json; charset=UTF-8",
       dataType: "json",
       success: function ( data ) {
         console.log( data );

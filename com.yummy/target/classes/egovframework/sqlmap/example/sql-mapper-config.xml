@@ -15,5 +15,6 @@
     <typeAlias alias="rst" type="egovframework.rst.vo.Rst" />
     <typeAlias alias="catag" type="egovframework.catag.vo.Catag"/>
     <typeAlias alias="rvw" type="egovframework.rvw.vo.Rvw"/>
+    <typeAlias alias="rater" type="egovframework.rater.vo.Rater"/>
   </typeAliases>
 </configuration>

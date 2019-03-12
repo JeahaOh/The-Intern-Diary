@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.dflt.ReviewVO;
+import egovframework.rater.service.RaterService;
+import egovframework.rater.vo.Rater;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rvw.service.RvwService;
 import egovframework.rvw.vo.Rvw;
@@ -40,6 +42,9 @@ public class RvwController {
   
   @Resource(name = "rvwService")
   private RvwService rvwService;
+  
+  @Resource(name = "raterService")
+  private RaterService raterService;
   
   /** EgovPropertyService */
   @Resource(name = "propertiesService")
@@ -67,6 +72,7 @@ public class RvwController {
    * @return
    * @throws Exception
    */
+  @SuppressWarnings("null")
   @ResponseBody
   @RequestMapping(value = "/getRvwInfo", method = RequestMethod.POST)
   public Map<String, Object> getRvwInfo( @RequestParam(value="rst_no") int rst_no ) throws Exception {
@@ -75,11 +81,14 @@ public class RvwController {
     List<Rvw> list = rvwService.getRvwList(rst_no);
     map.put("rvwList", list);
     
-    List<Integer> rating = new ArrayList<>();
-//  rating에 들어 가야 할 것..?
+    Rater rater = raterService.getRate(rst_no);
+    if( rater == null) {
+      logger.debug("\n\t/rater/getRate return null RATE : {}\n", rater.toString());
+      rater = new Rater();
+    }
+    map.put("rate", rater);
     
-    
-    logger.info("\n\t/rvw/getRvwList Return {}\tAND\t{} RVWs..", rating.toString(), list.size() );
+    logger.info("\n\t/rvw/getRvwList Return {}\tAND\t{} RVWs..", rater.toString(), list.size() );
     return map;
   }
   

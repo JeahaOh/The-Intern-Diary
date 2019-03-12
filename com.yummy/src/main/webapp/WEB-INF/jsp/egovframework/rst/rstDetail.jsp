@@ -226,17 +226,27 @@
             </div>
           </div>
         </form>
+      </div>
         <c:if test="${mode eq 'Modify'}">
           <%-- <jsp:include page="<c:url value='/jsp/egovframework/rvw/rvw.jsp'/>"/> --%>
           <div class="inner_container">
-            <table id="eval">
+            <table id="rate">
               <colgroup>
                 <col width="100"/>
                 <col width="100"/>
                 <col width="100"/>
                 <col width="100"/>
               </colgroup>
-              
+              <tr>
+                <!-- 1, 2, 3, 4, 5, 후기 갯수, 평점 -->
+                <td id="score_best" class="rvw_dtl tbtd_content"></td>
+                <td id="score_good" class="rvw_dtl tbtd_content"></td>
+                <td id="score_soso" class="rvw_dtl tbtd_content"></td>
+                <td id="score_bad" class="rvw_dtl tbtd_content"></td>
+                <td id="score_worst" class="rvw_dtl tbtd_content"></td>
+                <td id="score_cnt" class="rvw_dtl tbtd_content"></td>
+                <td id="score_grade" class="rvw_dtl tbtd_content"></td>
+              </tr>
             </table>
           </div>
           <hr>
@@ -263,7 +273,7 @@
           </div>
         </c:if>
       </div>
-    </div>
+    
     <%-- Modal --%>
     <div id="modal" class="modal">
       <span class="close">&times;</span>

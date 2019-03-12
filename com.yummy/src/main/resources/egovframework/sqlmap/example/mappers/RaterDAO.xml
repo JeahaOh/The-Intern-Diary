@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+  "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="egovframework.rater.dao.RaterDAO">
+  <select id="getRate" parameterType="int" resultType="rater">
+    SELECT
+          SUM(score)      AS sum,
+          COUNT(score)    AS cnt,
+            (SELECT
+                COUNT(score)
+                FROM
+                rvw
+              WHERE
+                score = 1
+              AND
+                rst_no = #{rst_no}) AS worst,
+            (SELECT
+                COUNT(score)
+                FROM
+                rvw
+              WHERE
+                score = 2
+              AND
+                rst_no = #{rst_no}) AS bad,
+            (SELECT
+                COUNT(score)
+                FROM
+                rvw
+              WHERE
+                score = 3
+              AND
+                rst_no = #{rst_no}) AS soso,
+            (SELECT
+                COUNT(score)
+                FROM
+                rvw
+              WHERE
+                score = 4
+              AND
+                rst_no = #{rst_no}) AS good,
+            (SELECT
+                COUNT(score)
+                FROM
+                rvw
+              WHERE
+                score = 5
+              AND
+                rst_no = #{rst_no}) AS best
+        FROM rvw
+        WHERE
+            rst_no = #{rst_no}
+  </select>
+</mapper>
