@@ -30,30 +30,60 @@ public class RvwServiceImple implements RvwService {
   
   @Resource(name = "rvwDao")
   private RvwDAO rvwDao;
-
-  @Override
-  public Boolean save(Rvw rvw) throws Exception {
-    logger.info("\n/rvwService/receive {}", rvw.toString());
-    return rvwDao.save(rvw);
-  }
-
+  
+  /**
+   * rst_no에 대한 rvw List 반환
+   * @param rst_no
+   * @return
+   * @throws Exception
+   */
   @Override
   public List<Rvw> getRvwList(int rst_no) throws Exception {
     return rvwDao.getRvwList(rst_no);
   }
   
-  @Override
-  public Boolean delete(int rvw_no) throws Exception {
-    return rvwDao.delete(rvw_no);
-  }
-
+  /**
+   * rvw_no에 대한 rvw 반환
+   * @param rvw_no
+   * @return
+   * @throws Exception
+   */
   @Override
   public Rvw getRvwDtl(int rvw_no) throws Exception {
     return rvwDao.getRvwDtl(rvw_no);
   }
-
+  
+  /**
+   * rvw를 저장
+   * @param rvw
+   * @return
+   * @throws Exception
+   */
+  @Override
+  public Boolean save(Rvw rvw) throws Exception {
+    logger.info("\n/rvwService/receive {}", rvw.toString());
+    return rvwDao.save(rvw);
+  }
+  
+  /**
+   * rvw 수정
+   * @param rvw
+   * @return
+   * @throws Exception
+   */
   @Override
   public Boolean update(Rvw rvw) throws Exception {
     return rvwDao.update(rvw);
+  }
+  
+  /**
+   * rvw 삭제
+   * @param rvw_no
+   * @return
+   * @throws Exception
+   */
+  @Override
+  public Boolean delete(int rvw_no) throws Exception {
+    return rvwDao.delete(rvw_no);
   }
 }

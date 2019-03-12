@@ -1,5 +1,3 @@
-/*
-
 //  min (포함) 과 max (포함) 사이의 임의 정수를 반환하는 함수.
 function getRandomIntInclusive(min, max) {
   return Math.round(Math.random() * (max - min + 1)) + min;
@@ -7,17 +5,12 @@ function getRandomIntInclusive(min, max) {
 }
 
 //  setTimeout()은 지연시간을 발생시킨 후 특정 함수를 호출함.
-
+/*
 var showAlert = setTimeout(function() {
     clearInterval(getRandomNo);
     alert('Wow!!!');
 }, 10000);
-
 */
-
-function getRandomIntInclusive(min, max) {
-  return Math.round(Math.random() * (max - min + 1)) + min;
-}
 
 //  rvw 테이블에 AJAX로 id, cont 값을 입력 시키는 함수.
 function saveRvw( id, cont ){

@@ -1,9 +1,9 @@
 package egovframework.catag.vo;
 
 public class Catag {
-  int catag_no;
-  int upper_no;
-  String catag_nm;
+  int catag_no;     //  요리 분류 번호
+  int upper_no;     //  요리 분류 상위 번호
+  String catag_nm;  //  요리 분류 명
   
   public Catag() { super(); }
 

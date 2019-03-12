@@ -6,19 +6,19 @@ public class Rst  extends DefaultVO {
   
   private static final long serialVersionUID = 1L;
   
-  int rst_no;
-  String rst_name;
-  int star;
-  String loc;
-  String loc_dtl;
-  int upper_no;
-  int catag_no;
-  String catag_nm;
-  String tel;
-  String opn_tm;
-  String brck_tm;
-  String dnnr_tm;
-  String lo_tm;
+  int rst_no;         //  레스토랑 번호
+  String rst_name;    //  레스토랑 이름
+  int star;           //  미슐랭 별점
+  String loc;         //  지역
+  String loc_dtl;     //  상세 주소
+  int upper_no;       //  요리 대분류 코드
+  int catag_no;       //  요리 소분류 코드
+  String catag_nm;    //  요리 소분류 이름
+  String tel;         //  전화번호
+  String opn_tm;      //  오픈 시간
+  String brck_tm;     //  점심 쉬는 시간
+  String dnnr_tm;     //  저녁 장사 시작 시간
+  String lo_tm;       //  주문 마감 시간
   
   //String[] pht_nm;
   

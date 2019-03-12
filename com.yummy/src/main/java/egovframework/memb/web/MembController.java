@@ -37,6 +37,53 @@ public class MembController {
 
   @Resource(name = "patternTest")
   private PatternTest patternTest;
+  
+  /**
+   * id값이 있는지 확인 한다.
+   * 
+   * @param id  - 확인 할 id 값
+   * @return id의 존재 여부
+   * @throws Exception
+   */
+  @RequestMapping(value="/idCheck", method= RequestMethod.POST)
+  public @ResponseBody String idCheck(@RequestParam String id) throws Exception {
+    logger.info(id);
+    
+    if(id != null && id != ""){
+      if( patternTest.idTest(id) ) {
+        return membService.idCheck(id);
+      }
+    }
+    return "false";
+  }
+  
+  /**
+   * 회원 가입을 한다.
+   * 예외 처리를 다시 해야함.
+   * 
+   * @param id  - 회원 가입 할 id
+   * @param pwd - 회원 가입 할 pwd
+   * @param nick- 회원 가입 할 nick
+   * @return 회원 가입 결과
+   * @throws Exception
+   */
+  @RequestMapping(value="/signUp", method= RequestMethod.POST)
+  public @ResponseBody String signUp(
+      @RequestParam String id,
+      @RequestParam String pwd,
+      @RequestParam String nick)
+          throws Exception {
+    logger.info("\n\t/memb/signUp {}", id);
+    
+    if( patternTest.pwdTest(id, pwd) ) {
+      return "signUp/error";
+    }
+    if( membService.signUp(id, pwd, nick) ) {
+      return "success";
+    } else {
+      return "signUp/fail";
+    }
+  }
 
   /**
    * 관리자 로그인을 한다.
@@ -92,54 +139,6 @@ public class MembController {
     logger.info("\n\t/memb/membLogin return -> {}", user.toString());
     return user;
   }
-
-  /**
-   * id값이 있는지 확인 한다.
-   * 
-   * @param id  - 확인 할 id 값
-   * @return id의 존재 여부
-   * @throws Exception
-   */
-  @RequestMapping(value="/idCheck", method= RequestMethod.POST)
-  public @ResponseBody String idCheck(@RequestParam String id) throws Exception {
-    logger.info(id);
-
-    if(id != null && id != ""){
-      if( patternTest.idTest(id) ) {
-        return membService.idCheck(id);
-      }
-    }
-
-    return "false";
-  }
-
-  /**
-   * 회원 가입을 한다.
-   * 예외 처리를 다시 해야함.
-   * 
-   * @param id  - 회원 가입 할 id
-   * @param pwd - 회원 가입 할 pwd
-   * @param nick- 회원 가입 할 nick
-   * @return 회원 가입 결과
-   * @throws Exception
-   */
-  @RequestMapping(value="/signUp", method= RequestMethod.POST)
-  public @ResponseBody String signUp(
-      @RequestParam String id,
-      @RequestParam String pwd,
-      @RequestParam String nick)
-          throws Exception {
-    logger.info("\n\t/memb/signUp {}", id);
-
-    if( patternTest.pwdTest(id, pwd) ) {
-      return "signUp/error";
-    }
-    if( membService.signUp(id, pwd, nick) ) {
-      return "success";
-    } else {
-      return "signUp/fail";
-    }
-  }
   
   /**
    * 회원 탈퇴를 기능.
@@ -151,7 +150,10 @@ public class MembController {
   public void signOut ( @RequestParam String id, HttpSession session) throws Exception {
     logger.info(id, session);
     membService.signOut(id);
+    Memb m = (Memb)session.getAttribute("loginUser");
     session.removeAttribute("loginUser");
-    System.out.println(id + "\nSIGN OUT!!");
+    logger.info("\n\t/memb/signOut Recieve {}", id);
+    
+    logger.info("\n\t/memb/signOut session Validate {}", m.toString());
   }
 }

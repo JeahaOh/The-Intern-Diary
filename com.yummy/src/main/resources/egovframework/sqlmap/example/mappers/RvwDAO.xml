@@ -4,19 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="egovframework.rvw.dao.RvwDAO">
-  <!-- 
-  <select id="selectAll" resultType="rvw">
-    SELECT 
-      rvw_no,
-      rst_no,
-      id,
-      cont,
-      cdt,
-      score
+  
+  <!--  rst_no에 대한 rvw List 반환 -->
+  <select id="getRvwList" parameterType="int" resultType="rvw">
+    SELECT rvw_no, id, cont, cdt, score
     FROM rvw
-    WHERE 1
+    WHERE useyn = 'Y'
+    AND rst_no = #{rst_no}
   </select>
-   -->
+  
+  <!-- rvw_no에 대한 rvw 반환 -->
+  <select id="getRvwDtl" parameterType="int" resultType="rvw">
+    SELECT rvw_no, id, cont, cdt, score
+    FROM rvw
+    WHERE useyn = 'Y'
+    AND rvw_no = #{rvw_no}
+  </select>
+  
+  <!-- rvw를 저장 -->
   <insert id="save" parameterType="rvw" >
     INSERT INTO rvw
       (rst_no, id, cont, cdt, score, useyn)
@@ -30,27 +35,7 @@
       )
   </insert>
   
-  <select id="getRvwList" parameterType="int" resultType="rvw">
-    SELECT rvw_no, id, cont, cdt, score
-    FROM rvw
-    WHERE useyn = 'Y'
-    AND rst_no = #{rst_no}
-  </select>
-  
-  <select id="getRvwDtl" parameterType="int" resultType="rvw">
-    SELECT rvw_no, id, cont, cdt, score
-    FROM rvw
-    WHERE useyn = 'Y'
-    AND rvw_no = #{rvw_no}
-  </select>
-  
-  <delete id="delete" parameterType="int">
-    DELETE
-    FROM
-      rvw
-    WHERE rvw_no = #{rvw_no}
-  </delete>
-  
+  <!-- rvw 수정 -->
   <update id="update" parameterType="rvw">
     UPDATE rvw
     SET
@@ -62,16 +47,12 @@
       rvw_no = #{rvw_no}
   </update>
   
-  
-  
-  <!-- 
-    SELECT COUNT(score)
-    FROM rvw
-    WHERE
-      rst_no = 156
-    AND
-      score = 1
-   -->
-  
+  <!-- rvw 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE
+    FROM
+      rvw
+    WHERE rvw_no = #{rvw_no}
+  </delete>
 
 </mapper>

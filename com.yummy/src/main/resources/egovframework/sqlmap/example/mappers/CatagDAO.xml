@@ -5,6 +5,7 @@
   
 <mapper namespace="egovframework.catag.dao.CatagDAO">
   
+  <!-- 모든 catag List를 반환 -->
   <select id="getList" resultType="catag">
     SELECT
       catag_no,
@@ -15,6 +16,7 @@
     ORDER BY catag_no ASC
   </select>
   
+  <!-- param 값의 하위 catag list를 반환 -->
   <select id="getRstCatagList" parameterType="int" resultType="catag">
     SELECT
       catag_no,

@@ -22,26 +22,6 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface MembDAO {
   
   /**
-   * 관리자 로그인을 한다.
-   * 
-   * @param id  - memb의 ID
-   * @param pwd - memb의 PWD
-   * @return 로그인한 memb
-   * @throws Exception
-   */
-  Memb adminLogin( @Param("id") String id, @Param("pwd") String pwd ) throws Exception;
-  
-  /**
-   * 일반 회원 로그인을 한다.
-   * 
-   * @param id  - memb의 ID
-   * @param pwd - memb의 PWD
-   * @return 로그인한 memb
-   * @throws Exception
-   */
-  Memb login( @Param("id") String id, @Param("pwd")String pwd ) throws Exception;
-  
-  /**
    * id값이 있는지 확인 한다.
    * 
    * @param id  - 확인 할 id 값
@@ -60,8 +40,28 @@ public interface MembDAO {
    * @throws Exception
    */
   Boolean signUp(
-     @Param("id") String id, @Param("pwd") String pwd, @Param("nick") String nick
-     ) throws Exception;
+      @Param("id") String id, @Param("pwd") String pwd, @Param("nick") String nick
+      ) throws Exception;
+  
+  /**
+   * 관리자 로그인을 한다.
+   * 
+   * @param id  - memb의 ID
+   * @param pwd - memb의 PWD
+   * @return 로그인한 memb
+   * @throws Exception
+   */
+  Memb adminLogin( @Param("id") String id, @Param("pwd") String pwd ) throws Exception;
+  
+  /**
+   * 일반 회원 로그인을 한다.
+   * 
+   * @param id  - memb의 ID
+   * @param pwd - memb의 PWD
+   * @return 로그인한 memb
+   * @throws Exception
+   */
+  Memb login( @Param("id") String id, @Param("pwd")String pwd ) throws Exception;
   
   /**
    * 일반 회원의 탈퇴 기능

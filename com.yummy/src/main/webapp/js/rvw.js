@@ -13,7 +13,7 @@ var showAlert = setTimeout(function() {
     alert('Wow!!!');
 }, 10000);
 
-*/
+ */
 function getRandomIntInclusive(min, max) {
   return Math.round(Math.random() * (max - min + 1)) + min;
 }
@@ -35,7 +35,7 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
     score: score
   });
   console.log( param );
-  
+
   setTimeout(function(){
     $.ajax("/yummy/rvw/save" , {
       method: "POST",
@@ -54,7 +54,7 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
   }, 500);
 }
 
-
+//  rst에 대한 rvw list를 가져옴
 function getRvwInfo(){
   console.log('getRvwInfo');
 
@@ -92,8 +92,9 @@ function getRvwInfo(){
   });
 }
 
+//  rvw의 detail 정보 가져오기
 function getRvwDtl( rvw_no ) {
-	console.log('{ rvw_no: ' + rvw_no + ' }');
+  console.log('{ rvw_no: ' + rvw_no + ' }');
   $.ajax("/yummy/rvw/getRvwDtl" , {
     method: "POST",
     data:{
@@ -116,12 +117,13 @@ function getRvwDtl( rvw_no ) {
   });
 }
 
+//  rvw를 삭제하는 function
 function deleteRvw(  ) {
-	if( $('#cont').attr('readOnly') ){
-		console.log('수정 불가능한 상태입니다.');
-		return
-	}
-	
+  if( $('#cont').attr('readOnly') ){
+    console.log('수정 불가능한 상태입니다.');
+    return
+  }
+
   $.ajax("/yummy/rvw/delete" , {
     method: "POST",
     data:{
@@ -129,12 +131,12 @@ function deleteRvw(  ) {
     },
     dataType: "json",
     success: function ( data ) {
-    	console.log(data);
+      console.log(data);
       if( data === "success" ) {
-    	  alert( '게시번호' + $('#rvw_no').val() + '를 삭제하였습니다.' );
-    	  window.location.href = document.location.href;
-      }	else {
-    	  alert( '게시번호' + $('#rvw_no').val() + '의 삭제를 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
+        alert( '게시번호' + $('#rvw_no').val() + '를 삭제하였습니다.' );
+        window.location.href = document.location.href;
+      }  else {
+        alert( '게시번호' + $('#rvw_no').val() + '의 삭제를 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
       }
     },
     error: function(xhr, status, msg) {
@@ -145,9 +147,8 @@ function deleteRvw(  ) {
   });
 }
 
-
-
-function rvw_manage(rvw_no) {
+//  table의 rvw 클릭시 rvw의 detail을 가져옴.
+function rvw_manage( rvw_no ) {
   getRvwDtl( rvw_no );
   openModal();
 }
@@ -156,49 +157,50 @@ function rvw_manage(rvw_no) {
 //rvw 수정 클릭 시
 function rvw_edit(){
   if( $('#cont').attr('readOnly') ){
-  $('#cont').removeAttr('readOnly');
+    $('#cont').removeAttr('readOnly');
   }  else {
     $('#cont').attr('readOnly', 'readonly');
   }
 }
 
+//  rvw 수정을 위한 function
 function rvw_update(){
-	if( $('#cont').attr('readOnly') ){
-		console.log('수정 불가능한 상태입니다.');
-		return
-	}
-	  param = JSON.stringify({
-	    "rvw_no": $('#rvw_no').val(),
-	    "rst_no": $('#rst_no').val(),
-	    "cont": $('#cont').val(),
-	    "score": $('#score').val()
-	  });
-	  
-	  console.log(param);
-	  
-    $.ajax("/yummy/rvw/update" , {
-        method: "POST",
-        data: param,
-        contentType : "application/json; charset=UTF-8",
-        dataType: "json",
-        success: function ( data ) {
-          console.log( data );
-          if( data === "success" ) {
-        	  alert( '게시번호' + $('#rvw_no').val() + '를 수정하였습니다.' );
-        	  window.location.href = document.location.href;
-          }	else {
-        	  alert( '게시번호' + $('#rvw_no').val() + '의 수정을 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
-          }
-        },
-        error: function(xhr, status, msg) {
-          console.debug('xhr:\n ' + xhr);
-          console.debug('status:\n ' + status);
-          console.debug('msg:\n ' + msg);
-        }
-      });
+  if( $('#cont').attr('readOnly') ){
+    console.log('수정 불가능한 상태입니다.');
+    return
+  }
+  param = JSON.stringify({
+    "rvw_no": $('#rvw_no').val(),
+    "rst_no": $('#rst_no').val(),
+    "cont": $('#cont').val(),
+    "score": $('#score').val()
+  });
+
+  console.log(param);
+
+  $.ajax("/yummy/rvw/update" , {
+    method: "POST",
+    data: param,
+    contentType : "application/json; charset=UTF-8",
+    dataType: "json",
+    success: function ( data ) {
+      console.log( data );
+      if( data === "success" ) {
+        alert( '게시번호' + $('#rvw_no').val() + '를 수정하였습니다.' );
+        window.location.href = document.location.href;
+      }  else {
+        alert( '게시번호' + $('#rvw_no').val() + '의 수정을 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
+      }
+    },
+    error: function(xhr, status, msg) {
+      console.debug('xhr:\n ' + xhr);
+      console.debug('status:\n ' + status);
+      console.debug('msg:\n ' + msg);
+    }
+  });
 }
 
-
+//  화면이 로드되고, mode가 modify일 경우 rvw info를 가져오도록 함.
 $(document).ready(function() {
   if( $('#mode').hasClass('modify') ) {
     getRvwInfo();

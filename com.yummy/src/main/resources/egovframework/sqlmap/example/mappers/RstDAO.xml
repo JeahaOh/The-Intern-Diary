@@ -17,6 +17,7 @@
   </resultMap>
     
    -->
+   <!-- rst의 list를 반환 -->
   <!-- <select id="getList" parameterType="serachVO" resultType="egovMap"> -->
   <select id="getList" resultType="rst">
     SELECT
@@ -47,6 +48,7 @@
       -->
   </select>
   
+  <!-- rst의 상세정보 반환 -->
   <select id="getDetail" parameterType="int" resultType="rst">
     SELECT
       rst.rst_no,
@@ -68,12 +70,14 @@
     WHERE rst.rst_no = #{id}
   </select>
   
+  <!-- rst_no의 마지막 번호 반환 -->
   <select id="getLastRstNo" resultType="int">
     SELECT
       MAX(rst_no)
     FROM rst
   </select>
   
+  <!-- rst를 저장, 수정 -->
   <insert id="save" parameterType="map" >
     INSERT INTO rst
       (rst_no, rst_name, star, catag_no, loc, loc_dtl, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) 
@@ -109,10 +113,12 @@
       </trim>
   </insert>
   
+  <!-- rst를 삭제 -->
   <delete id="delete" parameterType="int">
     DELETE FROM rst WHERE rst_no = #{rst_no}
   </delete>
   
+  <!-- rst의 총 갯수 반환  -->
   <select id="getTotCnt" parameterType="searchVO" resultType="int">
     SELECT COUNT(*) tstcnt
     FROM rst

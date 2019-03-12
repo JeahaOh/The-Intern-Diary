@@ -48,12 +48,24 @@ public class RvwController {
   @Resource(name = "beanValidator")
   protected DefaultBeanValidator beanValidator;
   
+  
+  /**
+   *  /rvw/test/ 화면으로 이동
+   * @return
+   * @throws Exception
+   */
   @RequestMapping("/test")
   public String test() throws Exception {
     System.out.println("rvwTest");
     return "rvwTest";
   }
   
+  /**
+   * rvwList와 rst의 rvw 정보들 json 전달
+   * @param rst_no  - target rst의 rst_no
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
   @RequestMapping(value = "/getRvwInfo", method = RequestMethod.POST)
   public Map<String, Object> getRvwInfo( @RequestParam(value="rst_no") int rst_no ) throws Exception {
@@ -70,6 +82,26 @@ public class RvwController {
     return map;
   }
   
+  /**
+   * rvw 상세 정보 JSON 전달
+   * @param rvw_no
+   * @return
+   * @throws Exception
+   */
+  @ResponseBody
+  @RequestMapping(value = "/getRvwDtl", method = RequestMethod.POST)
+  public Rvw getRvwDtl ( @RequestParam(value="rvw_no") int rvw_no ) throws Exception {
+    Rvw rvw = rvwService.getRvwDtl(rvw_no);
+    logger.info("\n\t/rvw/getRvwDtl Return {} RVW..", rvw.toString() );
+    return rvw;
+  }
+  
+  /**
+   * rvw 저장
+   * @param rvw
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String createRvw( @RequestBody Rvw rvw ) throws Exception {
@@ -80,14 +112,12 @@ public class RvwController {
     return "fail";
   }
   
-  @ResponseBody
-  @RequestMapping(value = "/getRvwDtl", method = RequestMethod.POST)
-  public Rvw getRvwDtl ( @RequestParam(value="rvw_no") int rvw_no ) throws Exception {
-    Rvw rvw = rvwService.getRvwDtl(rvw_no);
-    logger.info("\n\t/rvw/getRvwDtl Return {} RVW..", rvw.toString() );
-    return rvw;
-  }
-  
+  /**
+   * rvw 수정
+   * @param rvw
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
   @RequestMapping(value = "/update", method = RequestMethod.POST)
   public String update ( @RequestBody Rvw rvw ) throws Exception {
@@ -99,6 +129,12 @@ public class RvwController {
     return "fail";
   }
   
+  /**
+   * rvw 삭제
+   * @param rvw_no
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
   public String delete ( @RequestParam(value = "rvw_no")  int rvw_no ) throws Exception {

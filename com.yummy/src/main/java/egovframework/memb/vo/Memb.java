@@ -1,11 +1,11 @@
 package egovframework.memb.vo;
 
 public class Memb {
-  String id;
-  String pwd;
-  String nick;
-  Boolean adm;
-  Boolean useyn;
+  String id;      //  회원 아이디
+  String pwd;     //  회원 비밀번호
+  String nick;    //  회원 닉네임
+  Boolean adm;    //  관리자 여부
+  Boolean useyn;  //  계정 사용 여부
   
   public Memb() { }
   

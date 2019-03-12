@@ -40,7 +40,16 @@ public interface RstDAO {
   Rst getDetail(int id) throws Exception;
   
   /**
+   * rst_no의 마지막 값을 가져온다.
+   * 
+   * @return  rst_no
+   * @throws Exception
+   */
+  int getLastRstNo() throws Exception;
+  
+  /**
    * rst를 등록하기 위한 Service
+   * 
    * @param   rst - 등록할 rst 갹체 
    * @return  성공 여부
    * @throws  Exception
@@ -48,14 +57,8 @@ public interface RstDAO {
   Boolean save(Rst rst) throws Exception;
   
   /**
-   * rst_no의 마지막 값을 가져온다.
-   * @return  rst_no
-   * @throws Exception
-   */
-  int getLastRstNo() throws Exception;
-  
-  /**
    * rst를 삭제하기 위한 Service
+   * 
    * @param   rst_no  - 삭제 할 rst의 no
    * @return  성공 여부
    * @throws Exception
@@ -64,6 +67,7 @@ public interface RstDAO {
   
   /**
    * rst의 총 갯수를 조회한다.
+   * 
    * @param rst  - 조회할 정보가 담긴 VO
    * @return 글의 총 갯수
    */

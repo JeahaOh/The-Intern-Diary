@@ -6,13 +6,13 @@ public class Rvw extends DefaultVO {
   
   private static final long serialVersionUID = 1L;
   
-  int rvw_no;
-  int rst_no;
-  String id;
-  String cont;
-  String cdt;
-  int score;
-  char useyn;
+  int rvw_no;   //  리뷰 번호
+  int rst_no;   //  레스토랑 번호
+  String id;    //  게시자 아이디
+  String cont;  //  리뷰 내용
+  String cdt;   //  리뷰 생성일
+  int score;    //  리뷰 평점
+  char useyn;   //  사용 여부
   
   public Rvw() {  }
   public Rvw(int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn) {

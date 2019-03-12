@@ -2,8 +2,6 @@ package egovframework.rst.web;
 
 import java.util.List;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import javax.websocket.SessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -169,7 +167,7 @@ public class RstController {
   }
   
   /**
-//   * rst를 삭제하기 위한 POST URL
+   * rst를 삭제하기 위한 POST URL
    * @param   rst_no  - 삭제 할 rst의 no
    * @return  JSON 객체 true / false
    * @throws Exception

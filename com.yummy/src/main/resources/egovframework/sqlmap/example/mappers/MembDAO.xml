@@ -10,6 +10,25 @@
     <result property="useyn" column="useyn"/>
   </resultMap>
   
+  <!-- id 값이 있는지 확인함 -->
+  <select id="idCheck" parameterType="String" resultType="String">
+    SELECT
+      id
+    FROM
+      memb
+    WHERE
+      id = #{id}
+  </select> 
+  
+  <!-- 회원 등록을 함 -->
+  <insert id="signUp" parameterType="String">
+    INSERT INTO memb
+      ( id, adm, nick, pwd, useyn)
+    VALUES
+      ( #{id}, 'N', #{nick}, password(#{pwd}), 'Y')
+  </insert>
+  
+  <!-- 관리자일 경우 로그인을 함 -->
   <select id="adminLogin" parameterType="String" resultMap="memb">
     SELECT
       id, nick, adm, useyn
@@ -25,6 +44,7 @@
       useyn = 'Y'
   </select>
   
+  <!-- 회원일 경우 로그인을 함 -->
   <select id="login" parameterType="String" resultMap="memb">
     SELECT
       id, nick, adm, useyn
@@ -40,22 +60,7 @@
       useyn = 'Y'
   </select>
   
-  <select id="idCheck" parameterType="String" resultType="String">
-    SELECT
-      id
-    FROM
-      memb
-    WHERE
-      id = #{id}
-  </select> 
-  
-  <insert id="signUp" parameterType="String">
-    INSERT INTO memb
-      ( id, adm, nick, pwd, useyn)
-    VALUES
-      ( #{id}, 'N', #{nick}, password(#{pwd}), 'Y')
-  </insert>
-
+  <!-- 회원 탈퇴를 함 -->
   <update id="signOut" parameterType="String">
     UPDATE memb
     SET

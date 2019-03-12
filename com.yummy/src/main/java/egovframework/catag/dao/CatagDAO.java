@@ -25,6 +25,13 @@ public interface CatagDAO {
    * @throws Exception
    */
   List<Catag> getList() throws Exception;
+  
+  /**
+   * param의 하위 catag_list를 반환
+   * @param param
+   * @return
+   * @throws Exception
+   */
   List<Catag> getRstCatagList(int param) throws Exception;
   
 }
