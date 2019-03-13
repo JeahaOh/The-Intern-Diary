@@ -17,14 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] items = {"망고", "토마토", "오랜지"};
+        String[] items = {"망고", "토마토", "포도"};
 
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        ListAdapter adapter = new ImageAdapter(this, items);
         ListView listView = (ListView) findViewById(R.id.listView);
 
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(
+
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
