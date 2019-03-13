@@ -22,6 +22,10 @@ ghldmlwjr...
 - 괜찮아 보이는 블로그
     - https://recipes4dev.tistory.com/category/ANDROID%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
 
+### 22:45
+Layout 까지 수강
+
+
 - - -
 ## 03/12
 ### 10:30
