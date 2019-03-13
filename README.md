@@ -25,6 +25,8 @@ ghldmlwjr...
 ### 22:45
 Layout 까지 수강
 
+### 23:50
+회원 가입 프로젝트 예제 init
 
 - - -
 ## 03/12
@@ -253,7 +255,7 @@ rst 삭제 기능.
 jsp 코드 정리.
 
 ### 15:30
-Feedback : 통햣계나 해라.
+Feedback : 통계나 해라.
 
 ### 15:50
 RVW Package 생성
@@ -277,7 +279,11 @@ beans:beans로 잡으면 잡히지만, 다른 properties는 잡히지 않음..
 - ***https://okky.kr/article/219699***
 !!!!!!!!!!!!!!!!!!!
 ```
-web.xml에서 url-pattern에 /를 넣은 이유가 있나요? 특별한 이유가 없으면 /를 넣은 url 패턴을 빼세요../ 때문에 css나 js도 DispatcherServlet에서 처리할려고 그런겁니다..만약 /를 넣어야 할 이유가 있으시다면 web.xml에 css나 js는 Tomcat의 기본 서블릿에서 처리하도록 다음과 같이 하세요..
+web.xml에서 url-pattern에 /를 넣은 이유가 있나요?
+특별한 이유가 없으면 /를 넣은 url 패턴을 빼세요..
+/ 때문에 css나 js도 DispatcherServlet에서 처리할려고 그런겁니다..
+만약 /를 넣어야 할 이유가 있으시다면 web.xml에
+css나 js는 Tomcat의 기본 서블릿에서 처리하도록 다음과 같이 하세요..
 
 <servlet-mapping>
     <servlet-name>default</servlet-name>
