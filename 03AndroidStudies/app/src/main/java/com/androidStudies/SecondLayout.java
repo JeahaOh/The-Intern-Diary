@@ -8,15 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FirstLayout extends Fragment {
+public class SecondLayout extends Fragment {
 
     View v;
 
-    //  ctrl + o
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.first_layout, container, false);
+        v = inflater.inflate(R.layout.second_layout, container, false);
         return v;
     }
 }
