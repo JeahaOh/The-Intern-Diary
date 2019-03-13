@@ -16,6 +16,12 @@
 ### 16:30
 ghldmlwjr...
 
+### 17:35
+- 구글 안드로이드 가이드
+    - https://developer.android.com/guide?hl=ko
+- 괜찮아 보이는 블로그
+    - https://recipes4dev.tistory.com/category/ANDROID%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
+
 - - -
 ## 03/12
 ### 10:30
