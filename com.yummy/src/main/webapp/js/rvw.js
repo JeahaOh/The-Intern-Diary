@@ -98,6 +98,7 @@ function getRvwInfo(){
         $('#score_bad').html(data.rate.bad);
         $('#score_worst').html(data.rate.worst);
         $('#score_cnt').text(data.rate.cnt);
+        $('#score_avg').text(data.rate.avg);
         $('#score_grade').text(data.rate.grade);
         console.log('score');
       }

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%-- 
 <div id="modal" class="modal">
   <span class="close">&times;</span>
-  <%-- ModalContent --%>
+  ModalContent
   <div class="modal_content">
     <h2><spring:message code="rvw.dtl"/></h2>
     <table>
@@ -58,3 +58,4 @@
     </table>
   </div>
 </div>
+ --%>

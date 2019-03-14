@@ -51,7 +51,7 @@ public class Rater {
       return grade;
     }
     //( 15 + A에 대한 총점 합계 ) / ( 5 + A에 대한 총 리뷰 수 )
-    this.grade = ( ( 15 ) + sum ) / (float) ( 5 + cnt );
+    this.grade = ( ( 5 * 3 ) + ( avg * cnt ) ) / (float) ( 5 + cnt );
     //  소수점 2째 자리까지 짜르기 
     int temp = (int) ( grade * 100 );
     this.grade = (float) (temp / 100.0);

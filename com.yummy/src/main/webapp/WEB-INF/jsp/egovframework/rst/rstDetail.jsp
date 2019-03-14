@@ -248,6 +248,7 @@
                   <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.bad"/></td>
                   <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.worst"/></td>
                   <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.cnt"/></td>
+                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.avg"/></td>
                   <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.grade"/></td>
                 </tr>
               </thead>
@@ -260,6 +261,7 @@
                   <td id="score_bad" class="rvw_dtl tbtd_content"></td>
                   <td id="score_worst" class="rvw_dtl tbtd_content"></td>
                   <td id="score_cnt" class="rvw_dtl tbtd_content"></td>
+                  <td id="score_avg" class="rvw_dtl tbtd_content"></td>
                   <td id="score_grade" class="rvw_dtl tbtd_content"></td>
                 </tr>
               </tbody>
