@@ -102,7 +102,7 @@ function getRvwInfo(){
         console.log('score');
       }
       
-      if ( data.rvwList === null || Object.keys( data.rvwList ).length <= 2 ) {
+      if ( data.rvwList === null || Object.keys( data.rvwList ).length < 1 ) {
         console.log('data.rvwList == null or <= 1');
         $('#rvwTable').hide();
         return;

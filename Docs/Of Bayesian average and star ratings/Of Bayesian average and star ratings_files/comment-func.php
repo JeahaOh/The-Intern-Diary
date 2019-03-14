@@ -1,0 +1,1 @@
+IDC.load_js( 'https://r-login.wordpress.com/remote-login.php?action=script_redirect&url_hash=b120282351c0231fea2774ed8e9cfd51&id=intensedebate&url=https%3A%2F%2Fwww.intensedebate.com%2Fidc%2Fjs%2Fcomment-func.php%3Fblogpostid%3D159682695%26token%3DZbu5Y87mYftueA6XbwULA0lsDWBJCvRR%26return%3Dtrue' );
