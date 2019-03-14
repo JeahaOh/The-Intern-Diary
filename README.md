@@ -146,7 +146,6 @@ RVW update 구현
 ## 03/10 일요일
 - 전체 평점에 상대적인 평가 점수
 - 전체 평가 인원에 상대적인 평가 인원 수
-
 - 전체 식당에 평가자 수  
 - 평가 대상인 식당의 수  
 ```
@@ -569,11 +568,6 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
   at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331) ~[spring-beans-4.2.4.RELEASE.jar:4.2.4.RELEASE]
   ... 22 more
 ```
-DAO와 ServiceImple 간의 연결 에러.  
-DAO에 @Mapper("membDao") annotation을 붙여주고,
-ServiceImple에 @Resource(name="membDao") annotation을 붙여주고,
-sql-mapper-config.xml에 <typeAlias alias="memb" type="egovframework.memb.vo.Memb" /> 로 타입을 정의 해 줌.
-
 
 ### 13:30
 DAO와 ServiceImple 간의 연결 에러.  

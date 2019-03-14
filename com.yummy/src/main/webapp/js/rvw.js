@@ -237,41 +237,6 @@ function rvw_update(){
   });
 }
 
-function getRate(){
-  $.ajax("/yummy/rater/getRate" , {
-    method: "POST",
-    data: {
-      rst_no : $('#rst_no').val()
-    },
-    dataType: "json",
-    success: function ( data ) {
-      console.log( data );
-      /*console.log( Object.keys( data ).length );
-      if ( data === null || Object.keys( data.rvwList ).length <= 2 ) {
-        console.log('data == null or <= 1');
-        $('#rvwTable').hide();
-        return;
-      }
-      let html;
-      for ( i = 0; i < data.rvwList.length; i++ ) {
-        html += '<tr class="rvw" onclick="rvw_manage(' + data.rvwList[i].rvw_no + ')">';
-        html += '<td class="tbtd_content  rvw_no">' + data.rvwList[i].rvw_no +'</td>';
-        html += '<td class="tbtd_content  rvw_id">' + data.rvwList[i].id +'</td>';
-        html += '<td class="tbtd_content  rvw_score">' + data.rvwList[i].score+'</td>';
-        html += '<td class="tbtd_content  vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
-        html += '</tr>';
-      }
-      console.log('append');
-      $('#rvw').append(html);*/
-    },
-    error: function(xhr, status, msg) {
-      console.log('xhr:\n ' + xhr);
-      console.log('status:\n ' + status);
-      console.log('msg:\n ' + msg);
-    }
-  });
-}
-
 //  화면이 로드되고, mode가 modify일 경우 rvw info를 가져오도록 함.
 $(document).ready(function() {
   if( $('#mode').hasClass('modify') ) {
