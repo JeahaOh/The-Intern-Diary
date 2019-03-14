@@ -4,6 +4,7 @@ public class Rater {
   //  해당 식당에 대한 리뷰의 수와 평점의 합
   int cnt;
   int sum;
+  float avg;
   
   float grade;
   
@@ -16,7 +17,7 @@ public class Rater {
   
   public Rater( ) {  }
 
-  public Rater(int cnt, int sum, float grade, int best, int good, int soso, int bad, int worst) {
+  public Rater(int cnt, int sum, float avg, float grade, int best, int good, int soso, int bad, int worst) {
     super();
     this.cnt = cnt;
     this.sum = sum;
@@ -45,8 +46,12 @@ public class Rater {
   }
 
   public float getGrade() {
+    if ( cnt == 0 ) {
+      grade = (float) 0.00;
+      return grade;
+    }
     //( 15 + A에 대한 총점 합계 ) / ( 5 + A에 대한 총 리뷰 수 )
-    this.grade = ( 15 + getSum() ) / (float) ( 5 + getCnt() );
+    this.grade = ( ( 5 * 3 ) + sum ) / (float) ( 5 + cnt );
     //  소수점 2째 자리까지 짜르기 
     int temp = (int) ( grade * 100 );
     this.grade = (float) (temp / 100.0);
@@ -94,10 +99,18 @@ public class Rater {
     this.worst = worst;
   }
 
+  public float getAvg() {
+    return avg;
+  }
+  
+  public void setAvg(float avg) {
+    this.avg = avg;
+  }
+  
   @Override
   public String toString() {
-    return "\n Rater [cnt=" + cnt + ", sum=" + sum + ", grade=" + grade + ", best=" + best + ", good="
-        + good + ", soso=" + soso + ", bad=" + bad + ", worst=" + worst + "]";
+    return "\n Rater [cnt=" + cnt + ", sum=" + sum + ", avg=" + avg + ", grade=" + grade + ", best="
+        + best + ", good=" + good + ", soso=" + soso + ", bad=" + bad + ", worst=" + worst + "]";
   }
   
   

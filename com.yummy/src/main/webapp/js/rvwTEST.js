@@ -15,16 +15,15 @@ var showAlert = setTimeout(function() {
 //  rvw 테이블에 AJAX로 id, cont 값을 입력 시키는 함수.
 function saveRvw( id, cont ){
   //  1 ~ 187사이의 난수를 발생 시켜서 rst_no값으로 준다.
-  let rst_no = getRandomIntInclusive(1, 187);
+  let rst_no = getRandomIntInclusive(1, 188);
   //  1 ~ 3 사이의 난수를 발생 시켜서 score값으로 준다.
-  let score = getRandomIntInclusive(1, 3);
+  let score = getRandomIntInclusive(4, 5);
   param = JSON.stringify({
     "rst_no": rst_no,
     "id": id,
     "cont": cont,
     "score": score
   })
-  console.log( param );
   
     $.ajax("/yummy/rvw/save" , {
       method: "POST",
@@ -63,13 +62,13 @@ function callbackInsert( cycle ) {
   if( cnt < cycle ){
     setTimeout(function(){
       cnt++;
-      let id = 'TestUser15-' + cnt;
-      let nick = 'TestUser15-' + cnt; 
+      let id = 'TestUser20-' + cnt;
+      let nick = 'TestUser20-' + cnt; 
       let pwd = 1111;
 
       signUp( id, pwd, nick );
 
-      for (let j = 0; j <= 75; j++) {
+      for (let j = 0; j <= 30; j++) {
         setTimeout( function() {
           let cont = '\n' + id + '의 Review Test - ' + j + '임';
           saveRvw( id, cont );
@@ -78,36 +77,4 @@ function callbackInsert( cycle ) {
       callbackInsert( cycle );
     }, 250);
   }
-}
-
-function fn_insert_review(){
-  var param = JSON.stringify({
-    "hpt_id" : 10,
-    "hpt_rate" : '10',
-    "rv_title" : 'ho',
-    "rv_content" : 'asdf1020',
-    "pet_type" : 'asdf1020',
-    "visit_date" : '10.10',
-    "visit_is_new" : 1
-  });
-
- console.log( param );
-
-   $.ajax({
-     url : '/yummy/rvw/insertReview.do',
-     method : 'POST',
-     dataType : 'json',
-     contentType : 'application/json; charset=UTF-8',
-     data : param,
-     success : function( data ) {
-        console.log('data'+data);
-     },
-     error : function(xhr, status, msg) {
-       console.debug('xhr:\n ' + xhr);
-       console.debug('status:\n ' + status);
-       console.debug('msg:\n ' + msg);
-     }
-   }); 
-    
-      
 }
