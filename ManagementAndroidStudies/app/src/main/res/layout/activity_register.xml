@@ -37,14 +37,6 @@
         android:hint="Name"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/ageText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="textPersonName" />
-
     <Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"

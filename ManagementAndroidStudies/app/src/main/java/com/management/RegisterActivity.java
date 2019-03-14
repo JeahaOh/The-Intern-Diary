@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,25 +23,31 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText idText = (EditText) findViewById(R.id.idText);
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final EditText nameText = (EditText) findViewById(R.id.nameText);
-        final EditText ageText = (EditText) findViewById(R.id.ageText);
+        final EditText idText = findViewById(R.id.idText);
+        final EditText passwordText = findViewById(R.id.passwordText);
+        final EditText nameText = findViewById(R.id.nameText);
 
-        Button registerButton = (Button) findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
+
+                Log.v(v.toString(), "\n\nRegister Button Clicked!");
+
                 String userId = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
                 String userName = nameText.getText().toString();
-                int userAge = Integer.parseInt(ageText.getText().toString());
+
+                Log.v(userId, "userId log");
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                    Log.v(response, " response log");
+
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
@@ -67,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(userId, userPassword, userName, userAge,responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(userId, userPassword, userName, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

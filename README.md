@@ -41,6 +41,55 @@ Spring 서버에서 데이터를 받으면 LOG로 프린트 하는 URL을 만들
 
 - `https://addio3305.tistory.com/43`
 
+### 20:00
+
+안스에서 예제 실행중인데 LogCat에서
+```
+2019-03-14 20:02:16.051 25088-25088/? I/com.management: Not late-enabling -Xcheck:jni (already on)
+2019-03-14 20:02:16.079 25088-25088/? W/com.management: Unexpected CPU variant for X86 using defaults: x86
+2019-03-14 20:02:16.255 25088-25088/? W/com.management: JIT profile information will not be recorded: profile file does not exits.
+2019-03-14 20:02:16.257 25088-25088/? I/chatty: uid=10091(com.management) identical 10 lines
+2019-03-14 20:02:16.257 25088-25088/? W/com.management: JIT profile information will not be recorded: profile file does not exits.
+2019-03-14 20:02:16.271 25088-25088/? I/InstantRun: starting instant run server: is main process
+2019-03-14 20:02:16.448 25088-25088/? W/com.management: Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (light greylist, reflection)
+2019-03-14 20:02:16.448 25088-25088/? W/com.management: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (light greylist, reflection)
+2019-03-14 20:02:16.533 25088-25088/? D/OpenGLRenderer: Skia GL Pipeline
+2019-03-14 20:02:16.598 25088-25109/? I/ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+2019-03-14 20:02:16.599 25088-25109/? I/ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
+2019-03-14 20:02:16.599 25088-25109/? I/OpenGLRenderer: Initialized EGL, version 1.4
+2019-03-14 20:02:16.599 25088-25109/? D/OpenGLRenderer: Swap behavior 1
+2019-03-14 20:02:16.599 25088-25109/? W/OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2019-03-14 20:02:16.599 25088-25109/? D/OpenGLRenderer: Swap behavior 0
+2019-03-14 20:02:16.631 25088-25109/? D/EGL_emulation: eglCreateContext: 0xec399dc0: maj 3 min 1 rcv 4
+2019-03-14 20:02:16.663 25088-25109/? D/EGL_emulation: eglMakeCurrent: 0xec399dc0: ver 3 1 (tinfo 0xf0d44df0)
+
+2019-03-14 20:02:16.669 25088-25109/? E/eglCodecCommon: glUtilsParamSize: unknow param 0x000082da
+2019-03-14 20:02:16.670 25088-25109/? E/eglCodecCommon: glUtilsParamSize: unknow param 0x000082da
+
+2019-03-14 20:02:16.752 25088-25109/? D/EGL_emulation: eglMakeCurrent: 0xec399dc0: ver 3 1 (tinfo 0xf0d44df0)
+2019-03-14 20:02:18.107 25088-25088/com.management W/ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@bbad3b6
+2019-03-14 20:02:18.261 25088-25109/com.management D/EGL_emulation: eglMakeCurrent: 0xec399dc0: ver 3 1 (tinfo 0xf0d44df0)
+
+2019-03-14 20:02:18.697 25088-25113/com.management D/NetworkSecurityConfig: No Network Security Config specified, using platform default
+
+2019-03-14 20:02:19.932 25088-25088/com.management I/AssistStructure: Flattened final assist data: 3260 bytes, containing 1 windows, 11 views
+2019-03-14 20:02:25.094 25088-25088/com.management I/AssistStructure: Flattened final assist data: 3300 bytes, containing 1 windows, 11 views
+2019-03-14 20:03:01.077 25088-25088/com.management I/AssistStructure: Flattened final assist data: 3316 bytes, containing 1 windows, 11 views
+```
+
+1. `2019-03-14 20:02:16.669 25088-25109/? E/eglCodecCommon: glUtilsParamSize: unknow param 0x000082da`
+2. `2019-03-14 20:02:18.697 25088-25113/com.management D/NetworkSecurityConfig: No Network Security Config specified, using platform default`
+두종류의 문제가 보임...  
+No Network는 AndroidManifest.xml 파일에
+
+```
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+해 줬는데도 뜨고 있음.. 일단 무시해 보도록 함.
+
+- `https://warmboi.tistory.com/9`
+
+
 - - -
 
 ## 03/13
