@@ -175,6 +175,7 @@ A에 대한 예상 별점 =
 필요한 sql문
 
 ```
+
 SELECT
   SUM(score)    AS sum,
   COUNT(score)  AS cnt
@@ -184,32 +185,42 @@ WHERE
 ```
 
 - - -
+
 ### 17:50
+
 안드로이드 재 시도, 실패.
 
 ### 22:30
+
 평점 계산식에 따른 계산과 Controller Service DAO, UI Design 없는 출력까지
 
 
 - - -
 ## 03/11 월요일
+
 ### 11:20
+
 RVW detail modal창, delete 구현.
 
 ### 13:00
+
 RVW update 구현
 
 ### 13:40
+
 일부 수정
 
 ### 14:35
+
 안드로이드 새로운 예제
 
 ### 15:50
-- https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html
+
+- `https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html`
 따라 하는 중
 
 ### 21:00
+
 아.. 안돼....
 
 ### 24:20 method정리 오류 수정

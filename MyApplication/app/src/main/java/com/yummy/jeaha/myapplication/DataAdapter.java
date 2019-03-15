@@ -1,7 +1,5 @@
 package com.yummy.jeaha.myapplication;
 
-import android.content.ClipData;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,31 +7,26 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private List<AndroidVersion> android;
+    private ArrayList<AndroidVersion> android;
 
-    public DataAdapter(List<AndroidVersion> android) {
+    public DataAdapter(ArrayList<AndroidVersion> android) {
         this.android = android;
     }
 
-    /*@Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
-        return new ViewHolder(view);
-    }*/
-
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.rst_name.setText(android.get(position).getHptName());
+    public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
+
+        viewHolder.tv_name.setText(android.get(i).getName());
+        viewHolder.tv_version.setText(android.get(i).getVer());
+        viewHolder.tv_api_level.setText(android.get(i).getApi());
     }
 
     @Override
@@ -42,12 +35,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView rst_name;
+        private TextView tv_name,tv_version,tv_api_level;
         public ViewHolder(View view) {
             super(view);
 
-            rst_name = view.findViewById(R.id.rst_name);
-
+            tv_name = (TextView)view.findViewById(R.id.tv_name);
+            tv_version = (TextView)view.findViewById(R.id.tv_version);
+            tv_api_level = (TextView)view.findViewById(R.id.tv_api_level);
 
         }
     }

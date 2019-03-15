@@ -3,11 +3,14 @@ package egovframework.home;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Class Name  : HomeController
@@ -44,5 +47,16 @@ public class HomeController {
     model.addAttribute("serverTime", formattedDate );
 
     return "home";
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/test", produces="application/json;charset=utf-8" )
+  public String home(
+      Locale locale
+      ) throws Exception {
+    logger.info("TEST! The client locale is {}.", locale);
+    String res = "response { response : \'HELL\' ";
+        res += "}";
+    return res;
   }
 }

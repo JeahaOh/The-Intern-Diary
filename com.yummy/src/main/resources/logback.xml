@@ -2,10 +2,10 @@
 <!DOCTYPE configuration>
 <configuration>
   <include resource="org/springframework/boot/logging/logback/base.xml" />
-  <logger name="jdbc.splonly" level="INFO" />
+  <logger name="jdbc.splonly" level="FATAL" />
   <logger name="jdbc.sqltiming" level="INFO" />
-  <logger name="jdbc.audit" level="INFO" />
-  <logger name="jdbc.resultset" level="ERROR" />
-  <logger name="jdbc.resultsettable" level="ERROR" />
-  <logger name="jdbc.connection" level="INFO" />
+  <logger name="jdbc.audit" level="FATAL" />
+  <logger name="jdbc.resultset" level="WARN" />
+  <logger name="jdbc.resultsettable" level="INFO" />
+  <logger name="jdbc.connection" level="FATAL" />
 </configuration>
