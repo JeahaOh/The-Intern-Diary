@@ -8,6 +8,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * List를 띄워주는 느낌
+ * 텍스트 뷰의 아이디에 객체 속성값을 하나하나 넣어주는 느낌
+ * 받아온 데이터 중, RecyclerView에 넣어 줄 것을 정의함.
+ */
+
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private ArrayList<AndroidVersion> android;
 
