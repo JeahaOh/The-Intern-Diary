@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.rst.dao.RstDAO">
+<!-- 
+  <resultMap type="rst" id="egovframework.rst.vo.Rst">
+    <id property="rst_no" column="rst_no"/>
+    <result property="rst_name" column="rst_name"/>
+    <result property="star" column="star"/>
+    <result property="loc" column="loc"/>
+    <result property="loc_dtl" column="loc_dtl"/>
+    <result property="catag_no" column="catag_no"/>
+    <result property="tel" column="tel"/>
+    <result property="opn_tm" column="opn_tm"/>
+    <result property="brck_tm" column="brck_tm"/>
+    <result property="dnnr_tm" column="dnnr_tm"/>
+    <result property="lo_tm" column="lo_tm"/>
+  </resultMap>
+    
+   -->
+   <!-- rst의 list를 반환 -->
+  <!-- <select id="getList" parameterType="serachVO" resultType="egovMap"> -->
+  <select id="getList" resultType="rst">
+    SELECT
+      rst.rst_no,
+      rst.rst_name,
+      rst.star,
+      rst.loc,
+      rst.catag_no,
+      catag.catag_nm
+    FROM rst rst
+    INNER JOIN rst_catag catag
+    ON rst.catag_no = catag.catag_no
+    WHERE 1
+    ORDER BY rst.rst_no ASC
+    <if test="searchKeyword != null and searchKeyword != ''">
+      <choose>
+        <when test="searchCondition == 0">
+          AND ID LIKE '%' || #{searchKeyword} || '%'
+        </when>
+        <when test="searchCondition == 1">
+          AND NAME LIKE '%' || #{searchKeyword} || '%'
+        </when>
+      </choose>
+    </if>
+<!--  
+   LIMIT
+      #{recordCountPerPage} OFFSET #{firstIndex}
+      -->
+  </select>
+  
+  <!-- rst의 상세정보 반환 -->
+  <select id="getDetail" parameterType="int" resultType="rst">
+    SELECT
+      rst.rst_no,
+      rst.rst_name,
+      rst.star,
+      rst.loc,
+      rst.loc_dtl,
+      rst.catag_no,
+      catag.catag_nm,
+      catag.upper_no,
+      rst.tel,
+      rst.opn_tm,
+      rst.brck_tm,
+      rst.dnnr_tm,
+      rst.lo_tm
+    FROM rst rst
+    INNER JOIN rst_catag catag
+    ON rst.catag_no = catag.catag_no
+    WHERE rst.rst_no = #{id}
+  </select>
+  
+  <!-- rst_no의 마지막 번호 반환 -->
+  <select id="getLastRstNo" resultType="int">
+    SELECT
+      MAX(rst_no)
+    FROM rst
+  </select>
+  
+  <!-- rst를 저장, 수정 -->
+  <insert id="save" parameterType="map" >
+    INSERT INTO rst
+      (rst_no, rst_name, star, catag_no, loc, loc_dtl, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) 
+    VALUES (
+      #{rst_no},
+      #{rst_name},
+      #{star},
+      #{catag_no},
+      <trim suffixOverrides=",">
+        <if test="loc != null">#{loc},</if>
+        <if test="loc_dtl != null">#{loc_dtl},</if>
+        <if test="tel != null">#{tel},</if>
+        <if test="opn_tm != null">#{opn_tm},</if>
+        <if test="brck_tm != null">#{brck_tm},</if>
+        <if test="dnnr_tm != null">#{dnnr_tm},</if>
+        <if test="lo_tm != null">#{lo_tm}</if>
+      </trim>
+      )
+    ON DUPLICATE KEY 
+    UPDATE
+      rst_no = #{rst_no},
+      rst_name = #{rst_name},
+      star = #{star},
+      catag_no = #{catag_no},
+      <trim suffixOverrides=",">
+        <if test="loc != null">loc = #{loc},</if>
+        <if test="loc_dtl != null">loc_dtl = #{loc_dtl},</if>
+        <if test="tel != null">tel = #{tel},</if>
+        <if test="opn_tm != null">opn_tm = #{opn_tm},</if>
+        <if test="brck_tm != null">brck_tm = #{brck_tm},</if>
+        <if test="dnnr_tm != null">dnnr_tm = #{dnnr_tm},</if>
+        <if test="lo_tm != null">lo_tm = #{lo_tm}</if>
+      </trim>
+  </insert>
+  
+  <!-- rst를 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM rst WHERE rst_no = #{rst_no}
+  </delete>
+  
+  <!-- rst의 총 갯수 반환  -->
+  <select id="getTotCnt" parameterType="searchVO" resultType="int">
+    SELECT COUNT(*) tstcnt
+    FROM rst
+    WHERE 1=1
+    <if test="searchKeyword != null and searchKeyword != ''">
+      <choose>
+        <when test="searchCondition == 0">
+          AND rst_no LIKE '%' || #{searchKeyword} || '%'
+        </when>
+        <when test="searchCondition == 1">
+          AND rst_name LIKE '%' || #{searchKeyword} || '%'
+        </when>
+      </choose>
+    </if>
+  </select>
+  
+</mapper>
