@@ -49,3 +49,5 @@ Release/
 /build
 /captures
 .externalNativeBuild
+
+.metadata
