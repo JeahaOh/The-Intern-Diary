@@ -6,6 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.app.rst.RequestInterface;
+import com.example.app.rst.Rst;
+import com.example.app.rst.RstAdapter;
+import com.example.app.rst.RstResponse;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,8 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList<AndroidVersion> data;
-    private DataAdapter adapter;
+    private ArrayList<Rst> data;
+    private RstAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,29 +35,34 @@ public class MainActivity extends AppCompatActivity {
     private void initViews(){
         recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadJSON();
     }
     private void loadJSON(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.learn2crack.com")
+                .baseUrl("http://169.254.29.121:8888")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<JSONResponse> call = request.getJSON();
-        call.enqueue(new Callback<JSONResponse>() {
+        Call<RstResponse> call = request.getJSON();
+        call.enqueue(new Callback<RstResponse>() {
             @Override
-            public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
+            public void onResponse(Call<RstResponse> call, Response<RstResponse> response) {
 
-                JSONResponse jsonResponse = response.body();
-                data = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
-                adapter = new DataAdapter(data);
+
+
+                RstResponse rstResponse = response.body();
+
+                Log.v(response.toString(), "\n\nresponse");
+
+                data = new ArrayList<>(Arrays.asList(rstResponse.getRsts()));
+                adapter = new RstAdapter(data);
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<JSONResponse> call, Throwable t) {
+            public void onFailure(Call<RstResponse> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
         });

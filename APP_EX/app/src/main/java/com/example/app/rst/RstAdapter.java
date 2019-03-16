@@ -1,10 +1,12 @@
-package com.example.app;
+package com.example.app.rst;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.app.R;
 
 import java.util.ArrayList;
 
@@ -14,30 +16,30 @@ import java.util.ArrayList;
  * 받아온 데이터 중, RecyclerView에 넣어 줄 것을 정의함.
  */
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private ArrayList<AndroidVersion> android;
+public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
+    private ArrayList<Rst> rsts;
 
-    public DataAdapter(ArrayList<AndroidVersion> android) {
-        this.android = android;
+    public RstAdapter(ArrayList<Rst> rsts) {
+        this.rsts = rsts;
     }
 
     @Override
-    public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RstAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(RstAdapter.ViewHolder viewHolder, int i) {
 
-        viewHolder.tv_name.setText(android.get(i).getName());
-        viewHolder.tv_version.setText(android.get(i).getVer());
-        viewHolder.tv_api_level.setText(android.get(i).getApi());
+        viewHolder.tv_name.setText(rsts.get(i).getRst_name());
+        viewHolder.tv_version.setText(rsts.get(i).getLoc_dtl());
+        viewHolder.tv_api_level.setText(rsts.get(i).getLoc());
     }
 
     @Override
     public int getItemCount() {
-        return android.size();
+        return rsts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
