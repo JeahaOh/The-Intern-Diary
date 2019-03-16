@@ -48,7 +48,33 @@ spring maven git target경로 키워드로 검색했더니 찾던 내용은 아�
 
 - gitignore
     - `https://github.com/github/gitignore`
-    
+
+
+### 14:50
+
+```
+java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BEGIN_ARRAY at line 1 column 2 path $
+```
+이 부분이 문제인 것 같은데 구글링 해도 잘 모르겠음...
+
+```
+음 에러내용으로 보아서는 json 응답 본문중에 뭔가 잘못된 문자가 들어간걸로 생각이 되네요. (써주신 응답에는 정상적인걸로 보이지만..)
+
+서버에서 http 응답 코드가 뭔지, 정확한 응답 body 를 어떻게 내려주는지, 헤더의 Content-Type 은 뭔지 등의 정보를 좀 더 봐야 좀 더 수월하게 원인을 파악할 수 있을 것 같아요.
+
+Retrofit 에다가 OkHttpClient 를 설정하여 사용하여 보세요.
+
+OkHttpClient 쪽에 확장 라이브러리로 HttpLoggingInterceptor 라는게 있습니다.
+
+이것을 OkHttpClient에 addInterceptor 해주시면 안드로이드 로그캣에 HTTP 요청/응답에 대한 상세한 내용을 로그캣으로 보실 수 있습니다.
+```
+
+### 15:15
+
+- HTTP log 보기
+    - `https://nobase-dev.tistory.com/6`
+  
+log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남...
 
 - - -
 

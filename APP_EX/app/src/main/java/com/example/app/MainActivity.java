@@ -14,6 +14,8 @@ import com.example.app.rst.RstResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Rst> data;
     private RstAdapter adapter;
+
+    /**
+     * 집         172.30.1.42
+     * 코코스      169.254.29.121
+     */
+    private String url = "172.30.1.42:8888";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,27 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
     private void loadJSON(){
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl( "http://" + url );
+
+        if(BuildConfig.DEBUG) {
+            retrofitBuilder.client(client);
+        }
+        retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
+
+        Retrofit retrofit = retrofitBuilder.build();
+
+        /*
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.30.1.42:8888")             //  코코스
-//                .baseUrl("http://169.254.29.121:8888")        //  집
-            .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://" + url)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        */
+
         RequestInterface request = retrofit.create(RequestInterface.class);
         Call<RstResponse> call = request.getJSON();
         call.enqueue(new Callback<RstResponse>() {
@@ -52,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RstResponse> call, Response<RstResponse> response) {
                 RstResponse rstResponse = response.body();
 
-                Log.v(response.toString(), "\n\nresponse");
 
                 data = new ArrayList<>( Arrays.asList( rstResponse.getRsts() ) );
                 adapter = new RstAdapter(data);
