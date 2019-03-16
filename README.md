@@ -36,7 +36,7 @@ Logcat log..
 ```
 
 No adapter attached; skipping layout  
-아무래도 이부분이 에러의 원인인듯
+아무래도 이 부분이 에러의 원인인듯
 
 ### 13:55 
 
@@ -84,6 +84,9 @@ log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남
 객체의 배열을 받아서 이 배열을 객체로 변환 하지 못하고 있는건데...  
 안드로이드를 잘 몰라서 한참 헤메는 것
 
+- `http://www.masterqna.com/android/70675/json-%ED%8C%8C%EC%8B%B1-%EB%8F%84%EC%99%80%EC%A3%BC%EC%84%B8%EC%9A%94`
+- `https://stackoverflow.com/questions/5554217/google-gson-deserialize-listclass-object-generic-type`  
+이게 해결책 같지만, 예제 코드에 대한 이해가 부족해서 잘 모르겠다...
 
 - - -
 
