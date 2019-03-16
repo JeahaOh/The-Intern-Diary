@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
     }
     private void loadJSON(){
 
+        /*  retrofit을 그냥 사용 할 때 호출
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://" + url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        */
+
+        //  retrofit을 log와 함께 사용할때 호출 >>
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -62,16 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         Retrofit retrofit = retrofitBuilder.build();
 
-        /*
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        */
+        //  << 여기 까지
 
         RequestInterface request = retrofit.create(RequestInterface.class);
         Call<RstResponse> call = request.getJSON();
-        call.enqueue(new Callback<RstResponse>() {
+        call.enqueue( new Callback<RstResponse>() {
             @Override
             public void onResponse(Call<RstResponse> call, Response<RstResponse> response) {
                 RstResponse rstResponse = response.body();

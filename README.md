@@ -75,6 +75,8 @@ OkHttpClient 쪽에 확장 라이브러리로 HttpLoggingInterceptor 라는게 �
     - `https://nobase-dev.tistory.com/6`
   
 log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남...
+- https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+
 
 - - -
 

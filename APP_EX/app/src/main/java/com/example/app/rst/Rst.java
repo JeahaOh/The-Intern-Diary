@@ -1,19 +1,63 @@
 package com.example.app.rst;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Rst {
+    @Expose
+    @SerializedName("rst_no")
     private int rst_no;         //  레스토랑 번호
+
+    @Expose
+    @SerializedName("rst_name")
     private String rst_name;    //  레스토랑 이름
+
+    @Expose
+    @SerializedName("star")
     private int star;           //  미슐렝 별점
+
+    @Expose
+    @SerializedName("loc")
     private String loc;         //  지역
+
+    @Expose
+    @SerializedName("loc_dtl")
     private String loc_dtl;     //  상세 주소
+
+    @Expose
+    @SerializedName("upper_no")
     private int upper_no;       //  요리 대분류 코드
+
+    @Expose
+    @SerializedName("upper_nm")
     private String upper_nm;    //  요리 대분류 이름
+
+    @Expose
+    @SerializedName("catag_no")
     private int catag_no;       //  요리 소분류 코드
+
+    @Expose
+    @SerializedName("catag_nm")
     private String catag_nm;    //  요리 소분류 이름
+
+    @Expose
+    @SerializedName("tel")
     private String tel;         //  전화번호
+
+    @Expose
+    @SerializedName("opn_tm")
     private String opn_tm;      //  오픈 시간
+
+    @Expose
+    @SerializedName("brck_tm")
     private String brck_tm;     //  점심 쉬는 시간
+
+    @Expose
+    @SerializedName("dnnr_tm")
     private String dnnr_tm;     //  저녁 장사 시작 시간
+
+    @Expose
+    @SerializedName("lo_tm")
     private String lo_tm;       //  주문 마감 시간
 
 
