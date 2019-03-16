@@ -75,7 +75,14 @@ OkHttpClient 쪽에 확장 라이브러리로 HttpLoggingInterceptor 라는게 �
     - `https://nobase-dev.tistory.com/6`
   
 log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남...
-- https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+- `https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0`
+- `https://march3samwuli.tistory.com/entry/Retrofit-2%EB%A1%9C-Http%ED%86%B5%EC%8B%A0-%EA%B5%AC%ED%98%84-%EC%8B%9C%EA%B0%84%EC%9D%84-%EB%8B%A8%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90`  
+뭐이리 어려운 게야  
+  
+### 16:40
+
+객체의 배열을 받아서 이 배열을 객체로 변환 하지 못하고 있는건데...  
+안드로이드를 잘 몰라서 한참 헤메는 것
 
 
 - - -
