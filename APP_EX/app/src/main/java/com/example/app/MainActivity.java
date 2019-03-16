@@ -41,22 +41,20 @@ public class MainActivity extends AppCompatActivity {
     }
     private void loadJSON(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://169.254.29.121:8888")
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://172.30.1.42:8888")             //  코코스
+//                .baseUrl("http://169.254.29.121:8888")        //  집
+            .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
         Call<RstResponse> call = request.getJSON();
         call.enqueue(new Callback<RstResponse>() {
             @Override
             public void onResponse(Call<RstResponse> call, Response<RstResponse> response) {
-
-
-
                 RstResponse rstResponse = response.body();
 
                 Log.v(response.toString(), "\n\nresponse");
 
-                data = new ArrayList<>(Arrays.asList(rstResponse.getRsts()));
+                data = new ArrayList<>( Arrays.asList( rstResponse.getRsts() ) );
                 adapter = new RstAdapter(data);
                 recyclerView.setAdapter(adapter);
             }

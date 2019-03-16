@@ -1,1 +1,0 @@
-db.properties가 저장 되어 있는 경로

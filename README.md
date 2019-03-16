@@ -5,8 +5,50 @@
 - - -
 
 ## 03/16 토요일
+
+### 12:00
+
 어제 회사에서는 맥 IP로 접속이 안됬었는데 오늘 집에서는 접속이 가능 했음..`169.254.XXX.XXX`  
 대체 무엇이 문제인지..?
+
+
+### 13:45
+
+앱에서 웹으로 /rst/rstList 요청은 성공 했고 웹에서 반응도 있음
+서버에서는 정상적으로 데이터를 보낸것 같은데, 앱에서 처리 하지 못한 것 같음...
+Logcat log..
+
+```
+2019-03-16 13:48:07.754 11142-11160/com.example.app D/EGL_emulation:
+    eglCreateContext: 0xa1a05120: maj 3 min 0 rcv 3
+
+2019-03-16 13:48:07.756 11142-11160/com.example.app D/EGL_emulation:
+    eglMakeCurrent: 0xa1a05120: ver 3 0 (tinfo 0xa1a031c0)
+
+2019-03-16 13:48:07.775 11142-11142/com.example.app E/RecyclerView:
+    No adapter attached; skipping layout
+
+2019-03-16 13:48:07.830 11142-11160/com.example.app D/EGL_emulation:
+    eglMakeCurrent: 0xa1a05120: ver 3 0 (tinfo 0xa1a031c0)
+
+2019-03-16 13:48:07.902 11142-11142/com.example.app D/Error:
+    java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BEGIN_ARRAY at line 1 column 2 path $
+```
+
+No adapter attached; skipping layout  
+아무래도 이부분이 에러의 원인인듯
+
+### 13:55 
+
+git에 /target/ 경로를 올려도 되는 건지 모르겠어서  
+spring maven git target경로 키워드로 검색했더니 찾던 내용은 아니지만 공부할만한 내용이 나왔음.
+- spring
+    - `https://jeong-pro.tistory.com/168`
+    - `https://antop.tistory.com/149`
+
+- gitignore
+    - `https://github.com/github/gitignore`
+    
 
 - - -
 
