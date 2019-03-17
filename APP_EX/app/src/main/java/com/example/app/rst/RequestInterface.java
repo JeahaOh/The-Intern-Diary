@@ -1,5 +1,7 @@
 package com.example.app.rst;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -12,7 +14,7 @@ import retrofit2.http.GET;
 public interface RequestInterface {
 
     @GET("/yummy/rst/rstList")
-    Call<RstResponse> getJSON();
+    Call<List<Rst>> getJSON();
 
 //    @GET("/rst/rstList")
 //    Call<Rst> getList();

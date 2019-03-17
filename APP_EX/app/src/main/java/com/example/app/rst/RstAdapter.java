@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.app.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * List를 띄워주는 느낌
@@ -17,9 +18,9 @@ import java.util.ArrayList;
  */
 
 public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
-    private ArrayList<Rst> rsts;
+    private List<Rst> rsts;
 
-    public RstAdapter(ArrayList<Rst> rsts) {
+    public RstAdapter(List<Rst> rsts) {
         this.rsts = rsts;
     }
 
@@ -53,5 +54,4 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
 
         }
     }
-
 }

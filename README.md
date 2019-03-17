@@ -4,6 +4,13 @@
 
 - - -
 
+## 03/17 일요일
+
+### 14:10
+모르겠다 모르겠어
+
+- - -
+
 ## 03/16 토요일
 
 ### 12:00
@@ -87,6 +94,11 @@ log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남
 - `http://www.masterqna.com/android/70675/json-%ED%8C%8C%EC%8B%B1-%EB%8F%84%EC%99%80%EC%A3%BC%EC%84%B8%EC%9A%94`
 - `https://stackoverflow.com/questions/5554217/google-gson-deserialize-listclass-object-generic-type`  
 이게 해결책 같지만, 예제 코드에 대한 이해가 부족해서 잘 모르겠다...
+
+### 18:40
+
+문제의 원인은 내가 앱을 1도 모르고, 이해를 못하는 것이다..  
+
 
 - - -
 

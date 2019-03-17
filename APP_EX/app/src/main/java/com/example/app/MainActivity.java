@@ -9,10 +9,9 @@ import android.util.Log;
 import com.example.app.rst.RequestInterface;
 import com.example.app.rst.Rst;
 import com.example.app.rst.RstAdapter;
-import com.example.app.rst.RstResponse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,14 +24,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList<Rst> data;
     private RstAdapter adapter;
 
     /**
      * 집         172.30.1.42
      * 코코스      169.254.29.121
+     * 할리스      192.168.0.52
      */
-    private String url = "172.30.1.42:8888";
+    private String url = "192.168.0.52:8888";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +72,17 @@ public class MainActivity extends AppCompatActivity {
         //  << 여기 까지
 
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<RstResponse> call = request.getJSON();
-        call.enqueue( new Callback<RstResponse>() {
+        Call<List<Rst>> call = request.getJSON();
+        call.enqueue(new Callback<List<Rst>>() {
             @Override
-            public void onResponse(Call<RstResponse> call, Response<RstResponse> response) {
-                RstResponse rstResponse = response.body();
-
-
-                data = new ArrayList<>( Arrays.asList( rstResponse.getRsts() ) );
+            public void onResponse(Call<List<Rst>> call, Response<List<Rst>> response) {
+                List<Rst> data = response.body();
                 adapter = new RstAdapter(data);
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<RstResponse> call, Throwable t) {
+            public void onFailure(Call<List<Rst>> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
         });
