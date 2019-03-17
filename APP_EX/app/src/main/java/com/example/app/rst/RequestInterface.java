@@ -7,15 +7,12 @@ import retrofit2.http.GET;
 
 /**
  * REST 요청 Interface
- * @GET
- * @POST
+ * Interface의 Annotation과 method parameter로 요청을 어떻게 할지 정함.
  */
 
 public interface RequestInterface {
 
     @GET("/yummy/rst/rstList")
-    Call<List<Rst>> getJSON();
+    Call<List<Rst>> getRstJSONList();
 
-//    @GET("/rst/rstList")
-//    Call<Rst> getList();
 }

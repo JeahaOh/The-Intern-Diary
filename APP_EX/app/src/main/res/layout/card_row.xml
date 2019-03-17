@@ -13,7 +13,7 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/rst_name"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/tv_version"
+            android:id="@+id/catag_nm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_api_level"
+            android:id="@+id/rst_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

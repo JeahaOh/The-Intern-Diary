@@ -9,6 +9,16 @@
 ### 14:10
 모르겠다 모르겠어
 
+- `http://dudmy.net/android/2017/06/23/consider-of-recyclerview/`
+    - 내공이 부족해서 도대체 무슨말인지 모르겠음...
+
+### 19:15
+
+Application과 Retrofit에 대해 약간의 공부를 함.  
+사실 본건 많은데 이해 한건 얼마 안됨.
+Retrofit 예제를 식당 목록 출력 시키는 것으로 변환 시켰고,  
+코드 분석 하면서 Android Application 공부를 조금 했음.
+
 - - -
 
 ## 03/16 토요일
