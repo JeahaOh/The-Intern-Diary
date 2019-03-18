@@ -1,6 +1,7 @@
 package com.example.app.rst;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder( RstAdapter.ViewHolder viewHolder, int i ) {
+    public void onBindViewHolder( ViewHolder viewHolder, int i ) {
         //  Adapter에게 받았던 ViewHolder 객체와 리스트에서 해당 ViewHolder의 위치를 인자로 전달받음.
         //  ViewHolder 안의 View에 데이터를 넣어줌.
         //  View에 들어 가는 내용을 정의 해 줌.
@@ -74,6 +75,12 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         viewHolder.rst_loc.setText( rsts.get(i).getLoc() );
 
         //  onClickListener와 원하는 화면을 넘겨주는 Intent를 넣어?
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(v.toString(),"view Clicked");
+            }
+        });
     }
 
     @Override
