@@ -30,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
      * 코코스      169.254.29.121
      * 할리스      접속 할 때마다 ip가 바뀜.
      * 폰         172.20.10.2
-     * 회사        192.168.1.251
+     * 회사       192.168.1.251
+     * 별다방      172.30.26.218
      */
-    private String addr = "192.168.1.251";
+    private String addr = "172.30.26.218";
     private String url = "http://" + addr + ":8888";
 
     @Override

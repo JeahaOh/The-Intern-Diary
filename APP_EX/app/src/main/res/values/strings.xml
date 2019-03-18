@@ -4,7 +4,7 @@
     <string name="rvw_create_button">후기 작성</string>
     <string name="영업정보">영업 정보</string>
 
-    <string name="opn_tm_val">nn:nn</string>
+    <string name="opn_tm_val"></string>
     <string name="wanna_go_val">N</string>
     <string name="tm_val">nn:nn</string>
 

@@ -68,7 +68,7 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder( ViewHolder viewHolder, int i ) {
+    public void onBindViewHolder( ViewHolder viewHolder, final int i ) {
         //  Adapter에게 받았던 ViewHolder 객체와 리스트에서 해당 ViewHolder의 위치를 인자로 전달받음.
         //  ViewHolder 안의 View에 데이터를 넣어줌.
         //  View에 들어 가는 내용을 정의 해 줌.
@@ -83,8 +83,15 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             //  인텐트 선언.
             Intent intent = new Intent(v.getContext(), RstDetail.class);
 
-            //  인텐트에 넘겨줄 데이터 정의 해야함.
-            intent.putExtra("data","data");
+            //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
+            intent.putExtra( "rst_no", rsts.get(i).getRst_no() );
+            intent.putExtra( "rst_name",rsts.get(i).getRst_name() );
+            intent.putExtra( "loc_dtl", rsts.get(i).getLoc_dtl() );
+            intent.putExtra( "opn_tm", rsts.get(i).getOpn_tm() );
+            intent.putExtra( "brck_tm", rsts.get(i).getBrck_tm() );
+            intent.putExtra( "dnnr_tm", rsts.get(i).getDnnr_tm() );
+            intent.putExtra( "lo_tm", rsts.get(i).getLo_tm() );
+
 
             // 인텐트 시작
             v.getContext().startActivity(intent);
