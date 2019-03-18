@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.app.R;
+import com.example.app.RetrofitClient;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
 
@@ -78,5 +79,39 @@ public class RstDetail extends AppCompatActivity {
         mapView.onCreate(Bundle.EMPTY);
         */
 
+
+
+        loadJSON( intent.getInt("rst_no" ) );
+    }
+
+    private void loadJSON( int rst_no ){
+
+        //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
+        Retrofit retrofit = RetrofitClient.getClient();
+
+
+        /*
+        //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
+        RequestInterface request = retrofit.create(RequestInterface.class);
+
+        //  request의 getRstJSONList()를 통하여 HTTP 요청을 서버에 보냄.
+        //  Call : HTTP 요청을 보내고 응답을 받는 retrofit interface.
+        Call<List<Rst>> call = request.getRstJSONList();
+
+        call.enqueue( new Callback<List<Rst>>() {
+            //  요청이 성공하고 응답이 수신되면 onResponse() callback Method 가 실행되고, 실패하면 onFailure가 실행됨.
+
+            @Override
+            public void onResponse( Call<List<Rst>> call, Response<List<Rst>> response ) {
+
+
+            }
+
+            @Override
+            public void onFailure( Call<List<Rst>> call, Throwable t ) {
+                Log.d("Error",t.getMessage());
+            }
+        });
+        */
     }
 }

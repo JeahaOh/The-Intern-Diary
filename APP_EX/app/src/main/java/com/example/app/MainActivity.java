@@ -25,16 +25,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RstAdapter adapter;
 
-    /**
-     * 집         172.30.1.42
-     * 코코스      169.254.29.121
-     * 할리스      접속 할 때마다 ip가 바뀜.
-     * 폰         172.20.10.2
-     * 회사       192.168.1.251
-     * 별다방      172.30.26.218
-     */
-    private String addr = "172.30.26.218";
-    private String url = "http://" + addr + ":8888";
+//    /**
+//     * 집         172.30.1.42
+//     * 코코스      169.254.29.121
+//     * 할리스      접속 할 때마다 ip가 바뀜.
+//     * 폰         172.20.10.2
+//     * 회사       192.168.1.251
+//     * 별다방      172.30.26.218
+//     */
+//    private String addr = "172.30.26.218";
+//    private String url = "http://" + addr + ":8888";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,23 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     //
     private void loadJSON(){
-
-        /*  retrofit을 그냥 사용 할 때 호출
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        */
-
-        //  retrofit을 log와 함께 사용할때 호출 >>
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(  url );
-        retrofitBuilder.client(client);
-        retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = retrofitBuilder.build();
-        //  << 여기 까지
+        //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
+        Retrofit retrofit = RetrofitClient.getClient();
 
         //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
         RequestInterface request = retrofit.create(RequestInterface.class);

@@ -28,6 +28,11 @@ rst_detail에 대한 layout을 만들었음.
 
 RstDetail화면 전환 성공
 
+### 21:45
+
+Retrofit에 Singleton Pattern 적용
+
+
 - - -
 
 ## 03/17 일요일
