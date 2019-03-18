@@ -25,8 +25,14 @@
       rst.rst_name,
       rst.star,
       rst.loc,
+      rst.loc_dtl,
       rst.catag_no,
-      catag.catag_nm
+      catag.catag_nm,
+      rst.tel,
+      rst.opn_tm,
+      rst.brck_tm,
+      rst.dnnr_tm,
+      rst.lo_tm
     FROM rst rst
     INNER JOIN rst_catag catag
     ON rst.catag_no = catag.catag_no
@@ -46,7 +52,7 @@
     LIMIT
       #{recordCountPerPage} OFFSET #{firstIndex}
     -->
-    LIMIT 10
+    <!-- LIMIT 10 -->
   </select>
   
   <!-- rst의 상세정보 반환 -->

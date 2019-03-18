@@ -1,5 +1,6 @@
 package com.example.app.rst;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.app.MainActivity;
 import com.example.app.R;
 
 import java.util.List;
@@ -78,7 +80,14 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v(v.toString(),"view Clicked");
+            //  인텐트 선언.
+            Intent intent = new Intent(v.getContext(), RstDetail.class);
+
+            //  인텐트에 넘겨줄 데이터 정의 해야함.
+            intent.putExtra("data","data");
+
+            // 인텐트 시작
+            v.getContext().startActivity(intent);
             }
         });
     }

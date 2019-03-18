@@ -118,11 +118,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="@string/opn_tm_key"
+                android:text="@string/opn_tm"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:text="오픈 시간" />
 
-            <EditText
+            <TextView
                 android:id="@+id/opn_tm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,11 +148,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="@string/brck_tm_key"
+                android:text="@string/brck_tm"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:text="쉬는 시간" />
 
-            <EditText
+            <TextView
                 android:id="@+id/brck_tm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -178,11 +178,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="@string/dnnr_tm_key"
+                android:text="@string/dnnr_tm"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:text="저녁 장사 시간" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dnnr_tm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 tools:text="주문 마감 시간" />
 
-            <EditText
+            <TextView
                 android:id="@+id/lo_tm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 

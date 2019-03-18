@@ -1,13 +1,18 @@
 <resources>
-    <string name="app_name">ExampleAPP</string>
+    <string name="app_name">YummyAPP</string>
     <string name="wannaGoKey">가고싶다</string>
     <string name="rvw_create_button">후기 작성</string>
     <string name="영업정보">영업 정보</string>
-    <string name="opn_tm">오픈 시간</string>
+
     <string name="opn_tm_val">nn:nn</string>
     <string name="wanna_go_val">N</string>
     <string name="tm_val">nn:nn</string>
+
+    <string name="opn_tm">오픈 시간</string>
+    <string name="brck_tm">쉬는 시간</string>
+    <string name="dnnr_tm">저녁 오픈 시간</string>
     <string name="lo_tm">주문 마감 시간</string>
+
     <string name="dnnr_tm_key">dnnr_tm_key</string>
     <string name="brck_tm_key">brck_tm_key</string>
     <string name="rst_name">rst_name</string>

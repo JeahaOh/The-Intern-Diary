@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!--
-    AndroidManifest.xml :
-    Android 시스템이 앱의 코드를 실행하기 전에 확보해야 하는 앱에 대한 필수 정보를 시스템에 제공
-    -->
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
-
     <!--
     애플리케이션이 권한으로 보호되는 기능에 액세스해야 하는 경우,
     매니페스트에 <uses-permission> 요소를 사용하여 해당 권한이 필요하다는 것을 선언해야 함.
     -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".rst.RstDetail"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,4 +23,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
