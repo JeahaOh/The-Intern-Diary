@@ -32,6 +32,16 @@ RstDetail화면 전환 성공
 
 Retrofit에 Singleton Pattern 적용
 
+### 21:50
+
+더 자세하게 나온 retrofit 예제
+- http://chuumong.github.io/android/2017/01/13/Get-Started-With-Retrofit-2-HTTP-Client
+
+### 22:20
+
+sql문 수정
+
+
 
 - - -
 

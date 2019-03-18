@@ -15,9 +15,11 @@ public class Rater {
   int bad;
   int worst;
   
+  int wannago;
+  
   public Rater( ) {  }
 
-  public Rater(int cnt, int sum, float avg, float grade, int best, int good, int soso, int bad, int worst) {
+  public Rater(int cnt, int sum, float avg, float grade, int best, int good, int soso, int bad, int worst, int wannago) {
     super();
     this.cnt = cnt;
     this.sum = sum;
@@ -107,10 +109,18 @@ public class Rater {
     this.avg = avg;
   }
   
+  public int getWannago() {
+    return wannago;
+  }
+
+  public void setWannago(int wannago) {
+    this.wannago = wannago;
+  }
+
   @Override
   public String toString() {
     return "\n Rater [cnt=" + cnt + ", sum=" + sum + ", avg=" + avg + ", grade=" + grade + ", best="
-        + best + ", good=" + good + ", soso=" + soso + ", bad=" + bad + ", worst=" + worst + "]";
+        + best + ", good=" + good + ", soso=" + soso + ", bad=" + bad + ", worst=" + worst + ", wannago=" + wannago + " ]";
   }
   
   

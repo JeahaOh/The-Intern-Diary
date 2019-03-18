@@ -48,9 +48,15 @@
               WHERE
                 score = 5
               AND
-                rst_no = #{rst_no}) AS best
+                rst_no = #{rst_no}) AS best,
+            (SELECT
+                COUNT(id)
+              FROM
+                wnt_go
+              WHERE
+                rst_no = #{rst_no}) AS wannago
         FROM rvw
         WHERE
-            rst_no = #{rst_no}
+          rst_no = #{rst_no}
   </select>
 </mapper>
