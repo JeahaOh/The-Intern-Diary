@@ -35,7 +35,7 @@ public class RaterController {
   /**
    * rst_no에 해당하는 식당에 대한
    * 리뷰의 수와 평점의 합을 베이지안 확률과 평균에 대입하여
-   * 평점을 구해 rater를 return함.
+   * 평점을 구해 rater를 POST return함.
    * @param rst_no
    * @return
    * @throws Exception
@@ -56,4 +56,28 @@ public class RaterController {
     return new Rater();
   }
   
+  /**
+   * rst_no에 해당하는 식당에 대한
+   * 리뷰의 수와 평점의 합을 베이지안 확률과 평균에 대입하여
+   * 평점을 구해 rater를 GET으로 return함.
+   * http://localhost:8888/yummy/rater/getRatee?rst_no=XXXX
+   * @param rst_no
+   * @return
+   * @throws Exception
+   */
+  @SuppressWarnings("null")
+  @ResponseBody
+  @RequestMapping(value = "/getRatee", method = RequestMethod.GET)
+  public Rater getRatee(
+      @RequestParam (value = "rst_no") int rst_no
+        ) throws Exception {
+    logger.debug("\n\t/rater/getRate recieve rst_no : {}\n", rst_no);
+    Rater rater = raterService.getRate(rst_no);
+    if( rater != null) {
+      logger.debug("\n\t/rater/getRate return RATE : {}\n", rater.toString());
+      return rater;
+    }
+    logger.debug("\n\t/rater/getRate return null RATE : {}\n", rater.toString());
+    return new Rater();
+  }
 }

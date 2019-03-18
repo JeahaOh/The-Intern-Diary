@@ -40,7 +40,7 @@
             android:text="@string/wannaGoKey" />
 
         <TextView
-            android:id="@+id/wnt_go"
+            android:id="@+id/wannago"
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

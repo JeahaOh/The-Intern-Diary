@@ -41,6 +41,10 @@ Retrofit에 Singleton Pattern 적용
 
 sql문 수정
 
+### 23:20
+
+GET으로 Rater 정보 받아오기 성공
+GET으로 해야 하나?
 
 
 - - -

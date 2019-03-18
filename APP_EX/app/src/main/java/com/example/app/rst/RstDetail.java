@@ -79,8 +79,6 @@ public class RstDetail extends AppCompatActivity {
         mapView.onCreate(Bundle.EMPTY);
         */
 
-
-
         loadJSON( intent.getInt("rst_no" ) );
     }
 
@@ -90,28 +88,34 @@ public class RstDetail extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getClient();
 
 
-        /*
+
         //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
         RequestInterface request = retrofit.create(RequestInterface.class);
 
+
         //  request의 getRstJSONList()를 통하여 HTTP 요청을 서버에 보냄.
         //  Call : HTTP 요청을 보내고 응답을 받는 retrofit interface.
-        Call<List<Rst>> call = request.getRstJSONList();
+        Call<Rater> call = request.getRate(rst_no);
 
-        call.enqueue( new Callback<List<Rst>>() {
+        call.enqueue( new Callback<Rater>() {
             //  요청이 성공하고 응답이 수신되면 onResponse() callback Method 가 실행되고, 실패하면 onFailure가 실행됨.
 
             @Override
-            public void onResponse( Call<List<Rst>> call, Response<List<Rst>> response ) {
+            public void onResponse( Call<Rater> call, Response<Rater> response ) {
+
+                Rater rate = response.body();
+                Log.v(rate.toString(), "rate");
+
+//                TextView wannago = (TextView) findViewById(R.id.wannago);
+//                wannago.setText( rate.getWannago() );
 
 
             }
 
             @Override
-            public void onFailure( Call<List<Rst>> call, Throwable t ) {
-                Log.d("Error",t.getMessage());
+            public void onFailure( Call<Rater> call, Throwable t ) {
+                Log.v("Error",t.getMessage());
             }
         });
-        */
     }
 }
