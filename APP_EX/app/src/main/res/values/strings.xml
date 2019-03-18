@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">ExampleAPP</string>
+    <string name="wannaGoKey">가고싶다</string>
+    <string name="rvw_create_button">후기 작성</string>
+    <string name="영업정보">영업 정보</string>
+    <string name="opn_tm">오픈 시간</string>
+    <string name="opn_tm_val">nn:nn</string>
+    <string name="wanna_go_val">N</string>
+    <string name="tm_val">nn:nn</string>
+    <string name="lo_tm">주문 마감 시간</string>
+    <string name="dnnr_tm_key">dnnr_tm_key</string>
+    <string name="brck_tm_key">brck_tm_key</string>
+    <string name="rst_name">rst_name</string>
+    <string name="opn_tm_key">opn_tm_key</string>
+    <string name="loc_dtl">상세 주소 들어올 자리</string>
+    <string name="rvw">리뷰</string>
+    <string name="n">n 건</string>
+    <string name="best">추천</string>
+    <string name="good">맛집</string>
+    <string name="soso">무난</string>
+    <string name="bad">별로</string>
+    <string name="worst">최악</string>
+    <string name="avg">네티븐 평점</string>
+    <string name="grade">자체 평점</string>
+
 </resources>

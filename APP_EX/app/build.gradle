@@ -33,4 +33,5 @@ dependencies {
 
     /*  LOG를 위한 LIB  */
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }
