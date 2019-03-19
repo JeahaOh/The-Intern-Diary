@@ -206,7 +206,10 @@
                 
                 <tr>
                   <td class="tbtd_content">
-                    <input type="file" id="img" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                    <label for="img_input" id="img_label">
+                      사진
+                      <input type="file" id="img_input" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                    </label>
                   </td>
                   <td class="tbtd_content">
                     <input type="time" id="opn_tm" class="rst_form" 

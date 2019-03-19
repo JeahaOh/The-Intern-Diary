@@ -30,8 +30,18 @@ WEB rst/detail image path 설정
 
 ### 18:00
 
-이미지 파일 확장자 없이 연결
-- https://devks.tistory.com/23
+- 이미지 파일 확장자 없이 연결
+    - https://devks.tistory.com/23
+      
+    전자정부 default setting으로 했는데 경로 문제였음...  
+
+### 20:20
+
+웹 image UI 수정
+
+### 20:45
+adroid image 불러오는 lib
+- https://dwfox.tistory.com/33
 
 
 - - -
