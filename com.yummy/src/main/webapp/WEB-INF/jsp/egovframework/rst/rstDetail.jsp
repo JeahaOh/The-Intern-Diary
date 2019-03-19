@@ -82,8 +82,16 @@
                 </tr>
                 <tr>
                   <td class="tbtd_content" rowspan="5">
-                    <div id="preview" style="width: 100%; height: 200px; border: 1px solid #bcbcbc;">
-                    </div>
+                    <%-- rst_form이 생성용인지, 읽기 수정용인지에 따라 background image의 유무가 갈리므로 --%>
+                    <c:choose>
+                      <c:when test="${mode eq 'Create'}">
+                        <div id="preview"></div>
+                      </c:when>
+                      <c:otherwise>
+                        <div id="preview" style="background-image: url(<c:url value='/images/rst/'/>${rst.rst_phot}.jpg);"></div>
+                      </c:otherwise>
+                    </c:choose>
+                    <%-- rst_form이 생성용인지, 읽기 수정용인지에 따라 background image의 유무가 갈리므로 --%>
                   </td>
                   <td class="tbtd_caption">
                     <label for="rst_name"><spring:message code="title.rst.name"/></label>

@@ -20,12 +20,14 @@ public class Rst  extends DefaultVO {
   String dnnr_tm;     //  저녁 장사 시작 시간
   String lo_tm;       //  주문 마감 시간
   
+  String rst_phot;    //  식당 사진
+  
   //String[] pht_nm;
   
   public Rst() {}
 
   public Rst(int rst_no, String rst_name, int star, String loc, String loc_dtl, int catag_no, int upper_no,
-      String catag_nm, String tel, String opn_tm, String brck_tm, String dnnr_tm, String lo_tm) {
+      String catag_nm, String tel, String opn_tm, String brck_tm, String dnnr_tm, String lo_tm, String rst_phot) {
     super();
     this.rst_no = rst_no;
     this.rst_name = rst_name;
@@ -40,6 +42,7 @@ public class Rst  extends DefaultVO {
     this.brck_tm = brck_tm;
     this.dnnr_tm = dnnr_tm;
     this.lo_tm = lo_tm;
+    this.rst_phot = rst_phot;
   }
 
   public int getRst_no() {
@@ -168,21 +171,20 @@ public class Rst  extends DefaultVO {
       this.lo_tm = lo_tm;
     }
   }
+  
+  public String getRst_phot() {
+    return rst_phot;
+  }
+  
+  public void setRst_phot( String rst_phot ) {
+    this.rst_phot = rst_phot;
+  }
 
   @Override
   public String toString() {
     return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
         + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
         + ", tel=" + tel + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm
-        + ", lo_tm=" + lo_tm + "]";
+        + ", lo_tm=" + lo_tm + ", rst_phot=" + rst_phot + "]";
   }
 }
-/*
-    if( this.getStar() == -1 ) {
-      this.star_name = "Bib Groumand";
-    } else if ( this.getStar() == -2 ) {
-      this.star_name = "The Plate";
-    } else {
-      this.star_name = Integer.toString(this.getStar());
-    }
-*/

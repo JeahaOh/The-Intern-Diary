@@ -32,10 +32,15 @@
       rst.opn_tm,
       rst.brck_tm,
       rst.dnnr_tm,
-      rst.lo_tm
+      rst.lo_tm,
+      phot.phot_no	AS rst_phot
     FROM rst rst
     INNER JOIN rst_catag catag
     ON rst.catag_no = catag.catag_no
+    INNER JOIN
+			phot phot
+		ON
+			rst.rst_no = phot.rst_no
     WHERE 1
     ORDER BY rst.rst_no ASC
     <if test="searchKeyword != null and searchKeyword != ''">
@@ -70,10 +75,15 @@
       rst.opn_tm,
       rst.brck_tm,
       rst.dnnr_tm,
-      rst.lo_tm
+      rst.lo_tm,
+      phot.phot_no	AS rst_phot
     FROM rst rst
     INNER JOIN rst_catag catag
     ON rst.catag_no = catag.catag_no
+    INNER JOIN
+			phot phot
+		ON
+			rst.rst_no = phot.rst_no
     WHERE rst.rst_no = #{id}
   </select>
   

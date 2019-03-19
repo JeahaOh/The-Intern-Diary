@@ -60,6 +60,10 @@ public class Rst {
     @SerializedName("lo_tm")
     private String lo_tm;       //  주문 마감 시간
 
+    @Expose
+    @SerializedName("rst_phot")
+    private String rst_phot;
+
 
     public int getRst_no()      { return  rst_no; }
     public String getRst_name() {

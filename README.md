@@ -20,6 +20,14 @@ Rvw List 출력 성공
 
 구글 지도 API, RstDetail Scroll 기능 추가.
 
+### 16:10
+
+지도 UI height 수정
+
+### 17:25
+
+WEB rst/detail image path 설정
+
 - - -
 
 ## 03/18 월요일
