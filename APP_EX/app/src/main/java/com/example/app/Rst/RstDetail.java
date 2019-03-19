@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.app.R;
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,10 +56,17 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         Bundle intent = getIntent().getExtras();
         final int rst_no = intent.getInt( "rst_no" );
         final String rst_nm = intent.getString("rst_name");
-        //  식당 이름 출력
+        String url = RetrofitClient.getUrl();
+        url += "/yummy/resources/images/rst/" + intent.getString("rst_phot");
 
-        final TextView rst_name = findViewById( R.id.rst_name );
-        rst_name.setText( rst_nm );
+        Log.v( "IMG URL", url);
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        Picasso.with(this)
+                .load(url)
+                .error(R.drawable.image_name_error)
+                .into(imageView);
 
         //  식당 주소 출력
         TextView loc_dtl = findViewById( R.id.loc_dtl );
@@ -88,6 +97,9 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
             dnnr_tm.setText( intent.getString( "dnnr_tm") );
         }
 
+        //  식당 이름 출력
+        final TextView rst_name = findViewById( R.id.rst_name );
+        rst_name.setText( rst_nm );
 
         //  구글 지도를 쓰기위한 Fragment
         FragmentManager fragmentManager = getFragmentManager();

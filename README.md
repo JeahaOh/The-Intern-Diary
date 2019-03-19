@@ -40,9 +40,13 @@ WEB rst/detail image path 설정
 웹 image UI 수정
 
 ### 20:45
-adroid image 불러오는 lib
-- https://dwfox.tistory.com/33
 
+adroid image 불러오는 lib
+- https://code.tutsplus.com/ko/tutorials/android-sdk-working-with-picasso--cms-22149
+
+### 21:30
+
+android image 출력 성공
 
 - - -
 

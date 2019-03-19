@@ -81,4 +81,5 @@ public class Rst {
     public String getBrck_tm()  { return brck_tm; }
     public String getDnnr_tm()  { return dnnr_tm; }
     public String getLo_tm()    { return lo_tm; }
+    public String getRst_phot() { return rst_phot; }
 }

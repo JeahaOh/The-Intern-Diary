@@ -48,5 +48,8 @@ public class RetrofitClient {
         return retrofit;
     }
 
+    public static String getUrl() {
+        return url;
+    }
 
 }
