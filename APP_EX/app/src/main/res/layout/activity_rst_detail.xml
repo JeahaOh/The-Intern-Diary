@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,28 +9,26 @@
     android:layout_margin="10dp"
     android:orientation="vertical">
 
-
     <TextView
         android:id="@+id/rst_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="@string/rst_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <!--
-    <ImageView
-        android:id="@+id/rst_phot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:color/holo_red_light" />
-    -->
 
     <LinearLayout
         android:id="@+id/wnt_go_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -60,422 +60,449 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/map_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/loc_dtl_key"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            tools:text="위치" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/loc_dtl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/loc_dtl" />
+            <LinearLayout
+                android:id="@+id/rst_tm_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/rst_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/영업정보"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:visibility="visible"
+                    tools:text="영업 정보" />
+
+                <LinearLayout
+                    android:id="@+id/opn_tm_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/opn_tm_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/opn_tm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        tools:text="오픈 시간" />
+
+                    <TextView
+                        android:id="@+id/opn_tm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/tm_val"
+                        android:inputType="date"
+                        android:text="@string/tm_val"
+                        tools:text="@string/tm_val" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/brck_tm_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/brck_tm_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/brck_tm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        tools:text="쉬는 시간" />
+
+                    <TextView
+                        android:id="@+id/brck_tm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center_horizontal"
+                        android:inputType="date"
+                        android:text="@string/tm_val"
+                        tools:text="@string/tm_val" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dnnr_tm_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dnnr_tm_key"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/dnnr_tm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        tools:text="저녁 장사 시간" />
+
+                    <TextView
+                        android:id="@+id/dnnr_tm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center_horizontal"
+                        android:inputType="date"
+                        android:text="@string/tm_val"
+                        tools:text="@string/tm_val" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lo_tm_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lo_tm_key"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/lo_tm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        tools:text="주문 마감 시간" />
+
+                    <TextView
+                        android:id="@+id/lo_tm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:gravity="center_horizontal"
+                        android:inputType="date"
+                        android:text="@string/tm_val"
+                        tools:text="@string/tm_val" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rst_rvw_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/rvw_tot_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rvw_tot_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/rvw"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:visibility="visible"
+                        tools:text="리뷰" />
+
+                    <TextView
+                        android:id="@+id/cnt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingStart="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rvw_tot"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rvw_tot_avg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/avg"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:visibility="visible"
+                        tools:text="@string/avg" />
+
+                    <TextView
+                        android:id="@+id/avg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingStart="10dp"
+                        android:text="@string/n" />
+
+                    <TextView
+                        android:id="@+id/rvw_grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="10dp"
+                        android:text="@string/grade"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:visibility="visible"
+                        tools:text="@string/grade" />
+
+                    <TextView
+                        android:id="@+id/grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingStart="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/best_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/best_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/best"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:visibility="visible"
+                        tools:text="@string/best" />
+
+                    <TextView
+                        android:id="@+id/best"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/good_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/good_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/good"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:visibility="visible"
+                        tools:text="@string/good" />
+
+                    <TextView
+                        android:id="@+id/good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/soso_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/soso_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/soso"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:visibility="visible"
+                        tools:text="@string/soso" />
+
+                    <TextView
+                        android:id="@+id/soso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bad_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/bad_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/bad"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:visibility="visible"
+                        tools:text="@string/bad" />
+
+                    <TextView
+                        android:id="@+id/bad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/worst_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/worst_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/worst"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:visibility="visible"
+                        tools:text="@string/worst" />
+
+                    <TextView
+                        android:id="@+id/worst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/n" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/map_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/loc_dtl_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/addr"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    tools:text="@string/addr" />
+
+                <TextView
+                    android:id="@+id/loc_dtl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loc_dtl" />
+                <!--
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+        -->
+                <fragment
+                    android:id="@+id/mapView"
+                    class="com.google.android.gms.maps.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp" />
 
-    <LinearLayout
-        android:id="@+id/rst_tm_info"
-        android:layout_width="match_parent"
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!--
+    <ImageView
+        android:id="@+id/rst_phot"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/rst_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="@string/영업정보"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:visibility="visible"
-            tools:text="영업 정보" />
-
-        <LinearLayout
-            android:id="@+id/opn_tm_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/opn_tm_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/opn_tm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="오픈 시간" />
-
-            <TextView
-                android:id="@+id/opn_tm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:hint="@string/tm_val"
-                android:inputType="date"
-                android:text="@string/tm_val"
-                tools:text="@string/tm_val" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/brck_tm_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/brck_tm_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/brck_tm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="쉬는 시간" />
-
-            <TextView
-                android:id="@+id/brck_tm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                android:text="@string/tm_val"
-                tools:text="@string/tm_val" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/dnnr_tm_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/dnnr_tm_key"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/dnnr_tm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="저녁 장사 시간" />
-
-            <TextView
-                android:id="@+id/dnnr_tm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                android:text="@string/tm_val"
-                tools:text="@string/tm_val" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lo_tm_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/lo_tm_key"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/lo_tm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="주문 마감 시간" />
-
-            <TextView
-                android:id="@+id/lo_tm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                android:text="@string/tm_val"
-                tools:text="@string/tm_val" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rst_rvw_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/rvw_tot_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/rvw_tot_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingEnd="10dp"
-                android:text="@string/rvw"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:visibility="visible"
-                tools:text="리뷰" />
-
-            <TextView
-                android:id="@+id/cnt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:paddingStart="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/rvw_tot"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/rvw_tot_avg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingEnd="10dp"
-                android:text="@string/avg"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:visibility="visible"
-                tools:text="@string/avg" />
-
-            <TextView
-                android:id="@+id/avg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:paddingStart="10dp"
-                android:text="@string/n" />
-
-            <TextView
-                android:id="@+id/rvw_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingEnd="10dp"
-                android:text="@string/grade"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:visibility="visible"
-                tools:text="@string/grade" />
-
-            <TextView
-                android:id="@+id/grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:paddingStart="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/best_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/best_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/best"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:visibility="visible"
-                tools:text="@string/best" />
-
-            <TextView
-                android:id="@+id/best"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/good_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/good_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/good"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:visibility="visible"
-                tools:text="@string/good" />
-
-            <TextView
-                android:id="@+id/good"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/soso_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/soso_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/soso"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:visibility="visible"
-                tools:text="@string/soso" />
-
-            <TextView
-                android:id="@+id/soso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bad_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/bad_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/bad"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:visibility="visible"
-                tools:text="@string/bad" />
-
-            <TextView
-                android:id="@+id/bad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/worst_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/worst_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/worst"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:visibility="visible"
-                tools:text="@string/worst" />
-
-            <TextView
-                android:id="@+id/worst"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/n" />
-        </LinearLayout>
-
-    </LinearLayout>
+        app:srcCompat="@android:color/holo_red_light" />
+    -->
 
 </LinearLayout>

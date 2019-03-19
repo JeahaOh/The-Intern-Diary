@@ -28,6 +28,8 @@
     <string name="avg">네티즌 평점</string>
     <string name="grade">자체 평가</string>
 
+    <string name="addr">위치</string>
+
     <string name="cnt_key">개의 리뷰</string>
 
 </resources>

@@ -1,6 +1,9 @@
 package com.example.app.Rst;
 
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +23,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class RstDetail extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+
+public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     Rater rate;
-    private RecyclerView recyclerView;
-    private RvwAdapter adapter;
+//    private RecyclerView recyclerView;
+//    private RvwAdapter adapter;
+//
+    private Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +96,13 @@ public class RstDetail extends AppCompatActivity {
         MapView mapView = new MapView(this, options);
         ll.addView(mapView);
         mapView.onCreate(Bundle.EMPTY);
+
+
         */
+
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
+        mapFragment.getMapAsync(this); //implement 확인
 
         //  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위해 onClickListener를 만들어줌.
         ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
@@ -170,4 +191,38 @@ public class RstDetail extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
+        double lati=0, longti=0;    // 위도, 경도 변수 선언
+        List<Address> addressList = null;
+        Bundle intent = getIntent().getExtras();
+        String address = intent.getString( "loc_dtl");
+
+        try{
+            addressList = geocoder.getFromLocationName(
+                    address,
+                    10);
+        } catch (IOException e){
+            e.printStackTrace();
+            Log.e("test","입출력 오류");
+        }
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        if(addressList!=null){
+            lati = addressList.get(0).getLatitude();   // 해당 주소의 위도
+            longti = addressList.get(0).getLongitude();  // 해당 주소의 경도
+        }
+        LatLng marker = new LatLng(lati,longti);
+
+        markerOptions.position(marker);
+        markerOptions.title(intent.getString("hpt_name"));  // 마커 클릭하면 뜨는 정보
+        markerOptions.snippet(intent.getString("hpt_phone"));
+        map.addMarker(markerOptions);
+
+        map.moveCamera(CameraUpdateFactory.newLatLng(marker));
+        map.animateCamera(CameraUpdateFactory.zoomTo(15));
+    }
+    /* 구글 지도 끝 */
 }

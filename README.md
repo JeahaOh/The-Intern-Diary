@@ -16,6 +16,10 @@ Rvw List 준비중
 
 Rvw List 출력 성공
 
+### 15:20
+
+구글 지도 API, RstDetail Scroll 기능 추가.
+
 - - -
 
 ## 03/18 월요일
