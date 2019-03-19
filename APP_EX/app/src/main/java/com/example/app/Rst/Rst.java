@@ -1,4 +1,4 @@
-package com.example.app.rst;
+package com.example.app.Rst;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

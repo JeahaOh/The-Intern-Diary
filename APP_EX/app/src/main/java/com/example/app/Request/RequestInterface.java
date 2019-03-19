@@ -1,16 +1,12 @@
 package com.example.app.Request;
 
-import com.example.app.rst.Rater;
-import com.example.app.rst.Rst;
+import com.example.app.Rst.Rater;
+import com.example.app.Rst.Rst;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**

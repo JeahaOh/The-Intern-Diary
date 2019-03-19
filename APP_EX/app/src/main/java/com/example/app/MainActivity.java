@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.example.app.Request.RetrofitClient;
 import com.example.app.Request.RequestInterface;
-import com.example.app.rst.Rst;
-import com.example.app.rst.RstAdapter;
+import com.example.app.Rst.Rst;
+import com.example.app.Rst.RstAdapter;
 
 import java.util.List;
 

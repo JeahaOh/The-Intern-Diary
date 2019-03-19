@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
     <!--
     애플리케이션이 권한으로 보호되는 기능에 액세스해야 하는 경우,
     매니페스트에 <uses-permission> 요소를 사용하여 해당 권한이 필요하다는 것을 선언해야 함.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-
 
     <application
         android:allowBackup="true"
@@ -17,14 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--
-        구글 지도를 사용하기 위한 API KEY
-        -->
+        <activity android:name=".Rvw.RvwList"></activity>
+        <!--         구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
 
-        <activity android:name=".rst.RstDetail"></activity>
+        <activity android:name=".Rst.RstDetail" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".Rvw.RvwList">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <TableRow
+            android:id="@+id/rst_rvw_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/rst_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rst_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/rvw_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/n" />
+
+            <TextView
+                android:id="@+id/rvw_cnt_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cnt_key"
+                tools:text="@string/cnt_key" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/rvw_info_keys"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/avg_key"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/avg" />
+
+            <TextView
+                android:id="@+id/best_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/best"
+                tools:text="@string/best" />
+
+            <TextView
+                android:id="@+id/good_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/good"
+                tools:text="@string/good" />
+
+            <TextView
+                android:id="@+id/soso_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/soso"
+                tools:text="@string/soso" />
+
+            <TextView
+                android:id="@+id/bad_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/bad"
+                tools:text="@string/bad" />
+
+            <TextView
+                android:id="@+id/worst_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/worst"
+                tools:text="@string/worst" />
+
+            <TextView
+                android:id="@+id/grade_key"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:text="@string/grade"
+                tools:text="@string/grade" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/rvw_info_values"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/avg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/best"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/soso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/bad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/worst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+            <TextView
+                android:id="@+id/grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/n"
+                tools:text="@string/n" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvw_card_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

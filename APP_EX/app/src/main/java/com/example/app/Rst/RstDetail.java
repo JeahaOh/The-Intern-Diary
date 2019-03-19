@@ -1,13 +1,17 @@
-package com.example.app.rst;
+package com.example.app.Rst;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.app.R;
 import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
+import com.example.app.Rvw.RvwList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,6 +19,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RstDetail extends AppCompatActivity {
+
+    Rater rate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +33,12 @@ public class RstDetail extends AppCompatActivity {
     private void initViews(){
         //  mainActivity에서 받은 data를 가져옴.
         Bundle intent = getIntent().getExtras();
-
+        final int rst_no = intent.getInt( "rst_no" );
+        final String rst_nm = intent.getString("rst_name");
         //  식당 이름 출력
-        TextView rst_name = findViewById( R.id.rst_name );
-        rst_name.setText( intent.getString("rst_name") );
+
+        final TextView rst_name = findViewById( R.id.rst_name );
+        rst_name.setText( rst_nm );
 
         //  식당 주소 출력
         TextView loc_dtl = findViewById( R.id.loc_dtl );
@@ -71,17 +79,42 @@ public class RstDetail extends AppCompatActivity {
         mapView.onCreate(Bundle.EMPTY);
         */
 
+        //  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위해 onClickListener를 만들어줌.
+        ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
+        layout.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //  인텐트 선언
+                Intent intent = new Intent(v.getContext(), RvwList.class);
+
+                //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
+                intent.putExtra("rst_no", rst_no );
+                intent.putExtra( "rst_name", rst_nm );
+
+                //  이 외의 정보를 넘겨야 하는가?
+                intent.putExtra( "cnt", rate.getCnt() );
+                intent.putExtra( "avg", rate.getAvg() );
+                intent.putExtra( "best", rate.getBest() );
+                intent.putExtra( "good", rate.getGood() );
+                intent.putExtra( "soso", rate.getSoso() );
+                intent.putExtra( "bad", rate.getBad() );
+                intent.putExtra( "worst", rate.getWorst() );
+                intent.putExtra( "grade", rate.getGrade() );
+
+                //  화면 넘김.
+                startActivity(intent);
+            }
+        });
 
 
-        loadJSON( intent.getInt("rst_no" ) );
+        loadJSON( rst_no );
     }
 
     private void loadJSON( int rst_no ){
 
         //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
         Retrofit retrofit = RetrofitClient.getClient();
-
-
 
         //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
         RequestInterface request = retrofit.create(RequestInterface.class);
@@ -97,10 +130,7 @@ public class RstDetail extends AppCompatActivity {
             @Override
             public void onResponse( Call<Rater> call, Response<Rater> response ) {
 
-                Rater rate = response.body();
-
-                Log.v(rate.toString(), "rate");
-                Log.v( String.valueOf( rate.getAvg() ), "rate.avg");
+                rate = response.body();
 
                 TextView wannago = (TextView) findViewById(R.id.wannago);
                 wannago.setText( rate.getWannago() + "" );

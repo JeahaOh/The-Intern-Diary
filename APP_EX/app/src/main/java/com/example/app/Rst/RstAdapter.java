@@ -1,14 +1,12 @@
-package com.example.app.rst;
+package com.example.app.Rst;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.app.MainActivity;
 import com.example.app.R;
 
 import java.util.List;
@@ -33,7 +31,6 @@ import java.util.List;
 
 public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     //  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
-
 
     private List<Rst> rsts;
 
