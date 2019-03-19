@@ -28,6 +28,12 @@ Rvw List 출력 성공
 
 WEB rst/detail image path 설정
 
+### 18:00
+
+이미지 파일 확장자 없이 연결
+- https://devks.tistory.com/23
+
+
 - - -
 
 ## 03/18 월요일
