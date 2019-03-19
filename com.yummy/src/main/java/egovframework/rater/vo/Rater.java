@@ -102,6 +102,8 @@ public class Rater {
   }
 
   public float getAvg() {
+//    int temp = (int) avg * 100;
+//    this.avg = (float) ( temp / 100.0 );
     return avg;
   }
   

@@ -8,7 +8,7 @@
     SELECT
           SUM(score)      AS sum,
           COUNT(score)    AS cnt,
-          AVG(score)      AS avg,
+          ROUND( AVG(score), 2 )      AS avg,
             (SELECT
                 COUNT(score)
                 FROM

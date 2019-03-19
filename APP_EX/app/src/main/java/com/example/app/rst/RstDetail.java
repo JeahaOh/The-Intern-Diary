@@ -3,24 +3,16 @@ package com.example.app.rst;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.app.R;
-import com.example.app.RetrofitClient;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.MapView;
+import com.example.app.Request.RequestInterface;
+import com.example.app.Request.RetrofitClient;
 
-import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RstDetail extends AppCompatActivity {
 
@@ -79,6 +71,8 @@ public class RstDetail extends AppCompatActivity {
         mapView.onCreate(Bundle.EMPTY);
         */
 
+
+
         loadJSON( intent.getInt("rst_no" ) );
     }
 
@@ -104,12 +98,36 @@ public class RstDetail extends AppCompatActivity {
             public void onResponse( Call<Rater> call, Response<Rater> response ) {
 
                 Rater rate = response.body();
+
                 Log.v(rate.toString(), "rate");
+                Log.v( String.valueOf( rate.getAvg() ), "rate.avg");
 
-//                TextView wannago = (TextView) findViewById(R.id.wannago);
-//                wannago.setText( rate.getWannago() );
+                TextView wannago = (TextView) findViewById(R.id.wannago);
+                wannago.setText( rate.getWannago() + "" );
 
+                TextView cnt  = (TextView) findViewById( R.id.cnt );
+                cnt.setText( rate.getCnt() + "" );
 
+                TextView avg  = (TextView) findViewById( R.id.avg );
+                avg.setText( rate.getAvg() + "" );
+
+                TextView  grade = (TextView) findViewById( R.id.grade );
+                grade.setText( rate.getGrade() + "" );
+
+                TextView  best = (TextView) findViewById( R.id.best );
+                best.setText( rate.getBest() + "" );
+
+                TextView  good = (TextView) findViewById( R.id.good );
+                good.setText( rate.getGood() + "" );
+
+                TextView soso = (TextView) findViewById( R.id.soso );
+                soso.setText( rate.getSoso() + "" );
+
+                TextView bad = (TextView) findViewById( R.id.bad );
+                bad.setText( rate.getBad() + "" );
+
+                TextView worst = (TextView) findViewById( R.id.worst);
+                worst.setText( rate.getWorst() + "" );
             }
 
             @Override

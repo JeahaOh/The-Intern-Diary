@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">YummyAPP</string>
-    <string name="wannaGoKey">가고싶다</string>
+    <string name="wannaGoKey">가고싶다 </string>
     <string name="rvw_create_button">후기 작성</string>
     <string name="영업정보">영업 정보</string>
 
@@ -25,7 +25,7 @@
     <string name="soso">무난</string>
     <string name="bad">별로</string>
     <string name="worst">최악</string>
-    <string name="avg">네티븐 평점</string>
-    <string name="grade">자체 평점</string>
+    <string name="avg">네티즌 평점</string>
+    <string name="grade">자체 평가</string>
 
 </resources>

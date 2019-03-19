@@ -1,4 +1,7 @@
-package com.example.app.rst;
+package com.example.app.Request;
+
+import com.example.app.rst.Rater;
+import com.example.app.rst.Rst;
 
 import java.util.List;
 
@@ -22,6 +25,6 @@ public interface RequestInterface {
 
     //  get으로 Rater 정보 받아오기는 됨.
     @GET("/yummy/rater/getRatee")
-    Call<Rater> getRate( @Query("rst_no") int rst_no );
+    Call<Rater> getRate(@Query("rst_no") int rst_no );
 
 }
