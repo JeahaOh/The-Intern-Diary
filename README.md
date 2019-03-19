@@ -53,6 +53,71 @@ android image 출력 성공
 사진 올리는 기능 만들기 해야함.  
 rvw 작성부터? rst 작성부터?
 
+
+### 23:50
+
+URL 정리
+
+1. Android Study Link 모음
+    - Android Activity 시작
+        - https://developer.android.com/training/basics/activity-lifecycle/starting?hl=ko
+
+    - Android Life Cycle
+        - https://vaert.tistory.com/161
+
+    - Android 화면 전환과 Activity 간 데이터 전송
+        - https://jizard.tistory.com/10
+
+    - Layout, ViewGroup, View 개념정리
+        - https://mattlee.tistory.com/74
+
+    - Android Layout 탐구
+        - https://academy.realm.io/kr/posts/exploring-new-android-layouts/
+
+    - Linear Layout
+        - https://developer.android.com/guide/topics/ui/layout/linear?hl=ko
+
+    - View
+        - https://m.blog.naver.com/PostView.nhn?blogId=netrance&logNo=110121255363&categoryNo=84&proxyReferer=&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+    - Activity And View
+        - https://m.blog.naver.com/netrance/110121169955
+
+    - RecyclerView 간단 설명
+        - https://liveonthekeyboard.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-RecyclerView-1-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%82%AC%EC%9A%A9%EB%B2%95
+        - https://programmingfbf7290.tistory.com/entry/%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-RecyclerView
+
+    - RecyclerView에 대한 고찰
+        - http://dudmy.net/android/2017/06/23/consider-of-recyclerview/
+
+    - Adapter
+        - https://straight-strange.tistory.com/23
+
+    - Adapter And View
+        - http://dktfrmaster.blogspot.com/2016/09/adapter-view.html
+
+    - ViewHolder
+        - https://swalloow.tistory.com/71
+
+    - String Resource
+        - https://developer.android.com/guide/topics/resources/string-resource?hl=ko
+
+    - 아이콘 만들기
+        - https://developer.android.com/studio/write/image-asset-studio.html?hl=ko
+
+2. Retrofit에 대한 POST들
+    - Retrofit2 공식 문서
+        - http://devflow.github.io/retrofit-kr/
+
+    - 예제
+        - https://cres-cent.tistory.com/19
+        - https://falinrush.tistory.com/5
+        - https://march3samwuli.tistory.com/entry/Retrofit-2%EB%A1%9C-Http%ED%86%B5%EC%8B%A0-%EA%B5%AC%ED%98%84-%EC%8B%9C%EA%B0%84%EC%9D%84-%EB%8B%A8%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90
+        - https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+        - https://interconnection.tistory.com/73
+        - https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html
+        - https://developer.android.com/reference/android/telecom/Call
+
 - - -
 
 ## 03/18 월요일
@@ -77,7 +142,7 @@ rst_detail에 대한 layout을 만들었음.
 
 ### 21:30
 
-RstDetail화면 전환 성공
+RstDetail 화면 전환 성공
 
 ### 21:45
 
@@ -186,11 +251,11 @@ OkHttpClient 쪽에 확장 라이브러리로 HttpLoggingInterceptor 라는게 �
 ### 15:15
 
 - HTTP log 보기
-    - `https://nobase-dev.tistory.com/6`
+    - https://nobase-dev.tistory.com/6
   
 log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남...
-- `https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0`
-- `https://march3samwuli.tistory.com/entry/Retrofit-2%EB%A1%9C-Http%ED%86%B5%EC%8B%A0-%EA%B5%AC%ED%98%84-%EC%8B%9C%EA%B0%84%EC%9D%84-%EB%8B%A8%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90`  
+- https://yujuwon.tistory.com/entry/retrofit-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+- https://march3samwuli.tistory.com/entry/Retrofit-2%EB%A1%9C-Http%ED%86%B5%EC%8B%A0-%EA%B5%AC%ED%98%84-%EC%8B%9C%EA%B0%84%EC%9D%84-%EB%8B%A8%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90  
 뭐이리 어려운 게야  
   
 ### 16:40
@@ -198,14 +263,16 @@ log 상으로 JSON 데이터는 받지만 화면에 안뜨는것으로 결론남
 객체의 배열을 받아서 이 배열을 객체로 변환 하지 못하고 있는건데...  
 안드로이드를 잘 몰라서 한참 헤메는 것
 
-- `http://www.masterqna.com/android/70675/json-%ED%8C%8C%EC%8B%B1-%EB%8F%84%EC%99%80%EC%A3%BC%EC%84%B8%EC%9A%94`
-- `https://stackoverflow.com/questions/5554217/google-gson-deserialize-listclass-object-generic-type`  
+- http://www.masterqna.com/android/70675/json-%ED%8C%8C%EC%8B%B1-%EB%8F%84%EC%99%80%EC%A3%BC%EC%84%B8%EC%9A%94
+- https://stackoverflow.com/questions/5554217/google-gson-deserialize-listclass-object-generic-type  
+- https://okky.kr/article/545778
+- https://stackoverflow.com/questions/42623437/parse-json-array-response-using-retrofit-gson
+  
 이게 해결책 같지만, 예제 코드에 대한 이해가 부족해서 잘 모르겠다...
 
 ### 18:40
 
 문제의 원인은 내가 앱을 1도 모르고, 이해를 못하는 것이다..  
-
 
 - - -
 
