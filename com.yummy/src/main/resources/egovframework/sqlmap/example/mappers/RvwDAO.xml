@@ -7,10 +7,15 @@
   
   <!--  rst_no에 대한 rvw List 반환 -->
   <select id="getRvwList" parameterType="int" resultType="rvw">
-    SELECT rvw_no, id, cont, cdt, score
-    FROM rvw
-    WHERE useyn = 'Y'
-    AND rst_no = #{rst_no}
+    SELECT
+      rvw_no, id, cont, cdt, score
+    FROM
+      rvw
+    WHERE
+      useyn = 'Y'
+    AND
+      rst_no = #{rst_no}
+    Limit 10
   </select>
   
   <!-- rvw_no에 대한 rvw 반환 -->

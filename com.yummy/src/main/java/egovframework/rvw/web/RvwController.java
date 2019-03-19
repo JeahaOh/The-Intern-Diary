@@ -1,6 +1,5 @@
 package egovframework.rvw.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +89,22 @@ public class RvwController {
     
     logger.info("\n\t/rvw/getRvwList Return {}\tAND\t{} RVWs..", rater.toString(), list.size() );
     return map;
+  }
+  
+  /**
+   * rvwList를 json으 전달
+   * @param rst_no  - target rst의 rst_no
+   * @return
+   * @throws Exception
+   */
+  @ResponseBody
+  @RequestMapping(value = "/getList", method = RequestMethod.POST)
+  public List<Rvw> getRvwList( @RequestParam(value="rst_no") int rst_no ) throws Exception {
+    
+    List<Rvw> list = rvwService.getRvwList(rst_no);
+    
+    logger.info("\n\t/rvw/getRvwList Return \t{} RVWs..", list.size() );
+    return list;
   }
   
   /**

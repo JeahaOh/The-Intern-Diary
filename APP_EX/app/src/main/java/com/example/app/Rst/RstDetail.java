@@ -3,6 +3,7 @@ package com.example.app.Rst;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.example.app.R;
 import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
+import com.example.app.Rvw.RvwAdapter;
 import com.example.app.Rvw.RvwList;
 
 import retrofit2.Call;
@@ -21,6 +23,8 @@ import retrofit2.Retrofit;
 public class RstDetail extends AppCompatActivity {
 
     Rater rate;
+    private RecyclerView recyclerView;
+    private RvwAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,31 +137,31 @@ public class RstDetail extends AppCompatActivity {
                 rate = response.body();
 
                 TextView wannago = (TextView) findViewById(R.id.wannago);
-                wannago.setText( rate.getWannago() + "" );
+                wannago.setText( "  " + rate.getWannago() + "개" );
 
                 TextView cnt  = (TextView) findViewById( R.id.cnt );
-                cnt.setText( rate.getCnt() + "" );
+                cnt.setText( rate.getCnt() + "건" );
 
                 TextView avg  = (TextView) findViewById( R.id.avg );
-                avg.setText( rate.getAvg() + "" );
+                avg.setText( rate.getAvg() + "점" );
 
                 TextView  grade = (TextView) findViewById( R.id.grade );
-                grade.setText( rate.getGrade() + "" );
+                grade.setText( rate.getGrade() + "점" );
 
                 TextView  best = (TextView) findViewById( R.id.best );
-                best.setText( rate.getBest() + "" );
+                best.setText( rate.getBest() + "건" );
 
                 TextView  good = (TextView) findViewById( R.id.good );
-                good.setText( rate.getGood() + "" );
+                good.setText( rate.getGood() + "건" );
 
                 TextView soso = (TextView) findViewById( R.id.soso );
-                soso.setText( rate.getSoso() + "" );
+                soso.setText( rate.getSoso() + "건" );
 
                 TextView bad = (TextView) findViewById( R.id.bad );
-                bad.setText( rate.getBad() + "" );
+                bad.setText( rate.getBad() + "건" );
 
                 TextView worst = (TextView) findViewById( R.id.worst);
-                worst.setText( rate.getWorst() + "" );
+                worst.setText( rate.getWorst() + "건" );
             }
 
             @Override
