@@ -48,6 +48,11 @@ adroid image 불러오는 lib
 
 android image 출력 성공
 
+### 22:00
+
+사진 올리는 기능 만들기 해야함.  
+rvw 작성부터? rst 작성부터?
+
 - - -
 
 ## 03/18 월요일

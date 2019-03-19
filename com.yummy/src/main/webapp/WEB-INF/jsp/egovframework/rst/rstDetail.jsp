@@ -360,8 +360,8 @@
         </table>
       </div>
     </div>
-    <script src="<c:url value='/js/rstDetail.js'/>"></script>
-    <script src="<c:url value='/js/rvw.js'/>"></script>
-    <script src="<c:url value='/js/modal.js'/>"></script>
+    <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
+    <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
+    <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>
   </body>
 </html>

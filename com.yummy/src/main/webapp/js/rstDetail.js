@@ -38,10 +38,11 @@ $(function(){
  * input type file에 사진을 올리면
  * #preview에 사진을 보여줌.
  */
-$( "#img" ).change(function() {
+$( "#img_input" ).change(function() {
   pic( this );
   function pic( input ) {
     if ( input.files && input.files[0] ) {
+      
       var reader = new FileReader();
       reader.onload = function( e ) {
         $('#preview').css( 'background-image', 'url(' + e.target.result + ')' );
