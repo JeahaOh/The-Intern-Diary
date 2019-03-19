@@ -89,20 +89,11 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         }
 
 
-        /*
-        구글 지도?
-        LinearLayout ll = findViewById(R.id.map_layout);
-        GoogleMapOptions options = new GoogleMapOptions().liteMode(true);
-        MapView mapView = new MapView(this, options);
-        ll.addView(mapView);
-        mapView.onCreate(Bundle.EMPTY);
-
-
-        */
-
+        //  구글 지도를 쓰기위한 Fragment
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(this); //implement 확인
+        //  OnMapReadyCallback를 implement 해서 onMapReady()가 있어야 쓸 수 있음.
+        mapFragment.getMapAsync(this);
 
         //  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위해 onClickListener를 만들어줌.
         ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
