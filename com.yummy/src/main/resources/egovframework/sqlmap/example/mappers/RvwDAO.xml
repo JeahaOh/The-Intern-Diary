@@ -20,14 +20,17 @@
   
   <!-- rvw_no에 대한 rvw 반환 -->
   <select id="getRvwDtl" parameterType="int" resultType="rvw">
-    SELECT rvw_no, id, cont, cdt, score
+    SELECT rvw.rvw_no, rvw.id, rvw.cont, rvw.cdt, rvw.score, phot.phot_no
     FROM rvw
+    LEFT OUTER JOIN
+      phot
+    ON rvw.rvw_no = phot.rvw_no
     WHERE useyn = 'Y'
-    AND rvw_no = #{rvw_no}
+    AND rvw.rvw_no = #{rvw_no}
   </select>
   
   <!-- rvw를 저장 -->
-  <insert id="save" parameterType="rvw" >
+  <insert id="save" parameterType="rvw" useGeneratedKeys="true" keyProperty="id" >
     INSERT INTO rvw
       (rst_no, id, cont, cdt, score, useyn)
     VALUES (

@@ -6,16 +6,19 @@ public class Rvw extends DefaultVO {
   
   private static final long serialVersionUID = 1L;
   
-  int rvw_no;   //  리뷰 번호
-  int rst_no;   //  레스토랑 번호
-  String id;    //  게시자 아이디
-  String cont;  //  리뷰 내용
-  String cdt;   //  리뷰 생성일
-  int score;    //  리뷰 평점
-  char useyn;   //  사용 여부
+  int rvw_no;       //  리뷰 번호
+  int rst_no;       //  레스토랑 번호
+  String id;        //  게시자 아이디
+  String cont;      //  리뷰 내용
+  String cdt;       //  리뷰 생성일
+  int score;        //  리뷰 평점
+  char useyn;       //  사용 여부
+  String phot_no;   //  사진 이름
   
   public Rvw() {  }
-  public Rvw(int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn) {
+  public Rvw(
+      int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn, String phot_no
+      ) {
     super();
     this.rvw_no = rvw_no;
     this.rst_no = rst_no;
@@ -24,6 +27,7 @@ public class Rvw extends DefaultVO {
     this.cdt = cdt;
     this.score = score;
     this.useyn = useyn;
+    this.phot_no = phot_no;
   }
   
   public int getRvw_no() {
@@ -68,9 +72,16 @@ public class Rvw extends DefaultVO {
   public void setUseyn(char useyn) {
     this.useyn = useyn;
   }
+  public String getPhot_no() {
+    return phot_no;
+  }
+  public void setPhot_no( String phot_no ) {
+    this.phot_no = phot_no;
+  }
+  
   @Override
   public String toString() {
     return "\n\tRvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
-        + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + "]";
+        + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + ", phot_no=" + phot_no + "]";
   }
 }

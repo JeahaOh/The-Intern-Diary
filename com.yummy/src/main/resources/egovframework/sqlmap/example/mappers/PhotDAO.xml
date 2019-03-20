@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="egovframework.phot.dao.PhotDAO">
-  
+  <!-- phot_no의 유무 확인. -->
   <select id="getPhotNo" parameterType="String" resultType="String">
     SELECT
       phot_no
@@ -14,11 +14,13 @@
       phot_no = #{phot_no}
   </select>
   
+  <!-- phot를 저장. -->
   <insert id="saveRstPhot" parameterType="Phot">
     INSERT INTO phot ( phot_no, rst_no )
     VALUES (#{phot_no}, #{rst_no})
   </insert>
   
+  <!-- rst_no에 대한 phot유무 확인. -->
   <select id="getRstPhot" parameterType="int" resultType="String">
     SELECT
       phot_no
@@ -28,6 +30,7 @@
       rst_no = #{rst_no}
   </select>
   
+  <!-- rst_no에 대한 phot 삭제. -->
   <delete id="deleteRstPhot" parameterType="int">
     DELETE
     FROM

@@ -45,6 +45,10 @@ DB에 rst_no에 대해 이미 phot_no이 있는 경우 이미 있는 phot_no를 
 
 작업 내용 주석 처리
 
+### 17:05
+
+rvw에 대한 multipart form data upload 처리를 해야함.
+
 - - -
 
 ## 03/19 화요일
