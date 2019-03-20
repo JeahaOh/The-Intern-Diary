@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import egovframework.phot.dao.PhotDAO;
+import egovframework.phot.vo.Phot;
 
 /**
  * @Class Name  : PhotServiceImple.java
@@ -28,6 +29,21 @@ public class PhotServiceImple implements PhotService {
   
   @Resource(name = "photDao")
   private PhotDAO photDao;
+
+  @Override
+  public Boolean getPhotNo(String phot_no) throws Exception {
+    return photDao.getPhotNo(phot_no);
+  }
+
+  @Override
+  public String saveRstPhot(Phot phot) throws Exception {
+    logger.info( "\n\tphotService recieve {}", phot.toString() );
+    if( photDao.saveRstPhot( phot ) ) {
+      return "success";
+    }
+    return "fail";
+  }
+  
   
 
 }

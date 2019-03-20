@@ -237,7 +237,7 @@ function postPhot( rst_no ) {
   formData.append( "rst_no", rst_no );
   
   $.ajax({
-    url:"/yummy/phot/rst_phot",
+    url:"/yummy/phot/rstPhotSave",
     data:formData,
     processData: false,
     contentType: false,

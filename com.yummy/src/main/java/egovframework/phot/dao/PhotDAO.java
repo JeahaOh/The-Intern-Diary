@@ -1,5 +1,6 @@
 package egovframework.phot.dao;
 
+import egovframework.phot.vo.Phot;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
@@ -24,5 +25,7 @@ public interface PhotDAO {
    * @throws Exception
    */
   Boolean getPhotNo(String phot_no) throws Exception;
+  
+  Boolean saveRstPhot( Phot phot ) throws Exception;
 
 }

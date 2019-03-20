@@ -1,5 +1,7 @@
 package egovframework.phot.service;
 
+import egovframework.phot.vo.Phot;
+
 /**
  * @Class Name  : PhotService.java
  * @Discription : PhotService Class
@@ -13,5 +15,9 @@ package egovframework.phot.service;
  *      Copyright (C) by JeahaOh All right reserved.
  */
 public interface PhotService {
+  
+  Boolean getPhotNo(String phot_no) throws Exception;
+  
+  String saveRstPhot( Phot phot ) throws Exception;
 
 }

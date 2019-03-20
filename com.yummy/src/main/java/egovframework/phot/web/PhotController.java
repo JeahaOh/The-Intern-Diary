@@ -3,6 +3,7 @@ package egovframework.phot.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import egovframework.phot.service.PhotService;
+import egovframework.phot.vo.Phot;
 import egovframework.rst.web.RstController;
 
 /**
@@ -35,28 +38,60 @@ public class PhotController {
   
   private static final Logger logger = LoggerFactory.getLogger(RstController.class);
   
-  @Autowired ServletContext sc;
+  @Autowired
+  ServletContext sc;
+  
+  @Resource(name = "photService")
+  private PhotService photService;
   
   @ResponseBody
-  @RequestMapping(value = "/rst_phot", method = RequestMethod.POST, consumes = {"multipart/form-data"} )
+  @RequestMapping(value = "/rstPhotSave", method = RequestMethod.POST, consumes = {"multipart/form-data"} )
   public String rstPhot(
       @RequestPart MultipartFile rst_phot
       ,@RequestParam(name = "rst_no") int rst_no
-      ) throws IOException{
+      ) throws Exception{
     logger.info( "\n\t/phot/rst_phot recieve\n\trst_no = {} phot.size =  {}", rst_no, rst_phot.getSize() );
     
-    //  사진 처리하기
+    Phot phot;
+    
+    //  사진이 있다면 처리 시
     if (rst_phot != null && rst_phot.getSize() > 0) {
-      String rst_phot_name = UUID.randomUUID().toString();
+      //  저장할 파일 이름을 UUID로 만듦.
+      String rst_phot_name = getUUID();
       
-      String path = sc.getRealPath("/resources/images/rst/").toString();
-      logger.info( "\n\trst_phot  set new name as {}\n\tAnd Save At {}\n", rst_phot_name, path + rst_phot_name );
+      try {
+        //  저장 경로 
+        String path = sc.getRealPath("/resources/images/rst/").toString();
+        
+        //  파일 저장
+        rst_phot.transferTo( new File( sc.getRealPath( "/resources/images/rst/" + rst_phot_name ) ) );
+        logger.info( "\n\trst_phot  set new name as {}\n\tAnd Save At {}\n", rst_phot_name, path + rst_phot_name );
+        
+        phot = new Phot();
+        phot.setPhot_no(rst_phot_name);
+        phot.setRst_no(rst_no);
+        
+        
+      } catch (IOException e) {
+        logger.info("\n\t/phot/rstPhotSave Error Occur\n{} \n", e.toString());
+        return "fail";
+      }
       
-      rst_phot.transferTo( new File( sc.getRealPath( path + rst_phot_name) ) );
-
+      return photService.saveRstPhot( phot );
     }
     
-    return "recieve";
+    return "phot is null or < 0";
+  }
+  
+  private String getUUID() throws Exception {
+    String str = UUID.randomUUID().toString();
+    logger.info("\n\tgetUUID {}", str);
+//    if( !photService.getPhotNo( str ) ) {
+//      logger.info("\n\tgetUUID callback getUUID ->{}", str);
+//      getUUID();
+//    }
+    
+    return str;
   }
 
 }
