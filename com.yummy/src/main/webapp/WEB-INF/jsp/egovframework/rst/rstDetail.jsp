@@ -33,7 +33,7 @@
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
     <div class="outter_container">
       <div class="inner_container">
-        <form id="rstForm" name="rstForm">
+        <form id="rstForm" name="rstForm" enctype="multipart/form-data">
           <div id="content_pop">
             <div id="table">
               <table>
@@ -208,7 +208,7 @@
                   <td class="tbtd_content">
                     <label for="img_input" id="img_label">
                       사진
-                      <input type="file" id="img_input" class="rst_form" name="img" alt="사진" accept=".png, .jpg, .jpeg">
+                      <input type="file" id="img_input" class="rst_form" name="rst_phot" alt="사진" accept=".png, .jpg, .jpeg">
                     </label>
                   </td>
                   <td class="tbtd_content">

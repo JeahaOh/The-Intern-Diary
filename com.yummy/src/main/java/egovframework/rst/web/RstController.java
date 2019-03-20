@@ -157,7 +157,10 @@ public class RstController {
    * @throws  Exception
    */
   @RequestMapping(value="/save", method= RequestMethod.POST)
-  public @ResponseBody int saveRst( @RequestBody Rst rst ) throws Exception {
+  public @ResponseBody int saveRst(
+      @RequestBody Rst rst
+      //,@RequestParam(name = "rst_phot", required = false) MultipartFile rst_phot
+      ) throws Exception {
     logger.info("\n/rst/save {}", rst.toString());
     int result = rstService.save(rst);
     if( result != 0 ) {

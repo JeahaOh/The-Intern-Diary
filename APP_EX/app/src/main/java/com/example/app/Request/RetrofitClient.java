@@ -15,7 +15,7 @@ public class RetrofitClient {
      * 회사       192.168.1.251
      * 별다방      172.30.26.218
      */
-    private static String addr = "172.30.1.45";
+    private static String addr = "192.168.1.251";
     private static String url = "http://" + addr + ":8888";
     private static Retrofit retrofit = null;
 

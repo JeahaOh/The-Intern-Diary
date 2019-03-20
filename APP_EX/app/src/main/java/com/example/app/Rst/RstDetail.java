@@ -56,16 +56,19 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         Bundle intent = getIntent().getExtras();
         final int rst_no = intent.getInt( "rst_no" );
         final String rst_nm = intent.getString("rst_name");
-        String url = RetrofitClient.getUrl();
-        url += "/yummy/resources/images/rst/" + intent.getString("rst_phot");
 
-        Log.v( "IMG URL", url);
+        //  RetrofitClient Class에서 default url을 가져옴.
+        String url = RetrofitClient.getUrl();
+        //  image의 resource 경로와, image의 이름을 경로에 추가
+        url += "/yummy/resources/images/rst/" + intent.getString("rst_phot");
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
         Picasso.with(this)
+                //  URL에서 Image를 가져와라.
                 .load(url)
-                .error(R.drawable.image_name_error)
+                //  사진이 없다면, res/drawable/ic_star_black.xml의 이미지를 띄워라.
+                .error(R.drawable.ic_star_black)
                 .into(imageView);
 
         //  식당 주소 출력

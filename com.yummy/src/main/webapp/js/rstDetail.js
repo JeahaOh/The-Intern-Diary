@@ -1,5 +1,5 @@
 //rstDetail.jps의 상태를 저장하는 변수.
-let rst_formStatus;
+let rst_form_status;
 
 /**
  * form의 input 값을 JSON형태로 바꾸는 function.
@@ -30,7 +30,7 @@ $.fn.serializeObject = function() {
 $(function(){
   if( $('#mode').hasClass('modify') ) {
     $('.rst_form').attr('disabled', 'disabled');
-    rst_formStatus = true;
+    rst_form_status = true;
   }
 });
 
@@ -60,12 +60,12 @@ $( "#img_input" ).change(function() {
  * 토글 방식으로 주거나 뺌
  */
 function updateRst() {
-  if ( rst_formStatus ) {
+  if ( rst_form_status ) {
     $('.rst_form').removeAttr('disabled');
-    rst_formStatus = false;
+    rst_form_status = false;
   } else {
     $('.rst_form').attr('disabled', 'disabled');
-    rst_formStatus = true;
+    rst_form_status = true;
   }
 }
 
@@ -75,7 +75,7 @@ function updateRst() {
 function removeRst() {
   let cnfrm;
 
-  if ( rst_formStatus ) {
+  if ( rst_form_status ) {
     alert('삭제 가능한 상태가 아닙니다.');
     return;
   } else {
@@ -139,6 +139,7 @@ $('#upper_catag').change( function () {
  * 새로 만들거나 수정된 rst정보를 저장
  */
 function saveRst(){
+  
   let cnfrm;
 
   //  rst_name의 유효성 검사.
@@ -170,7 +171,7 @@ function saveRst(){
   }
 
   //  form의 disabled 상태 검사
-  if ( rst_formStatus ) {
+  if ( rst_form_status ) {
     alert('수정 가능한 상태가 아닙니다.');
     return;
   } else {
@@ -185,33 +186,67 @@ function saveRst(){
 
   //  form의 data를 JSON 형태로 변환
   var form = $('#rstForm').serializeObject();
-  console.log( 'serializeObject\n' +JSON.stringify( form ));
+  console.log( form );
+  postPhot( 188 );
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
-  $.ajax("/yummy/rst/save" , {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    dataType: "json",
-    contentType : 'application/json; charset=UTF-8',
-    data: JSON.stringify( form ),
-    success: function ( data ) {
+//  $.ajax("/yummy/rst/save" , {
+//    headers: {
+//      'Accept': 'application/json',
+//      'Content-Type': 'application/json'
+//    },
+//    method: "POST",
+//    dataType: "json",
+//    contentType : 'application/json; charset=UTF-8',
+//    data: JSON.stringify( form ),
+//    enctype: 'multipart/form-data',
+//    success: function ( data ) {
+//      console.log( data );
+//      postPhot( data );
+//    
+//      if( $('#mode').hasClass('modify') ) {
+//        window.location.href = document.location.href;
+//      }
+//      if( data === 0 ) {
+//    	  window.location.href = '/yummy/rst/error';
+//      }
+//      else {
+//        window.location.href = '/yummy/rst/detail?id=' + data;
+//      }
+//      
+//    },
+//    error: function(xhr, status, msg) {
+//      console.log('xhr:\n ' + xhr);
+//      console.log('status:\n ' + status);
+//      console.log('msg:\n ' + msg);
+//    }
+//  });
+}
+/**
+ * AJAX로 사진 보내기
+ * @param rst_no
+ * @returns
+ */
+//  console.log( $('#img_input')[0].files[0] );
+//  console.log( $('#img_input')[0].value );
+function postPhot( rst_no ) {
+  var formData = new FormData();
+  formData.append( "rst_phot", $('#img_input')[0].files[0] );
+  
+  $.ajax({
+    url:"/yummy/phot/rst_phot",
+    data:formData,
+    processData: false,
+    contentType: false,
+    type: 'POST',
+    enctype: 'multipart/form-data',
+    success: function( data ){
       console.log( data ); 
-      if( $('#mode').hasClass('modify') ) {
-        window.location.href = document.location.href;
-      }
-      if( data === 0 ) {
-    	  window.location.href = '/yummy/rst/error';
-      }
-      else {
-        window.location.href = '/yummy/rst/detail?id=' + data;
-      }
     },
-    error: function(xhr, status, msg) {
+    error: function(xhr, status, msg, e) {
       console.log('xhr:\n ' + xhr);
       console.log('status:\n ' + status);
       console.log('msg:\n ' + msg);
+      console.log('e:\n' + e);
     }
   });
 }
