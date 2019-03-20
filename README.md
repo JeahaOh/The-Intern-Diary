@@ -11,6 +11,20 @@
 ### 11:05
 
 AJAX로 사진 전송, 수신 성공!
+- https://roqkffhwk.tistory.com/67
+
+### 13:45
+
+사진 저장 성공.
+- 사진 저장 경로
+    - /Users/Jeaha/egov/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/yummy/resources/images/rst
+- 참고는 했지만 도움은 되지 않은 링크
+    - https://blog.hanumoka.net/2018/09/06/spring-20180906-spring-file-upload/
+    - https://meaownworld.tistory.com/30
+    - https://shj7242.github.io/2017/12/07/Spring30/
+    - http://blog.daum.net/question0921/422
+    
+
 
 - - -
 

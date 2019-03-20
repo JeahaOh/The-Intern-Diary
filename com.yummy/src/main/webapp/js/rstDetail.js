@@ -187,22 +187,25 @@ function saveRst(){
   //  form의 data를 JSON 형태로 변환
   var form = $('#rstForm').serializeObject();
   console.log( form );
-  postPhot( 188 );
+
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
-//  $.ajax("/yummy/rst/save" , {
-//    headers: {
-//      'Accept': 'application/json',
-//      'Content-Type': 'application/json'
-//    },
-//    method: "POST",
-//    dataType: "json",
-//    contentType : 'application/json; charset=UTF-8',
-//    data: JSON.stringify( form ),
-//    enctype: 'multipart/form-data',
-//    success: function ( data ) {
-//      console.log( data );
-//      postPhot( data );
-//    
+  $.ajax("/yummy/rst/save" , {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    dataType: "json",
+    contentType : 'application/json; charset=UTF-8',
+    data: JSON.stringify( form ),
+    enctype: 'multipart/form-data',
+    success: function ( data ) {
+      console.log( data );
+      if ( postPhot( data ) ) {
+        
+        
+      }
+    
 //      if( $('#mode').hasClass('modify') ) {
 //        window.location.href = document.location.href;
 //      }
@@ -212,14 +215,14 @@ function saveRst(){
 //      else {
 //        window.location.href = '/yummy/rst/detail?id=' + data;
 //      }
-//      
-//    },
-//    error: function(xhr, status, msg) {
-//      console.log('xhr:\n ' + xhr);
-//      console.log('status:\n ' + status);
-//      console.log('msg:\n ' + msg);
-//    }
-//  });
+      
+    },
+    error: function(xhr, status, msg) {
+      console.log('xhr:\n ' + xhr.toString());
+      console.log('status:\n ' + status);
+      console.log('msg:\n ' + msg);
+    }
+  });
 }
 /**
  * AJAX로 사진 보내기
@@ -231,6 +234,7 @@ function saveRst(){
 function postPhot( rst_no ) {
   var formData = new FormData();
   formData.append( "rst_phot", $('#img_input')[0].files[0] );
+  formData.append( "rst_no", rst_no );
   
   $.ajax({
     url:"/yummy/phot/rst_phot",
@@ -240,13 +244,15 @@ function postPhot( rst_no ) {
     type: 'POST',
     enctype: 'multipart/form-data',
     success: function( data ){
-      console.log( data ); 
+      console.log( data );
+      return true;
     },
     error: function(xhr, status, msg, e) {
-      console.log('xhr:\n ' + xhr);
+      console.log('xhr:\n ' + xhr.toString() );
       console.log('status:\n ' + status);
       console.log('msg:\n ' + msg);
       console.log('e:\n' + e);
+      return false;
     }
   });
 }
