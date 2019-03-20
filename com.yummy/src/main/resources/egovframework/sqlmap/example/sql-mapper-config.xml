@@ -16,5 +16,6 @@
     <typeAlias alias="catag" type="egovframework.catag.vo.Catag"/>
     <typeAlias alias="rvw" type="egovframework.rvw.vo.Rvw"/>
     <typeAlias alias="rater" type="egovframework.rater.vo.Rater"/>
+    <typeAlias alias="phot" type="egovframework.phot.vo.Phot"/>
   </typeAliases>
 </configuration>

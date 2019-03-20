@@ -23,8 +23,9 @@ AJAX로 사진 전송, 수신 성공!
     - https://meaownworld.tistory.com/30
     - https://shj7242.github.io/2017/12/07/Spring30/
     - http://blog.daum.net/question0921/422
-    
 
+### 14:05
+- com.yummy phot package 생성
 
 - - -
 
