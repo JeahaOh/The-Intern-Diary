@@ -27,5 +27,9 @@ public interface PhotDAO {
   Boolean getPhotNo(String phot_no) throws Exception;
   
   Boolean saveRstPhot( Phot phot ) throws Exception;
+  
+  String getRstPhot(int rst_no) throws Exception;
+  
+  Boolean deleteRstPhot(int rst_no) throws Exception;
 
 }

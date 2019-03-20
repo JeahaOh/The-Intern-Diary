@@ -32,12 +32,19 @@ public class PhotServiceImple implements PhotService {
 
   @Override
   public Boolean getPhotNo(String phot_no) throws Exception {
+    logger.info( "\n\n\tphotService getPhotNo recieve {} \n\n", phot_no );
     return photDao.getPhotNo(phot_no);
   }
 
   @Override
   public String saveRstPhot(Phot phot) throws Exception {
     logger.info( "\n\tphotService recieve {}", phot.toString() );
+    
+    if( photDao.getRstPhot(phot.getRst_no()).length() > 0 ) {
+      logger.info( "\n\tphotService TABLE phot has rst_no = {}", phot.getRst_no() );
+      photDao.deleteRstPhot( phot.getRst_no() );
+    }
+    
     if( photDao.saveRstPhot( phot ) ) {
       return "success";
     }

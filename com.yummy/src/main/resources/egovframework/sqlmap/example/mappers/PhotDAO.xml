@@ -5,7 +5,7 @@
   
 <mapper namespace="egovframework.phot.dao.PhotDAO">
   
-  <select id="getPhotNo" parameterType="String">
+  <select id="getPhotNo" parameterType="String" resultType="String">
     SELECT
       phot_no
     FROM
@@ -18,4 +18,21 @@
     INSERT INTO phot ( phot_no, rst_no )
     VALUES (#{phot_no}, #{rst_no})
   </insert>
+  
+  <select id="getRstPhot" parameterType="int" resultType="String">
+    SELECT
+      phot_no
+    FROM
+      phot
+    WHERE
+      rst_no = #{rst_no}
+  </select>
+  
+  <delete id="deleteRstPhot" parameterType="int">
+    DELETE
+    FROM
+      phot
+    WHERE
+      rst_no = #{rst_no}
+  </delete>
 </mapper>

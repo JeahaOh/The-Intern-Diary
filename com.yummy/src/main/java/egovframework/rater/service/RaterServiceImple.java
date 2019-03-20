@@ -42,7 +42,7 @@ public class RaterServiceImple implements RaterService {
   @Override
   public Rater getRate(int rst_no) throws Exception {
     Rater rate = raterDao.getRate(rst_no); 
-    logger.info("\n\t RaterService retutn Rate ==> {}\n", rate.toString());
+    logger.info("\n\t RaterService return Rate ==> {}\n", rate.toString());
     if( rate != null ) {
       return rate;
     }

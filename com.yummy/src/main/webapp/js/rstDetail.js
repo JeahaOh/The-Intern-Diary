@@ -201,20 +201,19 @@ function saveRst(){
     enctype: 'multipart/form-data',
     success: function ( data ) {
       console.log( data );
-      if ( postPhot( data ) ) {
-        
-        
-      }
-    
-//      if( $('#mode').hasClass('modify') ) {
-//        window.location.href = document.location.href;
-//      }
-//      if( data === 0 ) {
-//    	  window.location.href = '/yummy/rst/error';
-//      }
-//      else {
-//        window.location.href = '/yummy/rst/detail?id=' + data;
-//      }
+      postPhot( data );
+      //  업로딩 시간이 걸리므로 5초 타임아웃.
+      setTimeout(function(){
+        if( $('#mode').hasClass('modify') ) {
+          window.location.href = document.location.href;
+        }
+        if( data === 0 ) {
+          window.location.href = '/yummy/rst/error';
+        }
+        else {
+          window.location.href = '/yummy/rst/detail?id=' + data;
+        }
+      }, 5000);
       
     },
     error: function(xhr, status, msg) {
@@ -245,14 +244,12 @@ function postPhot( rst_no ) {
     enctype: 'multipart/form-data',
     success: function( data ){
       console.log( data );
-      return true;
     },
     error: function(xhr, status, msg, e) {
       console.log('xhr:\n ' + xhr.toString() );
       console.log('status:\n ' + status);
       console.log('msg:\n ' + msg);
       console.log('e:\n' + e);
-      return false;
     }
   });
 }
