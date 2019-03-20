@@ -16,8 +16,20 @@ import egovframework.phot.vo.Phot;
  */
 public interface PhotService {
   
+  /**
+   * phot 테이블에 phot_no가 있는지 확인 하는 method
+   * @param phot_no
+   * @return
+   * @throws Exception
+   */
   Boolean getPhotNo(String phot_no) throws Exception;
   
+  /**
+   * phot 테이블에 식당 사진을 저장하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
   String saveRstPhot( Phot phot ) throws Exception;
 
 }

@@ -26,10 +26,28 @@ public interface PhotDAO {
    */
   Boolean getPhotNo(String phot_no) throws Exception;
   
+  /**
+   * phot 테이블에 식당 사진을 저장하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
   Boolean saveRstPhot( Phot phot ) throws Exception;
   
+  /**
+   * rst_no에 대한 phot의 유무를 반환하는 method
+   * @param rst_no
+   * @return
+   * @throws Exception
+   */
   String getRstPhot(int rst_no) throws Exception;
   
+  /**
+   * rst_no에 대한 phot를 삭제하는 method
+   * @param rst_no
+   * @return
+   * @throws Exception
+   */
   Boolean deleteRstPhot(int rst_no) throws Exception;
 
 }

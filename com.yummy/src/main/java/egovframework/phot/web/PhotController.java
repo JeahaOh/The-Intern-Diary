@@ -44,6 +44,13 @@ public class PhotController {
   @Resource(name = "photService")
   private PhotService photService;
   
+  /**
+   * phot 테이블에 식당 사진을 저장하는 method
+   * @param rst_phot
+   * @param rst_no
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
   @RequestMapping(value = "/rstPhotSave", method = RequestMethod.POST, consumes = {"multipart/form-data"} )
   public String rstPhot(
@@ -67,6 +74,7 @@ public class PhotController {
         rst_phot.transferTo( new File( sc.getRealPath( "/resources/images/rst/" + rst_phot_name ) ) );
         logger.info( "\n\trst_phot  set new name as {}\n\tAnd Save At {}\n", rst_phot_name, path + rst_phot_name );
         
+        //  phot 객체 생성후, rst_no와 phot_no 값 설정.
         phot = new Phot();
         phot.setPhot_no(rst_phot_name);
         phot.setRst_no(rst_no);
@@ -76,7 +84,7 @@ public class PhotController {
         logger.info("\n\t/phot/rstPhotSave Error Occur\n{} \n", e.toString());
         return "fail";
       }
-      
+      //  photService.saveRstPhot() 실행.
       return photService.saveRstPhot( phot );
     }
     
