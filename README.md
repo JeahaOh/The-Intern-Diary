@@ -42,6 +42,12 @@ tiles를 꼭 하고 싶은데 짜잘한 기능이라서 나중에 하기로 했�
 - https://velog.io/@bakim17/%EC%A0%84%EC%9E%90%EC%A0%95%EB%B6%80-tiles-%EC%84%B8%ED%8C%85  
 링크 보면 금방 할 수 있는 기능인 듯 함.
 
+
+### 20:45
+
+AJAX로 rvw/saveWith에 rvw JSON 객체 전송 성공...  
+BUT Multipart는 아직 못함...
+
 - - -
 
 ## 03/20 수요일

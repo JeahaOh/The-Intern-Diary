@@ -147,21 +147,23 @@ public class RvwController {
     } 
     return "fail";
   }
-  
-  @ResponseBody
-  @RequestMapping(value = "/saveWith", method = RequestMethod.POST)
+  /**
+   * rvw를 MultipartForm Data로 저장하기 위한 method
+   * @param rvw
+   * @return
+   * @throws Exception
+   */
+  //@ResponseBody
+  @RequestMapping(value = "/saveWith", method = RequestMethod.POST) //, consumes = "multipart/form-data" 
   public String RVW(
-      @RequestPart MultipartFile rvwPhot,
-      @RequestBody Rvw rvw ) throws Exception {
-    logger.info("\n\t/rvw/saveWITH receive --> {}", rvw.toString());
-    
-    
-    
-    
-    if( rvwService.save(rvw)) {
-      return "success";
-    } 
-    return "fail";
+      //@RequestPart(name="phot", required = false) MultipartFile phot,
+      @RequestBody Rvw rvw 
+      ) throws Exception {
+    System.out.println("rvw/saveWith TEST");
+    logger.info("\n\t/rvw/saveWITH receive -->\nrvw : {}", rvw.toString());
+//    logger.info("\n\t/rvw/saveWITH receive -->\nrvwPhot : {}", phot.getSize());
+
+    return "rvwTest";
   }
   
   /**

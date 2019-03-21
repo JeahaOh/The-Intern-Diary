@@ -13,11 +13,11 @@ public class Rvw extends DefaultVO {
   String cdt;       //  리뷰 생성일
   int score;        //  리뷰 평점
   char useyn;       //  사용 여부
-  String phot_no;   //  사진 이름
+  String rvw_phot;   //  사진 이름
   
   public Rvw() {  }
   public Rvw(
-      int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn, String phot_no
+      int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn, String rvw_phot
       ) {
     super();
     this.rvw_no = rvw_no;
@@ -27,7 +27,7 @@ public class Rvw extends DefaultVO {
     this.cdt = cdt;
     this.score = score;
     this.useyn = useyn;
-    this.phot_no = phot_no;
+    this.rvw_phot = rvw_phot;
   }
   
   public int getRvw_no() {
@@ -72,16 +72,16 @@ public class Rvw extends DefaultVO {
   public void setUseyn(char useyn) {
     this.useyn = useyn;
   }
-  public String getPhot_no() {
-    return phot_no;
+  public String getRvw_phot() {
+    return rvw_phot;
   }
-  public void setPhot_no( String phot_no ) {
-    this.phot_no = phot_no;
+  public void setRvw_phot( String rvw_phot ) {
+    this.rvw_phot = rvw_phot;
   }
   
   @Override
   public String toString() {
     return "\n\tRvw [rvw_no=" + rvw_no + ", rst_no=" + rst_no + ", id=" + id + ", cont=" + cont
-        + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + ", phot_no=" + phot_no + "]";
+        + ", cdt=" + cdt + ", score=" + score + ", useyn=" + useyn + ", rvw_phot=" + rvw_phot + "]";
   }
 }

@@ -28,7 +28,7 @@
   <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/modal.css'/>"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
   </head>
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
     <div class="outter_container">
