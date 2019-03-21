@@ -90,8 +90,13 @@
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${rst.rst_phot != null}">
-                            <%-- <div id="preview" style="background-image: url(<c:url value='/resources/images/rst/'/>${rst.rst_phot});"></div> --%>
-                            <img id="preview" src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" >
+                            <img id="preview"
+                                  src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"
+                                  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" >
+                            <!-- img tag 에서 src가 에러가 날 경우
+                                  onError에 명시한 행동을 취함.
+                                  현재 코드는 같은 링크의 사진을 재 요청 시키는 것.
+                             -->
                           </c:when>
                           <c:otherwise>
                             <img id="preview"></img>

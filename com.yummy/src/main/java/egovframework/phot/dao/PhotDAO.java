@@ -32,7 +32,7 @@ public interface PhotDAO {
    * @return
    * @throws Exception
    */
-  Boolean saveRstPhot( Phot phot ) throws Exception;
+  Boolean savePhot( Phot phot ) throws Exception;
   
   /**
    * rst_no에 대한 phot의 유무를 반환하는 method

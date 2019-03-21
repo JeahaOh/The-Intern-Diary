@@ -31,5 +31,13 @@ public interface PhotService {
    * @throws Exception
    */
   String saveRstPhot( Phot phot ) throws Exception;
+  
+  /**
+   * phot 테이블에 리뷰 사진을 저장하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
+  String saveRvwPhot( Phot phot ) throws Exception;
 
 }

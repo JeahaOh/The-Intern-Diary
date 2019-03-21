@@ -15,9 +15,19 @@
   </select>
   
   <!-- phot를 저장. -->
-  <insert id="saveRstPhot" parameterType="Phot">
-    INSERT INTO phot ( phot_no, rst_no )
-    VALUES (#{phot_no}, #{rst_no})
+  <insert id="savePhot" parameterType="Phot">
+    INSERT INTO phot
+      ( phot_no, rst_no
+      <if test="rvw_no!=null and !rvw_no.equals('') and rvw_no!=0">
+        , rvw_no
+      </if>
+       )
+    VALUES
+      (#{phot_no}, #{rst_no}
+      <if test="rvw_no!=null and !rvw_no.equals('') and rvw_no!=0">
+        , #{rvw_no}
+      </if>
+      )
   </insert>
   
   <!-- rst_no에 대한 phot유무 확인. -->
@@ -28,6 +38,7 @@
       phot
     WHERE
       rst_no = #{rst_no}
+    AND rvw_no IS NULL
   </select>
   
   <!-- rst_no에 대한 phot 삭제. -->
@@ -37,5 +48,6 @@
       phot
     WHERE
       rst_no = #{rst_no}
+    AND rvw_no IS NULL
   </delete>
 </mapper>

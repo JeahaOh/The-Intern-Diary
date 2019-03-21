@@ -50,22 +50,52 @@ public class PhotServiceImple implements PhotService {
    */
   @Override
   public String saveRstPhot(Phot phot) throws Exception {
-    logger.info( "\n\tphotService recieve {}", phot.toString() );
+    logger.info( "\n\tphotService SaveRstPhot recieve {}", phot.toString() );
     
     //  rst_no에 대한 phot가 없다면,
     String yn = photDao.getRstPhot(phot.getRst_no());
     if( yn == null ) {
-      logger.info("\n\tphotService getRstPhot -> {}", yn );
+      logger.info("\n\tphotService SaveRstPhot getRstPhot -> {}", yn );
       //  phot객체 저장.
-      if( photDao.saveRstPhot( phot ) ) {
+      if( photDao.savePhot( phot ) ) {
         return "success";
       }
     }   else {
-      logger.info( "\n\tphotService TABLE phot has rst_no = {}", phot.getRst_no() );
+      logger.info( "\n\tphotService SaveRstPhot TABLE phot has rst_no = {}", phot.getRst_no() );
       //  rst_no에 대한 phot를 삭제.
       photDao.deleteRstPhot( phot.getRst_no() );
       //  phot객체 저장.
-      if( photDao.saveRstPhot( phot ) ) {
+      if( photDao.savePhot( phot ) ) {
+        return "success";
+      }
+    }
+    return "fail";
+  }
+  
+  /**
+   * phot 테이블에 리뷰 사진을 저장하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
+  @Override
+  public String saveRvwPhot(Phot phot) throws Exception {
+    logger.info( "\n\tphotService SaveRVWPhot recieve {}", phot.toString() );
+    
+    //  rst_no에 대한 phot가 없다면,
+    String yn = photDao.getRstPhot(phot.getRst_no());
+    if( yn == null ) {
+      logger.info("\n\tphotService SaveRVWPhot getRstPhot -> {}", yn );
+      //  phot객체 저장.
+      if( photDao.savePhot( phot ) ) {
+        return "success";
+      }
+    }   else {
+      logger.info( "\n\tphotService SaveRVWPhot TABLE phot has rst_no = {}", phot.getRst_no() );
+      //  rst_no에 대한 phot를 삭제.
+      photDao.deleteRstPhot( phot.getRst_no() );
+      //  phot객체 저장.
+      if( photDao.savePhot( phot ) ) {
         return "success";
       }
     }

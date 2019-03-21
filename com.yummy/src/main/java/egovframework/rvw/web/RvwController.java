@@ -4,16 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.dflt.ReviewVO;
+import egovframework.phot.service.PhotService;
 import egovframework.rater.service.RaterService;
 import egovframework.rater.vo.Rater;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -39,11 +44,17 @@ public class RvwController {
   
   private static final Logger logger = LoggerFactory.getLogger(RvwController.class);
   
+  @Autowired
+  ServletContext sc;
+  
   @Resource(name = "rvwService")
   private RvwService rvwService;
   
   @Resource(name = "raterService")
   private RaterService raterService;
+  
+  @Resource(name = "photService")
+  private PhotService photService;
   
   /** EgovPropertyService */
   @Resource(name = "propertiesService")
@@ -131,6 +142,22 @@ public class RvwController {
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String createRvw( @RequestBody Rvw rvw ) throws Exception {
     logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
+    if( rvwService.save(rvw)) {
+      return "success";
+    } 
+    return "fail";
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/saveWith", method = RequestMethod.POST)
+  public String RVW(
+      @RequestPart MultipartFile rvwPhot,
+      @RequestBody Rvw rvw ) throws Exception {
+    logger.info("\n\t/rvw/saveWITH receive --> {}", rvw.toString());
+    
+    
+    
+    
     if( rvwService.save(rvw)) {
       return "success";
     } 
