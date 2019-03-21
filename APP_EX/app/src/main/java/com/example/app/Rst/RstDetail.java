@@ -6,7 +6,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.example.app.R;
 import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
-import com.example.app.Rvw.RvwAdapter;
 import com.example.app.Rvw.RvwList;
 
 import retrofit2.Call;
@@ -58,9 +56,9 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         final String rst_nm = intent.getString("rst_name");
 
         //  RetrofitClient Class에서 default url을 가져옴.
-        String url = RetrofitClient.getUrl();
+        String url = RetrofitClient.getRstImgUrl();
         //  image의 resource 경로와, image의 이름을 경로에 추가
-        url += "/yummy/resources/images/rst/" + intent.getString("rst_phot");
+        url += intent.getString("rst_phot");
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -104,11 +102,14 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         final TextView rst_name = findViewById( R.id.rst_name );
         rst_name.setText( rst_nm );
 
-        //  구글 지도를 쓰기위한 Fragment
+        /*  구글 지도를 쓰기위한 Fragment  */
+
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
         //  OnMapReadyCallback를 implement 해서 onMapReady()가 있어야 쓸 수 있음.
         mapFragment.getMapAsync(this);
+
+        /*  구글 지도를 쓰기위한 Fragment  */
 
         //  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위해 onClickListener를 만들어줌.
         ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
@@ -198,13 +199,20 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         });
     }
 
+    /*  구글 지도 생성시 하는 작업  */
     @Override
     public void onMapReady(GoogleMap map) {
         geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
         double lati=0, longti=0;    // 위도, 경도 변수 선언
         List<Address> addressList = null;
+        String address;
+
         Bundle intent = getIntent().getExtras();
-        String address = intent.getString( "loc_dtl");
+        if( intent.getString( "loc_dtl") != null || intent.getString( "loc_dtl") != "" ) {
+            address = intent.getString( "loc_dtl");
+        }   else {
+            address = "서울특별시 중구 명동 세종대로 110";
+        }
 
         try{
             addressList = geocoder.getFromLocationName(
@@ -230,5 +238,5 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLng(marker));
         map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
-    /* 구글 지도 끝 */
+    /*  구글 지도 생성시 하는 작업  */
 }

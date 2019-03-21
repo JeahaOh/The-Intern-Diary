@@ -48,8 +48,8 @@ public class RetrofitClient {
         return retrofit;
     }
 
-    public static String getUrl() {
-        return url;
+    public static String getRstImgUrl() {
+        return url + "/yummy/resources/images/rst/";
     }
 
 }
