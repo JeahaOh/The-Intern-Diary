@@ -45,11 +45,15 @@ $( "#img_input" ).change(function() {
       
       var reader = new FileReader();
       reader.onload = function( e ) {
-        $('#preview').attr( 'src',  e.target.result );
+        $('#preview').attr( 'src', e.target.result );
         $('#preview').hide();
         $('#preview').fadeIn(650);
       }
-      reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(input.files[0]);
+        
+      if( $('#mode').hasClass('modify') ) {
+        postPhot( $('#rst_no').val() );
+      }
     }
   }
 });
@@ -201,19 +205,23 @@ function saveRst(){
     enctype: 'multipart/form-data',
     success: function ( data ) {
       console.log( data );
-      postPhot( data );
+      
+      if( $('#mode').hasClass('Create') ) {
+        postPhot( data );
+      }
+      
       //  업로딩 시간이 걸리므로 잠시 타임아웃.
-      setTimeout(function(){
-        if( $('#mode').hasClass('modify') ) {
-          window.location.href = document.location.href;
-        }
-        if( data === 0 ) {
-          window.location.href = '/yummy/rst/error';
-        }
-        else {
-          window.location.href = '/yummy/rst/detail?id=' + data;
-        }
-      }, 1000);
+//      setTimeout(function(){
+//        if( $('#mode').hasClass('modify') ) {
+//          window.location.href = document.location.href;
+//        }
+//        if( data === 0 ) {
+//          window.location.href = '/yummy/rst/error';
+//        }
+//        else {
+//          window.location.href = '/yummy/rst/detail?id=' + data;
+//        }
+//      }, 1000);
       
     },
     error: function(xhr, status, msg) {

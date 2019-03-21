@@ -52,15 +52,10 @@ public class PhotServiceImple implements PhotService {
   public String saveRstPhot(Phot phot) throws Exception {
     logger.info( "\n\tphotService recieve {}", phot.toString() );
     
-//    //  rst_no에 대한 phot가 있다면,
-//    if( photDao.getRstPhot(phot.getRst_no()).length() > 0 ) {
-//      logger.info( "\n\tphotService TABLE phot has rst_no = {}", phot.getRst_no() );
-//      //  rst_no에 대한 phot를 삭제.
-//      photDao.deleteRstPhot( phot.getRst_no() );
-//    }
-    
     //  rst_no에 대한 phot가 없다면,
-    if( photDao.getRstPhot(phot.getRst_no()).length() < 0 ) {
+    String yn = photDao.getRstPhot(phot.getRst_no());
+    if( yn == null ) {
+      logger.info("\n\tphotService getRstPhot -> {}", yn );
       //  phot객체 저장.
       if( photDao.saveRstPhot( phot ) ) {
         return "success";
@@ -76,7 +71,4 @@ public class PhotServiceImple implements PhotService {
     }
     return "fail";
   }
-  
-  
-
 }

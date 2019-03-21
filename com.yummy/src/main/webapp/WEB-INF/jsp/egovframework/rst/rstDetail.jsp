@@ -85,7 +85,7 @@
                     <%-- rst_form이 생성용인지, 읽기 수정용인지에 따라 background image의 유무가 갈리므로 --%>
                     <c:choose>
                       <c:when test="${mode eq 'Create'}">
-                        <div id="preview"></div>
+                        <img id="preview"></img>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
@@ -94,7 +94,7 @@
                             <img id="preview" src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" >
                           </c:when>
                           <c:otherwise>
-                            <div id="preview"></div>
+                            <img id="preview"></img>
                           </c:otherwise>
                         </c:choose>
                       </c:otherwise>
