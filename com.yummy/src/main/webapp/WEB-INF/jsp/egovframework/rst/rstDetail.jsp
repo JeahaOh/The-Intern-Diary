@@ -85,21 +85,22 @@
                     <%-- rst_form이 생성용인지, 읽기 수정용인지에 따라 background image의 유무가 갈리므로 --%>
                     <c:choose>
                       <c:when test="${mode eq 'Create'}">
-                        <img id="preview"></img>
+                        <img id="preview"/>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${rst.rst_phot != null}">
                             <img id="preview"
                                   src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"
-                                  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" >
-                            <!-- img tag 에서 src가 에러가 날 경우
+                                  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" />
+                            <%--
+                                  img tag 에서 src가 에러가 날 경우
                                   onError에 명시한 행동을 취함.
                                   현재 코드는 같은 링크의 사진을 재 요청 시키는 것.
-                             -->
+                             --%>
                           </c:when>
                           <c:otherwise>
-                            <img id="preview"></img>
+                            <img id="preview"/>
                           </c:otherwise>
                         </c:choose>
                       </c:otherwise>
@@ -220,7 +221,7 @@
                 <tr>
                   <td class="tbtd_content">
                     <label for="img_input" id="img_label">
-                      사진
+                      <spring:message code="title.phot"/>
                       <input type="file" id="img_input" class="rst_form" name="rst_phot" alt="사진" accept=".png, .jpg, .jpeg">
                     </label>
                   </td>
@@ -251,128 +252,15 @@
           </div>
         </form>
       </div>
-        <c:if test="${mode eq 'Modify'}">
-          <%-- <jsp:include page="<c:url value='/jsp/egovframework/rvw/rvw.jsp'/>"/> --%>
-          <div class="inner_container">
-          <hr>
-            <table id="rate">
-              <colgroup>
-                <col width="100"/>
-                <col width="100"/>
-                <col width="100"/>
-                <col width="100"/>
-                <col width="100"/>
-                <col width="100"/>
-              </colgroup>
-              <thead>
-                <tr>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.best"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.good"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.soso"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.bad"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.worst"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.cnt"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.avg"/></td>
-                  <td class="rvw_dtl tbtd_caption"><spring:message code="rvw.grade"/></td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <!-- 1, 2, 3, 4, 5, 후기 갯수, 평점 -->
-                  <td id="score_best" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_good" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_soso" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_bad" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_worst" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_cnt" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_avg" class="rvw_dtl tbtd_content"></td>
-                  <td id="score_grade" class="rvw_dtl tbtd_content"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="inner_container">
-          <hr>
-            <table id="rvwTable">
-              <colgroup>
-                <col width="100"/>
-                <col width="500"/>
-                <col width="50"/>
-                <col width="200"/>
-              </colgroup>
-              <thead>
-                <tr>
-                  <td class="tbtd_caption"><spring:message code="rvw.no"/></td>
-                  <td class="tbtd_caption"><spring:message code="rvw.id"/></td>
-                  <td class="tbtd_caption"><spring:message code="rvw.score"/></td>
-                  <td class="tbtd_caption"><spring:message code="rvw.cdt"/></td>
-                </tr>
-              </thead>
-              <tbody id="rvw">
-              </tbody>
-            </table>
-          </div>
-        </c:if>
+      <%-- RVW INCLUDE --%>
+      <c:if test="${mode eq 'Modify'}">
+        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
+      </c:if>
       </div>
-    <%-- Modal --%>
-    <div id="modal" class="modal">
-      <span class="close">&times;</span>
-      <%-- ModalContent --%>
-      <div class="modal_content">
-        <h2><spring:message code="rvw.dtl"/></h2>
-        <table>
-          <tr>
-            <td class="tbtd_caption">
-              <spring:message code="rvw.no"/>
-            </td>
-            <td class="rvw_dtl tbtd_content">
-              <input type="text" id="rvw_no" name="rvw_no" readonly="readonly"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbtd_caption">
-              <spring:message code="rvw.id"/>
-            </td>
-            <td class="rvw_dtl tbtd_content">
-              <input type="text" id="id" name="id" readonly="readonly"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbtd_caption">
-              <spring:message code="rvw.score"/>
-            </td>
-            <td class="rvw_dtl tbtd_content">
-              <input type="text" id="score" name="score" readonly="readonly"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbtd_caption">
-              <spring:message code="rvw.cont"/>
-            </td>
-            <td class="rvw_dtl tbtd_content">
-              <textarea id="cont" name="cont" cols="40" rows="8" readonly="readonly" style="resize: none;"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbtd_caption">
-              <spring:message code="rvw.cdt"/>
-            </td>
-            <td class="rvw_dtl tbtd_content">
-              <input type="datetime" id="cdt" name="cdt" readonly="readonly" />
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <button onclick="rvw_edit()">수정</button>
-              <button onclick="rvw_update()">저장</button>
-              <button onclick="deleteRvw()">삭제</button>
-              
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+      <%-- RVW Modal INCLUDE --%>
+      <c:if test="${mode eq 'Modify'}">
+        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
+      </c:if>
     <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
     <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
     <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>

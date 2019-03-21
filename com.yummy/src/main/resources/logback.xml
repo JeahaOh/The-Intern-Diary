@@ -3,9 +3,9 @@
 <configuration>
   <include resource="org/springframework/boot/logging/logback/base.xml" />
   <logger name="jdbc.splonly" level="FATAL" />
-  <logger name="jdbc.sqltiming" level="INFO" />
+  <logger name="jdbc.sqltiming" level="FATAL" />
   <logger name="jdbc.audit" level="FATAL" />
-  <logger name="jdbc.resultset" level="WARN" />
-  <logger name="jdbc.resultsettable" level="INFO" />
+  <logger name="jdbc.resultset" level="FATAL" />
+  <logger name="jdbc.resultsettable" level="FATAL" />
   <logger name="jdbc.connection" level="FATAL" />
 </configuration>

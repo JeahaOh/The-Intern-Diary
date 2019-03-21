@@ -30,6 +30,12 @@ but 요청을 너무 많이해서 다른 방법을 찾아야 할 듯함.
 
 PhotService의 phot 저장 기능 개선.
 
+### 15:35
+
+JSP:INCLUDE 성공...  
+include에는 c:url을 쓸 수 없음..  
+c:url은 js, css, image file 등의 파일에만 쓸 수 있음...
+
 - - -
 
 ## 03/20 수요일

@@ -1,8 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
+/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp
+ --%>
+<%-- Modal --%>
 <div id="modal" class="modal">
   <span class="close">&times;</span>
-  ModalContent
+  <%-- ModalContent --%>
   <div class="modal_content">
     <h2><spring:message code="rvw.dtl"/></h2>
     <table>
@@ -52,10 +57,8 @@
           <button onclick="rvw_edit()">수정</button>
           <button onclick="rvw_update()">저장</button>
           <button onclick="deleteRvw()">삭제</button>
-          
         </td>
       </tr>
     </table>
   </div>
 </div>
- --%>
