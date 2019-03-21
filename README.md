@@ -48,6 +48,13 @@ tiles를 꼭 하고 싶은데 짜잘한 기능이라서 나중에 하기로 했�
 AJAX로 rvw/saveWith에 rvw JSON 객체 전송 성공...  
 BUT Multipart는 아직 못함...
 
+### 22:40
+
+RvwController에서 AJAX JSON으로 Multipart File과 Rvw 내용을 받게 하려고 삽질을 했는데,  
+생각해 보니 retrofit 2에서 POST를 하면 알아서 formdata 형식으로 보내준다고 봤던게 지금 생각 났음...
+일단 form 형식으로 MultipartFile이랑 Rvw 받는 method를 만들고 작동 확인 했고,
+Android에서 Retrofit을 사용해서 POST 하면서 테스트 해 봐야 할것 같음...
+
 - - -
 
 ## 03/20 수요일

@@ -156,13 +156,35 @@ public class RvwController {
   //@ResponseBody
   @RequestMapping(value = "/saveWith", method = RequestMethod.POST) //, consumes = "multipart/form-data" 
   public String RVW(
-      //@RequestPart(name="phot", required = false) MultipartFile phot,
+      @RequestPart(name="phot", required = false) MultipartFile phot,
       @RequestBody Rvw rvw 
       ) throws Exception {
-    System.out.println("rvw/saveWith TEST");
+    System.out.println("\nrvw/saveWith TEST");
     logger.info("\n\t/rvw/saveWITH receive -->\nrvw : {}", rvw.toString());
 //    logger.info("\n\t/rvw/saveWITH receive -->\nrvwPhot : {}", phot.getSize());
 
+    return "rvwTest";
+  }
+  
+  @RequestMapping(value = "/Element", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String Element(
+      @RequestPart(name="phot", required = false) MultipartFile phot,
+      int rst_no, String id, String cont, int score
+      ) throws Exception {
+    System.out.println("\nrvw/Element FORM TEST");
+    logger.info("\n\t/rvw/Element receive -->\nrvwPhot : {}", phot.getSize());
+    System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
+    return "rvwTest";
+  }
+  
+  @RequestMapping(value = "/Object", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String Object(
+      @RequestPart(name="phot", required = false) MultipartFile phot,
+      Rvw rvw
+      ) throws Exception {
+    System.out.println("\nrvw/Object FORM TEST");
+    logger.info("\n\t/rvw/Object receive -->\nrvw : {}", rvw.toString());
+    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
     return "rvwTest";
   }
   
