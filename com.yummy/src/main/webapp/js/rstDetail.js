@@ -45,7 +45,7 @@ $( "#img_input" ).change(function() {
       
       var reader = new FileReader();
       reader.onload = function( e ) {
-        $('#preview').css( 'background-image', 'url(' + e.target.result + ')' );
+        $('#preview').attr( 'src',  e.target.result );
         $('#preview').hide();
         $('#preview').fadeIn(650);
       }
@@ -202,7 +202,7 @@ function saveRst(){
     success: function ( data ) {
       console.log( data );
       postPhot( data );
-      //  업로딩 시간이 걸리므로 5초 타임아웃.
+      //  업로딩 시간이 걸리므로 잠시 타임아웃.
       setTimeout(function(){
         if( $('#mode').hasClass('modify') ) {
           window.location.href = document.location.href;
@@ -213,7 +213,7 @@ function saveRst(){
         else {
           window.location.href = '/yummy/rst/detail?id=' + data;
         }
-      }, 5000);
+      }, 1000);
       
     },
     error: function(xhr, status, msg) {

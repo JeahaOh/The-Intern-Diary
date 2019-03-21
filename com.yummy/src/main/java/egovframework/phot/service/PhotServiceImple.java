@@ -74,9 +74,6 @@ public class PhotServiceImple implements PhotService {
         return "success";
       }
     }
-    
-    
-
     return "fail";
   }
   

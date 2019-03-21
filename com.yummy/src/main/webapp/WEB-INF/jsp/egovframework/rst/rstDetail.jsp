@@ -90,7 +90,8 @@
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${rst.rst_phot != null}">
-                            <div id="preview" style="background-image: url(<c:url value='/resources/images/rst/'/>${rst.rst_phot});"></div>
+                            <%-- <div id="preview" style="background-image: url(<c:url value='/resources/images/rst/'/>${rst.rst_phot});"></div> --%>
+                            <img id="preview" src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"  onError="this.src=`<c:url value='/resources/images/rst/'/>${rst.rst_phot}`" >
                           </c:when>
                           <c:otherwise>
                             <div id="preview"></div>
