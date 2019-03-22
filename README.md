@@ -8,6 +8,13 @@
 
 Create Rvw  UI 제작, 화면 연결함.
 
+### 13:20
+
+안드로이드 카메라 사용 예제 공부중.
+- http://blog.naver.com/PostView.nhn?blogId=whdals0&logNo=221408855795&categoryNo=29&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+
+
+
 -------------------------------------------------------------------------------------------
 
 ## 03/21 목요일
