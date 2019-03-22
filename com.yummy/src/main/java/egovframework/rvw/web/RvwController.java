@@ -188,6 +188,17 @@ public class RvwController {
     return "rvwTest";
   }
   
+  @RequestMapping(value = "/JSON", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String JSON(
+      @RequestPart(name="phot", required = false) MultipartFile phot,
+      @RequestBody Rvw rvw
+      ) throws Exception {
+    System.out.println("\nrvw/Object FORM TEST");
+    logger.info("\n\t/rvw/Object receive -->\nrvw : {}", rvw.toString());
+    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
+    return "rvwTest";
+  }
+  
   /**
    * rvw 수정
    * @param rvw

@@ -151,6 +151,7 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
                 //  createRvw 인텐트에게 넘겨줄 데이터
                 createRvw.putExtra("rst_no", rst_no );
+                createRvw.putExtra( "rst_nm", rst_nm );
 
                 startActivity(createRvw);
             }
