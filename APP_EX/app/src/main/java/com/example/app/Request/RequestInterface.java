@@ -14,7 +14,9 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -37,16 +39,13 @@ public interface RequestInterface {
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
     @FormUrlEncoded
-    @POST("/yummy/rvw/Element")
+    @POST("/yummy/rvw/Object")
     Call<String> createRvw(
             @Field("rst_no") int rst_no,
             @Field("id") String id,
             @Field("cont") String cont,
             @Field("score") int score,
-            @Field("phot") Bitmap phot    );
+            @Part("phot") Bitmap phot    );
 
-//    @POST("/yummy/rvw/Object")
-//    Call<String> createRvw(
-//            @Body Rvw rvw
-//            ,@Field("phot") File phot);
+
 }
