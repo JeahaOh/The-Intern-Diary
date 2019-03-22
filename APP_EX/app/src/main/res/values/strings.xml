@@ -20,11 +20,13 @@
     <string name="loc_dtl">상세 주소 들어올 자리</string>
     <string name="rvw">리뷰</string>
     <string name="n">n 건</string>
+
     <string name="best">추천</string>
     <string name="good">맛집</string>
     <string name="soso">무난</string>
     <string name="bad">별로</string>
     <string name="worst">최악</string>
+
     <string name="avg">네티즌 평점</string>
     <string name="grade">자체 평가</string>
 

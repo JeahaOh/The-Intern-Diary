@@ -9,6 +9,7 @@ import com.example.app.Rvw.Rvw;
 import java.io.File;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -38,14 +39,16 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
+
     @FormUrlEncoded
-    @POST("/yummy/rvw/Object")
-    Call<String> createRvw(
-            @Field("rst_no") int rst_no,
+    @POST("/yummy/rvw/Element")
+    Call<ResponseBody> createRvw(
+            @Field(value="rst_no") int rst_no,
             @Field("id") String id,
             @Field("cont") String cont,
-            @Field("score") int score,
-            @Part("phot") Bitmap phot    );
+            @Field("score") int score
+            //,@Part("phot") Bitmap phot
+    );
 
 
 }

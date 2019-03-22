@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.app.Memb.Memb;
@@ -32,6 +33,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +50,13 @@ public class RvwPOST extends AppCompatActivity {
     String mCurrentPhotoPath;
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    File photoFile;
     Bitmap phot;
+
+    RatingBar ratingBar;
+    TextView rateResult;
+    TextView rst_title;
+    int score = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +66,45 @@ public class RvwPOST extends AppCompatActivity {
         //  데이터 받기
         Bundle intent = getIntent().getExtras();
         final int rst_no = intent.getInt( "rst_no" );
-        final String rst_nm = intent.getString("rst_name");
+        final String rst_nm = intent.getString("rst_nm");
+        rst_title = findViewById(R.id.rst_title);
+        rst_title.setText( rst_nm + " 후기" );
+
 
 
         // 레이아웃과 변수 연결
         imageView = findViewById(R.id.phot_preview);
         cameraBtn = findViewById(R.id.takePhoto);
         submit = findViewById(R.id.submit);
+
+        // ratingBar 레이아웃과 연결
+        ratingBar = findViewById(R.id.ratingBar);
+        rateResult = findViewById(R.id.rateResult);
+
+        //  ratingBar 변경 리스너 추가
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                score = (int) rating;
+                switch( score ) {
+                    case 1 :
+                        rateResult.setText( "최악" );
+                        return;
+                    case 2 :
+                        rateResult.setText( "별로" );
+                        return;
+                    case 3 :
+                        rateResult.setText( "무난" );
+                        return;
+                    case 4 :
+                        rateResult.setText( "맛집" );
+                        return;
+                    case 5 :
+                        rateResult.setText( "추천" );
+                        return;
+                }
+            }
+        });
 
 
         // 카메라 버튼에 리스너 추가
@@ -92,10 +132,9 @@ public class RvwPOST extends AppCompatActivity {
                 EditText contText = (EditText)findViewById(R.id.rvw_cont);
                 String cont = contText.getText().toString();
                 if( cont.length() <= 0) {
+                     
                     return;
                 }
-                int score = 3;
-
 
                 //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
                 Retrofit retrofit = RetrofitClient.getClient();
@@ -105,18 +144,19 @@ public class RvwPOST extends AppCompatActivity {
 
                 //  request의 getRstJSONList()를 통하여 HTTP 요청을 서버에 보냄.
                 //  Call : HTTP 요청을 보내고 응답을 받는 retrofit interface.
-                Call<String> call = request.createRvw(rst_no, id, cont, score, phot);
+                Call<ResponseBody> call = request.createRvw(rst_no, id, cont, score);
 
-                call.enqueue( new Callback<String>() {
+                call.enqueue( new Callback<ResponseBody>() {
 
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        String data = response.body();
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        System.out.println(call.toString());
+                        String data = response.body().toString();
                         System.out.println( data );
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                     }
                 }) ;
@@ -220,7 +260,7 @@ public class RvwPOST extends AppCompatActivity {
         //  Ensure that there's a camera activity to handle the intent
         if( takePictureIntent.resolveActivity( getPackageManager() ) != null ){
             //  Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             }   catch( IOException e ) {
