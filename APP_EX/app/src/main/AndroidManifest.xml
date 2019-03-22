@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
     <!--
     애플리케이션이 권한으로 보호되는 기능에 액세스해야 하는 경우,
@@ -23,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Rvw.RvwPOST"></activity>
-        <activity android:name=".Rvw.RvwList" /> <!-- 구글 지도를 사용하기 위한 API KEY -->
+        <activity android:name=".Rvw.RvwList" />
+        <!-- 구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
@@ -34,6 +36,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.app.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>
