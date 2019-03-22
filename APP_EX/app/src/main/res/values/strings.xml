@@ -31,5 +31,10 @@
     <string name="addr">위치</string>
 
     <string name="cnt_key">개의 리뷰</string>
+    <string name="createRvw">후기 작성하기</string>
+
+    <string name="takePhoto">사진 찍기</string>
+    <string name="loadPhoto">사진 가져오기</string>
+    <string name="submit">작성 완료</string>
 
 </resources>

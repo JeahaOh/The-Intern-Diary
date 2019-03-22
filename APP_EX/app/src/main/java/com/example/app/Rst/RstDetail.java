@@ -22,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import com.example.app.Rvw.RvwPOST;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -29,6 +30,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -111,33 +114,48 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
         /*  구글 지도를 쓰기위한 Fragment  */
 
-        //  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위해 onClickListener를 만들어줌.
+        /*  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener  */
         ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
         layout.setOnClickListener( new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //  인텐트 선언
-                Intent intent = new Intent(v.getContext(), RvwList.class);
+                Intent rvwList = new Intent(v.getContext(), RvwList.class);
 
                 //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
-                intent.putExtra("rst_no", rst_no );
-                intent.putExtra( "rst_name", rst_nm );
+                rvwList.putExtra("rst_no", rst_no );
+                rvwList.putExtra( "rst_name", rst_nm );
 
-                //  이 외의 정보를 넘겨야 하는가?
-                intent.putExtra( "cnt", rate.getCnt() );
-                intent.putExtra( "avg", rate.getAvg() );
-                intent.putExtra( "best", rate.getBest() );
-                intent.putExtra( "good", rate.getGood() );
-                intent.putExtra( "soso", rate.getSoso() );
-                intent.putExtra( "bad", rate.getBad() );
-                intent.putExtra( "worst", rate.getWorst() );
-                intent.putExtra( "grade", rate.getGrade() );
+                //  이 외의 넘겨줄 데이터?
+                rvwList.putExtra( "cnt", rate.getCnt() );
+                rvwList.putExtra( "avg", rate.getAvg() );
+                rvwList.putExtra( "best", rate.getBest() );
+                rvwList.putExtra( "good", rate.getGood() );
+                rvwList.putExtra( "soso", rate.getSoso() );
+                rvwList.putExtra( "bad", rate.getBad() );
+                rvwList.putExtra( "worst", rate.getWorst() );
+                rvwList.putExtra( "grade", rate.getGrade() );
 
                 //  화면 넘김.
-                startActivity(intent);
+                startActivity(rvwList);
             }
         });
+
+        /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
+        TextView createRvw =  (TextView) findViewById(R.id.rvw_create_button);
+        createRvw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  인텐트 선언
+                Intent createRvw = new Intent(v.getContext(), RvwPOST.class);
+
+                //  createRvw 인텐트에게 넘겨줄 데이터
+                createRvw.putExtra("rst_no", rst_no );
+
+                startActivity(createRvw);
+            }
+        });
+        /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
 
 
         loadJSON( rst_no );
@@ -239,4 +257,6 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
     /*  구글 지도 생성시 하는 작업  */
+
+
 }

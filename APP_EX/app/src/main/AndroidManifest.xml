@@ -5,7 +5,14 @@
     애플리케이션이 권한으로 보호되는 기능에 액세스해야 하는 경우,
     매니페스트에 <uses-permission> 요소를 사용하여 해당 권한이 필요하다는 것을 선언해야 함.
     -->
+    <!-- 인터넷 사용 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 저장 공간 쓰기 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 저장 공간 읽기 권한 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 카메라 사용 권한 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -14,8 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Rvw.RvwList"></activity>
-        <!--         구글 지도를 사용하기 위한 API KEY -->
+        <activity android:name=".Rvw.RvwPOST"></activity>
+        <activity android:name=".Rvw.RvwList" /> <!-- 구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
