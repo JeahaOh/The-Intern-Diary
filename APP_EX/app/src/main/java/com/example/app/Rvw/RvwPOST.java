@@ -52,10 +52,8 @@ public class RvwPOST extends AppCompatActivity {
     /* onActivityResult에서 requestCode로 반환 되는 값. */
     private static final int PICK_FROM_ALBUM = 1;
     private static final int PICK_FROM_CAMERA = 2;
-
+    /* 카메라, 사진첩 접근 권한 */
     private Boolean isPermission = true;
-
-    String mCurrentPhotoPath;
 
 
 
@@ -110,7 +108,6 @@ public class RvwPOST extends AppCompatActivity {
                 }
             }
         });
-
 
         // 카메라 버튼에 리스너 추가
         cameraBtn.setOnClickListener(new Button.OnClickListener(){
@@ -198,29 +195,33 @@ public class RvwPOST extends AppCompatActivity {
         //  Intent를 이용해 Camera로 이동함.
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-//        if (intent.resolveActivity(getPackageManager()) != null) {
+        try {
+            tempFile = createImageFile();
+        } catch (IOException e) {
+            Toast.makeText(this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            finish();
+            e.printStackTrace();
+        }
+        if (tempFile != null) {
+            /** tempFile 의 Uri 경로를 intent에 추가해 줘야 함.
+             *  카메라에서 찍은 사진이 저장될 주소임.
+             *  tempFile 을 전역변수로 해서 사용하기 때문에 이 tempFile 에 카메라에서 촬영한 이미지를 넣어 줄것임.
+             */
 
-            try {
-                tempFile = createImageFile();
-            } catch (IOException e) {
-                Toast.makeText(this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-                finish();
-                e.printStackTrace();
-            }
-            if (tempFile != null) {
-                /** tempFile 의 Uri 경로를 intent에 추가해 줘야 함.
-                 *  카메라에서 찍은 사진이 저장될 주소임.
-                 *  tempFile 을 전역변수로 해서 사용하기 때문에 이 tempFile 에 카메라에서 촬영한 이미지를 넣어 줄것임.
-                 */
-                Uri photoUri = FileProvider.getUriForFile(this,
-                        "com.example.app.fileprovider", tempFile);
+            //  Android 버전에 맞춰서 작업 함.
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Uri photoUri = FileProvider.getUriForFile(this,
+                    "com.example.app.fileprovider", tempFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            startActivityForResult(intent, PICK_FROM_CAMERA);
+
+            } else {
+
+                Uri photoUri = Uri.fromFile(tempFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(intent, PICK_FROM_CAMERA);
 
-//                Uri photoURI = FileProvider.getUriForFile(this,
-//                        "com.example.app.fileprovider", tempFile);
-
-//            }
+            }
         }
     }
     /* 카메라에서 이미지를 가져오기 위한 method */
@@ -297,7 +298,7 @@ public class RvwPOST extends AppCompatActivity {
         String imageFileName = "Yummy_" + timeStamp + "_";
 
         // 이미지가 저장될  Custom 폴더 이름 ( Yummy )
-        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Yummy/");
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
         if (!storageDir.exists()) storageDir.mkdirs();
 
         //  이미지를 기본 앨범에 저장할 경우
@@ -309,8 +310,6 @@ public class RvwPOST extends AppCompatActivity {
                 ".jpg",       /* suffix */
                 storageDir          /* directory*/
         );
-//  Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
     /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */

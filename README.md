@@ -103,7 +103,6 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 **filepaths.xml과 AndroidManifest.xml 내부의 meta-data, android:resource="@xml/filepaths"가 일치해야함**
 
 
-
 ### 17:00
 
 사진 찍어 파일 만들기, 앨범에서 사진 선택하기 성공....  
@@ -116,6 +115,9 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: phot.path() :/storage/emulated/0/Yummy/Yummy_165455_2341088579743724054.jpg
 ```
 
+### 17:20
+
+코드 정리
 
 -------------------------------------------------------------------------------------------
 
