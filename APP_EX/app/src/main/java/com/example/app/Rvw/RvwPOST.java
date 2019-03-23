@@ -54,7 +54,7 @@ public class RvwPOST extends AppCompatActivity {
     /* 카메라, 사진첩 접근 권한 */
     private Boolean isPermission = true;
 
-    private Boolean isCamera = false;
+    private Boolean isCamera;
 
 
 

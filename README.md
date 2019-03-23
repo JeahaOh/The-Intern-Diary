@@ -121,7 +121,14 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 
 ### 17:30
 
-카메라 회전각도 적용?
+카메라 회전각도 적용?  
+카메라 회전은 작동 하지 않음...  
+시간 관계상 다음 단계 진행 하는걸로..
+- 원본 예제
+    - http://blog.naver.com/PostView.nhn?blogId=whdals0&logNo=221408855795&categoryNo=29&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+- 다른 예제
+    - https://superwony.tistory.com/5
+    - 
 
 -------------------------------------------------------------------------------------------
 
