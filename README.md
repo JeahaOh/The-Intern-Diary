@@ -20,6 +20,103 @@ ratingBar OnRatingBarChangeListener와 score
 
 APP RvwPost Activity reinit...
 
+- URI?
+    - https://computer99.tistory.com/5
+
+### 16:15
+
+```
+2019-03-23 16:13:25.659 7843-7843/com.example.app E/AndroidRuntime: FATAL EXCEPTION: main
+    Process: com.example.app, PID: 7843
+    android.os.FileUriExposedException: file:///storage/emulated/0/Android/data/com.example.app/files/Pictures/Yummy_161325_8777534467889681584.jpg exposed beyond app through ClipData.Item.getUri()
+        at android.os.StrictMode.onFileUriExposed(StrictMode.java:1960)
+        at android.net.Uri.checkFileUriExposed(Uri.java:2348)
+        at android.content.ClipData.prepareToLeaveProcess(ClipData.java:942)
+        at android.content.Intent.prepareToLeaveProcess(Intent.java:9854)
+        at android.content.Intent.prepareToLeaveProcess(Intent.java:9839)
+        at android.app.Instrumentation.execStartActivity(Instrumentation.java:1610)
+        at android.app.Activity.startActivityForResult(Activity.java:4487)
+        at android.support.v4.app.FragmentActivity.startActivityForResult(FragmentActivity.java:767)
+        at android.app.Activity.startActivityForResult(Activity.java:4445)
+        at android.support.v4.app.FragmentActivity.startActivityForResult(FragmentActivity.java:754)
+        at com.example.app.Rvw.RvwPOST.takePhoto(RvwPOST.java:212)
+        at com.example.app.Rvw.RvwPOST.access$100(RvwPOST.java:34)
+        at com.example.app.Rvw.RvwPOST$2.onClick(RvwPOST.java:117)
+        at android.view.View.performClick(View.java:6294)
+        at android.view.View$PerformClick.run(View.java:24770)
+        at android.os.Handler.handleCallback(Handler.java:790)
+        at android.os.Handler.dispatchMessage(Handler.java:99)
+        at android.os.Looper.loop(Looper.java:164)
+        at android.app.ActivityThread.main(ActivityThread.java:6494)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)
+```
+
+- https://kyome.tistory.com/9
+
+### 앱 사이의 파일 공유
+Android 7.0을 대상으로 하는 앱의 경우,  
+Android 프레임워크는 앱 외부에서 file:// URI의 노출을 금지하는 StrictMode API 정책을 적용합니다.  
+파일 URI를 포함하는 인텐트가 앱을 떠나면 FileUriExposedException 예외와 함께 앱에 오류가 발생합니다.  
+  
+애플리케이션 간에 파일을 공유하려면 content:// URI를 보내고 이 URI에 대해 임시 액세스 권한을 부여해야 합니다.  
+이 권한을 가장 쉽게 부여하는 방법은 FileProvider 클래스를 사용하는 방법입니다.  
+  
+권한과 파일 공유에 대한 자세한 내용은 파일 공유를 참조하세요.
+- https://developer.android.com/about/versions/nougat/android-7.0-changes.html#accessibility
+
+위에 설명에서와 같이 FileProvider클래스를 사용해서 content:// URI에 권한을 부여하는 방법을 보면 다음과 같습니다.
+
+
+
+1. AndroidManifest.xml 수정
+```
+<application>
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="com.bignerdranch.android.test.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/filepaths" />
+    </provider>
+</application>
+```
+
+2. res/xml/filepaths.xml 생성
+```
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="storage/emulated" path="."/>
+</paths>
+```
+3. Uri.fromFile(File mFile) 코드 대체
+```
+Uri uri = Uri.fromFile(mPhotoFile);
+-> Uri uri = FileProvider.getUriForFile(getContext(), "com.Yummy.android.EX.fileprovider", mPhotoFile);
+```
+*com.Yummy.android.EX 부분은 개인의 도메인임.  
+mPhotoFile 대신 생성한 파일 객체를 넣음..  
+  
+**filepaths.xml과 AndroidManifest.xml 내부의 meta-data, android:resource="@xml/filepaths"가 일치해야함**
+
+
+
+### 17:00
+
+사진 찍어 파일 만들기, 앨범에서 사진 선택하기 성공....  
+```
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: 	SUBMIT BTN CLICKED!
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: id : asdf1020
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: rst_no : 4
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: score : 3
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: cont : 후기 작성하기
+2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: phot.path() :/storage/emulated/0/Yummy/Yummy_165455_2341088579743724054.jpg
+```
+
+
 -------------------------------------------------------------------------------------------
 
 ## 03/22 금요일

@@ -42,4 +42,10 @@ dependencies {
 
     //  image를 url로 가져오기위한 picasso LIB
     implementation 'com.squareup.picasso:picasso:2.3.3'
+
+    /*  ted permission
+        안드로이드 마시멜로우 버전 이상부터는 권한에 대한 허용을 사용자로부터 받아야 함.
+        이에 관해서는 Tedpermission 라이브러리를 사용함.
+     */
+    implementation "gun0912.ted:tedpermission:2.1.0"
 }
