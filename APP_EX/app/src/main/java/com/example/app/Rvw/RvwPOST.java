@@ -34,6 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -158,15 +161,19 @@ public class RvwPOST extends AppCompatActivity {
                                 + cont + "\nphot.path() :" + tempFile );
 
                 //  POST METHOD 들어올 자리.
-
                 //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
                 Retrofit retrofit = RetrofitClient.getClient();
 
                 //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
                 RequestInterface request = retrofit.create(RequestInterface.class);
 
+                RequestBody requestFile
+                        = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
+                MultipartBody.Part body
+                        = MultipartBody.Part.createFormData(
+                                "phot", tempFile.getName(), requestFile);
 
-                Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
+                Call<ResponseBody> call = request.postPhot(body);
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -179,6 +186,19 @@ public class RvwPOST extends AppCompatActivity {
 
                     }
                 });
+//                Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
+//
+//                call.enqueue(new Callback<ResponseBody>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                    }
+//                });
 
             }
         });

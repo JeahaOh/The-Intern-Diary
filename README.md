@@ -153,7 +153,7 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
     ```
 
 2. ReviewPOST
-    ```
+    ```◊
     Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
 
     call.enqueue(new Callback<ResponseBody>() {
@@ -171,14 +171,14 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 
 3. Controller
     ```
-        @RequestMapping(value = "/Element", method = RequestMethod.POST)
-        public String Element(
-                int rst_no, String id, String cont, int score
-                    ) throws Exception {
-            System.out.println("\nrvw/Element FORM TEST");
-            System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
-            return "rvwTest";
-        }
+    @RequestMapping(value = "/Element", method = RequestMethod.POST)
+    public String Element(
+            int rst_no, String id, String cont, int score
+                ) throws Exception {
+        System.out.println("\nrvw/Element FORM TEST");
+        System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
+        return "rvwTest";
+    }
     ```
 
 
@@ -202,7 +202,85 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 
 RetrofitClient Refactoring
 
+### 23:25
 
+- http://chuumong.github.io/android/2017/01/13/Get-Started-With-Retrofit-2-HTTP-Client
+
+### 23:55
+
+사진만 전송 성공
+
+1. Request Interface
+    ```
+    @Multipart
+    @POST("/yummy/rvw/phot")
+    Call<ResponseBody> postPhot( @Part MultipartBody.Part File );
+    ```
+
+2. Review Post
+    ```
+    RequestBody requestFile
+            = RequestBody.create( MediaType.parse( "multipart/form-data" ), tempFile );
+    MultipartBody.Part body
+            = MultipartBody.Part.createFormData(
+                    "phot", tempFile.getName(), requestFile );
+
+    Call<ResponseBody> call = request.postPhot( body );
+
+    call.enqueue(new Callback<ResponseBody>() {
+        @Override
+        public void onResponse( Call<ResponseBody> call, Response<ResponseBody> response ) {
+
+        }
+
+        @Override
+        public void onFailure( Call<ResponseBody> call, Throwable t ) {
+
+        }
+    });
+    ```
+3. Controller
+    ```
+    @ResponseBody
+    @RequestMapping(value = "/phot", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+    public String imgOnly(
+        @RequestPart(name="phot", required = false) MultipartFile phot
+        ) throws Exception {
+        System.out.println("\nrvw/phot POST TEST");
+        logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
+        return "Success";
+    }
+    ```
+4. Android Studio Logcat
+    ```
+    D/OkHttp: --> POST http://172.20.10.10:8888/yummy/rvw/phot
+    D/OkHttp: Content-Type: multipart/form-data; boundary=8cf46a36-3666-459d-b0b9-ab06509751bc
+    D/OkHttp: Content-Length: 174366
+    D/OkHttp: --8cf46a36-3666-459d-b0b9-ab06509751bc
+    D/OkHttp: Content-Disposition: form-data; name="phot"; filename="Yummy_000551_9160860048574099024.jpg"
+    D/OkHttp: Content-Type: multipart/form-data
+    D/OkHttp: Content-Length: 174127
+    D/OkHttp: ������JFIF����������������C��		
+    I/chatty: uid=10080(com.example.app) .10.10:8888/... identical 2 lines
+    --- 생략
+    D/OkHttp: --> END POST (2719153-byte body)
+    D/OkHttp: <-- 200 http://172.20.10.10:8888/yummy/rvw/phot (1985ms)
+    D/OkHttp: Accept-Charset: 
+    --- 생략 
+    D/OkHttp: Content-Type: text/html;charset=UTF-8
+    D/OkHttp: Content-Length: 7
+    D/OkHttp: Date: Sat, 23 Mar 2019 14:52:32 GMT
+    D/OkHttp: Success
+    D/OkHttp: <-- END HTTP (7-byte body)
+    ```
+
+5. Eclipse Console Log
+    ```
+    rvw/phot POST TEST
+    2019-03-23 23:52:32,769  INFO [egovframework.rvw.web.RvwController] 
+        /rvw/Object receive -->
+    rvwPhot : 2718930
+    ```
 
 -------------------------------------------------------------------------------------------
 

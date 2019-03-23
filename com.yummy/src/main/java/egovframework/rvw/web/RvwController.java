@@ -177,13 +177,14 @@ public class RvwController {
     return "rvwTest";
   }
   
+  @ResponseBody
   @RequestMapping(value = "/phot", method = RequestMethod.POST, consumes = "multipart/form-data") // 
   public String imgOnly(
       @RequestPart(name="phot", required = false) MultipartFile phot
       ) throws Exception {
-    System.out.println("\nrvw/imageOnly FORM TEST");
+    System.out.println("\nrvw/phot POST TEST");
     logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
-    return "rvwTest";
+    return "Success";
   }
   
   @RequestMapping(value = "/Object", method = RequestMethod.POST, consumes = "multipart/form-data") // 

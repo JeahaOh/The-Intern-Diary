@@ -66,7 +66,7 @@ public interface RequestInterface {
 
     @Multipart
     @POST("/yummy/rvw/phot")
-    Call<ResponseBody> postPhot( @Part MultipartBody.Part phot );
+    Call<ResponseBody> postPhot( @Part MultipartBody.Part File );
 
 //@Headers("Content-Type: multipart/form-data")
 }
