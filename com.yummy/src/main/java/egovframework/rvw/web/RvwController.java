@@ -166,14 +166,23 @@ public class RvwController {
     return "rvwTest";
   }
   
-  @RequestMapping(value = "/Element", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  @RequestMapping(value = "/Element", method = RequestMethod.POST) // , consumes = "multipart/form-data"
   public String Element(
-      @RequestPart(name="phot", required = false) MultipartFile phot,
+      //@RequestPart(name="phot", required = false) MultipartFile phot,
       int rst_no, String id, String cont, int score
       ) throws Exception {
     System.out.println("\nrvw/Element FORM TEST");
-    logger.info("\n\t/rvw/Element receive -->\nrvwPhot : {}", phot.getSize());
+    //logger.info("\n\t/rvw/Element receive -->\nrvwPhot : {}", phot.getSize());
     System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
+    return "rvwTest";
+  }
+  
+  @RequestMapping(value = "/phot", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String imgOnly(
+      @RequestPart(name="phot", required = false) MultipartFile phot
+      ) throws Exception {
+    System.out.println("\nrvw/imageOnly FORM TEST");
+    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
     return "rvwTest";
   }
   
@@ -196,6 +205,18 @@ public class RvwController {
     System.out.println("\nrvw/Object FORM TEST");
     logger.info("\n\t/rvw/Object receive -->\nrvw : {}", rvw.toString());
     logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
+    return "rvwTest";
+  }
+  
+
+  
+  @ResponseBody
+  @RequestMapping(value = "/elmtOnly", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String elementOnly(
+      int rst_no, String id, String cont, int score
+      ) throws Exception {
+    System.out.println("\nrvw/ElementOnly FORM TEST");
+    System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
     return "rvwTest";
   }
   

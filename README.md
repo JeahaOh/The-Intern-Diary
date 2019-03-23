@@ -124,12 +124,81 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 카메라 회전각도 적용?  
 카메라 회전은 작동 하지 않음...  
 시간 관계상 다음 단계 진행 하는걸로..
+- 최초에 따라 했던 예제
+    - https://blog.naver.com/whdals0
 - 원본 예제
     - http://blog.naver.com/PostView.nhn?blogId=whdals0&logNo=221408855795&categoryNo=29&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 - 다른 예제
     - https://superwony.tistory.com/5
     - https://stickyny.tistory.com/95
     - https://blog.hansoolabs.com/583
+
+### 21:40
+
+사진 없이 FormUrlEncoded로 통신 성공..
+
+1. Request Interface
+    ```
+    @Headers({
+            "Content-Type:application/x-www-form-urlencoded;charset=UTF-8"
+    })
+    @FormUrlEncoded
+    @POST("/yummy/rvw/Element")
+    Call<ResponseBody> postRvw(
+            @Field("rst_no")    int rst_no,
+            @Field("id")        String id,
+            @Field("cont")      String cont,
+            @Field("score")     int score
+    );
+    ```
+
+2. ReviewPOST
+    ```
+    Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
+
+    call.enqueue(new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+        }
+    });
+    ```
+
+3. Controller
+    ```
+        @RequestMapping(value = "/Element", method = RequestMethod.POST)
+        public String Element(
+                int rst_no, String id, String cont, int score
+                    ) throws Exception {
+            System.out.println("\nrvw/Element FORM TEST");
+            System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
+            return "rvwTest";
+        }
+    ```
+
+
+4. Android Studio Logcat
+    ```
+    D/OkHttp: --> POST http://IP:8888/yummy/rvw/Element
+    D/OkHttp: Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+    D/OkHttp: Content-Length: 91
+    D/OkHttp: rst_no=2&id=asdf1020&cont=%ED%9B%84%EA%B8%B0%20%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0&score=5
+    D/OkHttp: --> END POST (91-byte body)
+    D/OkHttp: <-- 200 http://`IP:8888/yummy/rvw/Element (54ms)
+    ```
+
+5. Eclipse Console Log
+    ```
+    rvw/Element FORM TEST
+    2, asdf1020, 후기 작성하기, 5
+    ```
+
+
 
 -------------------------------------------------------------------------------------------
 

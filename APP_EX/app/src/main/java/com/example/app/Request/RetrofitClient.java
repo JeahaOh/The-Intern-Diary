@@ -7,15 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    /**
-     * 집         172.30.1.42
-     * 코코스      접속 할 때마다 ip가 바뀜.
-     * 할리스      접속 할 때마다 ip가 바뀜.
-     * 폰         172.20.10.2
-     * 회사       192.168.1.251
-     * 별다방      172.30.26.218
-     */
-    private static String addr = "172.20.10.2";
+    private static String addr = "172.20.10.10";
     private static String url = "http://" + addr + ":8888";
     private static Retrofit retrofit = null;
 

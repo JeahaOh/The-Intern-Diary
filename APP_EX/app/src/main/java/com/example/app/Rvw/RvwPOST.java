@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.app.Memb.Memb;
 import com.example.app.R;
+import com.example.app.Request.RequestInterface;
+import com.example.app.Request.RetrofitClient;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -31,6 +33,16 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class RvwPOST extends AppCompatActivity {
 
@@ -150,6 +162,28 @@ public class RvwPOST extends AppCompatActivity {
                                 + cont + "\nphot.path() :" + tempFile );
 
                 //  POST METHOD 들어올 자리.
+
+                //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
+                Retrofit retrofit = RetrofitClient.getClient();
+
+                //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
+                RequestInterface request = retrofit.create(RequestInterface.class);
+
+
+                Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
     }
@@ -310,4 +344,5 @@ public class RvwPOST extends AppCompatActivity {
         );
         return image;
     }
+
 }

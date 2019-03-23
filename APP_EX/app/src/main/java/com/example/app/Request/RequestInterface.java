@@ -9,6 +9,8 @@ import com.example.app.Rvw.Rvw;
 import java.io.File;
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -50,6 +52,30 @@ public interface RequestInterface {
 //            //,@Part("phot") Bitmap phot
 //    );
 
+    @Headers({
+            "Content-Type:application/x-www-form-urlencoded;charset=UTF-8"
+    })
+    @FormUrlEncoded
+    @POST("/yummy/rvw/Element")
+    Call<ResponseBody> postRvw(
+            @Field("rst_no")    int rst_no,
+            @Field("id")        String id,
+            @Field("cont")      String cont,
+            @Field("score")     int score
+    );
+
+    @Multipart
+    @POST("/yummy/rvw/phot")
+    Call<ResponseBody> postPhot( @Part MultipartBody.Part phot );
+
+    interface FileUploadService {
+        @Multipart
+        @POST("upload")
+        Call<ResponseBody> upload(
+                @Part("description") RequestBody description,
+                @Part MultipartBody.Part file
+        );
+    }
 
 //@Headers("Content-Type: multipart/form-data")
 }
