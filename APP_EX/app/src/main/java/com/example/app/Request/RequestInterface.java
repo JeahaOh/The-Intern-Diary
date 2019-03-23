@@ -68,14 +68,5 @@ public interface RequestInterface {
     @POST("/yummy/rvw/phot")
     Call<ResponseBody> postPhot( @Part MultipartBody.Part phot );
 
-    interface FileUploadService {
-        @Multipart
-        @POST("upload")
-        Call<ResponseBody> upload(
-                @Part("description") RequestBody description,
-                @Part MultipartBody.Part file
-        );
-    }
-
 //@Headers("Content-Type: multipart/form-data")
 }

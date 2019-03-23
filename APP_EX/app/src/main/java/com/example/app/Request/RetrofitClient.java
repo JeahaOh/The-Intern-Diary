@@ -7,39 +7,42 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static String addr = "172.20.10.10";
-    private static String url = "http://" + addr + ":8888";
-    private static Retrofit retrofit = null;
+    private static final String addr = "172.20.10.10";
+    private static final String url = "http://" + addr + ":8888";
+
+    public static final String getBASE_URL() { return  url; }
+
+    /*  retrofit을 그냥 사용 할 때 호출
+    Retrofit retrofit = new Retrofit.Builder()
+        .baseUrl("http://" + url)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
+    */
+    //  retrofit을 log와 함께 사용할때 호출 >>
+    private static HttpLoggingInterceptor interceptor =
+            new HttpLoggingInterceptor()
+                    .setLevel( HttpLoggingInterceptor.Level.BODY );
+
+    private static OkHttpClient client =
+            new OkHttpClient
+                    .Builder()
+                    .addInterceptor(interceptor).build();
+
+    private static Retrofit retrofit =
+            new Retrofit
+                    .Builder()
+                    .baseUrl( url )
+                    .client( client )
+                    .addConverterFactory( GsonConverterFactory.create() )
+                    .build();
+    //  << 여기 까지
 
     //  Retrofit을 Singleton Pattern으로 생성
     public static Retrofit getClient() {
-        if ( retrofit == null) {
-            /*  retrofit을 그냥 사용 할 때 호출
-            Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-            */
-            //  retrofit을 log와 함께 사용할때 호출 >>
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-            Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(  url );
-
-            retrofitBuilder.client(client);
-
-            retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-
-            Retrofit retrofit = retrofitBuilder.build();
-            //  << 여기 까지
-            return retrofit;
-        }
         return retrofit;
     }
 
+    //  rst의 이미지를 저장하는 base url
     public static String getRstImgUrl() {
         return url + "/yummy/resources/images/rst/";
     }
