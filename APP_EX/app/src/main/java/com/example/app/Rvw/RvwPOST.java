@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.app.Memb.Memb;
 import com.example.app.R;
+import com.example.app.Util.ImageResizeUtils;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -47,14 +48,13 @@ public class RvwPOST extends AppCompatActivity {
     int score = 3;          //  RatingBar 초기값.
 
     private File tempFile;  //  보낼 사진 File의 껍데기, 앨범 또는 카메라에서 가져온 이미지를 저장할 변수.
-
-
     /* onActivityResult에서 requestCode로 반환 되는 값. */
     private static final int PICK_FROM_ALBUM = 1;
     private static final int PICK_FROM_CAMERA = 2;
     /* 카메라, 사진첩 접근 권한 */
     private Boolean isPermission = true;
 
+    private Boolean isCamera = false;
 
 
 
@@ -183,6 +183,7 @@ public class RvwPOST extends AppCompatActivity {
 
     /* 앨범에서 이미지를 가져오기 위한 method */
     private void goToAlbum() {
+        isCamera = false;
         //  Intent를 이용해 앨범으로 이동함.
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
@@ -192,6 +193,7 @@ public class RvwPOST extends AppCompatActivity {
 
     /* 카메라에서 이미지를 가져오기 위한 method */
     private void takePhoto() {
+        isCamera = true;
         //  Intent를 이용해 Camera로 이동함.
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -284,8 +286,11 @@ public class RvwPOST extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.phot_preview);
 
+        ImageResizeUtils.resizeFile(tempFile, tempFile, 1280, isCamera);
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
+        Log.d(TAG, "setImage : " + tempFile.getAbsolutePath());
 
         imageView.setImageBitmap(originalBm);
     }
