@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app.Memb.Memb;
 import com.example.app.R;
@@ -45,10 +46,12 @@ public class RvwPOST extends AppCompatActivity {
     ImageView imageView;
     Button cameraBtn;
     TextView submit;
-    final static int TAKE_PICTURE = 1;
+    static final int TAKE_PICTURE = 1;
 
     String mCurrentPhotoPath;
     static final int REQUEST_TAKE_PHOTO = 1;
+
+
 
     File photoFile;
     Bitmap phot;
@@ -57,6 +60,8 @@ public class RvwPOST extends AppCompatActivity {
     TextView rateResult;
     TextView rst_title;
     int score = 3;
+
+    Button loadPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,9 @@ public class RvwPOST extends AppCompatActivity {
         // 레이아웃과 변수 연결
         imageView = findViewById(R.id.phot_preview);
         cameraBtn = findViewById(R.id.takePhoto);
+        loadPhoto = findViewById(R.id.loadPhoto);
         submit = findViewById(R.id.submit);
+
 
         // ratingBar 레이아웃과 연결
         ratingBar = findViewById(R.id.ratingBar);
@@ -120,6 +127,20 @@ public class RvwPOST extends AppCompatActivity {
                 }
             }
         });
+
+        //  사진 가져오기 버튼에 리스너 추가
+        loadPhoto.setOnClickListener( new Button.OnClickListener(){
+            @Override
+            public void onClick( View v ) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(imageView, 1);
+//                imageView.setImageBitmap( intent );
+            }
+        } );
+
+
         // submit 버튼에 리스너 추가
         submit.setOnClickListener( new View.OnClickListener() {
 
@@ -131,10 +152,18 @@ public class RvwPOST extends AppCompatActivity {
 
                 EditText contText = (EditText)findViewById(R.id.rvw_cont);
                 String cont = contText.getText().toString();
-                if( cont.length() <= 0) {
-                     
+                if( cont.length() <= 0 || cont == "" ) {
+                    Toast.makeText( getApplicationContext(),
+                            "후기를 작성 해 주세요", Toast.LENGTH_SHORT ).show();
                     return;
                 }
+
+
+                System.out.println
+                        ("id : " + id + "\nrst_no : " + rst_no
+                                + "\nscore : " + score + "\ncont : "
+                                + cont + "\nphot.path() :" + photoFile );
+                /*
 
                 //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
                 Retrofit retrofit = RetrofitClient.getClient();
@@ -150,9 +179,13 @@ public class RvwPOST extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        System.out.println(call.toString());
-                        String data = response.body().toString();
-                        System.out.println( data );
+                        try {
+                            System.out.println(call.toString());
+                            String data = response.body().toString();
+                            System.out.println(data);
+                        }   catch(Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -160,6 +193,8 @@ public class RvwPOST extends AppCompatActivity {
 
                     }
                 }) ;
+
+                */
             }
         });
 
@@ -254,7 +289,7 @@ public class RvwPOST extends AppCompatActivity {
         return image;
     }
 
-    //  카메라 인텐트를 실행하응 부분을 별도의 함수로 만듦.
+    //  카메라 인텐트를 실행하는 부분을 별도의 함수로 만듦.
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //  Ensure that there's a camera activity to handle the intent

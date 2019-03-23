@@ -23,19 +23,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Rvw.RvwPOST"></activity>
-        <activity android:name=".Rvw.RvwList" />
-        <!-- 구글 지도를 사용하기 위한 API KEY -->
+
+        <!-- 여기부터 구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
+        <!-- 여기까지 구글 지도를 사용하기 위한 API KEY -->
+
         <activity android:name=".Rst.RstDetail" />
+        <activity android:name=".Rvw.RvwPOST"></activity>
+        <activity android:name=".Rvw.RvwList" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 여기부터 FileProvider
+             애플리케이션에 의해 관리되는 데이터에 구조화 된 액세스를 제공 하는 서브 클래스
+        -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.app.fileprovider"
@@ -45,6 +51,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+        <!-- 여기까지 FileProvider -->
+
     </application>
 
 </manifest>

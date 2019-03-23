@@ -15,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -39,16 +40,16 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
+//    @FormUrlEncoded
+//    @POST("/yummy/rvw/Element")
+//    Call<ResponseBody> createRvw(
+//            @Field(value="rst_no") int rst_no,
+//            @Field("id") String id,
+//            @Field("cont") String cont,
+//            @Field("score") int score
+//            //,@Part("phot") Bitmap phot
+//    );
 
-    @FormUrlEncoded
-    @POST("/yummy/rvw/Element")
-    Call<ResponseBody> createRvw(
-            @Field(value="rst_no") int rst_no,
-            @Field("id") String id,
-            @Field("cont") String cont,
-            @Field("score") int score
-            //,@Part("phot") Bitmap phot
-    );
 
-
+//@Headers("Content-Type: multipart/form-data")
 }
