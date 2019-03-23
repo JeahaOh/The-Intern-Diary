@@ -1,21 +1,7 @@
 package com.example.app.Rvw;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,42 +12,31 @@ import android.widget.Toast;
 
 import com.example.app.Memb.Memb;
 import com.example.app.R;
-import com.example.app.Request.RequestInterface;
-import com.example.app.Request.RetrofitClient;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class RvwPOST extends AppCompatActivity {
 
     final String TAG = getClass().getSimpleName();
-    ImageView imageView;
-    Button cameraBtn;
-    TextView submit;
-    static final int TAKE_PICTURE = 1;
 
-    String mCurrentPhotoPath;
-    static final int REQUEST_TAKE_PHOTO = 1;
+    TextView rst_title;     //  화면 타이틀
+    RatingBar ratingBar;    //  레이팅 바
+    TextView rateResult;    //  레이팅 바 추가 text
+    ImageView imageView;    //  이미지 미리보기
+    Button cameraBtn;       //  사진 찍기 버튼
+    Button loadPhoto;       //  사진 가져오기 버튼
+    Button submit;          //  사진 가져오기 버튼
+
+    int score = 3;          //  RatingBar 초기값.
+
+    File photoFile;         //  보냏 사진 File의 껍데기.
 
 
 
-    File photoFile;
-    Bitmap phot;
 
-    RatingBar ratingBar;
-    TextView rateResult;
-    TextView rst_title;
-    int score = 3;
 
-    Button loadPhoto;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,25 +45,23 @@ public class RvwPOST extends AppCompatActivity {
 
         //  데이터 받기
         Bundle intent = getIntent().getExtras();
+        //  rst_no
         final int rst_no = intent.getInt( "rst_no" );
+        //  rst_name
         final String rst_nm = intent.getString("rst_nm");
         rst_title = findViewById(R.id.rst_title);
         rst_title.setText( rst_nm + " 후기" );
 
-
-
         // 레이아웃과 변수 연결
-        imageView = findViewById(R.id.phot_preview);
-        cameraBtn = findViewById(R.id.takePhoto);
-        loadPhoto = findViewById(R.id.loadPhoto);
-        submit = findViewById(R.id.submit);
+        ratingBar = findViewById(R.id.ratingBar);       //  Rating Bar
+        rateResult = findViewById(R.id.rateResult);     //  Rating Bar의 Sub Text
+        cameraBtn = findViewById(R.id.takePhoto);       //  카메라 버튼
+        loadPhoto = findViewById(R.id.loadPhoto);       //  사진 가져오기 버튼
+        imageView = findViewById(R.id.phot_preview);    //  사진 미리보기 view
+        submit = findViewById(R.id.submit);             //  submit 버튼
 
 
-        // ratingBar 레이아웃과 연결
-        ratingBar = findViewById(R.id.ratingBar);
-        rateResult = findViewById(R.id.rateResult);
-
-        //  ratingBar 변경 리스너 추가
+        //  ratingBar 변경 리스너
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -141,6 +114,7 @@ public class RvwPOST extends AppCompatActivity {
 
                 String id = Memb.getMemb().getId();
 
+                //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 리턴함.
                 EditText contText = (EditText)findViewById(R.id.rvw_cont);
                 String cont = contText.getText().toString();
                 if( cont.length() <= 0 || cont == "" ) {
@@ -148,13 +122,12 @@ public class RvwPOST extends AppCompatActivity {
                             "후기를 작성 해 주세요", Toast.LENGTH_SHORT ).show();
                     return;
                 }
-
-
                 System.out.println
                         ("id : " + id + "\nrst_no : " + rst_no
                                 + "\nscore : " + score + "\ncont : "
                                 + cont + "\nphot.path() :" + photoFile );
-                
+
+                //  POST METHOD 들어올 자리.
             }
         });
 

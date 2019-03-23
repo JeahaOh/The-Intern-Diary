@@ -16,6 +16,10 @@ ratingBar OnRatingBarChangeListener와 score
 
 갤러리에서 사진 가져오기
 
+### 15:20
+
+APP RvwPost Activity reinit...
+
 -------------------------------------------------------------------------------------------
 
 ## 03/22 금요일
