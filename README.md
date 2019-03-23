@@ -128,7 +128,8 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
     - http://blog.naver.com/PostView.nhn?blogId=whdals0&logNo=221408855795&categoryNo=29&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 - 다른 예제
     - https://superwony.tistory.com/5
-    - 
+    - https://stickyny.tistory.com/95
+    - https://blog.hansoolabs.com/583
 
 -------------------------------------------------------------------------------------------
 
