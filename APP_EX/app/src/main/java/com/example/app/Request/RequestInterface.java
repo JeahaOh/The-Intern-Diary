@@ -42,16 +42,6 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
-//    @FormUrlEncoded
-//    @POST("/yummy/rvw/Element")
-//    Call<ResponseBody> createRvw(
-//            @Field(value="rst_no") int rst_no,
-//            @Field("id") String id,
-//            @Field("cont") String cont,
-//            @Field("score") int score
-//            //,@Part("phot") Bitmap phot
-//    );
-
     @Headers({
             "Content-Type:application/x-www-form-urlencoded;charset=UTF-8"
     })

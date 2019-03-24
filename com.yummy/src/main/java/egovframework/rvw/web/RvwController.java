@@ -1,5 +1,7 @@
 package egovframework.rvw.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -166,13 +168,11 @@ public class RvwController {
     return "rvwTest";
   }
   
-  @RequestMapping(value = "/Element", method = RequestMethod.POST) // , consumes = "multipart/form-data"
+  @RequestMapping(value = "/Element", method = RequestMethod.POST)
   public String Element(
-      //@RequestPart(name="phot", required = false) MultipartFile phot,
       int rst_no, String id, String cont, int score
       ) throws Exception {
     System.out.println("\nrvw/Element FORM TEST");
-    //logger.info("\n\t/rvw/Element receive -->\nrvwPhot : {}", phot.getSize());
     System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
     return "rvwTest";
   }
@@ -182,43 +182,21 @@ public class RvwController {
   public String imgOnly(
       @RequestPart(name="phot", required = false) MultipartFile phot
       ) throws Exception {
+    String path = sc.getRealPath( "resources/images/rvw/" ).toString();
+
     System.out.println("\nrvw/phot POST TEST");
     logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
+    
+    if( phot != null && phot.getSize() > 0) {
+      try {
+        
+        phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + phot.getOriginalFilename() ) ) );
+      } catch (IOException e) {
+        logger.info("\n\t/rvw/phot Error Occur\n{} \n", e.toString());
+        return "fail";
+      }
+    }
     return "Success";
-  }
-  
-  @RequestMapping(value = "/Object", method = RequestMethod.POST, consumes = "multipart/form-data") // 
-  public String Object(
-      @RequestPart(name="phot", required = false) MultipartFile phot,
-      Rvw rvw
-      ) throws Exception {
-    System.out.println("\nrvw/Object FORM TEST");
-    logger.info("\n\t/rvw/Object receive -->\nrvw : {}", rvw.toString());
-    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
-    return "rvwTest";
-  }
-  
-  @RequestMapping(value = "/JSON", method = RequestMethod.POST, consumes = "multipart/form-data") // 
-  public String JSON(
-      @RequestPart(name="phot", required = false) MultipartFile phot,
-      @RequestBody Rvw rvw
-      ) throws Exception {
-    System.out.println("\nrvw/Object FORM TEST");
-    logger.info("\n\t/rvw/Object receive -->\nrvw : {}", rvw.toString());
-    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
-    return "rvwTest";
-  }
-  
-
-  
-  @ResponseBody
-  @RequestMapping(value = "/elmtOnly", method = RequestMethod.POST, consumes = "multipart/form-data") // 
-  public String elementOnly(
-      int rst_no, String id, String cont, int score
-      ) throws Exception {
-    System.out.println("\nrvw/ElementOnly FORM TEST");
-    System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
-    return "rvwTest";
   }
   
   /**

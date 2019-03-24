@@ -2,6 +2,14 @@
 
 **2019년 02/11 ~ 04/11 인턴 기록**
 
+## 03/24 일요일
+
+### 09:42
+
+MultipartFile.getOriginalFileName()
+
+-------------------------------------------------------------------------------------------
+
 ## 03/23 토요일
 
 ### 01:55
@@ -71,32 +79,32 @@ Android 프레임워크는 앱 외부에서 file:// URI의 노출을 금지하�
 
 
 1. AndroidManifest.xml 수정
-```
-<application>
-    <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="com.bignerdranch.android.test.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/filepaths" />
-    </provider>
-</application>
-```
+    ```
+    <application>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.bignerdranch.android.test.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+    </application>
+    ```
 
 2. res/xml/filepaths.xml 생성
-```
-<?xml version="1.0" encoding="utf-8"?>
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-path name="storage/emulated" path="."/>
-</paths>
-```
+    ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <paths xmlns:android="http://schemas.android.com/apk/res/android">
+        <external-path name="storage/emulated" path="."/>
+    </paths>
+    ```
 3. Uri.fromFile(File mFile) 코드 대체
-```
-Uri uri = Uri.fromFile(mPhotoFile);
--> Uri uri = FileProvider.getUriForFile(getContext(), "com.Yummy.android.EX.fileprovider", mPhotoFile);
-```
+    ```
+    Uri uri = Uri.fromFile(mPhotoFile);
+    -> Uri uri = FileProvider.getUriForFile(getContext(), "com.Yummy.android.EX.fileprovider", mPhotoFile);
+    ```
 *com.Yummy.android.EX 부분은 개인의 도메인임.  
 mPhotoFile 대신 생성한 파일 객체를 넣음..  
   
@@ -106,14 +114,14 @@ mPhotoFile 대신 생성한 파일 객체를 넣음..
 ### 17:00
 
 사진 찍어 파일 만들기, 앨범에서 사진 선택하기 성공....  
-```
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: 	SUBMIT BTN CLICKED!
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: id : asdf1020
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: rst_no : 4
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: score : 3
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: cont : 후기 작성하기
-2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: phot.path() :/storage/emulated/0/Yummy/Yummy_165455_2341088579743724054.jpg
-```
+    ```
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: 	SUBMIT BTN CLICKED!
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: id : asdf1020
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: rst_no : 4
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: score : 3
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: cont : 후기 작성하기
+    2019-03-23 16:55:12.133 12390-12390/com.example.app I/System.out: phot.path() :/storage/emulated/0/Yummy/Yummy_165455_2341088579743724054.jpg
+    ```
 
 ### 17:20
 
@@ -281,6 +289,11 @@ RetrofitClient Refactoring
         /rvw/Object receive -->
     rvwPhot : 2718930
     ```
+- https://philip1994.tistory.com/15
+
+### 00:50
+
+    사진 File, Rvw 객체 제이슨 전송하면 성공 할 듯.
 
 -------------------------------------------------------------------------------------------
 
