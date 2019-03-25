@@ -79,26 +79,11 @@ public class PhotServiceImple implements PhotService {
    * @throws Exception
    */
   @Override
-  public String saveRvwPhot(Phot phot) throws Exception {
+  public Boolean saveRvwPhot(Phot phot) throws Exception {
     logger.info( "\n\tphotService SaveRVWPhot recieve {}", phot.toString() );
     
-    //  rst_no에 대한 phot가 없다면,
-    String yn = photDao.getRstPhot(phot.getRst_no());
-    if( yn == null ) {
-      logger.info("\n\tphotService SaveRVWPhot getRstPhot -> {}", yn );
       //  phot객체 저장.
-      if( photDao.savePhot( phot ) ) {
-        return "success";
-      }
-    }   else {
-      logger.info( "\n\tphotService SaveRVWPhot TABLE phot has rst_no = {}", phot.getRst_no() );
-      //  rst_no에 대한 phot를 삭제.
-      photDao.deleteRstPhot( phot.getRst_no() );
-      //  phot객체 저장.
-      if( photDao.savePhot( phot ) ) {
-        return "success";
-      }
-    }
-    return "fail";
+    return photDao.savePhot( phot );
   }
+
 }

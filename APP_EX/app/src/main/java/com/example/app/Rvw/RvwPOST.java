@@ -28,6 +28,8 @@ import com.example.app.Request.RetrofitClient;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -63,6 +65,14 @@ public class RvwPOST extends AppCompatActivity {
     private static final int PICK_FROM_CAMERA = 2;
     /* 카메라, 사진첩 접근 권한 */
     private Boolean isPermission = true;
+
+    //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
+    Retrofit retrofit = RetrofitClient.getClient();
+
+    //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
+    RequestInterface request = retrofit.create(RequestInterface.class);
+
+    Call<ResponseBody> call;
 
 
     @Override
@@ -145,7 +155,12 @@ public class RvwPOST extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("\n\tSUBMIT BTN CLICKED!");
 
-                String id = Memb.getMemb().getId();
+                //  사진이 없다면 return.
+                if( tempFile == null || tempFile.length() <= 0) {
+                    Toast.makeText( getApplicationContext(),
+                            getResources().getString(R.string.nullPhot), Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 리턴함.
                 EditText contText = (EditText)findViewById(R.id.rvw_cont);
@@ -155,25 +170,29 @@ public class RvwPOST extends AppCompatActivity {
                             R.string.nullCont, Toast.LENGTH_SHORT ).show();
                     return;
                 }
-                System.out.println
-                        ("id : " + id + "\nrst_no : " + rst_no
-                                + "\nscore : " + score + "\ncont : "
-                                + cont + "\nphot.path() :" + tempFile );
 
-                //  POST METHOD 들어올 자리.
-                //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
-                Retrofit retrofit = RetrofitClient.getClient();
+                System.out.println( "" + rst_no + Memb.getMemb().getId() + cont + score + tempFile.length());
 
-                //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
-                RequestInterface request = retrofit.create(RequestInterface.class);
 
                 RequestBody requestFile
                         = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
-                MultipartBody.Part body
+                MultipartBody.Part phot
                         = MultipartBody.Part.createFormData(
                                 "phot", tempFile.getName(), requestFile);
 
-                Call<ResponseBody> call = request.postPhot(body);
+                RequestBody RST_NO
+                        = RequestBody.create(MediaType.parse("text/plain"), rst_no + "" );
+
+                RequestBody ID
+                        = RequestBody.create(MediaType.parse("text/plain"), Memb.getMemb().getId() );
+
+                RequestBody CONT
+                        = RequestBody.create(MediaType.parse("text/plain"), cont );
+
+                RequestBody SCORE
+                        = RequestBody.create(MediaType.parse("text/plain"), score + "" );
+
+                call = request.upload(phot, RST_NO, ID, CONT, SCORE);
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -186,19 +205,6 @@ public class RvwPOST extends AppCompatActivity {
 
                     }
                 });
-//                Call<ResponseBody> call = request.postRvw(rst_no, id, cont, score);
-//
-//                call.enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//                    }
-//                });
 
             }
         });
@@ -293,7 +299,7 @@ public class RvwPOST extends AppCompatActivity {
         }
         /* 카메라를 켰다 사진을 안찍거나, 앨범에 가서 사진을 안 골라 온 경우의 예외 처리 */
 
-        /*  onActivityResult 의 requestCode 값이 PICK_FROM_ALBUM 이면 해당 로직이 실행됨 */
+        /*  onActivityResult의 requestCode 값에 따라 로직이 실행됨 */
         if (requestCode == PICK_FROM_ALBUM) {
             Uri photoUri = data.getData();
             Cursor cursor = null;
@@ -316,11 +322,11 @@ public class RvwPOST extends AppCompatActivity {
                 }
             }
             setImage();
-        /*  onActivityResult 의 requestCode 값이 PICK_FROM_CAMERE 이면 해당 로직이 실행됨 */
         } else if (requestCode == PICK_FROM_CAMERA) {
 
             setImage();
         }
+        /*  onActivityResult의 requestCode 값에 따라 로직이 실행됨 */
     }
 
     /** 받아온 이미지 넣기
@@ -345,12 +351,9 @@ public class RvwPOST extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
         String imageFileName = "Yummy_" + timeStamp + "_";
 
-        // 이미지가 저장될  Custom 폴더 이름 ( Yummy )
+        // 이미지가 저장될  폴더 이름
         File storageDir = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
         if (!storageDir.exists()) storageDir.mkdirs();
-
-        //  이미지를 기본 앨범에 저장할 경우
-        //  File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
         // 빈 파일 생성
         File image = File.createTempFile(
@@ -360,4 +363,49 @@ public class RvwPOST extends AppCompatActivity {
         );
         return image;
     }
+
+//    private void sendPost( int rst_no, String id, String cont ) {
+//        Call<JSONObject> call = request.postRvw(rst_no, id, cont, score);
+//
+//        call.enqueue(new Callback<JSONObject>() {
+//            @Override
+//            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+//                String result = response.body().toString();
+//
+//                Log.d("RESULT", result+"");
+//                System.out.println("RESULT : " + result);
+//                if( tempFile == null || tempFile.length() <= 0 ) {
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JSONObject> call, Throwable t) {
+//
+//            }
+//        });
+//    }
+
+//    private void sendPhot() {
+//        RequestBody requestFile
+//                = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
+//        MultipartBody.Part body
+//                = MultipartBody.Part.createFormData(
+//                        "phot", tempFile.getName(), requestFile);
+//
+//        call = request.postPhot(body);
+//
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
 }

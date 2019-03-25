@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.dflt.ReviewVO;
 import egovframework.phot.service.PhotService;
+import egovframework.phot.vo.Phot;
 import egovframework.rater.service.RaterService;
 import egovframework.rater.vo.Rater;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -144,31 +146,13 @@ public class RvwController {
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String createRvw( @RequestBody Rvw rvw ) throws Exception {
     logger.info("\n\t/rvw/save receive --> {}", rvw.toString());
-    if( rvwService.save(rvw)) {
+    if( rvwService.save(rvw) ) {
       return "success";
     } 
     return "fail";
   }
-  /**
-   * rvw를 MultipartForm Data로 저장하기 위한 method
-   * @param rvw
-   * @return
-   * @throws Exception
-   */
-  //@ResponseBody
-  @RequestMapping(value = "/saveWith", method = RequestMethod.POST) //, consumes = "multipart/form-data" 
-  public String RVW(
-      @RequestPart(name="phot", required = false) MultipartFile phot,
-      @RequestBody Rvw rvw 
-      ) throws Exception {
-    System.out.println("\nrvw/saveWith TEST");
-    logger.info("\n\t/rvw/saveWITH receive -->\nrvw : {}", rvw.toString());
-//    logger.info("\n\t/rvw/saveWITH receive -->\nrvwPhot : {}", phot.getSize());
-
-    return "rvwTest";
-  }
   
-  @RequestMapping(value = "/Element", method = RequestMethod.POST)
+  @RequestMapping(value = "/createRvw", method = RequestMethod.POST)
   public String Element(
       int rst_no, String id, String cont, int score
       ) throws Exception {
@@ -182,10 +166,9 @@ public class RvwController {
   public String imgOnly(
       @RequestPart(name="phot", required = false) MultipartFile phot
       ) throws Exception {
-    String path = sc.getRealPath( "resources/images/rvw/" ).toString();
 
     System.out.println("\nrvw/phot POST TEST");
-    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\n", phot.getSize());
+    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
     
     if( phot != null && phot.getSize() > 0) {
       try {
@@ -195,6 +178,44 @@ public class RvwController {
         logger.info("\n\t/rvw/phot Error Occur\n{} \n", e.toString());
         return "fail";
       }
+    }
+    return "Success";
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/asdf", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  public String asdf(
+      @RequestPart(name="phot", required = false) MultipartFile phot
+      ,  int rst_no, String id, String cont, int score
+      ) throws Exception {
+    
+    Rvw rvw = new Rvw(rst_no, id, cont, score);
+    String rvw_phot_name = UUID.randomUUID().toString();
+    
+    System.out.println("\nrvw/phot POST TEST");
+    logger.info("\n\t/rvw/asdf receive -->\nRVW : {}", rvw.toString() );
+    logger.info("\n\t/rvw/asdf receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
+    
+    if( !rvwService.save(rvw) ) {
+      return "fail";
+    }
+    
+    //  사진이 실존 한다면 다면
+    if( phot != null && phot.getSize() > 0) {
+      try {
+        //  사진 저장
+        phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + phot.getOriginalFilename() ) ) );
+        phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + rvw_phot_name ) ) );
+        
+        //  phot 객체 생성후, rst_no, rvw_no, phot_no 저장.
+        Phot p = new Phot(rvw_phot_name, rst_no, rvw.getRvw_no());
+        photService.saveRvwPhot( p );
+      } catch (IOException e) {
+        logger.info("\n\t/rvw/phot Error Occur\n{} \n", e.toString());
+        return "fail";
+      }
+    }   else {
+      return "fail";
     }
     return "Success";
   }

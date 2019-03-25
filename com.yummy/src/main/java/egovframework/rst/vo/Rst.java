@@ -70,6 +70,9 @@ public class Rst  extends DefaultVO {
   }
 
   public String getLoc() {
+    if( loc == null || loc == "" ) {
+      loc_dtl = "분당구";
+    }
     return loc;
   }
 
@@ -78,6 +81,9 @@ public class Rst  extends DefaultVO {
   }
 
   public String getLoc_dtl() {
+    if( loc_dtl == null || loc_dtl == "" ) {
+      loc_dtl = "성남대로 925번길 41";
+    }
     return loc_dtl;
   }
 

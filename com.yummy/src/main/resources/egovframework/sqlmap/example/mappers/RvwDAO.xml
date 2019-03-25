@@ -30,7 +30,7 @@
   </select>
   
   <!-- rvw를 저장 -->
-  <insert id="save" parameterType="rvw" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="save" parameterType="rvw" useGeneratedKeys="true" keyProperty="rvw_no" keyColumn="rvw_no" >
     INSERT INTO rvw
       (rst_no, id, cont, cdt, score, useyn)
     VALUES (

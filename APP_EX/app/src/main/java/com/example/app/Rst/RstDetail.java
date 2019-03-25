@@ -222,7 +222,7 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap map) {
         geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
-        double lati=0, longti=0;    // 위도, 경도 변수 선언
+        double lati = 0, longti = 0;    // 위도, 경도 변수 선언
         List<Address> addressList = null;
         String address;
 

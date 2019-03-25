@@ -9,6 +9,8 @@ public class Rvw {
     int score;    //  리뷰 평점
 
     public Rvw () { }
+    public Rvw(int rst_no, String id, String cont, int score) {}
+
     public Rvw(int rvw_no, int rst_no, String id, String cont, String cdt, int score) {
         this.rvw_no = rvw_no;
         this.rst_no = rst_no;

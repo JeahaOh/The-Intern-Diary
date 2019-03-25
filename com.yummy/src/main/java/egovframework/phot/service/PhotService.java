@@ -38,6 +38,6 @@ public interface PhotService {
    * @return
    * @throws Exception
    */
-  String saveRvwPhot( Phot phot ) throws Exception;
+  Boolean saveRvwPhot( Phot phot ) throws Exception;
 
 }

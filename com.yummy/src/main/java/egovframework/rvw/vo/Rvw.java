@@ -17,6 +17,13 @@ public class Rvw extends DefaultVO {
   
   public Rvw() {  }
   public Rvw(
+      int rst_no, String id, String cont, int score) {
+    this.rst_no = rst_no;
+    this.id = id;
+    this.cont = cont;
+    this.score = score;
+  }
+  public Rvw(
       int rvw_no, int rst_no, String id, String cont, String cdt, int score, char useyn, String rvw_phot
       ) {
     super();
