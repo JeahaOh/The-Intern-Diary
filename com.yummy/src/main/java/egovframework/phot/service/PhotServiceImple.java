@@ -81,7 +81,6 @@ public class PhotServiceImple implements PhotService {
   @Override
   public Boolean saveRvwPhot(Phot phot) throws Exception {
     logger.info( "\n\tphotService SaveRVWPhot recieve {}", phot.toString() );
-    
       //  phot객체 저장.
     return photDao.savePhot( phot );
   }

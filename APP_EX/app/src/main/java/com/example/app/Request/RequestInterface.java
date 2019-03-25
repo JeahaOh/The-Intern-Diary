@@ -44,38 +44,9 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
-    @Headers({
-            "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
-    })
-    @FormUrlEncoded
-    @POST("/yummy/rvw/createRvw")
-    Call<ResponseBody> postRvw(
-            @Field("rst_no")    int rst_no,
-            @Field("id")        String id,
-            @Field("cont")      String cont,
-            @Field("score")     int score
-    );
-
+    //  MultipartForm으로 사진과 rvw 정보를 POST.
     @Multipart
-    @POST("/yummy/rvw/phot")
-    Call<ResponseBody> postPhot( @Part MultipartBody.Part File );
-
-    @Multipart
-    @POST("/yummy/rvw/createRvw")
-    Call<ResponseBody> rvw(
-            @Part("image\"; filename=\"myfile.jpg\" ") MultipartBody.Part File,
-            @Part("rst_no")    int rst_no,
-            @Part("id")        String id,
-            @Part("cont")      String cont,
-            @Part("score")     int score
-
-    );
-
-//    @Headers({
-//            "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
-//    })
-    @Multipart
-    @POST("/yummy/rvw/asdf")
+    @POST("/yummy/rvw/uploadRvw")
     Call<ResponseBody> upload(
             @Part MultipartBody.Part phot,
             @Part("rst_no")    RequestBody rst_no,
@@ -84,7 +55,4 @@ public interface RequestInterface {
             @Part("score")     RequestBody score
 
     );
-
-
-//@Headers("Content-Type: multipart/form-data")
 }

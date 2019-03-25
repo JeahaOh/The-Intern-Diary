@@ -1,6 +1,7 @@
 package com.example.app.Rvw;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,8 +28,6 @@ import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -121,7 +120,6 @@ public class RvwPOST extends AppCompatActivity {
                         return;
                     case 5 :
                         rateResult.setText( "추천" );
-                        return;
                 }
             }
         });
@@ -163,32 +161,26 @@ public class RvwPOST extends AppCompatActivity {
                 }
 
                 //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 리턴함.
-                EditText contText = (EditText)findViewById(R.id.rvw_cont);
+                EditText contText = findViewById(R.id.rvw_cont);
                 String cont = contText.getText().toString();
-                if( cont.length() <= 0 || cont == "" ) {
+                if( cont.length() <= 0 || cont.equals("")) {
                     Toast.makeText( getApplicationContext(),
                             R.string.nullCont, Toast.LENGTH_SHORT ).show();
                     return;
                 }
 
-                System.out.println( "" + rst_no + Memb.getMemb().getId() + cont + score + tempFile.length());
-
-
+                //  RequestBody로 data 포장.
                 RequestBody requestFile
                         = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
                 MultipartBody.Part phot
                         = MultipartBody.Part.createFormData(
                                 "phot", tempFile.getName(), requestFile);
-
                 RequestBody RST_NO
                         = RequestBody.create(MediaType.parse("text/plain"), rst_no + "" );
-
                 RequestBody ID
                         = RequestBody.create(MediaType.parse("text/plain"), Memb.getMemb().getId() );
-
                 RequestBody CONT
                         = RequestBody.create(MediaType.parse("text/plain"), cont );
-
                 RequestBody SCORE
                         = RequestBody.create(MediaType.parse("text/plain"), score + "" );
 
@@ -348,64 +340,20 @@ public class RvwPOST extends AppCompatActivity {
     /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
     private File createImageFile() throws IOException {
         // 이미지 파일 이름 ( Yummy_{시간}_ )
-        String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
         String imageFileName = "Yummy_" + timeStamp + "_";
 
         // 이미지가 저장될  폴더 이름
         File storageDir = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
-        if (!storageDir.exists()) storageDir.mkdirs();
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
 
         // 빈 파일 생성
-        File image = File.createTempFile(
+        return File.createTempFile(
                 imageFileName,      /* prefix */
                 ".jpg",       /* suffix */
                 storageDir          /* directory*/
         );
-        return image;
     }
-
-//    private void sendPost( int rst_no, String id, String cont ) {
-//        Call<JSONObject> call = request.postRvw(rst_no, id, cont, score);
-//
-//        call.enqueue(new Callback<JSONObject>() {
-//            @Override
-//            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-//                String result = response.body().toString();
-//
-//                Log.d("RESULT", result+"");
-//                System.out.println("RESULT : " + result);
-//                if( tempFile == null || tempFile.length() <= 0 ) {
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<JSONObject> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-
-//    private void sendPhot() {
-//        RequestBody requestFile
-//                = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
-//        MultipartBody.Part body
-//                = MultipartBody.Part.createFormData(
-//                        "phot", tempFile.getName(), requestFile);
-//
-//        call = request.postPhot(body);
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//
-//    }
 }

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springmodules.validation.commons.DefaultBeanValidator;
-import egovframework.dflt.ReviewVO;
 import egovframework.phot.service.PhotService;
 import egovframework.phot.vo.Phot;
 import egovframework.rater.service.RaterService;
@@ -137,7 +136,7 @@ public class RvwController {
   }
   
   /**
-   * rvw 저장
+   * TEST용 rvw 저장
    * @param rvw
    * @return
    * @throws Exception
@@ -152,50 +151,29 @@ public class RvwController {
     return "fail";
   }
   
-  @RequestMapping(value = "/createRvw", method = RequestMethod.POST)
-  public String Element(
-      int rst_no, String id, String cont, int score
-      ) throws Exception {
-    System.out.println("\nrvw/Element FORM TEST");
-    System.out.printf("%d, %s, %s, %d\n\n",rst_no , id , cont, score);
-    return "rvwTest";
-  }
-  
+  /**
+   * APK에서 받은 사진과 rvw 정보를 처리함.
+   * @param phot        ImageFile
+   * @param rst_no
+   * @param id
+   * @param cont
+   * @param score
+   * @return
+   * @throws Exception
+   */
   @ResponseBody
-  @RequestMapping(value = "/phot", method = RequestMethod.POST, consumes = "multipart/form-data") // 
-  public String imgOnly(
-      @RequestPart(name="phot", required = false) MultipartFile phot
-      ) throws Exception {
-
-    System.out.println("\nrvw/phot POST TEST");
-    logger.info("\n\t/rvw/Object receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
-    
-    if( phot != null && phot.getSize() > 0) {
-      try {
-        
-        phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + phot.getOriginalFilename() ) ) );
-      } catch (IOException e) {
-        logger.info("\n\t/rvw/phot Error Occur\n{} \n", e.toString());
-        return "fail";
-      }
-    }
-    return "Success";
-  }
-  
-  @ResponseBody
-  @RequestMapping(value = "/asdf", method = RequestMethod.POST, consumes = "multipart/form-data") // 
+  @RequestMapping(value = "/uploadRvw", method = RequestMethod.POST, consumes = "multipart/form-data") // 
   public String asdf(
       @RequestPart(name="phot", required = false) MultipartFile phot
       ,  int rst_no, String id, String cont, int score
       ) throws Exception {
-    
+    //  받은 정보로 Rvw 객체를 만듦.
     Rvw rvw = new Rvw(rst_no, id, cont, score);
+    
+    //  UUID 사진 이름 생성.
     String rvw_phot_name = UUID.randomUUID().toString();
     
-    System.out.println("\nrvw/phot POST TEST");
-    logger.info("\n\t/rvw/asdf receive -->\nRVW : {}", rvw.toString() );
-    logger.info("\n\t/rvw/asdf receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
-    
+    //  Rvw 저장.
     if( !rvwService.save(rvw) ) {
       return "fail";
     }
@@ -203,20 +181,24 @@ public class RvwController {
     //  사진이 실존 한다면 다면
     if( phot != null && phot.getSize() > 0) {
       try {
-        //  사진 저장
-        phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + phot.getOriginalFilename() ) ) );
+        //  생성한 UUID 이름으로 사진 저장
         phot.transferTo( new File( sc.getRealPath( "resources/images/rvw/" + rvw_phot_name ) ) );
         
-        //  phot 객체 생성후, rst_no, rvw_no, phot_no 저장.
+        //  phot 객체 생성후, rst_no, rvw_no, phot_no db에 저장.
         Phot p = new Phot(rvw_phot_name, rst_no, rvw.getRvw_no());
         photService.saveRvwPhot( p );
+        
       } catch (IOException e) {
-        logger.info("\n\t/rvw/phot Error Occur\n{} \n", e.toString());
+        logger.info("\n\t/rvw/uploadRvw IOException Occur\n{} \n", e.toString());
         return "fail";
       }
     }   else {
+      logger.info("\n\t/rvw/uploadRvw Error phot.getSize() ->\t{} \n", phot.getSize() );
       return "fail";
     }
+    logger.info("\n\t/rvw/uploadRvw receive -->\nRVW : {}", rvw.toString() );
+    logger.info("\n\t/rvw/uploadRvw receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
+    logger.info("\n\t/rvw/uploadRvw saveRvwPhot -->\nrvwPhot : {}\t{}\n", sc.getRealPath( "resources/images/rvw/" + rvw_phot_name ), phot.getSize());
     return "Success";
   }
   
@@ -252,21 +234,4 @@ public class RvwController {
     }
     return "fail";
   }
-  
-  
-  /**
-   * 유진씨꺼 예제
-   * @param vo
-   * @return
-   * @throws Exception
-   */
-  @ResponseBody
-  @RequestMapping(value="/insertReview.do", method=RequestMethod.POST)
-  public String insert (@RequestBody ReviewVO vo ) throws Exception{
-  System.out.println("call");
-  System.out.println(vo.toString());
-     
-     return "successs";
-  }
-  
 }
