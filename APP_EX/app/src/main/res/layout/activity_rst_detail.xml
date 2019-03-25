@@ -37,20 +37,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/wannaGoKey" />
+            android:text="@string/wannaGoKey"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
             android:id="@+id/wannago"
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:paddingTop="10dp"
             android:text="@string/wanna_go_val" />
 
-        <TextView
+        <!--<TextView-->
+            <!--android:id="@+id/rvw_create_button"-->
+            <!--android:layout_width="68dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/rvw_create_button" />-->
+
+        <Button
             android:id="@+id/rvw_create_button"
-            android:layout_width="68dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
             android:text="@string/rvw_create_button" />
 
         <TextView
