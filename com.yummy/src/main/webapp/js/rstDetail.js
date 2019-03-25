@@ -198,12 +198,12 @@ function saveRst(){
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    async : false,
     method: "POST",
     dataType: "json",
     contentType : 'application/json; charset=UTF-8',
     data: JSON.stringify( form ),
     enctype: 'multipart/form-data',
-    async : false,
     success: function ( data ) {
       console.log( data );
       
@@ -245,13 +245,13 @@ function postPhot( rst_no ) {
   formData.append( "rst_no", rst_no );
   
   $.ajax({
+    async : false,
     url:"/yummy/phot/rstPhotSave",
     data:formData,
     processData: false,
     contentType: false,
     type: 'POST',
     enctype: 'multipart/form-data',
-    async : false,
     success: function( data ){
       console.log( data );
     },
