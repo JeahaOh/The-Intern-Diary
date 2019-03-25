@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Template TEST</title>
+    <style>
+        @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+        /*  HEADER  */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header hr {
+            width: 90%;
+            margin-bottom: 20px;
+        }
+
+
+        #heading {
+            text-align: center;
+            margin-top: 20px;
+
+        }
+
+        /*    HEADER    */
+        /*    NAV    */
+        * {
+            margin: 0px;
+            padding: 0px;
+            /*  box-sizing:border-box;*/
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            padding-top: 50px;
+            width: 100px;
+            height: 100vh;
+            background: #26272b;
+            flex-direction: column;
+        }
+
+        .navbar .item {
+            flex: 1;
+            text-align: center;
+            padding-top: 20px;
+            display: flex;
+            /*  justify-content:center;*/
+            flex-direction: column;
+        }
+
+        .navbar .item div.fa {
+            font-size: 25px;
+            color: #eee;
+            /*  transition:all 100ms ease;*/
+        }
+
+        .navbar .item div.label {
+            color: #eee;
+            position: relative;
+            top: 5px;
+            font-size: 16px;
+            /*  font-family:"Oswald";*/
+            transition: all 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            left: -100px;
+        }
+
+        .navbar:hover .item .label {
+            left: 0px;
+        }
+        /*    NAV    */
+        /*    FOOTER    */
+        .footer {
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            background-color: #26272b;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373;
+            width: 90%;
+            text-align: right
+        }
+
+        .cont {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            position: relative;
+            width: inherit;
+        }
+
+        .footer h6 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px
+        }
+
+        .footer a {
+            color: #737373;
+        }
+        /*    FOOTER    */
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1 id="heading">Yummy</h1>
+    </header>
+    <!-- HEADER -->
+    <!-- NAV -->
+    <div class="navbar">
+        <div class="item">
+            <div class="fa fa-list"></div>
+            <div class="label">Photos</div>
+        </div>
+        <div class="item">
+            <div class="fa fa-bell"></div>
+            <div class="label">Notifications</div>
+        </div>
+        <div class="item">
+            <div class="fa fa-wrench"></div>
+            <div class="label">Setting</div>
+        </div>
+        <div class="item">
+            <div class="fa fa-power-off"></div>
+            <div class="label">Logout</div>
+        </div>
+    </div>
+    <!-- NAV -->
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="cont">
+            <h6>Yummy.com</h6>
+            <i>Collection of Michelin-Selected Restaurants In Seoul </i>
+            <pre> It Was Made During 2019.02.16 ~ 2019.04.03</pre>
+        </div>
+        <div class="cont">
+            <p>Copyright &copy; 2019 All Rights Reserved by
+                <a href="https://github.com/JeahaOh/The-Intern-Diary">JeahaOh</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- FOOTER -->
+</body>
+</html>

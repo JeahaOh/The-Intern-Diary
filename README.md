@@ -35,6 +35,14 @@ rst_list filter
     - https://academy.realm.io/kr/posts/android-search-text-view/
     - https://www.androidpub.com/2223800
 
+### 18:00
+
+일부 주석 정리
+
+### 23:00
+
+Header, Navbar, Footer Design
+
 -------------------------------------------------------------------------------------------
 
 ## 03/24 일요일
