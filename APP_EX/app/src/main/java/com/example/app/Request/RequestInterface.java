@@ -6,16 +6,12 @@ import com.example.app.Rst.Rater;
 import com.example.app.Rst.Rst;
 import com.example.app.Rvw.Rvw;
 
-import org.json.JSONObject;
-
-import java.io.File;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -45,6 +41,7 @@ public interface RequestInterface {
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
     //  MultipartForm으로 사진과 rvw 정보를 POST.
+    @Headers("Accept:text/plain;charset=UTF-8")
     @Multipart
     @POST("/yummy/rvw/uploadRvw")
     Call<ResponseBody> upload(
