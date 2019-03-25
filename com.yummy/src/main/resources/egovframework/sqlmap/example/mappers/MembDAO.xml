@@ -68,7 +68,8 @@
     WHERE
       id = #{id}
   </update>
-<!--   
+  <!-- 
+  시간 관계상 누락
   <update id="updateMemb" parameterType="String">
     UPDATE memb
     SET

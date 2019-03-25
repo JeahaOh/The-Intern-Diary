@@ -13,8 +13,6 @@
                 http://www.springframework.org/schema/mvc
                 http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-  <!-- <context:component-scan base-package="com.yummy.src.main.java.egovframework"> <context:include-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/> <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/> <context:exclude-filter type="annotation" expression="org.springframework.beans.factory.annotation.Autowired"/> </context:component-scan> -->
-
   <context:component-scan base-package="egovframework" />
   
   <mvc:annotation-driven>
@@ -40,7 +38,7 @@
   </mvc:annotation-driven>
 
 <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-  <mvc:resources location="/resources/" mapping="/resources/**" order="-1"/>
+  <mvc:resources location="/resources/" mapping="/resources/**" order="1"/>
   
   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
     <property name="webBindingInitializer">

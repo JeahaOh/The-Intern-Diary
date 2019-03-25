@@ -37,7 +37,6 @@
         rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블
       </caption>
       <colgroup>
-        <%-- <col width="40" /> --%>
         <col width="40" />
         <col width="?" />
         <col width="80" />
@@ -53,7 +52,6 @@
         </td>
       </tr>
       <tr>
-        <!-- <th align="center">No</th> -->
         <th align="center"><spring:message code="title.rst.id" /></th>
         <th align="center"><spring:message code="title.rst.name" /></th>
         <th align="center"><spring:message code="title.rst.star" /></th>

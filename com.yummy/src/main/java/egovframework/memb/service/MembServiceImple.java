@@ -85,7 +85,6 @@ public class MembServiceImple implements MembService {
     logger.info(id);
     return membDao.login(id, pwd);
   }
-
   
   /**
    * 일반 회원의 탈퇴 기능

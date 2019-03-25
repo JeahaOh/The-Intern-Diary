@@ -31,7 +31,7 @@ public class CatagController {
   public @ResponseBody List<Catag> getCatag(
       @RequestParam(value="upper_no", required=true) int upper_no)
           throws Exception {
-    logger.info(Integer.toString(upper_no));
+    logger.info("\n\t/catag/get receive upper_no : {}", Integer.toString(upper_no));
     
     return catagService.getRstLowerCatagList(upper_no);
   }

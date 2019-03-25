@@ -89,6 +89,7 @@
                       </c:when>
                       <c:otherwise>
                         <c:choose>
+                          <%-- rst_phot가 없는 경우도 있으므로 --%>
                           <c:when test="${rst.rst_phot != null}">
                             <img id="preview"
                                   src="<c:url value='/resources/images/rst/'/>${rst.rst_phot}"
@@ -240,7 +241,7 @@
                         name="dnnr_tm" alt="<spring:message code="title.rst.dnnr_tm"/>" 
                         value="<c:out value="${rst.dnnr_tm}"/>">
                   </td>
-                  <td class=tbtd_content>
+                  <td class="tbtd_content">
                     <input type="time" id="lo_tm" class="rst_form" 
                         name="lo_tm" alt="<spring:message code="title.rst.lo_tm"/>" 
                         value="<c:out value="${rst.lo_tm}"/>" required>
@@ -252,15 +253,14 @@
           </div>
         </form>
       </div>
-      <%-- RVW INCLUDE --%>
+      
       <c:if test="${mode eq 'Modify'}">
-        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
+        <!-- ======= RVW INCLUDE ======= -->
+          <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
+        <!-- ==== RVW Modal INCLUDE ==== -->
+          <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
       </c:if>
       </div>
-      <%-- RVW Modal INCLUDE --%>
-      <c:if test="${mode eq 'Modify'}">
-        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
-      </c:if>
     <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
     <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
     <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>

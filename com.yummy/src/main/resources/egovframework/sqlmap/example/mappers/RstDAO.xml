@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC
+  "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.rst.dao.RstDAO">
-<!-- 
-  <resultMap type="rst" id="egovframework.rst.vo.Rst">
+  <!--
+  실제 사용하지 않아서 일단 주석 처리.
+  <resultMap type="rst" id="Rst">
     <id property="rst_no" column="rst_no"/>
     <result property="rst_name" column="rst_name"/>
     <result property="star" column="star"/>
@@ -15,10 +18,9 @@
     <result property="dnnr_tm" column="dnnr_tm"/>
     <result property="lo_tm" column="lo_tm"/>
   </resultMap>
-    
-   -->
+  -->
+  
    <!-- rst의 list를 반환 -->
-  <!-- <select id="getList" parameterType="serachVO" resultType="egovMap"> -->
   <select id="getList" resultType="rst">
     SELECT
       rst.rst_no,

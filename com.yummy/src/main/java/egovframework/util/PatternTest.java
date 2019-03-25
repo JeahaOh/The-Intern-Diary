@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * DB에 들어갈 인자들으 ㅣ정규 표현식 확인을 위한 클래스.
+ * DB에 들어갈 인자들의 정규 표현식 확인을 위한 클래스.
+ * 최초 생성 이후 시간 관계상 회원관리 외에 로직을 더 만들지 않았음..
  * 
  * @Class Name  : PatternTest.java
  * @Discription : Pattern Test Class

@@ -95,10 +95,6 @@ public class PhotController {
     String str = UUID.randomUUID().toString();
     logger.info("\n\tgetUUID {}", str);
     //  UUID 중복 체크를 위한 콜백 함수를 구현하고 싶지만 시간 관계상 넘어가도록 하자.
-//    if( photService.getPhotNo( str ) ) {
-//      logger.info("\n\tgetUUID callback getUUID -> {}", str);
-//      getUUID();
-//    }
     
     return str;
   }
