@@ -82,7 +82,6 @@
           </tr>
         </c:forEach>
       </table>
-    
     <%-- 여기까지  rst List를 출력하는 TABLE --%>
     <%-- PAGING --%>
     <%-- 

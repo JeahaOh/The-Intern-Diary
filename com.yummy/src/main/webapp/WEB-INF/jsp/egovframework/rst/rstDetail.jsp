@@ -24,7 +24,7 @@
 <html lang="kor">
   <head>
     <meta charset="UTF-8">
-    <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
+    <title>${rst.rst_name} &nbsp;<spring:message code="title.rst.info"/></title>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/modal.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/common.css'/>"/>
@@ -36,7 +36,16 @@
       <jsp:include page="/WEB-INF/jsp/egovframework/include/HEADER.jsp" flush="true"/>
     <%-- ==== NAVBAR ==== --%>
       <jsp:include page="/WEB-INF/jsp/egovframework/include/NAVBAR.jsp" flush="true"/>
+      <div class="inner_container">
       <form id="rstForm" name="rstForm" enctype="multipart/form-data">
+        <c:choose>
+          <c:when test="${mode eq 'Create'}">
+            <h2 id="mode" class="title create"><spring:message code="mode.create"/></h2>
+          </c:when>
+          <c:otherwise>
+            <h2 id="mode" class="title modify">${rst.rst_name} &nbsp;<spring:message code="mode.modify"/></h2>
+          </c:otherwise>
+        </c:choose>
         <table>
           <colgroup>
             <col width="200"/>
@@ -48,24 +57,16 @@
           </colgroup>
           
           <tr>
-            <td class="tbtd_caption" colspan="3">
+            <td class="tbtd_caption_re" colspan="3">
               <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
-              <c:choose>
-                <c:when test="${mode eq 'Create'}">
-                  <h4 id="mode" class="title create"><spring:message code="mode.create"/></h4>
-                </c:when>
-                <c:otherwise>
-                  <h4 id="mode" class="title modify"><spring:message code="mode.modify"/></h4>
-                </c:otherwise>
-              </c:choose>
               <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             </td>
-            <td class="tbtd_caption">
+            <td class="tbtd_caption_re">
               <c:if test="${mode eq 'Modify'}">
                 <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}" required>
               </c:if>
             </td>
-            <td class="tbtd_caption">
+            <td class="tbtd_caption_re">
               <c:if test="${mode eq 'Modify'}">
                 <button type="button" id="update_rst" onclick="updateRst()">
                   <spring:message code="button.modify"/>
@@ -75,12 +76,13 @@
                 </button>
               </c:if>
             </td>
-            <td class="tbtd_caption">
+            <td class="tbtd_caption_re">
               <button type="button" id="save_rst" class="rst_form" onclick="saveRst()">
                 <spring:message code="button.save"/>
               </button>
             </td>
           </tr>
+          
           <tr>
             <td class="tbtd_content" rowspan="5">
               <%-- rst_form이 생성용인지, 읽기 수정용인지에 따라 background image의 유무가 갈리므로 --%>
@@ -251,16 +253,16 @@
           </tr>
         </table>
       </form>
-      
+      </div>
       <c:if test="${mode eq 'Modify'}">
         <!-- ======= RVW INCLUDE ======= -->
           <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
         <!-- ==== RVW Modal INCLUDE ==== -->
           <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
       </c:if>
+      </div>
     <%-- ==== FOOTER ==== --%>
       <jsp:include page="/WEB-INF/jsp/egovframework/include/FOOTER.jsp" flush="true"/>
-      </div>
     <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
     <c:if test="${mode eq 'Modify'}">
       <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>

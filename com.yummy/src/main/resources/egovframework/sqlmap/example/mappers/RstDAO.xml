@@ -44,6 +44,8 @@
     ON
       rst.rst_no = phot.rst_no
     WHERE 1
+    AND
+      phot.rvw_no IS NULL
     ORDER BY rst.rst_no ASC
     <if test="searchKeyword != null and searchKeyword != ''">
       <choose>
@@ -87,6 +89,8 @@
     ON
       rst.rst_no = phot.rst_no
     WHERE rst.rst_no = #{id}
+    AND
+      phot.rvw_no IS NULL
   </select>
   
   <!-- rst_no의 마지막 번호 반환 -->
