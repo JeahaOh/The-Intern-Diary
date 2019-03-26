@@ -18,6 +18,19 @@ UI 수정
 Filtering 예제?  
 설명이 영어라 못 알아 먹겠음...
 
+### 21:00
+
+Checkbox에 onCheckedChangeListener()를 이용해서
+- https://bitsoul.tistory.com/46
+Filtering을 한다?
+- https://pyeongho.github.io/edit_search
+- https://jizard.tistory.com/53
+
+### 21:20
+
+Checkbox onCheckedChangeListener() 예제
+
+
 -------------------------------------------------------------------------------------------
 
 ## 03/25 월요일
