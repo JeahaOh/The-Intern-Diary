@@ -3,8 +3,8 @@
 <%-- 
 /WEB-INF/jsp/egovframework/rvw/rvw.jsp
  --%>
-<div class="inner_container">
 <hr>
+<div class="inner_container">
   <table id="rate">
     <colgroup>
       <col width="100"/>

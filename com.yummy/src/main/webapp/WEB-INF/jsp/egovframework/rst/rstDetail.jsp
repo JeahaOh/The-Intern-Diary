@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java"      contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"  trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
-<%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%--
    /**
@@ -28,14 +28,16 @@
   <title>${rst.rst_name} <spring:message code="title.rst.info"/></title>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/modal.css'/>"/>
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/common.css'/>"/>
   <script src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
   </head>
   <body style="text-align: center; margin: 0 auto; display: inline; padding-top: 100px;">
     <div class="outter_container">
-      <div class="inner_container">
+    <%-- ==== HEADER ==== --%>
+      <jsp:include page="/WEB-INF/jsp/egovframework/include/HEADER.jsp" flush="true"/>
+    <%-- ==== NAVBAR ==== --%>
+      <jsp:include page="/WEB-INF/jsp/egovframework/include/NAVBAR.jsp" flush="true"/>
         <form id="rstForm" name="rstForm" enctype="multipart/form-data">
-          <div id="content_pop">
-            <div id="table">
               <table>
                 <colgroup>
                   <col width="200"/>
@@ -249,10 +251,7 @@
                   <td class="tbtd_content"></td>
                 </tr>
               </table>
-            </div>
-          </div>
         </form>
-      </div>
       
       <c:if test="${mode eq 'Modify'}">
         <!-- ======= RVW INCLUDE ======= -->
@@ -260,9 +259,14 @@
         <!-- ==== RVW Modal INCLUDE ==== -->
           <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
       </c:if>
+    <%-- ==== FOOTER ==== --%>
+      <jsp:include page="/WEB-INF/jsp/egovframework/include/FOOTER.jsp" flush="true"/>
       </div>
     <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
-    <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
-    <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>
+    <c:if test="${mode eq 'Modify'}">
+      <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
+      <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>
+    </c:if>
+    <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
   </body>
 </html>

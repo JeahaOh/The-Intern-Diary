@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page   language="java"    contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"  trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="ui"        uri="http://egovframework.gov/ctl/ui" %>
 <%--
    /**
     * @Class Name : rstList.jsp
@@ -26,12 +26,17 @@
 <meta charset="UTF-8">
 <title>레스토랑 목록</title>
   <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
+  <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/common.css'/>"/>
+  <script src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
 </head>
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
-
+      <div class="outter_container">
+  <%-- ==== HEADER ==== --%>
+    <jsp:include page="/WEB-INF/jsp/egovframework/include/HEADER.jsp" flush="true"/>
+  <%-- ==== NAVBAR ==== --%>
+    <jsp:include page="/WEB-INF/jsp/egovframework/include/NAVBAR.jsp" flush="true"/>
   <%-- 여기서부터  rst List를 출력할 TABLE --%>
-  <div id="table" style="display: inline-block">
-    <table width="100%" border="0" cellpadding="0" 
+    <table width="80%" border="0" cellpadding="0" style="margin-bottom:10em;"
         cellspacing="0" summary="rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블">
       <caption style="visibility: hidden">
         rstID(래스토랑 번호), rstName(레스토랑 이름), star(미슐랭 별점), loc(위치하는 구), catag(메뉴 대분류)를 표시하는 테이블
@@ -77,7 +82,7 @@
         </tr>
       </c:forEach>
     </table>
-  </div>
+  
   <%-- 여기까지  rst List를 출력하는 TABLE --%>
   <%-- PAGING --%>
   <%-- 
@@ -102,7 +107,9 @@
   </div>
    --%>
   <%-- PAGING --%>
-
+  <%-- ==== FOOTER ==== --%>
+  <jsp:include page="/WEB-INF/jsp/egovframework/include/FOOTER.jsp" flush="true"/>
+  </div>
   <script>
     /**
      * Rst 상세 페이지로 이동하기 위한 function
@@ -116,5 +123,6 @@
       location.href = "/yummy/rst/save"
     }
   </script>
+  <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 </body>
 </html>

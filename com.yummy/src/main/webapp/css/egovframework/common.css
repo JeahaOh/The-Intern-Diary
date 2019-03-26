@@ -1,0 +1,114 @@
+@charset "UTF-8";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+/* @import "/yummy/css/egovframework/fontawesome-free-5.8.1-web/css/fontawesome.min.css"; */
+
+
+/*  HEADER  */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#heading {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*    HEADER    */
+/*    NAV    */
+/*
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing:border-box;
+}
+*/
+.navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding-top: 50px;
+  width: 100px;
+  height: 100vh;
+  background: #26272b;
+  flex-direction: column;
+}
+
+.navbar .link {
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  /*  justify-content:center;*/
+  flex-direction: column;
+  z-index: 1;
+}
+
+.navbar .link div.fa {
+  font-size: 25px;
+  color: #eee;
+  /*  transition:all 100ms ease;*/
+}
+
+.navbar .link div.label {
+  color: #eee;
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+  /*  font-family:"Oswald";*/
+  transition: all 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  left: -100px;
+}
+
+.link:hover {
+  background-color:black;
+}
+
+.navbar:hover .link .label {
+  left: 0px;
+}
+/*    NAV    */
+/*    FOOTER    */
+.footer {
+  position: relative;
+  clear: both;
+  bottom:0;
+  min-height: 150px;
+  /* background-color: #26272b; */
+  padding: 1em 10em 0em 0em;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  text-align: right;
+}
+
+.cont {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  position: relative;
+  width: inherit;
+}
+
+.cont p {
+  padding: 20px 0px;
+}
+
+.footer h6 {
+  color: #26272b;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px
+}
+
+.footer a {
+  color: #737373;
+  font-size: large;
+}
+/*    FOOTER    */

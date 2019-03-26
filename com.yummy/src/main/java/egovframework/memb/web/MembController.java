@@ -129,11 +129,9 @@ public class MembController {
           throws Exception {
     System.out.println(id + pwd);
     Memb user = (Memb) membService.login(id, pwd);
-
     if( user == null ) {
       return null;
     }
-
     //    System.out.println("\n\n\n\nLoginUser\n"+user.toString() + "\n\n\n");
     session.setAttribute("loginUser", user);
     logger.info("\n\t/memb/membLogin return -> {}", user.toString());
@@ -155,5 +153,10 @@ public class MembController {
     logger.info("\n\t/memb/signOut Recieve {}", id);
     
     logger.info("\n\t/memb/signOut session Validate {}", m.toString());
+  }
+  
+  @RequestMapping(value="/logout", method=RequestMethod.POST)
+  public void logout() throws Exception {
+    //  로그 아웃 처리 할 곳.
   }
 }

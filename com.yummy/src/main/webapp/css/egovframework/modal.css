@@ -3,7 +3,7 @@
 .modal {
   display: none; /* 기본 숨김 상태 */
   position: fixed; /* 위치 지정  */
-  z-index: 1;
+  z-index: 3;
   left: 0;
   top: 0;
   width: 100%;
@@ -23,10 +23,11 @@
 }
 /* close 버튼 */
 .close {
-  color: #aaa;
+  color: #eee;
   float: right;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
+  margin: 1em;
 }
 .close:hover, .close:focus {
   color: black;
