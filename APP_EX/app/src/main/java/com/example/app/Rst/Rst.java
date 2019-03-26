@@ -17,6 +17,10 @@ public class Rst {
     private int star;           //  미슐렝 별점
 
     @Expose
+    @SerializedName("starGrade")
+    private String starGrade;   //  미슐렝 별점의 문자열
+
+    @Expose
     @SerializedName("loc")
     private String loc;         //  지역
 
@@ -70,6 +74,7 @@ public class Rst {
         return rst_name;
     }
     public int getStar()        { return star; }
+    public String getStarGrade(){ return starGrade; }
     public String getLoc()      { return loc; }
     public String getLoc_dtl()  { return loc_dtl; }
     public int getUpper_no()    { return upper_no; }

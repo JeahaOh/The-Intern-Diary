@@ -88,7 +88,9 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             intent.putExtra( "brck_tm", rsts.get(i).getBrck_tm() );
             intent.putExtra( "dnnr_tm", rsts.get(i).getDnnr_tm() );
             intent.putExtra( "lo_tm", rsts.get(i).getLo_tm() );
-            intent.putExtra("rst_phot", rsts.get(i).getRst_phot() );
+            intent.putExtra( "rst_phot", rsts.get(i).getRst_phot() );
+            intent.putExtra( "starGrade", rsts.get(i).getStarGrade() );
+            intent.putExtra( "tel", rsts.get(i).getTel() );
 
 
             // 인텐트 시작

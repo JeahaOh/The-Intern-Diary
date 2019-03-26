@@ -15,7 +15,9 @@
       useyn = 'Y'
     AND
       rst_no = #{rst_no}
-    Limit 10
+    ORDER BY rvw_no DESC
+    <!-- Limit 10 -->
+    
   </select>
   
   <!-- rvw_no에 대한 rvw 반환 -->

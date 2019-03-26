@@ -43,8 +43,8 @@
         </caption>
         <colgroup>
           <col width="40" />
-          <col width="?" />
-          <col width="80" />
+          <col width="300" />
+          <col width="100" />
           <col width="80" />
           <col width="120" />
         </colgroup>
@@ -76,7 +76,7 @@
               </a>
             </td>
             <td align="left" class="listtd"><c:out value="${result.rst_name}" />&nbsp;</td>
-            <td align="center" class="listtd"><c:out value="${result.star}" />&nbsp;</td>
+            <td align="center" class="listtd"><c:out value="${result.starGrade}" />&nbsp;</td>
             <td align="center" class="listtd"><c:out value="${result.loc}" />&nbsp;</td>
             <td align="center" class="listtd"><c:out value="${result.catag_nm}" />&nbsp;</td>
           </tr>

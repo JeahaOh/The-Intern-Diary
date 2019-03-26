@@ -84,6 +84,14 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         TextView lo_tm = findViewById( R.id.lo_tm );
         lo_tm.setText( intent.getString( "lo_tm") );
 
+        //  미슐랭 별점 출력
+        TextView starGrade = findViewById( R.id.starValue );
+        starGrade.setText( intent.getString( "starGrade") );
+
+        //  전화번호 출력
+        TextView tel = findViewById( R.id.telVal );
+        tel.setText( intent.getString( "tel") );
+
         //  brck_tm과 dnnr_tm이 같다면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
         if( intent.getString("brck_tm").equals( intent.getString( "dnnr_tm") ) ) {
             Log.i( intent.getString( "brck_tm"), "brck == dnnr" );

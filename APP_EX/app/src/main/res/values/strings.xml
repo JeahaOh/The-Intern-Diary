@@ -19,7 +19,7 @@
     <string name="opn_tm_key">opn_tm_key</string>
     <string name="loc_dtl">상세 주소 들어올 자리</string>
     <string name="rvw">리뷰</string>
-    <string name="n">n 건</string>
+    <string name="n">n</string>
 
     <string name="best">추천</string>
     <string name="good">맛집</string>
@@ -43,4 +43,7 @@
     <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
     <string name="nullCont">내용을 작성 해 주세요.</string>
     <string name="nullPhot">사진은 필수입니다.</string>
+
+    <string name="starKey">미슐랭 별점</string>
+    <string name="telKey">전화 번호</string>
 </resources>

@@ -9,6 +9,7 @@ public class Rst  extends DefaultVO {
   int rst_no;         //  레스토랑 번호
   String rst_name;    //  레스토랑 이름
   int star;           //  미슐랭 별점
+  String starGrade;   //  별점의 문자열
   String loc;         //  지역
   String loc_dtl;     //  상세 주소
   int upper_no;       //  요리 대분류 코드
@@ -67,6 +68,27 @@ public class Rst  extends DefaultVO {
 
   public void setStar(int star) {
     this.star = star;
+  }
+  
+  public String getStarGrade() {
+    switch(star) {
+      case 3:
+        starGrade = "3 Star";
+        break;
+      case 2:
+        starGrade = "2 Star";
+        break;
+      case 1:
+        starGrade = "1 Star";
+        break;
+      case -1:
+        starGrade = "Bib Grourmand";
+        break;
+      case -2:
+        starGrade = "The Plate";
+        break;
+    }
+    return starGrade;
   }
 
   public String getLoc() {
@@ -188,9 +210,10 @@ public class Rst  extends DefaultVO {
 
   @Override
   public String toString() {
-    return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star + ", loc=" + loc
-        + ", loc_dtl=" + loc_dtl + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
-        + ", tel=" + tel + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm
-        + ", lo_tm=" + lo_tm + ", rst_phot=" + rst_phot + "]";
+    return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star /* ", starGrade=" + starGrade*/
+        + ", loc=" + loc+ ", loc_dtl=" + loc_dtl
+        + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
+        + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm + ", lo_tm=" + lo_tm
+        + ", rst_phot=" + rst_phot + ", tel=" + tel + "]";
   }
 }
