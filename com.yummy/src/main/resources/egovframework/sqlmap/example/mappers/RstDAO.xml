@@ -44,7 +44,7 @@
       phot phot
     ON
       rst.rst_no = phot.rst_no
-    INNER JOIN
+    LEFT OUTER JOIN
       menu m
     ON
       rst.rst_no = m.rst_no
