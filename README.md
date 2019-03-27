@@ -31,6 +31,11 @@ SQL문 수정
 - https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
     - 참고하고 싶은데 너무 어렵다
 
+### 13:40
+
+RecyclerView Search 간단한 예제 발견
+
+
 -------------------------------------------------------------------------------------------
 
 ## 03/26 화요일
