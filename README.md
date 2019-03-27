@@ -10,6 +10,10 @@ PopUpMenu 예제
 - https://core9090.tistory.com/22
 - https://survivalking.tistory.com/25
 
+### 09:50
+
+MainActivity에 PopUp Menu 삽입
+
 -------------------------------------------------------------------------------------------
 
 ## 03/26 화요일

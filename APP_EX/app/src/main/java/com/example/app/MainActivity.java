@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.app.Request.RetrofitClient;
 import com.example.app.Request.RequestInterface;
@@ -41,6 +46,45 @@ public class MainActivity extends AppCompatActivity {
         // 이 액티비티의 사용자 인터페이스 레이아웃을 설정한다.
         // 레이아웃 파일은 프로젝트 res/layout/main_activity.xml 파일로 정의됨.
         setContentView(R.layout.activity_main);
+
+        Button filterBtn = (Button)findViewById(R.id.filterBtn);
+        filterBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                PopupMenu filterMenu = new PopupMenu( getApplicationContext(), v);
+
+                getMenuInflater().inflate(R.menu.main_filter_menu, filterMenu.getMenu());
+                filterMenu.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener(){
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.m1:
+                                Toast.makeText(getApplication(),"메뉴1",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.m2:
+                                Toast.makeText(getApplication(),"메뉴2",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.m3:
+                                Toast.makeText(getApplication(),"메뉴3", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.m4:
+                                Toast.makeText(getApplication(),"메뉴4", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.m5:
+                                Toast.makeText(getApplication(),"메뉴5", Toast.LENGTH_SHORT).show();
+                                break;
+                            default:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                filterMenu.show();
+            }
+        });
+
+
 
         initViews();
     }
