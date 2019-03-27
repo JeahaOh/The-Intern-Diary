@@ -35,7 +35,8 @@
       rst.brck_tm,
       rst.dnnr_tm,
       rst.lo_tm,
-      phot.phot_no  AS rst_phot
+      phot.phot_no  AS rst_phot,
+      MIN(m.price)  AS min_price
     FROM rst rst
     INNER JOIN rst_catag catag
     ON rst.catag_no = catag.catag_no
@@ -43,9 +44,13 @@
       phot phot
     ON
       rst.rst_no = phot.rst_no
-    WHERE 1
+    INNER JOIN
+      menu m
+    ON
+      rst.rst_no = m.rst_no
     AND
       phot.rvw_no IS NULL
+    GROUP BY rst.rst_no
     ORDER BY rst.rst_no ASC
     <if test="searchKeyword != null and searchKeyword != ''">
       <choose>

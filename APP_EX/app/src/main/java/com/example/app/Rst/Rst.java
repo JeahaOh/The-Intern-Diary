@@ -68,6 +68,9 @@ public class Rst {
     @SerializedName("rst_phot")
     private String rst_phot;
 
+    @Expose
+    @SerializedName("min_price")
+    private int min_price;
 
     public int getRst_no()      { return  rst_no; }
     public String getRst_name() {
@@ -87,4 +90,5 @@ public class Rst {
     public String getDnnr_tm()  { return dnnr_tm; }
     public String getLo_tm()    { return lo_tm; }
     public String getRst_phot() { return rst_phot; }
+    public int getMin_price()   { return min_price; }
 }

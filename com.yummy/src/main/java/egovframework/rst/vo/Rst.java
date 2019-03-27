@@ -23,6 +23,8 @@ public class Rst  extends DefaultVO {
   
   String rst_phot;    //  식당 사진
   
+  int min_price;
+  
   //String[] pht_nm;
   
   public Rst() {}
@@ -207,6 +209,14 @@ public class Rst  extends DefaultVO {
   public void setRst_phot( String rst_phot ) {
     this.rst_phot = rst_phot;
   }
+  
+  public int getMin_price() {
+    return min_price;
+  }
+
+  public void setMin_price(int min_price) {
+    this.min_price = min_price;
+  }
 
   @Override
   public String toString() {
@@ -214,6 +224,6 @@ public class Rst  extends DefaultVO {
         + ", loc=" + loc+ ", loc_dtl=" + loc_dtl
         + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
         + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm + ", lo_tm=" + lo_tm
-        + ", rst_phot=" + rst_phot + ", tel=" + tel + "]";
+        + ", rst_phot=" + rst_phot + ", tel=" + tel + ", min_price=" + min_price + "]";
   }
 }
