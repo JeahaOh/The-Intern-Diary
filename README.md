@@ -22,6 +22,15 @@ checkbox dialog로 변경
 
 Rst에 min_price Field 추가, sql문 수정
 
+### 11:15
+
+SQL문 수정
+
+### 13:00
+
+- https://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
+    - 참고하고 싶은데 너무 어렵다
+
 -------------------------------------------------------------------------------------------
 
 ## 03/26 화요일
