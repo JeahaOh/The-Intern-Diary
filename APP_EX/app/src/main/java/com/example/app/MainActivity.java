@@ -19,6 +19,7 @@ import com.example.app.Request.RequestInterface;
 import com.example.app.Rst.Rst;
 import com.example.app.Rst.RstAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -135,14 +136,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        final String[] items = {"1 만원 이하", "1 만원 대", "2 만원 대", "3 만원 대", "4 만원 대", "5 만원 이상"};
-        final boolean[] checkedItems = {false, false, false, false, false, false}; //
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("1인당 가격");
-        builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+
+        final String[] items = { "1 만원 이하", "1 만원 대", "2 만원 대", "3 만원 대", "4 만원 대", "5 만원 이상" };
+        final boolean[] checkedItems = { true, true, true, true, true, true };
+
+
+
+        builder.setMultiChoiceItems( items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
 
             @Override
-            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+            public void onClick( DialogInterface dialog, int which, boolean isChecked ) {
                 // 바뀐 것을 적용한다.
                 checkedItems[which] = isChecked;
             }
@@ -153,17 +158,24 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                ArrayList<Integer> selectList = new ArrayList<>();
                 // Toast로 현제 체크된 항목 표시하기
                 String str = "";
-                for (int i = 0; i<items.length; i++){
-                    if(checkedItems[i]) {
+                for ( int i = 0; i < items.length; i++ ){
+                    if( checkedItems[i] ) {
                         str += items[i];
+                        selectList.add(i);
                         if (i != items.length-1) {
                             str += ", ";
                         }
                     }
                 }
                 Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
+                if(selectList.size() == 0){
+                    Toast.makeText(MainActivity.this, "조건을 넣으세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                adapter.filter(selectList);
             }
         });
         return builder.create();

@@ -1,14 +1,19 @@
 package com.example.app.Rst;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.app.MainActivity;
 import com.example.app.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,14 +33,19 @@ import java.util.List;
  * getView() method에서 해당 position에 올라갈 TextView나 ImageView를 setting 해 View로서 뿌려주는 모양이다.
  */
 
-
+//  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
 public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
-    //  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
 
-    private List<Rst> rsts;
+    private List<Rst> originRstList;
 
-    public RstAdapter( List<Rst> rsts ) {
-        this.rsts = rsts;
+    private Context context;
+    private ArrayList<Rst> showList;
+
+
+    public RstAdapter( List<Rst> originRstList) {
+        this.originRstList = originRstList;
+        showList = new ArrayList<Rst>();
+        showList.addAll(originRstList);
     }
 
     @Override
@@ -69,9 +79,10 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         //  Adapter에게 받았던 ViewHolder 객체와 리스트에서 해당 ViewHolder의 위치를 인자로 전달받음.
         //  ViewHolder 안의 View에 데이터를 넣어줌.
         //  View에 들어 가는 내용을 정의 해 줌.
-        viewHolder.rst_name.setText( rsts.get(i).getRst_name() );
-        viewHolder.catag_nm.setText( rsts.get(i).getCatag_nm() );
-        viewHolder.rst_loc.setText( rsts.get(i).getLoc() );
+        viewHolder.rst_name.setText( showList.get(i).getRst_name() );
+        viewHolder.catag_nm.setText( showList.get(i).getCatag_nm() );
+        viewHolder.rst_loc.setText( showList.get(i).getLoc() );
+        viewHolder.star.setText( showList.get(i).getStarGrade() );
 
         //  onClickListener와 원하는 화면을 넘겨주는 Intent를 넣어?
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,16 +92,16 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             Intent intent = new Intent(v.getContext(), RstDetail.class);
 
             //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
-            intent.putExtra( "rst_no", rsts.get(i).getRst_no() );
-            intent.putExtra( "rst_name",rsts.get(i).getRst_name() );
-            intent.putExtra( "loc_dtl", rsts.get(i).getLoc_dtl() );
-            intent.putExtra( "opn_tm", rsts.get(i).getOpn_tm() );
-            intent.putExtra( "brck_tm", rsts.get(i).getBrck_tm() );
-            intent.putExtra( "dnnr_tm", rsts.get(i).getDnnr_tm() );
-            intent.putExtra( "lo_tm", rsts.get(i).getLo_tm() );
-            intent.putExtra( "rst_phot", rsts.get(i).getRst_phot() );
-            intent.putExtra( "starGrade", rsts.get(i).getStarGrade() );
-            intent.putExtra( "tel", rsts.get(i).getTel() );
+            intent.putExtra( "rst_no", showList.get(i).getRst_no() );
+            intent.putExtra( "rst_name", showList.get(i).getRst_name() );
+            intent.putExtra( "loc_dtl", showList.get(i).getLoc_dtl() );
+            intent.putExtra( "opn_tm", showList.get(i).getOpn_tm() );
+            intent.putExtra( "brck_tm", showList.get(i).getBrck_tm() );
+            intent.putExtra( "dnnr_tm", showList.get(i).getDnnr_tm() );
+            intent.putExtra( "lo_tm", showList.get(i).getLo_tm() );
+            intent.putExtra( "rst_phot", showList.get(i).getRst_phot() );
+            intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
+            intent.putExtra( "tel", showList.get(i).getTel() );
 
 
             // 인텐트 시작
@@ -102,12 +113,12 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         //  얼마나 많은 데이터가 있는지 Adapter에게 알려줘야 해서 핋요한 메소드
-        return rsts.size();
+        return showList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView rst_name, catag_nm, rst_loc;
+        private TextView rst_name, catag_nm, rst_loc, star;
 
         public ViewHolder( View view ) {
             super( view );
@@ -115,7 +126,39 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             rst_name = (TextView)view.findViewById( R.id.rst_name );
             catag_nm = (TextView)view.findViewById( R.id.catag_nm );
             rst_loc = (TextView)view.findViewById( R.id.rst_loc );
+            star = (TextView)view.findViewById( R.id.star );
 
         }
+    }
+
+    //  List를 min_price로 filter하는 메소드
+    public void filter( ArrayList<Integer> selectList ){
+        Log.d("filter recieve \n=>", selectList.toString() );
+        //  필터 메소드를 호출 할 경우 화면에 보이는 rstList를 비움.
+        showList.clear();
+
+        //  가격대를 선택하지 않으면 모든 가격대의 식당을 보여줌
+        if( selectList.size() == 0 ) {
+            showList.addAll( originRstList );
+        }   else {
+            //  전체 식당 리스트의 식당이
+            for( Rst rst : originRstList ) {
+                //  가격 조건과 맞다면
+                if( selectList.contains( rst.getMin_price() ) ){
+                    //  화면에 보여줌.
+                    showList.add(rst);
+                }
+                //  5만원 이상을 선택 할 경우
+                if(selectList.contains(5)) {
+                    if(  rst.getMin_price() >= 6 ){
+                        showList.add(rst);
+                    }
+                }
+            }
+        }
+        //  화면에 보여줄 item 갯수가 변하였으므로 다시 count
+        getItemCount();
+        //  화면에 보여주는 list가 바뀌었음을 알려줌
+        notifyDataSetChanged();
     }
 }

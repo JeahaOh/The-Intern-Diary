@@ -211,6 +211,9 @@ public class Rst  extends DefaultVO {
   }
   
   public int getMin_price() {
+    if( min_price != 0 ) {
+      min_price = min_price / 10000;
+    }
     return min_price;
   }
 

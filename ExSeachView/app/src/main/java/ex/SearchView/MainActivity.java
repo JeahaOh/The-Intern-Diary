@@ -34,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<Recent> potionList = new ArrayList<Recent>();
-        for(int i=0;i<30;i++){
+        for(int i=0;i<100;i++){
             Recent rc = new Recent(i+"","");
             potionList.add(rc);
         }
 
-        for(int i=0;i<30;i++){
+        for(int i=0;i<100;i++){
             Recent rc = new Recent(i+""+i,"");
             potionList.add(rc);
         }
 
-        for(int i=0;i<30;i++){
+        for(int i=0;i<100;i++){
             Recent rc = new Recent(i+""+i+""+i,"");
             potionList.add(rc);
         }

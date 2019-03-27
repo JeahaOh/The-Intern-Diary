@@ -93,7 +93,8 @@ public class RstController {
   @ResponseBody
   @RequestMapping(value="/rstList", method= RequestMethod.GET)
   public List<Rst> list() throws Exception {
-    logger.info("\n\trst/rstList return rstService.getList()");
+    
+    logger.info("\n\trst/rstList return rstService.getList() {}");
     return rstService.getList();
   }
   
