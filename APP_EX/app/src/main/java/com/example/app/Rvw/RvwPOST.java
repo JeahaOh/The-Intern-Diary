@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -189,6 +190,9 @@ public class RvwPOST extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if( response.body().toString() == "Success") {
+                            Log.v("SUCCESS", "SUCCESS");
+                        }
 
                     }
 
@@ -282,7 +286,7 @@ public class RvwPOST extends AppCompatActivity {
             if(tempFile != null) {
                 if (tempFile.exists()) {
                     if (tempFile.delete()) {
-                        Log.e(TAG, tempFile.getAbsolutePath() + " 삭제 성공");
+//                        Log.e(TAG, tempFile.getAbsolutePath() + " 삭제 성공");
                         tempFile = null;
                     }
                 }
@@ -356,4 +360,14 @@ public class RvwPOST extends AppCompatActivity {
                 storageDir          /* directory*/
         );
     }
+    /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
+
+    /* 카메라에서 찍어온 이미지의 촬영 각에 맞춰 사진을 돌려주는 메소드 */
+    public static Bitmap rotateIamge( Bitmap source, float angle ) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(
+                source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+    /* 카메라에서 찍어온 이미지의 촬영 각에 맞춰 사진을 돌려주는 메소드 */
 }

@@ -1,10 +1,6 @@
 package egovframework.rst.vo;
 
-import egovframework.dflt.DefaultVO;
-
-public class Rst  extends DefaultVO {
-  
-  private static final long serialVersionUID = 1L;
+public class Rst {
   
   int rst_no;         //  레스토랑 번호
   String rst_name;    //  레스토랑 이름
@@ -95,23 +91,29 @@ public class Rst  extends DefaultVO {
 
   public String getLoc() {
     if( loc == null || loc == "" ) {
-      loc_dtl = "분당구";
+      return "분당구";
     }
     return loc;
   }
 
   public void setLoc(String loc) {
+    if( loc == null || loc == "" ) {
+      this.loc = "분당구";
+    }
     this.loc = loc;
   }
 
   public String getLoc_dtl() {
     if( loc_dtl == null || loc_dtl == "" ) {
-      loc_dtl = "성남대로 925번길 41";
+      return "성남대로 925번길 41";
     }
     return loc_dtl;
   }
 
   public void setLoc_dtl(String loc_dtl) {
+    if( loc_dtl == null || loc_dtl == "" ) {
+      this.loc_dtl = "성남대로 925번길 41";
+    }
     this.loc_dtl = loc_dtl;
   }
 
@@ -140,6 +142,9 @@ public class Rst  extends DefaultVO {
   }
 
   public String getTel() {
+    if(this.tel == null) {
+      this.tel = "-";
+    }
     return tel;
   }
 

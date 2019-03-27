@@ -1,10 +1,7 @@
 package egovframework.rvw.vo;
 
-import egovframework.dflt.DefaultVO;
-
-public class Rvw extends DefaultVO {
+public class Rvw {
   
-  private static final long serialVersionUID = 1L;
   
   int rvw_no;       //  리뷰 번호
   int rst_no;       //  레스토랑 번호

@@ -38,6 +38,7 @@
       <jsp:include page="/WEB-INF/jsp/egovframework/include/NAVBAR.jsp" flush="true"/>
       <div class="inner_container">
       <form id="rstForm" name="rstForm" enctype="multipart/form-data">
+        <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
         <c:choose>
           <c:when test="${mode eq 'Create'}">
             <h2 id="mode" class="title create"><spring:message code="mode.create"/></h2>
@@ -46,6 +47,7 @@
             <h2 id="mode" class="title modify">${rst.rst_name} &nbsp;<spring:message code="mode.modify"/></h2>
           </c:otherwise>
         </c:choose>
+        <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
         <table>
           <colgroup>
             <col width="200"/>
@@ -58,8 +60,6 @@
           
           <tr>
             <td class="tbtd_caption_re" colspan="3">
-              <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
-              <%-- rst_form이 생성용인지, 읽기 수정용인지 확인 하기 위한 C:CHOOSE --%>
             </td>
             <td class="tbtd_caption_re">
               <c:if test="${mode eq 'Modify'}">
@@ -255,9 +255,9 @@
       </form>
       </div>
       <c:if test="${mode eq 'Modify'}">
-        <!-- ======= RVW INCLUDE ======= -->
+        <%-- ======= RVW INCLUDE ======= --%>
           <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
-        <!-- ==== RVW Modal INCLUDE ==== -->
+        <%-- ==== RVW Modal INCLUDE ==== --%>
           <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
       </c:if>
       </div>

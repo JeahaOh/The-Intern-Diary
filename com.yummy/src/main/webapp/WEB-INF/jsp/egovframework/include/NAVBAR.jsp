@@ -1,10 +1,6 @@
-<%@ page language="java"
-  contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"
-  trimDirectiveWhitespaces="true"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <!-- NAV -->
-<div class="navbar">
+<nav class="navbar">
   <div id="to_rst_list" class="link">
     <div class="fa fa-list"></div>
     <div class="label">식당 목록</div>
@@ -17,4 +13,4 @@
     <div class="fa fa-power-off"></div>
     <div class="label">로그아웃</div>
   </div>
-</div>
+</nav>

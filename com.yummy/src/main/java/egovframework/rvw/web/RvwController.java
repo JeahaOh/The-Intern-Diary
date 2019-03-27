@@ -163,7 +163,7 @@ public class RvwController {
    */
   @ResponseBody
   @RequestMapping(value = "/uploadRvw", method = RequestMethod.POST, consumes = "multipart/form-data") // 
-  public String asdf(
+  public String uploadRvw(
       @RequestPart(name="phot", required = false) MultipartFile phot
       ,  int rst_no, String id, String cont, int score
       ) throws Exception {
@@ -196,8 +196,8 @@ public class RvwController {
       logger.info("\n\t/rvw/uploadRvw Error phot.getSize() ->\t{} \n", phot.getSize() );
       return "fail";
     }
-    logger.info("\n\t/rvw/uploadRvw receive -->\nRVW : {}", rvw.toString() );
-    logger.info("\n\t/rvw/uploadRvw receive -->\nrvwPhot : {}\t{}\n", phot.getOriginalFilename(), phot.getSize());
+    logger.info("\n\t/rvw/uploadRvw save -->\nRVW : {}", rvw.toString() );
+    logger.info("\n\t/rvw/uploadRvw save -->\nrvwPhot : {}\t{}", phot.getOriginalFilename(), phot.getSize());
     logger.info("\n\t/rvw/uploadRvw saveRvwPhot -->\nrvwPhot : {}\t{}\n", sc.getRealPath( "resources/images/rvw/" + rvw_phot_name ), phot.getSize());
     return "Success";
   }

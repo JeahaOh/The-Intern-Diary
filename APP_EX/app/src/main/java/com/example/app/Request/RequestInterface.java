@@ -40,8 +40,9 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
-    //  MultipartForm으로 사진과 rvw 정보를 POST.
-    @Headers("Accept:text/plain;charset=UTF-8")
+
+    //  Rvw POST : MultipartForm으로 rvw 정보와 사진을 저장함.
+    @Headers( "Accept:application/json;charset=UTF-8" )
     @Multipart
     @POST("/yummy/rvw/uploadRvw")
     Call<ResponseBody> upload(
