@@ -60,4 +60,7 @@ dependencies {
         이에 관해서는 Tedpermission 라이브러리를 사용함.
      */
     implementation "gun0912.ted:tedpermission:2.1.0"
+
+    //  당겨서 새로고침 (Swipe Refresh Layout)을 위한 lib
+    implementation 'com.android.support:design:28.0.0'
 }

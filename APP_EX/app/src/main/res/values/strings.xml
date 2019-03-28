@@ -48,4 +48,6 @@
     <string name="telKey">전화 번호</string>
 
     <string name="filter">가격대 별로 보기</string>
+
+    <string name="toCreateRvw">후기 보기</string>
 </resources>

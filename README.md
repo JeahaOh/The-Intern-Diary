@@ -2,6 +2,21 @@
 
 **2019년 02/11 ~ 04/11 인턴 기록**
 
+## 03/28 목요일
+
+- APK 상에서 구글 지도 더 유연하게 움직이기?
+    - https://stackoverflow.com/questions/33117198/how-to-make-google-maps-scroll-properly-inside-scroll-view
+
+- 폰에서 백버튼 누를때 원하는 화면으로 넘어가게 하는 방법?
+    - @Override
+    public void onBackPressed() {
+        startActivity(new Intent(context, SoundSetting.class));
+    }    
+
+### 11:50
+APK 후기 작성 완료시 기능 성공.
+
+
 ## 03/27 수요일
 
 ### 09:24

@@ -11,6 +11,8 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.service.autofill.FillEventHistory;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +46,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static android.widget.Toast.makeText;
 
 public class RvwPOST extends AppCompatActivity {
 
@@ -131,7 +135,7 @@ public class RvwPOST extends AppCompatActivity {
             @Override
             public void onClick( View v ) {
                 if(isPermission)  takePhoto();
-                else Toast.makeText( getApplicationContext(),
+                else makeText( getApplicationContext(),
                         getResources().getString(R.string.permission_2), Toast.LENGTH_SHORT).show();
             }
         });
@@ -141,7 +145,7 @@ public class RvwPOST extends AppCompatActivity {
             @Override
             public void onClick( View v ) {
                 if(isPermission) goToAlbum();
-                else Toast.makeText( getApplicationContext(),
+                else makeText( getApplicationContext(),
                         getResources().getString(R.string.permission_2), Toast.LENGTH_SHORT).show();
             }
         });
@@ -154,18 +158,18 @@ public class RvwPOST extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("\n\tSUBMIT BTN CLICKED!");
 
-                //  사진이 없다면 return.
+                //  사진이 없다면 toast와 함께 return.
                 if( tempFile == null || tempFile.length() <= 0) {
-                    Toast.makeText( getApplicationContext(),
+                    makeText( getApplicationContext(),
                             getResources().getString(R.string.nullPhot), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 리턴함.
+                //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 return.
                 EditText contText = findViewById(R.id.rvw_cont);
                 String cont = contText.getText().toString();
                 if( cont.length() <= 0 || cont.equals("")) {
-                    Toast.makeText( getApplicationContext(),
+                    makeText( getApplicationContext(),
                             R.string.nullCont, Toast.LENGTH_SHORT ).show();
                     return;
                 }
@@ -190,10 +194,8 @@ public class RvwPOST extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if( response.body().toString() == "Success") {
-                            Log.v("SUCCESS", "SUCCESS");
-                        }
 
+                        onPostSuccess();
                     }
 
                     @Override
@@ -246,7 +248,7 @@ public class RvwPOST extends AppCompatActivity {
         try {
             tempFile = createImageFile();
         } catch (IOException e) {
-            Toast.makeText(this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            makeText(this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             finish();
             e.printStackTrace();
         }
@@ -282,11 +284,10 @@ public class RvwPOST extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         /* 카메라를 켰다 사진을 안찍거나, 앨범에 가서 사진을 안 골라 온 경우의 예외 처리 */
         if (resultCode != Activity.RESULT_OK) {
-            Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
+            makeText(this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
             if(tempFile != null) {
                 if (tempFile.exists()) {
                     if (tempFile.delete()) {
-//                        Log.e(TAG, tempFile.getAbsolutePath() + " 삭제 성공");
                         tempFile = null;
                     }
                 }
@@ -370,4 +371,14 @@ public class RvwPOST extends AppCompatActivity {
                 source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
     /* 카메라에서 찍어온 이미지의 촬영 각에 맞춰 사진을 돌려주는 메소드 */
+
+    /* POST가 완료되면 하는 행동 */
+    private void onPostSuccess(){
+        //  POST가 완료 되었다고 ToastMessage를 띄움.
+        Toast.makeText(this, "리뷰 작성 성공!", Toast.LENGTH_LONG).show();
+        //  activity를 종료시킴.
+        finish();
+    }
+    /* POST가 완료되면 하는 행동 */
+
 }

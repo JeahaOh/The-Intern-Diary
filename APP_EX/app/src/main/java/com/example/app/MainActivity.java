@@ -46,41 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialog(1); // 다이얼로그 호출
-//
-//                PopupMenu filterMenu = new PopupMenu( getApplicationContext(), v);
-//
-//                getMenuInflater().inflate(R.menu.main_filter_menu, filterMenu.getMenu());
-//                filterMenu.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener(){
-//
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        switch (item.getItemId()){
-//                            case R.id.m1:
-//                                Toast.makeText(getApplication(),"메뉴1",Toast.LENGTH_SHORT).show();
-//                                break;
-//                            case R.id.m2:
-//                                Toast.makeText(getApplication(),"메뉴2",Toast.LENGTH_SHORT).show();
-//                                break;
-//                            case R.id.m3:
-//                                Toast.makeText(getApplication(),"메뉴3", Toast.LENGTH_SHORT).show();
-//                                break;
-//                            case R.id.m4:
-//                                Toast.makeText(getApplication(),"메뉴4", Toast.LENGTH_SHORT).show();
-//                                break;
-//                            case R.id.m5:
-//                                Toast.makeText(getApplication(),"메뉴5", Toast.LENGTH_SHORT).show();
-//                                break;
-//                            default:
-//                                break;
-//                        }
-//                        return false;
-//                    }
-//                });
-//                filterMenu.show();
             }
         });
-
-
 
         initViews();
     }
@@ -141,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
         final String[] items = { "1 만원 이하", "1 만원 대", "2 만원 대", "3 만원 대", "4 만원 대", "5 만원 이상" };
         final boolean[] checkedItems = { true, true, true, true, true, true };
-
-
 
         builder.setMultiChoiceItems( items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
 

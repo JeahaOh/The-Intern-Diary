@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,9 +40,9 @@ import java.util.List;
 public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     Rater rate;
-//    private RecyclerView recyclerView;
-//    private RvwAdapter adapter;
-//
+    int rst_no;
+    String rst_nm;
+
     private Geocoder geocoder;
 
     @Override
@@ -55,8 +56,8 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
     private void initViews(){
         //  mainActivity에서 받은 data를 가져옴.
         Bundle intent = getIntent().getExtras();
-        final int rst_no = intent.getInt( "rst_no" );
-        final String rst_nm = intent.getString("rst_name");
+        rst_no = intent.getInt( "rst_no" );
+        rst_nm = intent.getString("rst_name");
 
         //  RetrofitClient Class에서 default url을 가져옴.
         String url = RetrofitClient.getRstImgUrl();
@@ -127,44 +128,20 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         layout.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  인텐트 선언
-                Intent rvwList = new Intent(v.getContext(), RvwList.class);
-
-                //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
-                rvwList.putExtra("rst_no", rst_no );
-                rvwList.putExtra( "rst_name", rst_nm );
-
-                //  이 외의 넘겨줄 데이터?
-                rvwList.putExtra( "cnt", rate.getCnt() );
-                rvwList.putExtra( "avg", rate.getAvg() );
-                rvwList.putExtra( "best", rate.getBest() );
-                rvwList.putExtra( "good", rate.getGood() );
-                rvwList.putExtra( "soso", rate.getSoso() );
-                rvwList.putExtra( "bad", rate.getBad() );
-                rvwList.putExtra( "worst", rate.getWorst() );
-                rvwList.putExtra( "grade", rate.getGrade() );
-
-                //  화면 넘김.
-                startActivity(rvwList);
+                toRvwList(v);
             }
         });
+        /*  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener  */
 
-        /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
-        TextView createRvw =  (TextView) findViewById(R.id.rvw_create_button);
-        createRvw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //  인텐트 선언
-                Intent createRvw = new Intent(v.getContext(), RvwPOST.class);
-
-                //  createRvw 인텐트에게 넘겨줄 데이터
-                createRvw.putExtra("rst_no", rst_no );
-                createRvw.putExtra( "rst_nm", rst_nm );
-
-                startActivity(createRvw);
-            }
+        /* 후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener */
+        Button toRvwListBtn = findViewById( R.id.toRvwListBtn );
+        toRvwListBtn.setOnClickListener( new View.OnClickListener(){
+           @Override
+           public void onClick(View v){
+               toRvwList(v);
+           }
         });
-        /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
+        /* 후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener */
 
 
         loadJSON( rst_no );
@@ -190,9 +167,6 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
             public void onResponse( Call<Rater> call, Response<Rater> response ) {
 
                 rate = response.body();
-
-                TextView wannago = (TextView) findViewById(R.id.wannago);
-                wannago.setText( "  " + rate.getWannago() + "개" );
 
                 TextView cnt  = (TextView) findViewById( R.id.cnt );
                 cnt.setText( rate.getCnt() + "건" );
@@ -267,5 +241,25 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
     }
     /*  구글 지도 생성시 하는 작업  */
 
+    private void toRvwList(View v){
+        //  인텐트 선언
+        Intent rvwList = new Intent(v.getContext(), RvwList.class);
 
+        //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
+        rvwList.putExtra("rst_no", rst_no );
+        rvwList.putExtra( "rst_name", rst_nm );
+
+        //  이 외의 넘겨줄 데이터?
+        rvwList.putExtra( "cnt", rate.getCnt() );
+        rvwList.putExtra( "avg", rate.getAvg() );
+        rvwList.putExtra( "best", rate.getBest() );
+        rvwList.putExtra( "good", rate.getGood() );
+        rvwList.putExtra( "soso", rate.getSoso() );
+        rvwList.putExtra( "bad", rate.getBad() );
+        rvwList.putExtra( "worst", rate.getWorst() );
+        rvwList.putExtra( "grade", rate.getGrade() );
+
+        //  화면 넘김.
+        startActivity(rvwList);
+    }
 }
