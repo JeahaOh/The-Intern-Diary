@@ -54,19 +54,10 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 Toast.makeText(v.getContext(), i+"", Toast.LENGTH_SHORT).show();
-//                Intent rvwDetail = new Intent( context, RvwDetail.class );
-//
-//                System.out.println("itemView.onClick()");
-//                Log.v("itemView.onClick()", i + "");
-//                Rvw rvw = rvws.get(i);
-//
-//                rvwDetail.putExtra("rvw", rvw);
-//                System.out.println(rvw.toString());
-//
-//
-//                v.getContext().startActivities(rvwDetail);
+
             }
         });
+
 
         switch ( rvws.get(i).getScore() ) {
             case 1 :
@@ -85,8 +76,6 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
                 viewHolder.score.setText( "강추해요" );
                 return;
         }
-
-
     }
 
     @Override
