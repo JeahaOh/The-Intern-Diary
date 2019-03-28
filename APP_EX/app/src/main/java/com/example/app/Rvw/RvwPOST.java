@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.service.autofill.FillEventHistory;
 import android.support.design.widget.Snackbar;
@@ -76,7 +77,9 @@ public class RvwPOST extends AppCompatActivity {
     //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
     RequestInterface request = retrofit.create(RequestInterface.class);
 
-    Call<ResponseBody> call;
+    //  빠른시간 안에 중복 클릭을 방지하기 위한 기준 시간 변수.
+    private static final long MIN_CLICK_INTERVAL = 600;
+    private long mLastClickTime;
 
 
     @Override
@@ -158,6 +161,17 @@ public class RvwPOST extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println("\n\tSUBMIT BTN CLICKED!");
 
+                //  현제 시간.
+                long currentClickTime = SystemClock.uptimeMillis();
+                //  현제 시간에서 마지막 시간을 뺀 elapsedTime.
+                long elapsedTime = currentClickTime - mLastClickTime;
+                mLastClickTime = currentClickTime;
+                //  elapsedTime가 기준 시간보다 늦다면 리턴.
+                if(elapsedTime <= MIN_CLICK_INTERVAL){
+                    Toast.makeText(getApplicationContext(), "fastClick", Toast.LENGTH_LONG);
+                    return;
+                }
+
                 //  사진이 없다면 toast와 함께 return.
                 if( tempFile == null || tempFile.length() <= 0) {
                     makeText( getApplicationContext(),
@@ -189,6 +203,7 @@ public class RvwPOST extends AppCompatActivity {
                 RequestBody SCORE
                         = RequestBody.create(MediaType.parse("text/plain"), score + "" );
 
+                Call<ResponseBody> call;
                 call = request.upload(phot, RST_NO, ID, CONT, SCORE);
 
                 call.enqueue(new Callback<ResponseBody>() {
@@ -213,11 +228,13 @@ public class RvwPOST extends AppCompatActivity {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
+                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 확인", Snackbar.LENGTH_LONG).show();
                 // 권한 요청 성공
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 없음", Snackbar.LENGTH_LONG).show();
                 // 권한 요청 실패
             }
         };
@@ -373,7 +390,7 @@ public class RvwPOST extends AppCompatActivity {
     /* 카메라에서 찍어온 이미지의 촬영 각에 맞춰 사진을 돌려주는 메소드 */
 
     /* POST가 완료되면 하는 행동 */
-    private void onPostSuccess(){
+    private void onPostSuccess() {
         //  POST가 완료 되었다고 ToastMessage를 띄움.
         Toast.makeText(this, "리뷰 작성 성공!", Toast.LENGTH_LONG).show();
         //  activity를 종료시킴.
