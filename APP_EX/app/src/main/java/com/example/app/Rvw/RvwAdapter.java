@@ -1,6 +1,7 @@
 package com.example.app.Rvw;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -81,6 +82,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         viewHolder.cont.setText( rvws.get(i).getCont() );
         viewHolder.cdt.setText( rvws.get(i).getCdt() );
 
+
         switch ( rvws.get(i).getScore() ) {
             case 1 :
                 viewHolder.score.setText( "최악이예요" );
@@ -98,6 +100,18 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
                 viewHolder.score.setText( "강추해요" );
                 return;
         }
+
+        viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Rvw rvw = rvws.get(i);
+                Intent rvwDetail = new Intent( v.getContext(), RvwDetail.class );
+//                rvwDetail.putExtra("rvw", rvw);
+//                System.out.println(rvw.toString());
+
+            }
+
+        });
 
 
 

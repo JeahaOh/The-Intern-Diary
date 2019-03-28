@@ -3,7 +3,11 @@ package com.example.app.Rst;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Rst {
+import java.io.Serializable;
+
+public class Rst implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Expose
     @SerializedName("rst_no")
     private int rst_no;         //  레스토랑 번호

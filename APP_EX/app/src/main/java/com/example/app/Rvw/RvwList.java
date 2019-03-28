@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.app.R;
 import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
+import com.example.app.Rst.Rater;
 
 import java.util.List;
 
@@ -28,10 +29,15 @@ public class RvwList extends AppCompatActivity {
     private RvwAdapter adapter;
     private int rst_no;
 
+    private Rater rate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rvw_list);
+
+        rate = (Rater) getIntent().getSerializableExtra("rate");
+        System.out.println("\n\n\n\n\n\t" + rate.toString() + "\n\n\n\n\n");
 
         initViews();
     }

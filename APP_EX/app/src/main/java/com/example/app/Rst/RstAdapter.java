@@ -103,6 +103,8 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
             intent.putExtra( "tel", showList.get(i).getTel() );
 
+//            intent.putExtra("rst", showList.get(i) );
+
 
             // 인텐트 시작
             v.getContext().startActivity(intent);

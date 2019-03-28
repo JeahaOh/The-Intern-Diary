@@ -3,7 +3,10 @@ package com.example.app.Rst;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Rater {
+import java.io.Serializable;
+
+public class Rater implements Serializable {
+    private static final long serialversionUID = 1L;
     //  해당 식당에 대한 리뷰의 수와 평점의 합
     @Expose
     @SerializedName("cnt")

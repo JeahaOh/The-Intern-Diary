@@ -259,6 +259,8 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         rvwList.putExtra( "worst", rate.getWorst() );
         rvwList.putExtra( "grade", rate.getGrade() );
 
+        rvwList.putExtra("rate", rate);
+
         //  화면 넘김.
         startActivity(rvwList);
     }

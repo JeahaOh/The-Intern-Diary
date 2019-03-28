@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
 <Configuration>
+  <include resource="org/springframework/boot/logging/logback/base.xml" />
+  
   <Appenders>
     <Console name="console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d %5p [%c] %m%n" />
     </Console>
   </Appenders>
+  
   <Loggers>
     <Logger name="java.sql" level="INFO" additivity="false">
       <AppenderRef ref="console" />
@@ -19,8 +23,26 @@
     <Logger name="org.springframework" level="INFO" additivity="false">
       <AppenderRef ref="console" />
     </Logger>
+    
+    <logger name="jdbc.splonly" level="OFF" >
+      <AppenderRef ref="console" />
+    </logger>
+    <logger name="jdbc.audit" level="OFF" >
+      <AppenderRef ref="console" />
+    </logger>
+    <logger name="jdbc.resultset" level="OFF" >
+      <AppenderRef ref="console" />
+    </logger>
+    <logger name="jdbc.resultsettable" level="ERROR" >
+      <AppenderRef ref="console" />
+    </logger>
+    <logger name="jdbc.connection" level="OFF" >
+      <AppenderRef ref="console" />
+    </logger>
+    
     <Root level="INFO">
       <AppenderRef ref="console" />
     </Root>
   </Loggers>
+  
 </Configuration>

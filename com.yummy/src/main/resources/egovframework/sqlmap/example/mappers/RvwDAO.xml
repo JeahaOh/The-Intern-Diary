@@ -31,7 +31,6 @@
     LEFT OUTER JOIN
       phot
     ON rvw.rvw_no = phot.rvw_no
-    WHERE useyn = 'Y'
     AND rvw.rvw_no = #{rvw_no}
   </select>
   

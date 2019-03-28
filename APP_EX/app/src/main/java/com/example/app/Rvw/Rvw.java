@@ -3,7 +3,11 @@ package com.example.app.Rvw;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Rvw {
+import java.io.Serializable;
+
+public class Rvw implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Expose
     @SerializedName("rvw_no")
     int rvw_no;   //  리뷰 번호
