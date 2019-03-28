@@ -250,15 +250,6 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         rvwList.putExtra( "rst_name", rst_nm );
 
         //  이 외의 넘겨줄 데이터?
-        rvwList.putExtra( "cnt", rate.getCnt() );
-        rvwList.putExtra( "avg", rate.getAvg() );
-        rvwList.putExtra( "best", rate.getBest() );
-        rvwList.putExtra( "good", rate.getGood() );
-        rvwList.putExtra( "soso", rate.getSoso() );
-        rvwList.putExtra( "bad", rate.getBad() );
-        rvwList.putExtra( "worst", rate.getWorst() );
-        rvwList.putExtra( "grade", rate.getGrade() );
-
         rvwList.putExtra("rate", rate);
 
         //  화면 넘김.

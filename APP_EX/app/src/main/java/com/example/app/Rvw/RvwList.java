@@ -37,7 +37,6 @@ public class RvwList extends AppCompatActivity {
         setContentView(R.layout.activity_rvw_list);
 
         rate = (Rater) getIntent().getSerializableExtra("rate");
-        System.out.println("\n\n\n\n\n\t" + rate.toString() + "\n\n\n\n\n");
 
         initViews();
     }
@@ -49,22 +48,24 @@ public class RvwList extends AppCompatActivity {
 
         final TextView rst_name = findViewById( R.id.rst_name );
         rst_name.setText( rst_nm );
+
+
         TextView rvw_cnt = findViewById( R.id.rvw_cnt);
-        rvw_cnt.setText( intent.getInt("cnt") + "" );
+        rvw_cnt.setText( rate.getCnt() + "" );
         TextView avg  = findViewById( R.id.avg);
-        avg.setText( intent.getFloat("avg") + "" );
+        avg.setText( rate.getAvg() + "" );
         TextView best = findViewById( R.id.best);
-        best.setText( intent.getInt("best") + "" );
+        best.setText( rate.getBest() + "" );
         TextView good = findViewById( R.id.good);
-        good.setText( intent.getInt("good") + "" );
+        good.setText( rate.getGood() + "" );
         TextView soso = findViewById( R.id.soso);
-        soso.setText( intent.getInt("soso") + "" );
+        soso.setText( rate.getSoso() + "" );
         TextView bad = findViewById( R.id.bad);
-        bad.setText( intent.getInt("bad") + "" );
+        bad.setText( rate.getBad() + "" );
         TextView worst = findViewById( R.id.worst);
-        worst.setText( intent.getInt("worst") + "" );
+        worst.setText( rate.getWorst() + "" );
         TextView grade = findViewById( R.id.grade);
-        grade.setText( intent.getFloat("grade") + "" );
+        grade.setText( rate.getGrade() + "" );
 
         /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
         TextView createRvw =  (TextView) findViewById(R.id.rvw_create_button);
@@ -84,16 +85,12 @@ public class RvwList extends AppCompatActivity {
         });
         /*  후기 작성 클릭시 후기 작성 화면으로 넘기기 위한 click 버튼  */
 
-        //  MainActivity의 recyclerView를 activity_main.xml의 card_recycler_view와 연결
-        recyclerView = (RecyclerView)findViewById(R.id.rvw_card_recycler);
 
-        //  각 Item들이 recyclerView의 전체 size를 변경 하지 않음으로 fix함.
+        recyclerView = (RecyclerView)findViewById(R.id.rvw_card_recycler);
         recyclerView.setHasFixedSize(true);
 
-        //  Layout은 뭔지 알겠는데, LayoutManager는 뭐하는 녀석인지 잘 모르겠음.
-        //  어쨌든 이 녀석에게 App의 리소스를 제공함.
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
 
         /* 당겨서 새로고침을 하기 위한 SwipeRefreshLayout 객체 */
