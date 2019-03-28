@@ -1,27 +1,23 @@
 package com.example.app.Rvw;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.app.R;
-import com.example.app.Request.RetrofitClient;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
 
 public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
     //  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
 
     private List<Rvw> rvws;
+    private Rvw rvw;
 
     public RvwAdapter(List<Rvw> rvws) {
         this.rvws = rvws;
@@ -48,12 +44,17 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         viewHolder.user_id.setText( rvws.get(i).getId() );
         viewHolder.cont.setText( rvws.get(i).getCont() );
         viewHolder.cdt.setText( rvws.get(i).getCdt() );
+        rvw = rvws.get(i);
 
         viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(v.getContext(), i+"", Toast.LENGTH_SHORT).show();
+                Intent rvwIntent = new Intent(v.getContext(), RvwDetail.class);
+                rvwIntent.putExtra("rvw", rvw);
+//                rvwIntent.putExtra("rvw_name", rvw_name);
+                rvwIntent.putExtra("index", i);
+                v.getContext().startActivity(rvwIntent);
 
             }
         });

@@ -27,7 +27,7 @@
     <string name="bad">별로</string>
     <string name="worst">최악</string>
 
-    <string name="avg">유져 평점</string>
+    <string name="avg">유져 평가</string>
     <string name="grade">자체 평가</string>
 
     <string name="addr">위치</string>
@@ -50,4 +50,7 @@
     <string name="filter">가격대 별로 보기</string>
 
     <string name="toCreateRvw">후기 보기</string>
+    <string name="rst_nm">RST_NM</string>
+    <string name="author">작성자</string>
+    <string name="cdt">작성일</string>
 </resources>
