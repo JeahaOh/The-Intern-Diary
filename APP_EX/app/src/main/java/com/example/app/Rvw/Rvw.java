@@ -1,12 +1,30 @@
 package com.example.app.Rvw;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Rvw {
+    @Expose
+    @SerializedName("rvw_no")
     int rvw_no;   //  리뷰 번호
+    @Expose
+    @SerializedName("rst_no")
     int rst_no;   //  레스토랑 번호
+    @Expose
+    @SerializedName("id")
     String id;    //  게시자 아이디
+    @Expose
+    @SerializedName("cont")
     String cont;  //  리뷰 내용
+    @Expose
+    @SerializedName("cdt")
     String cdt;   //  리뷰 생성일
+    @Expose
+    @SerializedName("score")
     int score;    //  리뷰 평점
+    @Expose
+    @SerializedName("rvw_phot")
+    String rvw_phot;
 
     public Rvw () { }
     public Rvw(int rst_no, String id, String cont, int score) {}
@@ -44,6 +62,10 @@ public class Rvw {
         return score;
     }
 
+    public String getRvw_phot() {
+        return rvw_phot;
+    }
+
     @Override
     public String toString() {
         return "Rvw{" +
@@ -53,6 +75,7 @@ public class Rvw {
                 ", cont='" + cont + '\'' +
                 ", cdt='" + cdt + '\'' +
                 ", score=" + score +
+                ", rvw_phot=" + rvw_phot +
                 '}';
     }
 }

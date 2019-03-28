@@ -1,14 +1,18 @@
 package com.example.app.Rvw;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.app.R;
+import com.example.app.Request.RetrofitClient;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,9 +38,8 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
     //  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
 
     private List<Rvw> rvws;
-    String scoreS;
 
-    public RvwAdapter(List<Rvw> rvws ) {
+    public RvwAdapter(List<Rvw> rvws) {
         this.rvws = rvws;
 
         Log.v("ADAPTER RVWS SIZE", Integer.toString( rvws.size() ) );
@@ -98,7 +101,6 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
 
 
 
-
         /*
         //  onClickListener와 원하는 화면을 넘겨주는 Intent를 넣어?
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +133,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView user_id, cont, score, cdt;
+        private ImageView iv;
         public ViewHolder( View view ) {
             super( view );
             user_id = (TextView)view.findViewById( R.id.user_id );

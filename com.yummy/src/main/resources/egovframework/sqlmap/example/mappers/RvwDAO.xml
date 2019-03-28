@@ -8,21 +8,25 @@
   <!--  rst_no에 대한 rvw List 반환 -->
   <select id="getRvwList" parameterType="int" resultType="rvw">
     SELECT
-      rvw_no, id, cont, cdt, score
+      rvw.rvw_no, rvw.id, rvw.cont, rvw.cdt, rvw.score, phot.phot_no AS rvw_phot
     FROM
-      rvw
+      rvw rvw
+    LEFT OUTER JOIN
+      phot phot
+    ON
+      rvw.rvw_no = phot.rvw_no
     WHERE
-      useyn = 'Y'
+      rvw.useyn = 'Y'
     AND
-      rst_no = #{rst_no}
-    ORDER BY rvw_no DESC
+      rvw.rst_no = #{rst_no}
+    ORDER BY rvw.rvw_no DESC;
     <!-- Limit 10 -->
     
   </select>
   
   <!-- rvw_no에 대한 rvw 반환 -->
   <select id="getRvwDtl" parameterType="int" resultType="rvw">
-    SELECT rvw.rvw_no, rvw.id, rvw.cont, rvw.cdt, rvw.score, phot.phot_no
+    SELECT rvw.rvw_no, rvw.id, rvw.cont, rvw.cdt, rvw.score, phot.phot_no AS rvw_phot
     FROM rvw
     LEFT OUTER JOIN
       phot

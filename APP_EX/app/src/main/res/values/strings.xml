@@ -27,7 +27,7 @@
     <string name="bad">별로</string>
     <string name="worst">최악</string>
 
-    <string name="avg">네티즌 평점</string>
+    <string name="avg">유져 평점</string>
     <string name="grade">자체 평가</string>
 
     <string name="addr">위치</string>
