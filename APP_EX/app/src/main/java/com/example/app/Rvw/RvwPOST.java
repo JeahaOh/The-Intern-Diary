@@ -228,13 +228,13 @@ public class RvwPOST extends AppCompatActivity {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 확인", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 확인", Toast.LENGTH_SHORT).show();
                 // 권한 요청 성공
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 없음", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "카메라 및 갤러리 접근 권한 없음", Toast.LENGTH_LONG).show();
                 // 권한 요청 실패
             }
         };
