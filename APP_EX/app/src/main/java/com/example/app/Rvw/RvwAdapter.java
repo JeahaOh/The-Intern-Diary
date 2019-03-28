@@ -49,6 +49,24 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         viewHolder.cont.setText( rvws.get(i).getCont() );
         viewHolder.cdt.setText( rvws.get(i).getCdt() );
 
+        viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(v.getContext(), i+"", Toast.LENGTH_SHORT).show();
+//                Intent rvwDetail = new Intent( context, RvwDetail.class );
+//
+//                System.out.println("itemView.onClick()");
+//                Log.v("itemView.onClick()", i + "");
+//                Rvw rvw = rvws.get(i);
+//
+//                rvwDetail.putExtra("rvw", rvw);
+//                System.out.println(rvw.toString());
+//
+//
+//                v.getContext().startActivities(rvwDetail);
+            }
+        });
 
         switch ( rvws.get(i).getScore() ) {
             case 1 :
@@ -68,24 +86,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
                 return;
         }
 
-        viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Toast.makeText(v.getContext(), i+"", Toast.LENGTH_SHORT).show();
-//                Intent rvwDetail = new Intent( context, RvwDetail.class );
-//
-//                System.out.println("itemView.onClick()");
-//                Log.v("itemView.onClick()", i + "");
-//                Rvw rvw = rvws.get(i);
-//
-//                rvwDetail.putExtra("rvw", rvw);
-//                System.out.println(rvw.toString());
-//
-//
-//                v.getContext().startActivities(rvwDetail);
-            }
-        });
     }
 
     @Override
