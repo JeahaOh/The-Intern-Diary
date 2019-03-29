@@ -1,3 +1,8 @@
+/**
+ * 회원 정보에 관한 처리를 하는 function들임.
+ * 주로 membController와 통신함.
+ */
+
 // 관리자 로그인 기능
 $('#submit').click( function ( event ) {
   event.preventDefault();

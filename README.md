@@ -27,6 +27,20 @@ Rvw Detail UI 성공.
 - APK 후기 작성시 사진 없이도 upload 하기
 - 코드 주석 작성
 
+### 15:00
+
+월요일 : 인턴 과정에 대한 결산 보고를 땡겨서 하는것임.
+-   인턴생활 전체에 대한 보고를 하는것.
+-   컨텐츠 구성 :
+    -   개발이 잘 나왔는가 아닌가가 아니고 시작부터 끝까지 무엇을 하고 무엇을 배웠고를 정리...
+    -   과제 : 처음에 이만큼 하고자 했던 것들을 어떤 과정을 걸처서 이만큼 했다를 보고..
+    -   내가 인턴 전에 알던것은 어떻고 인턴 생활을 마치며 무엇을 배웠고 알게 되었다를 정리.
+    -   인턴 생활을 마치며...
+
+### 15:15
+
+작업물들 주석 처리중
+
 -------------------------------------------------------------------------------------------
 
 ## 03/28 목요일
@@ -536,7 +550,7 @@ Retrofit POST 415
 에러 발견.  
 rst_detail에 사진이 없는 경우 사진이 안올라감.  
 사진이 있는경우 수정을 통해서 사진이 올라감.  
-사진 유무의 판단 로직에 문제가 있는듯 하다...  ㅣㅐ
+사진 유무의 판단 로직에 문제가 있는듯 하다...  
 
 ### 10:35
 
@@ -1125,6 +1139,7 @@ WHERE
 
 
 -------------------------------------------------------------------------------------------
+
 ## 03/11 월요일
 
 ### 11:20
@@ -1154,10 +1169,10 @@ RVW update 구현
 
 ### 24:20 method정리 오류 수정
 
-
-
 -------------------------------------------------------------------------------------------
+
 ## 03/10 일요일
+
 - 전체 평점에 상대적인 평가 점수
 - 전체 평가 인원에 상대적인 평가 인원 수
 - 전체 식당에 평가자 수  
@@ -1204,26 +1219,32 @@ rating(K1,K2,K3)=C×m+total number of starsC+number of reviews
 ```
 
 ### 17:40
+
 rvw ServerSide delete, detail 기능 구현
 
 ### 18:30
+
 모달 띄우기
 
 
 -------------------------------------------------------------------------------------------
 ## 03/09 토요일
+
 ### 14:10
 *.js  
 sample.css 파일 정리
 
 ### 13:50
+
 페이징 처리 너무 하고싶지만, 다른 할게 많아서 넘어 가야 할것 같음..
 초기 설정 할 때 전자정부 예제를 미리 확인 했어야 했음...
 
 ### 17:10
+
 평점에 대해서 계속 고민중...
 
 ### 18:00
+
 ```
 SELECT
   COUNT(score) AS sum,
@@ -1275,7 +1296,9 @@ WHERE
 
 -------------------------------------------------------------------------------------------
 ## 03/08 금요일
+
 ### 10:20 paging 처리 실패?
+
 시간적으로 크게 중요하지 않은거 같아서 일단 스킵 하기로 함.
 
 ```
@@ -1289,35 +1312,45 @@ java.lang.IllegalStateException: Neither BindingResult nor plain target object f
 - https://addio3305.tistory.com/91
 
 ### 16:30
+
 rvw insert 기능 구현,  
 rvw, memb에 가짜 데이터 삽입.
 
 ### 17:45
+
 - https://aljjabaegi.tistory.com/191
 - https://aljjabaegi.tistory.com/190
 
 
 -------------------------------------------------------------------------------------------
 ## 03/07 목요일
+
 ### 09:50
+
 지금까지 한 작업물에 주석 처리중.
 
 ### 11:15
+
 rst 저장 기능 개선.
 
 ### 11:50
+
 rst 삭제 기능.
 
 ### 13:50
+
 jsp 코드 정리.
 
 ### 15:30
+
 Feedback : 통계나 해라.
 
 ### 15:50
+
 RVW Package 생성
 
 ### 16:50
+
 - https://www.google.com/search?q=net+error_aborted+404+c%3Aurl&rlz=1C1CHBD_koKR836KR836&oq=net+error_aborted+404+c%3Aurl&aqs=chrome..69i57.5531j0j1&sourceid=chrome&ie=UTF-8
 - https://blockcahin.tistory.com/62
 c:url이 깨지는 현상을 잡고 싶은데...  
@@ -1354,16 +1387,19 @@ css나 js는 Tomcat의 기본 서블릿에서 처리하도록 다음과 같이 �
 ```
 
 ### 23:20
+
 javascript random 함수와 시간 함수 예제,
 
-
-
 -------------------------------------------------------------------------------------------
+
 ## 03/06 수요일
+
 ### 10:00
+
 어제 못했던 rstDetail.jsp UI 작업 마저 하는 중...
 
 ### 11:00
+
 ```
 javax.el.PropertyNotFoundException: Property [upper_no] not readable on type [egovframework.rst.vo.Rst]
 ```
@@ -1371,26 +1407,31 @@ rstDetail.jsp 요리 유형 작업중 나온 에러
 - Rst.class수정 하면서 upper_no에 대한 getter, setter, consturctor 설정을 안잡아 줘서 그럼.
 
 ### 13:20 !! rstDetail Form ISSUE !!
+
 rstDetail.jsp 에서 rst삭제 js 준비 까지만 했음.  
 생성, 삭제, 수정 기능 들어가야 하며, 생성 폼에서는 대분류 선택시 소분류 카테고리 AJAX로 출력 해야 함.  
   
 ### 14:00 Android Studio Project 생성
 
 ### 14:30 App Login 만들기
+
 - https://jizard.tistory.com/104
 
 ### 14:50 Android Studio Project 재생성
 
 ### 16:00 Android Project 앱 생성 예제 성공.
+
 - https://jizard.tistory.com/104
 
 ### 16:45 예제 찾음
+
 - 설명
     - https://dev-juyoung.github.io/2017/11/10/android-retrofit-basic/
 - 코드
     - https://github.com/dev-juyoung/retrofit-sample
 
 ### 17:25
+
 - https://java.ihoney.pe.kr/283
 Controller에서 JSON 으로 인자를 받거나 반환 하는 것에 대해서 찾아 봤음.  
 이미 확신 하고 있었지만 맞았다는거..  
@@ -1399,13 +1440,16 @@ REST API 서버를 먼저 만들고 Client Side WEB 구현, APP은 나중에 구
 - ***https://www.learn2crack.com/2016/02/recyclerview-json-parsing.html***
 
 ### 19:50 Spring Ajax에 Json으로 응답 하기
+
 - https://victorydntmd.tistory.com/172
 
 ### 20:30 rst 저장, 삭제 기능 구현중..
+
 - https://github.com/JeahaOh/java110-team-project/blob/master/src/main/resources/bitcamp/java110/cms/mapper/MemberDao.xml
 - https://stackoverflow.com/questions/4205181/insert-into-a-mysql-table-or-update-if-exists
 
 ### 22:10
+
 ```
 INSERT INTO rst (rst_no, rst_name, star, loc, loc_dtl, catag_no, tel, opn_tm, brck_tm, dnnr_tm, lo_tm)
 VALUES (188, 'insertTest', -2, '동안구', '안양시', 10, '010-1020-4332', '11:00:00', '00:00:00', '00:00:00', '21:00:00')
@@ -1423,40 +1467,51 @@ ON DUPLICATE KEY UPDATE
 - https://wkdgusdn3.tistory.com/entry/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%8C-autoincrement-%EA%B0%92-%EB%B0%9B%EC%95%84%EC%98%A4%EA%B8%B0
 
 ### 02:40
+
 rst delete 해야함...
 
-
 -------------------------------------------------------------------------------------------
+
 ## 03/05 화요일
+
 ### 09:45
+
 egovSampleList.jsp 파일을 참고해서 jsp 파일을 작성 하고자, 분석중.  
 egovSampleList.jsp가 js 파일이나, img, css 파일의 경로를 못 찾고 404 error를 내고 있음...
 
 ### 10:10
+
 CSS 경로 잡기는 나중에 하기로... c:url을 걸든 그냥 href를 쓰던 경로에 대한 공부를 좀 해야 할 듯.
 
 ### 10:50
+
 c:url?
 - https://offbyone.tistory.com/319
 
 ### 11:10
+
 c:out?
 - https://okky.kr/article/209612
 - https://needjarvis.tistory.com/51
 단순히 출력 되는 것으로 판단 하면 안됨..
 
 ### 11:45
+
 javax.servlet.jsp.JspTagException: No message found under code 'title.rst.id' for locale 'ko_KR'.
 spring:message TAG를 사용 하려는데 이런 에러가 뜸...
-- https://yangtaeho.tistory.com/entry/Spring-message-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%B8%EC%A7%80-%EA%B4%80%EB%A6%AC
+- https://yangtaeho.tistory.com/entry/
+Spring-message-%ED%83%9C%EA%B7%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A9%94%EC%84%B8%EC%A7%80-%EA%B4%80%EB%A6%AC
 
 ### 14:30
+
 http://localhost:8888/yummy/rst/detail?id=10 URL로 식당 상세정보 DB에서 가져오는 것 까지 성공 했고 화면으로 출력 하지는 않음.
 
 ### 15:30
+
 jsp 파일 주석 처리와 properties 파일 editor 색깔 설정
 
 ### 15:45
+
 egovSampleRegister.jsp에서
 ```
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -1466,6 +1521,7 @@ egovSampleRegister.jsp에서
 바로 사용 할 수 있을 지는 모르겠음.
 
 ### 16:00
+
 egovSampleRegister.jsp에서
 ```
 <c:set var="registerFlag" value="${empty sampleVO.id ? 'create' : 'modify'}"/>
@@ -1479,25 +1535,33 @@ c:set의 3항 연산자에 따라 title이 바뀌는 것 같음.. 호?
 사용 하는데 오래 걸릴 것 같음...
 
 ### 17:20
+
 rstDetail.jsp UI 작업...
 
 ### 20:20
+
 rstDetail.jsp UI 작업...
 - https://code.i-harness.com/ko/docs/html/element/input/time
 
 ### 21:30
+
 rstDetail.jsp UI 작업...
 - https://www.sitepoint.com/community/t/form-drop-down-menus-select-other-and-make-a-textbox-appear/2789
 
 ### 22:45
+
 rstDetail.jsp UI 작업...
 
 ### 24:20
+
 rstDetail.jsp UI를 위해 Catag 작업
 
 -------------------------------------------------------------------------------------------
+
 ## 3/04 월요일
+
 ### 09:30
+
 egovframwork/example Package에 연결된 iBatis / MyBatis 설정 파일들을 찾았음.  
 iBatis 설정 파일들을 주석 처리 하고, MyBatis를 연결, 서버 작동 제대로 함.
 - 각 파일에 참조하는 파일의 경로가 있음.
@@ -1542,6 +1606,7 @@ iBatis 설정 파일들을 주석 처리 하고, MyBatis를 연결, 서버 작�
     ```
 
 ### 10:30
+
 ```
 2019-03-04 10:32:27,678 ERROR [org.springframework.web.context.ContextLoader] Context initialization failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'membService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: egovframework.memb.DAO.MembDAO egovframework.memb.service.MembServiceImple.membDao; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [egovframework.memb.DAO.MembDAO] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
@@ -1584,12 +1649,14 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 ```
 
 ### 13:30
+
 DAO와 ServiceImple 간의 연결 에러.  
 DAO에 @Mapper("membDao") annotation을 붙여주고,  
 ServiceImple에 @Resource(name="membDao") annotation을 붙여주고,  
 sql-mapper-config.xml에 <typeAlias alias="memb" type="egovframework.memb.vo.Memb" /> 로 타입을 정의 해 줌.  
   
 ### 14:30
+
 git tag 삭제  
 - 로컬 tag 삭제
     - git tag -d [tag name]
@@ -1597,30 +1664,38 @@ git tag 삭제
     - git push origin :[tag name]
 
 ### 15:00
+
 - git stage에 올라 가지 않은, 수정한 파일들 수정 이전으로 되돌리기
     - git reset --hard
 
 ### 17:00
+
 - /rst/list 접속시 rstList 출력하는 기능 준비...
 
 ### 17:45
+
 - memb 회원 가입, 탈퇴 기능 뼈대만 만드는 중.
 
 ### 20:30
+
 - memb 회원 가입시 idCheck 기능, ServerSide에서 id의 정규 표현식 확인 기능 제작
     - https://highcode.tistory.com/6
     - https://cofs.tistory.com/358?category=627148
     - 
 
 ### 21:45
+
 - memb 회원 가입, 탈퇴 기능, ServerSide 구현. 
 
 ### 22:10
+
 내일 rstList 페이지와 rst 관리 기능들 만들 것임.  
 WBS 상으로는 APP을 만들어야 하지만, rst의 기능들을 구현 한 후, APP을 만드는게 훨씬 효율적이라고 판단 되었음...
 
 -------------------------------------------------------------------------------------------
+
 ## 3/03 일요일
+
 아이바티스로 연결된것을 마이바티스로 바꾸려 했으나 잘 모르겠음. 시간 낭비 하는 것 같아서 일단 로그인 페이지 만드는것 부터 해야 겠음.  
   
 전자정부 프레임 워크는 src/main/java/egovframework 이하에 있는 컨트롤러에만 반응을 함. (여기서 1시간 이상 삽질 했음)  
@@ -1663,7 +1738,9 @@ iBatis / MyBatis 설정 바꾸는 부분을 발견 했음... 좀더 연구 해 �
   - https://88240.tistory.com/36
 
 -------------------------------------------------------------------------------------------
+
 ## 3/02 토요일
+
 MyBatis 설정 후, 공통 컴포넌트 설치해주니 서버만 돌아가고 계속 에러가 뜨는 문제가 발생함.  
 설정 부분에서 문제가 생긴것 같은데 무슨 이유인지 근본적인 이유를 찾지 못 하고 있음... 
 
@@ -1709,12 +1786,15 @@ github security 문제를 해결하고, 서버를 돌리니 회원 관리 하려
   MyBatis 쓰고싶은데 iBatis로 설정 되있는것도 참 어처구니가 없음..
 
 -------------------------------------------------------------------------------------------
+
 아무래도 공통 컴포넌트는 안 쓰는게 나을 것 같단 생각이 듦.
 
 공통 컴포넌트 없이 전자정부 웹 프로젝트 생성 후 샘플 프로젝트 DB 연동 성공했음. 아이바티스로 연결 된것 같은데 마이바티스로 바꾸는 작업 연구 해야 할 거 같음.
 
 -------------------------------------------------------------------------------------------
+
 ## 3/01 금요일
+
 공통 컴포넌트를 사용하기 위해서 DB에 공통 컴포넌트에서 만들어주는 테이블과 데이터를 넣어야 하는 것 같음.  
 공통 컴포넌트를 그대로 사용하는건 아니지만 일단 테스트를 위해서 DB를 연결 해 줘야 할듯.  
 이클립스 Perspective 창 중에서 Data Source Explorer에서 Database Connections -> new 해서 db Connector 잡아 주고, db 설정값 입력해줌.
@@ -1725,7 +1805,9 @@ DB 설정후 공통 컴포넌트 설치
 - http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:imp:editor:common_component
 
 -------------------------------------------------------------------------------------------
+
 ## 2/28 목요일
+
 이클립스 워크스페이스 설정  
 효율 적인 방법 없나?
 
@@ -1825,6 +1907,7 @@ Output File > File System > 로그가 남겨질 파일 생성 > 파일에 로그
         - https://epthffh.tistory.com/entry/Mybatis-%EC%97%90%EC%84%9C-CDATA-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
 
 -------------------------------------------------------------------------------------------
+
 ## 2/27 수요일
 
 DB 서버를 AWS에 있는 DB를 쓸까 생각함.
@@ -1858,7 +1941,9 @@ UPDATE `test`.`rst` SET `brck_tm` = NULL, `dnnr_tm` = NULL WHERE `brck_tm` = '00
 - 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/26 화요일
+
 어제 UI 디자인을 하고 생각 해 보니 UI Templeate Engine을 필수적으로 사용 해야 할 것 같다고 느끼게 되었음.  
 아마 Handlebars.js나 Handlebars.java를 이용 할 것 같음.  
   
@@ -1902,7 +1987,9 @@ DB...
 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/25 월요일
+
 앱 UI proto 디자인은 끝냈음.  
 웹 UI가 문제인데, 관리자 기능에 대한 규칙과 UI에 대한 아이디어가 잘 떠오르지 않음.
     
@@ -1930,7 +2017,9 @@ DB...
 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/24 일요일
+
 후기 평가는 3가지  
 - 맛있어요  1
 - 무난해요  0
@@ -1953,7 +2042,9 @@ Adroid connect to Spring Server by JSON 참고
 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/23 토요일
+
 UI 구상중...  
 심플하게 해야 할것 같음
 
@@ -1962,7 +2053,9 @@ md파일의 줄바꿈은 space 두번
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/22 금요일
+
 ```
 아침에 문득 관리 요청 기능을 빼고 DB 데이터 정보 다루는 것에 집중을 하는게 어떨까 생각을 하게 됬음.
 통계 내고, 하는것에 더 "집중" 하는게 낫지 않겠는가 하는 판단임.
@@ -1987,8 +2080,11 @@ DB 설계를 조금 다시 해야 할 듯.
 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/21 목요일
+
 ### 프로젝트 기획과 발표
+
 ```
 너무 준비를 안한것 같음.
 주제가 별로 좋지 않았던거 같지만 이미 시작해서...  OTL
@@ -2042,7 +2138,9 @@ ON DELETE NO ACTION
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/20 수요일
+
 ```
 문서 작업, 발표 준비, 작업
 2/21에 있을 발표 준비 함.
@@ -2051,7 +2149,9 @@ ON DELETE NO ACTION
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/19 화요일
+
 ```
 문서 작업
 메뉴 구성도, 시스템 구성도, 프로그램 목록, 요구사항 정의서, WBS 작업, DB 설계
@@ -2061,9 +2161,12 @@ Feedback
 조금만 더 디테일 하게
 ```
 -------------------------------------------------------------------------------------------
+
 ## 2/18 월요일
+
 ### 기획
 #### 미슐랭 서울
+
 - 미슐랭 선정 맛집에 관한 정보를 공유하는 서비스
 
 #### 기능
@@ -2147,10 +2250,15 @@ Feedback
     git reset --hard HEAD^
     ```
 ### 교훈
+
 git reset 할 때는 작업 하던 파일을 따로 보관 하도록 하자...
+
 -------------------------------------------------------------------------------------------
+
 ### 기획
+
 #### Seoul Pics
+
 *"Seoul Pictures"* 와 *"Seoul Picks"* 의 중의적 표현
 - 서울관광재단의 서울 공식 여행 가이드를 보고 모티브를 받았음.
     - http://korean.visitseoul.net/index
@@ -2160,7 +2268,9 @@ git reset 할 때는 작업 하던 파일을 따로 보관 하도록 하자...
 - 이용자들이 서울에서 문화, 역사, 식도락 등의 다양한 활동을 사진으로 공유함으로 내/외국인의 나들이, 관광등 장소에 관한 정보를 공유할 수 있는 서비스.
 
 #### 기능 (예정)
+
 - 회원 관리와 사진 공유 게시판의 CRUD와 Client Side의 선 개발 후 이후 나머지 기능들 구현.
+
 1. Web App 공통 (구현 확정)
     - 일반 로그인 (사용자디렉토리 / 통합 인증)
         - 모바일에서는 한번의 로그인 처리
@@ -2212,18 +2322,21 @@ git reset 할 때는 작업 하던 파일을 따로 보관 하도록 하자...
     - 멀티미디어 제어
 
 -------------------------------------------------------------------------------------------
+
 ### 게시판 디자인 참고
+
 - https://templated.co/visualize
     - https://opentutorials.org/course/2473/13815
     - WEB의 메인 페이지를 이런 모습으로 하고, 마우스 오버하면 장소 정보를 나오게 하면 심플해서 괜찮을 것 같음.
 
-
 -------------------------------------------------------------------------------------------
+
 ## 2/15 금요일
 
 ### 개발팀장님 교육
 
 #### 개발 PROCESS
+
 - 요구분석
     - SRS 작성
     - 테스트 계획서 작성
@@ -2291,11 +2404,14 @@ Item 발표(item 선정 먼저 해야 할 듯),
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/14 목요일
+
 오전에 웹 앱 간단한 교육하고 QnA시간을 가졌음.
 WBS 외에 크게 중요한 얘기가 없어서 기록하지 않음.
 
 ### WBS (Work Breakdown Structure)
+
 프로젝트를 소규모의 구성 단위까지 나누어 전달할 수 있는 기능.
 '계약 업무 분류 체계 (Contract Work Breakdown Structure, CWBS)'라고도 함.
 - 역할
@@ -2318,9 +2434,11 @@ java.util.zip.ZipException: error in opening zip file
 
 
 -------------------------------------------------------------------------------------------
+
 ## 2/13 수요일
 
 ### APP 
+
 안드로이드 정말 간단한 교육을 받음.
 
 안드로이드 생명주기 = 앱에서 굉장히 중요함 어디에 무엇을 넣을지...
@@ -2331,6 +2449,7 @@ java.util.zip.ZipException: error in opening zip file
     - 임의 프로젝트 설치해서 셋팅이 잘 됬는지 확이 해야함.
 
 **!!**
+
 웹 서버를 이용해서 웹과 앱 개발.
 타겟에 맞춰서 디자인도 해야함.
 - UI 안드로이드 스튜디오에서 쉽게 할 수 있음.
@@ -2357,6 +2476,7 @@ java.util.zip.ZipException: error in opening zip file
 - 음성인식 대화 쳇봇
 
 ### WEB
+
 서버 사이드, 클라이언트 사이드. (백엔드/프론트엔드)
 
 - WEB 서버 정적인 컨텐츠에 대한 처리.
@@ -2419,6 +2539,7 @@ ios나 react-native도 공부 해 보고싶음.
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/12 화요일
 
 ### 영업 부장님 교육
@@ -2439,7 +2560,7 @@ ios나 react-native도 공부 해 보고싶음.
     - 주로 공공기관으로 감.
 
 
-### ICT 부부장님 교육
+### ICT 부실장님 교육
 
 - 결과도 중요하지만, 과정도 중요하다. 부실 공사는 안됨.
 - 인턴 과제 실습 중에 진행 과정을 피력해야하고, 산출물이 있어야 하며, 과제의 의도를 파악하는게 중요함.
@@ -2542,6 +2663,7 @@ ios나 react-native도 공부 해 보고싶음.
 
 
 ### 회사 장점
+
 공부하려고 마음 먹으면 공부 할 수 있는 회사임.
 워라밸이 좋은 편이고 휴가 안 쓰면 돈 나옴.
 
@@ -2566,7 +2688,9 @@ c계열이나 swift or object c 공부를 하고 싶음.
 ```
 
 -------------------------------------------------------------------------------------------
+
 ## 2/11 월요일
+
 - 09:10분에 오라고 들었었는데 그게 아니였나봄. 너무 일찍 가면 민폐인거 같아서 오라고 한 시간에 들어 왔는데 이미 다들 도착해 있었음.
     - 어쩌면 10분 전에 오라는걸 10분 뒤에 오라는 걸로 잘못 기억했던걸까...
 - 2000년에 설립 되서, 메인으로 하는 사업은 국내에서는 독보적인 위치에 있지만 국제적으로 보면 아직 한참 멀었다고 함.
@@ -2589,7 +2713,9 @@ c계열이나 swift or object c 공부를 하고 싶음.
 - 옥상에서 보는 탄천 경치가 나쁘지 않았음. (그렇다고 엄청 좋은 것은 아님)
 
 -------------------------------------------------------------------------------------------
+
 ## 2/10 일요일
+
 - 2월 11일부터 성남시 분당구에 위치한 한 중소기업에서 인턴을 하게 되었음.
 - 2개월 후 정규직 채용 가능성이 있긴 하지만, 가능성은 높지 않을거란 추측을 하고 있음.
 - 일단 무슨 일을 하게 될지, 어떤 것들을 배우게 될진 아직 모르지만,

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
+<%--
+    form Post 및 rvwController에 관한 TEST를 하는 페이지.
+--%>
 <!DOCTYPE html>
 <html lang="kor">
 

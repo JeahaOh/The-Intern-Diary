@@ -1,3 +1,8 @@
+/**
+ * modal popup에 종속된 function들.
+ * modal을 띄우고 닫는 역할을 함.
+ */
+
 //  모달 열기.
 var modal = document.getElementById('modal');
 function openModal() {
@@ -14,7 +19,7 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   exitModal();
 }
-//  modal 밖 클릭시 닫기.
+//  modal 밖 클릭시 모달 닫기.
 window.onclick = function(event) {
   if (event.target == modal) {
     exitModal();

@@ -3,8 +3,7 @@
 <%@ taglib  prefix="spring"  uri="http://www.springframework.org/tags"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%--
-<%@ page    session="true"%>
-   /**
+ /**
   * @Class Name : home.jsp
   * @Description : home 화면
   * @Modification Information

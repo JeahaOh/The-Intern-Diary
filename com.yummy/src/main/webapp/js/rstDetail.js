@@ -1,3 +1,7 @@
+/**
+ * retDetail.jsp에 종속된 funtion들.
+ */
+
 //rstDetail.jps의 상태를 저장하는 변수.
 let rst_form_status;
 
@@ -236,9 +240,9 @@ function saveRst(){
  * AJAX로 사진 보내기
  * @param rst_no
  * @returns
+ * console.log( $('#img_input')[0].files[0] );
+ * console.log( $('#img_input')[0].value );
  */
-//  console.log( $('#img_input')[0].files[0] );
-//  console.log( $('#img_input')[0].value );
 function postPhot( rst_no ) {
   var formData = new FormData();
   formData.append( "rst_phot", $('#img_input')[0].files[0] );

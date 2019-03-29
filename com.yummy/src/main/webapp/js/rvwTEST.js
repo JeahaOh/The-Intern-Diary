@@ -1,3 +1,9 @@
+/**
+ * rvwTest를 위한 .js 파일.종속 되진 않았지만 rvwTest.jsp에서 사용되고 있음.
+ * @param min
+ * @param max
+ * @returns
+ */
 //  min (포함) 과 max (포함) 사이의 임의 정수를 반환하는 함수.
 function getRandomIntInclusive(min, max) {
   return Math.round(Math.random() * (max - min + 1)) + min;
