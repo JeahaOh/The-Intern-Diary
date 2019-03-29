@@ -32,6 +32,8 @@ public class RvwList extends AppCompatActivity {
 
     private Rater rate;
 
+    private static Boolean PostOrRead = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,7 @@ public class RvwList extends AppCompatActivity {
                 //  createRvw 인텐트에게 넘겨줄 데이터
                 createRvw.putExtra("rst_no", rst_no );
                 createRvw.putExtra( "rst_nm", rst_nm );
-
+                PostOrRead = true;
                 startActivity(createRvw);
             }
         });
@@ -114,7 +116,10 @@ public class RvwList extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         //  페이지로 돌아 올 시 RVW List를 refresh함.
-        loadJSON(rst_no);
+        if(PostOrRead) {
+            loadJSON(rst_no);
+            PostOrRead = false;
+        }
     }
 
     private void loadJSON(int rst_no) {

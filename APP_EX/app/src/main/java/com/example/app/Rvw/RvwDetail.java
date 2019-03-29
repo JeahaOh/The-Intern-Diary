@@ -45,14 +45,11 @@ public class RvwDetail extends Activity {
         rst_name_val.setText(rst_name);
 
         String url = RetrofitClient.getRvwImgUrl();
-        //  image의 resource 경로와, image의 이름을 경로에 추가
         url += rvw.getRvw_phot();
 
         rvw_phot = findViewById(R.id.rvw_phot);
         Picasso.with(this)
-                //  URL에서 Image를 가져와라.
                 .load(url)
-                //  사진이 없다면, res/drawable/ic_star_black.xml의 이미지를 띄워라.
                 .error(R.drawable.ic_star_black)
                 .into(rvw_phot);
 
@@ -65,13 +62,7 @@ public class RvwDetail extends Activity {
         score_val = findViewById(R.id.scoreVal);
         score_val.setRating(rvw.getScore());
 
-//        score_val = findViewById(R.id.score_val);
-//        score_val.setText(rvw.getScore() + "");
-
         cont = findViewById(R.id.cont);
         cont.setText(rvw.getCont());
-
-
     }
-
 }
