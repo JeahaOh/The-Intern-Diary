@@ -28,6 +28,7 @@ public class RvwList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RvwAdapter adapter;
     private int rst_no;
+    private String rst_nm;
 
     private Rater rate;
 
@@ -44,7 +45,8 @@ public class RvwList extends AppCompatActivity {
     private void initViews() {
         Bundle intent = getIntent().getExtras();
         rst_no = intent.getInt( "rst_no" );
-        final String rst_nm = intent.getString( "rst_name" );
+        rst_nm = intent.getString( "rst_name" );
+
 
         final TextView rst_name = findViewById( R.id.rst_name );
         rst_name.setText( rst_nm );
@@ -88,7 +90,6 @@ public class RvwList extends AppCompatActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.rvw_card_recycler);
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
@@ -139,6 +140,7 @@ public class RvwList extends AppCompatActivity {
 
                 //  adapter에 Rvw List를 준다.
                 adapter = new RvwAdapter( data );
+                adapter.setRst_nm(rst_nm);
                 //  recyclerView에 adapter를 넣어 실행. 화면에 보여준다.
                 recyclerView.setAdapter( adapter );
             }

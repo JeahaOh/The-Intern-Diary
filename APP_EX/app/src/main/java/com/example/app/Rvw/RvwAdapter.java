@@ -18,6 +18,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
 
     private List<Rvw> rvws;
     private Rvw rvw;
+    private String rst_nm;
 
     public RvwAdapter(List<Rvw> rvws) {
         this.rvws = rvws;
@@ -44,6 +45,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         viewHolder.user_id.setText( rvws.get(i).getId() );
         viewHolder.cont.setText( rvws.get(i).getCont() );
         viewHolder.cdt.setText( rvws.get(i).getCdt() );
+
         rvw = rvws.get(i);
 
         viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
@@ -52,8 +54,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
 
                 Intent rvwIntent = new Intent(v.getContext(), RvwDetail.class);
                 rvwIntent.putExtra("rvw", rvw);
-//                rvwIntent.putExtra("rvw_name", rvw_name);
-                rvwIntent.putExtra("index", i);
+                rvwIntent.putExtra("rst_name", rst_nm );
                 v.getContext().startActivity(rvwIntent);
 
             }
@@ -93,5 +94,9 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
             score = (TextView)view.findViewById( R.id.score );
             cdt = (TextView)view.findViewById( R.id.cdt );
         }
+    }
+
+    public void setRst_nm(String rst_nm){
+        this.rst_nm = rst_nm;
     }
 }

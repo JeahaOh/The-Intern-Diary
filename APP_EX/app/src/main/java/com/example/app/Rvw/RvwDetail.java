@@ -38,8 +38,11 @@ public class RvwDetail extends Activity {
 
     private void initView(){
         ImageView rvw_phot;
-        TextView author_id, cdt_val, cont;
+        TextView author_id, cdt_val, cont, rst_name_val;
         RatingBar score_val;
+
+        rst_name_val = findViewById(R.id.rst_name_val);
+        rst_name_val.setText(rst_name);
 
         String url = RetrofitClient.getRvwImgUrl();
         //  image의 resource 경로와, image의 이름을 경로에 추가
