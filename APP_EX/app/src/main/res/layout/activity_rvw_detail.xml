@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".Rvw.RvwDetail">
 
@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/rst_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <TextView
             android:id="@+id/rvw_info"
@@ -32,6 +32,24 @@
             android:text="@string/rvw"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0" />
+
+        <RatingBar
+            android:id="@+id/scoreVal"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,14 +76,9 @@
         android:id="@+id/CONT_HEADER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:gravity="end"
         android:orientation="horizontal">
-
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0" />
 
         <TextView
             android:id="@+id/author_key"
@@ -85,45 +98,51 @@
             android:text="@string/author"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
-        <TextView
-            android:id="@+id/cdt_key"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:gravity="end"
-            android:text="@string/cdt"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-        <TextView
-            android:id="@+id/cdt_val"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:gravity="end"
-            android:text="@string/tm_val"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
-
-        <TextView
-            android:id="@+id/score_key"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/avg"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-        <TextView
-            android:id="@+id/score_val"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="@string/avg"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
-
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/cont"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rvw" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/cont"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="5dp"
+                android:text="@string/rvw"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cdt_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="end"
+                    android:text="@string/cdt"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/cdt_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="end"
+                    android:text="@string/tm_val"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
