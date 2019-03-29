@@ -106,7 +106,7 @@ public class RvwController {
   }
   
   /**
-   * rvwList를 json으 전달
+   * rvwList를 json 전달
    * @param rst_no  - target rst의 rst_no
    * @return
    * @throws Exception

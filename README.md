@@ -12,7 +12,7 @@ Rvw Detail UI 성공.
 
 ### 11:00
 
-일주 수정
+일부 수정
 
 ### 11:35
 
@@ -77,6 +77,7 @@ rvwPost Post Button 중복 클릭 방지.
 ### 16:00
 
 Intent로 객체 전달? 성공.
+- https://eunplay.tistory.com/28
 
 ### 17:30
 
@@ -94,6 +95,8 @@ onClickListener가 먹지 않은 이유는 어처구니 없게도 앞에 있는 
 ### 21:20
 
 팝업으로 activity 띄우기 예제
+- https://ghj1001020.tistory.com/9
+- https://arabiannight.tistory.com/entry/275
 
 ### 22:25
 
