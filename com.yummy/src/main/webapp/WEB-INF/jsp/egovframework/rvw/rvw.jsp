@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring"  uri="http://www.springframework.org/tags"%>
 <%-- 
 /WEB-INF/jsp/egovframework/rvw/rvw.jsp
+rst에 대한 rvw list를 출력하는 jsp
  --%>
 <hr>
 <div class="inner_container">

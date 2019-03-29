@@ -48,15 +48,4 @@ public class HomeController {
 
     return "home";
   }
-  
-  @ResponseBody
-  @RequestMapping(value = "/test", produces="application/json;charset=utf-8" )
-  public String home(
-      Locale locale
-      ) throws Exception {
-    logger.info("TEST! The client locale is {}.", locale);
-    String res = "response { response : \'HELL\' ";
-        res += "}";
-    return res;
-  }
 }

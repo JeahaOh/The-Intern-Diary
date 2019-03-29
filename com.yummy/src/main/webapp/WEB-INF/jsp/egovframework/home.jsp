@@ -33,6 +33,7 @@
     <div class="main">
       <div class="login">
         <h1><spring:message code="title.index"/></h1>
+        <%-- LOGIN을 위해 회원의 ID와 PASSWORD를 받는 FORM --%>
         <form action="#" method="post" id="userForm" class="login">
           <div>
             <label for="id">ID</label>
@@ -47,6 +48,8 @@
             <button type="button" id="submit">로그인</button>
           </div>
         </form>
+        <%-- LOGIN을 위해 회원의 ID와 PASSWORD를 받는 FORM --%>
+        <%-- Spring Server의 시간을 알려줌. --%>
         <p>The time on the server is ${serverTime}.</p>
       </div>
     </div>

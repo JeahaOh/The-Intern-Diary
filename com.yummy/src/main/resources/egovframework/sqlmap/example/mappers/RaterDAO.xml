@@ -3,7 +3,13 @@
   "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  <!-- 
+      RaterDAO SQL 파일
+   -->
+  
 <mapper namespace="egovframework.rater.dao.RaterDAO">
+
+  <!-- rst_no에 해당하는 후기 정보들을 DB에서 Rater 객체로 가져옴 -->
   <select id="getRate" parameterType="int" resultType="rater">
     SELECT
           SUM(score)      AS sum,

@@ -46,6 +46,7 @@ public class RetrofitClient {
     public static String getRstImgUrl() {
         return url + "/yummy/resources/images/rst/";
     }
+    //  rvw의 이미지를 저장하는 base url
     public static String getRvwImgUrl() {
         return url + "/yummy/resources/images/rvw/";
     }

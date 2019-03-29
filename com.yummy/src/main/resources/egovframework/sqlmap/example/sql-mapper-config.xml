@@ -11,6 +11,7 @@
     <typeAlias alias="sampleVO"
       type="egovframework.example.sample.service.SampleVO" />
 
+    <!-- 각 package에 있는 vo 파일과 매치시킴. -->
     <typeAlias alias="memb" type="egovframework.memb.vo.Memb" />
     <typeAlias alias="rst" type="egovframework.rst.vo.Rst" />
     <typeAlias alias="catag" type="egovframework.catag.vo.Catag"/>

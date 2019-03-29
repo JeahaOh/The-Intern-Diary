@@ -59,22 +59,23 @@
           </colgroup>
           
           <tr>
-            <td class="tbtd_caption_re" colspan="3">
-            </td>
+            <td class="tbtd_caption_re" colspan="3"></td>
+            <td class="tbtd_caption_re"></td>
             <td class="tbtd_caption_re">
+              <%-- 읽기 수정용 이라면.  --%>
               <c:if test="${mode eq 'Modify'}">
+                <%-- rst_no를 hidden 값으로 넣어둠. --%>
                 <input type="hidden" id="rst_no" name="rst_no" value="${rst.rst_no}" required>
-              </c:if>
-            </td>
-            <td class="tbtd_caption_re">
-              <c:if test="${mode eq 'Modify'}">
+                <%-- 수정 버튼 --%>
                 <button type="button" id="update_rst" onclick="updateRst()">
                   <spring:message code="button.modify"/>
                 </button>
+                <%-- 삭제 버튼 --%>
                 <button type="button" id="remove_rst" class="rst_form" onclick="removeRst()">
                   <spring:message code="button.delete"/>
                 </button>
               </c:if>
+              <%-- 읽기 수정용 이라면.  --%>
             </td>
             <td class="tbtd_caption_re">
               <button type="button" id="save_rst" class="rst_form" onclick="saveRst()">
@@ -256,18 +257,16 @@
       </div>
       <c:if test="${mode eq 'Modify'}">
         <%-- ======= RVW INCLUDE ======= --%>
-          <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvw.jsp" flush="true"/>
+        <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
         <%-- ==== RVW Modal INCLUDE ==== --%>
-          <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
+        <jsp:include page="/WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp" flush="true"/>
+        <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>
       </c:if>
-      </div>
+    </div>
     <%-- ==== FOOTER ==== --%>
-      <jsp:include page="/WEB-INF/jsp/egovframework/include/FOOTER.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/egovframework/include/FOOTER.jsp" flush="true"/>
     <script src="<c:url value='/js/rstDetail.js'/>" charset="utf-8"></script>
-    <c:if test="${mode eq 'Modify'}">
-      <script src="<c:url value='/js/rvw.js'/>" charset="utf-8"></script>
-      <script src="<c:url value='/js/modal.js'/>" charset="utf-8"></script>
-    </c:if>
     <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
   </body>
 </html>

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c"     uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
 /WEB-INF/jsp/egovframework/rvw/rvwDetailModal.jsp
+rvw 상세 정보를 보여주는 Modal.
+수정 삭제가 가능함.
  --%>
 <%-- Modal --%>
 <div id="modal" class="modal">

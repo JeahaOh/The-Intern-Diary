@@ -1,7 +1,6 @@
 package egovframework.rst.vo;
 
 public class Rst {
-  
   int rst_no;         //  레스토랑 번호
   String rst_name;    //  레스토랑 이름
   int star;           //  미슐랭 별점
@@ -19,9 +18,7 @@ public class Rst {
   
   String rst_phot;    //  식당 사진
   
-  int min_price;
-  
-  //String[] pht_nm;
+  int min_price;      //  최소 가격의 메뉴
   
   public Rst() {}
 
@@ -71,40 +68,36 @@ public class Rst {
   public String getStarGrade() {
     switch(star) {
       case 3:
-        starGrade = "3 Star";
-        break;
+        return "3 Star";
       case 2:
-        starGrade = "2 Star";
-        break;
+        return "2 Star";
       case 1:
-        starGrade = "1 Star";
-        break;
+        return "1 Star";
       case -1:
-        starGrade = "Bib Grourmand";
-        break;
+        return "Bib Grourmand";
       case -2:
-        starGrade = "The Plate";
-        break;
+        return "The Plate";
     }
     return starGrade;
   }
 
   public String getLoc() {
-    if( loc == null || loc == "" ) {
+    if( loc == null || loc.equals("") ) {
       return "분당구";
     }
     return loc;
   }
 
   public void setLoc(String loc) {
-    if( loc == null || loc == "" ) {
+    if( loc == null || loc.equals("") ) {
       this.loc = "분당구";
+      return;
     }
     this.loc = loc;
   }
 
   public String getLoc_dtl() {
-    if( loc_dtl == null || loc_dtl == "" ) {
+    if( loc_dtl == null || loc_dtl.equals("") ) {
       return "성남대로 925번길 41";
     }
     return loc_dtl;
@@ -113,6 +106,7 @@ public class Rst {
   public void setLoc_dtl(String loc_dtl) {
     if( loc_dtl == null || loc_dtl == "" ) {
       this.loc_dtl = "성남대로 925번길 41";
+      return;
     }
     this.loc_dtl = loc_dtl;
   }
@@ -143,12 +137,16 @@ public class Rst {
 
   public String getTel() {
     if(this.tel == null) {
-      this.tel = "-";
+      return "-";
     }
     return tel;
   }
 
   public void setTel(String tel) {
+    if( tel == null || tel.equals("") ) {
+      this.tel = "-";
+      return;
+    }
     this.tel = tel;
   }
 
@@ -157,7 +155,7 @@ public class Rst {
   }
 
   public void setOpn_tm(String opn_tm) {
-    if ( opn_tm == "" || opn_tm == null || opn_tm.length() < 0 ) {
+    if ( opn_tm.equals("") || opn_tm == null || opn_tm.length() < 0 ) {
       this.opn_tm = "00:00";
     } else {
       this.opn_tm = opn_tm;
@@ -166,14 +164,14 @@ public class Rst {
 
   public String getBrck_tm() {
     if( brck_tm == dnnr_tm ) {
-      brck_tm = "00:00";
+      return null;
     }
     return brck_tm;
   }
 
   public void setBrck_tm(String brck_tm) {
-    if ( brck_tm == "" || brck_tm == null || brck_tm.length() < 0 ) {
-      this.brck_tm = "00:00";
+    if ( brck_tm.equals("") || brck_tm == null || brck_tm.length() < 0 ) {
+      this.brck_tm = null;
     } else {
       this.brck_tm = brck_tm;
     }
@@ -181,14 +179,14 @@ public class Rst {
 
   public String getDnnr_tm() {
     if( brck_tm == dnnr_tm ) {
-      dnnr_tm = "00:00";
+      return null;
     }
     return dnnr_tm;
   }
 
   public void setDnnr_tm(String dnnr_tm) {
-    if ( dnnr_tm == "" || dnnr_tm == null  || dnnr_tm.length() < 0 ) {
-      this.dnnr_tm = "00:00";
+    if ( dnnr_tm.equals("") || dnnr_tm == null  || dnnr_tm.length() < 0 ) {
+      this.dnnr_tm = null;
     } else {
       this.dnnr_tm = dnnr_tm;
     }
@@ -228,7 +226,7 @@ public class Rst {
 
   @Override
   public String toString() {
-    return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star /* ", starGrade=" + starGrade*/
+    return "\nRst\t==>>\t[rst_no=" + rst_no + ", rst_name=" + rst_name + ", star=" + star
         + ", loc=" + loc+ ", loc_dtl=" + loc_dtl
         + ", catag_no=" + catag_no + ", upper_no=" + upper_no + ", catag_nm=" + catag_nm
         + ", opn_tm=" + opn_tm + ", brck_tm=" + brck_tm + ", dnnr_tm=" + dnnr_tm + ", lo_tm=" + lo_tm

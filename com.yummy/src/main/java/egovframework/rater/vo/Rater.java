@@ -102,8 +102,6 @@ public class Rater {
   }
 
   public float getAvg() {
-//    int temp = (int) avg * 100;
-//    this.avg = (float) ( temp / 100.0 );
     return avg;
   }
   
@@ -124,6 +122,4 @@ public class Rater {
     return "\n Rater [cnt=" + cnt + ", sum=" + sum + ", avg=" + avg + ", grade=" + grade + ", best="
         + best + ", good=" + good + ", soso=" + soso + ", bad=" + bad + ", worst=" + worst + ", wannago=" + wannago + " ]";
   }
-  
-  
 }

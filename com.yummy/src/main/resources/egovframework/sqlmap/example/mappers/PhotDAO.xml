@@ -3,6 +3,10 @@
   "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  <!-- 
+      PhotDAO SQL 파일
+   -->
+  
 <mapper namespace="egovframework.phot.dao.PhotDAO">
   <!-- phot_no의 유무 확인. -->
   <select id="getPhotNo" parameterType="String" resultType="String">

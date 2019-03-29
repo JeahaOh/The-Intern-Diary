@@ -48,6 +48,7 @@
           <col width="80" />
           <col width="120" />
         </colgroup>
+        <%-- Table 1번째 row Rst 신규 등록을 위한 페이지로 넘어가는 버튼만 위치하고 있음. --%>
         <tr>
           <td colspan="4"></td>
           <td>
@@ -56,6 +57,7 @@
             </button>
           </td>
         </tr>
+        <%-- Rst에 대한 요약이 들어가는 row --%>
         <tr>
           <th align="center"><spring:message code="title.rst.id" /></th>
           <th align="center"><spring:message code="title.rst.name" /></th>
@@ -63,13 +65,14 @@
           <th align="center"><spring:message code="title.rst.loc" /></th>
           <th align="center"><spring:message code="title.rst.catag" /></th>
         </tr>
+        <%-- Controller에서 Model로 전해준 rst의 정보들을 c:forEach 문으로 출력함. --%>
         <c:forEach var="result" items="${rstList}" varStatus="status">
           <tr onClick="toRstDetail('${result.rst_no}');">
-            <%--
+            <%-- paging 처리를 위한 것.
             <td align="center" class="listtd">
-              <c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" />
+              <c:out value="${paginationInfo.totalRecordCount+1 - ((result.pageIndex-1) * result.pageSize + status.count)}" />
             </td>
-            --%>
+             --%>
             <td align="center" class="listtd">
               <a href="javascript:fn_egov_select('<c:out value="${result.rst_no}"/>')">
                 <c:out value="${result.rst_no}" />
@@ -117,7 +120,9 @@
         console.log( data );
         location.href = "/yummy/rst/detail?id=" + data
       }
-    
+      /**
+       * Rst 신규 등록 페이지로 이동하기 위한 function
+       */
       function createRst() {
         location.href = "/yummy/rst/save"
       }

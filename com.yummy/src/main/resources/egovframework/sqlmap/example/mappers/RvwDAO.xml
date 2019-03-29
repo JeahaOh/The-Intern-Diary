@@ -3,6 +3,10 @@
   "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  <!-- 
+      RvwDAO SQL 파일
+   -->
+   
 <mapper namespace="egovframework.rvw.dao.RvwDAO">
   
   <!--  rst_no에 대한 rvw List 반환 -->

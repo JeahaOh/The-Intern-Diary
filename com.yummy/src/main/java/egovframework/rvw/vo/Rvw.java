@@ -1,7 +1,18 @@
 package egovframework.rvw.vo;
 
+/**
+ * @Class Name  : Rvw.java
+ * @Discription : Rvw Class rvw 테이블과 연결되는 리뷰 클래스
+ * @ @ 수정일 수정자 수정내용 @ --------- --------- ------------------------------- @ 2019.03.07 최초생성
+ *
+ * @author 제하
+ * @since 2019. 03.07
+ * @version 1.0
+ * @see
+ *
+ *      Copyright (C) by JeahaOh All right reserved.
+ */
 public class Rvw {
-  
   
   int rvw_no;       //  리뷰 번호
   int rst_no;       //  레스토랑 번호

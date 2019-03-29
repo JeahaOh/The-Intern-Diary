@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
+<!-- 
+    Log에 관해 설정해 주는 XML
+ -->
 <Configuration>
   <include resource="org/springframework/boot/logging/logback/base.xml" />
   

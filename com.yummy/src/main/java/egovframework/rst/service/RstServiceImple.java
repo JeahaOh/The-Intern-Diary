@@ -69,11 +69,9 @@ public class RstServiceImple implements RstService {
     if( rst.getRst_no() == 0 ){
       rst.setRst_no( rstDao.getLastRstNo() + 1 );
     }
-    
     if ( rstDao.save(rst) ) {
       return rst.getRst_no();
     }
-    
     return 0;
   }
   
