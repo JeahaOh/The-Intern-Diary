@@ -4,8 +4,10 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,8 +92,23 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         starGrade.setText( intent.getString( "starGrade") );
 
         //  전화번호 출력
+        final String tno = intent.getString( "tel");
         TextView tel = findViewById( R.id.telVal );
         tel.setText( intent.getString( "tel") );
+
+        ViewGroup tel_no = (ViewGroup) findViewById(R.id.tel);
+        tel_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent call = new Intent(Intent.ACTION_DIAL);
+                call.setData(Uri.parse("tel:"+tno));
+                try{
+                    startActivity(call);
+                }   catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         //  brck_tm과 dnnr_tm이 같다면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
         if( intent.getString("brck_tm").equals( intent.getString( "dnnr_tm") ) ) {
