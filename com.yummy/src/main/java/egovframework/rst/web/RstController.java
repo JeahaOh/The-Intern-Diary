@@ -93,9 +93,9 @@ public class RstController {
   @ResponseBody
   @RequestMapping(value="/rstList", method= RequestMethod.GET)
   public List<Rst> list() throws Exception {
-    
-    logger.info("\n\trst/rstList return rstService.getList() {}");
-    return rstService.getList();
+    List<Rst> list = rstService.getList();
+    logger.info("\n\trst/rstList return {} rsts...", list.size() );
+    return list;
   }
   
   

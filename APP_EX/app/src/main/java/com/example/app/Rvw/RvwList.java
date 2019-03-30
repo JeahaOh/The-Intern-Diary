@@ -1,13 +1,11 @@
 package com.example.app.Rvw;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,7 +30,8 @@ public class RvwList extends AppCompatActivity {
 
     private Rater rate;
 
-    private static Boolean PostOrRead = false;
+    //  resume시 POST가 true이면 (rvwPost Activity를 하고 왔다면.) 새로고침함.
+    private static Boolean POST = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +48,8 @@ public class RvwList extends AppCompatActivity {
         rst_no = intent.getInt( "rst_no" );
         rst_nm = intent.getString( "rst_name" );
 
-
         final TextView rst_name = findViewById( R.id.rst_name );
         rst_name.setText( rst_nm );
-
 
         TextView rvw_cnt = findViewById( R.id.rvw_cnt);
         rvw_cnt.setText( rate.getCnt() + "" );
@@ -83,7 +80,7 @@ public class RvwList extends AppCompatActivity {
                 //  createRvw 인텐트에게 넘겨줄 데이터
                 createRvw.putExtra("rst_no", rst_no );
                 createRvw.putExtra( "rst_nm", rst_nm );
-                PostOrRead = true;
+                POST = true;
                 startActivity(createRvw);
             }
         });
@@ -93,7 +90,6 @@ public class RvwList extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.rvw_card_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
 
 
         /* 당겨서 새로고침을 하기 위한 SwipeRefreshLayout 객체 */
@@ -115,24 +111,16 @@ public class RvwList extends AppCompatActivity {
     //  페이지로 돌아 올 시 할 행동.
     public void onResume(){
         super.onResume();
-        //  페이지로 돌아 올 시 RVW List를 refresh함.
-        if(PostOrRead) {
+        //  RvwPost 후 페이지로 돌아 올 시 RVW List를 refresh함.
+        if(POST) {
             loadJSON(rst_no);
-            PostOrRead = false;
+            POST = false;
         }
     }
 
     private void loadJSON(int rst_no) {
-        //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
-        Retrofit retrofit = RetrofitClient.getClient();
-
-        //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
-        RequestInterface request = retrofit.create(RequestInterface.class);
-
-        //  request의 getRstJSONList()를 통하여 HTTP 요청을 서버에 보냄.
-        //  Call : HTTP 요청을 보내고 응답을 받는 retrofit interface.
+        RequestInterface request = RetrofitClient.getClient().create(RequestInterface.class);
         Call<List<Rvw>> call = request.getRvwList(rst_no);
-
         call.enqueue( new Callback<List<Rvw>> () {
 
             @Override

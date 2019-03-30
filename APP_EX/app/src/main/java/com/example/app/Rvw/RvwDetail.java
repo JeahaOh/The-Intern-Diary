@@ -20,6 +20,7 @@ public class RvwDetail extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //  RvwDetail의 UI Theme , Style을 바꿈.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setTheme(android.R.style.Theme_NoTitleBar_Fullscreen);
         setContentView(R.layout.activity_rvw_detail);
@@ -28,8 +29,6 @@ public class RvwDetail extends Activity {
 
         rst_name = rvwIntent.getStringExtra("rst_name");
         rvw = (Rvw) rvwIntent.getSerializableExtra("rvw");
-        System.out.println(rvw.toString());
-
 
         initView();
     }
@@ -39,12 +38,12 @@ public class RvwDetail extends Activity {
         TextView author_id, cdt_val, cont, rst_name_val;
         RatingBar score_val;
 
+        //  화면 구성
         rst_name_val = findViewById(R.id.rst_name_val);
         rst_name_val.setText(rst_name);
 
         String url = RetrofitClient.getRvwImgUrl();
         url += rvw.getRvw_phot();
-
         rvw_phot = findViewById(R.id.rvw_phot);
         Picasso.with(this)
                 .load(url)

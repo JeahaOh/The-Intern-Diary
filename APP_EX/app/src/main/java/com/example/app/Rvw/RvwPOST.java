@@ -64,18 +64,18 @@ public class RvwPOST extends AppCompatActivity {
 
     int score = 3;          //  RatingBar 초기값.
 
-    private File tempFile;  //  보낼 사진 File의 껍데기, 앨범 또는 카메라에서 가져온 이미지를 저장할 변수.
-    /* onActivityResult에서 requestCode로 반환 되는 값. */
+    //  보낼 사진 File의 껍데기, 앨범 또는 카메라에서 가져온 이미지를 저장할 변수.
+    private File tempFile;
+
+    // onActivityResult에서 requestCode로 반환 되는 값.
     private static final int PICK_FROM_ALBUM = 1;
     private static final int PICK_FROM_CAMERA = 2;
-    /* 카메라, 사진첩 접근 권한 */
+    // 카메라, 사진첩 접근 권한
     private Boolean isPermission = true;
 
-    //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
-    Retrofit retrofit = RetrofitClient.getClient();
-
-    //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
-    RequestInterface request = retrofit.create(RequestInterface.class);
+    //  request 객체를 밖으로 뺐음.
+    private static final RequestInterface request =
+            RetrofitClient.getClient().create(RequestInterface.class);
 
     //  빠른시간 안에 중복 클릭을 방지하기 위한 기준 시간 변수.
     private static final long MIN_CLICK_INTERVAL = 600;
@@ -87,25 +87,23 @@ public class RvwPOST extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rvw_post);
 
-        //  화면 시작시 권한을 요청 받음.
+        //  화면 시작시 tedPermission()를 실행해서 권한을 확인함.
         tedPermission();
 
         //  데이터 받기
         Bundle intent = getIntent().getExtras();
-        //  rst_no
         final int rst_no = intent.getInt( "rst_no" );
-        //  rst_name
         final String rst_nm = intent.getString("rst_nm");
         rst_title = findViewById(R.id.rst_title);
         rst_title.setText( rst_nm + " 후기" );
 
         // 레이아웃과 변수 연결
-        ratingBar = findViewById(R.id.ratingBar);       //  Rating Bar
-        rateResult = findViewById(R.id.rateResult);     //  Rating Bar의 Sub Text
-        cameraBtn = findViewById(R.id.takePhoto);       //  카메라 버튼
-        loadPhoto = findViewById(R.id.loadPhoto);       //  사진 가져오기 버튼
-        imageView = findViewById(R.id.phot_preview);    //  사진 미리보기 view
-        submit = findViewById(R.id.submit);             //  submit 버튼
+        ratingBar  = findViewById(R.id.ratingBar);       //  Rating Bar
+        rateResult = findViewById(R.id.rateResult);      //  Rating Bar의 Sub Text
+        cameraBtn  = findViewById(R.id.takePhoto);       //  카메라 버튼
+        loadPhoto  = findViewById(R.id.loadPhoto);       //  사진 가져오기 버튼
+        imageView  = findViewById(R.id.phot_preview);    //  사진 미리보기 view
+        submit     = findViewById(R.id.submit);          //  submit 버튼
 
 
         //  ratingBar 변경 리스너
@@ -159,11 +157,10 @@ public class RvwPOST extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                System.out.println("\n\tSUBMIT BTN CLICKED!");
-
-                //  현제 시간.
+                //  여기서 부터 중복 클릭 방지를 위한 로직
+                //  현재 시간.
                 long currentClickTime = SystemClock.uptimeMillis();
-                //  현제 시간에서 마지막 시간을 뺀 elapsedTime.
+                //  현재 시간에서 마지막 시간을 뺀 elapsedTime.
                 long elapsedTime = currentClickTime - mLastClickTime;
                 mLastClickTime = currentClickTime;
                 //  elapsedTime가 기준 시간보다 늦다면 리턴.
@@ -171,7 +168,9 @@ public class RvwPOST extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "fastClick", Toast.LENGTH_LONG);
                     return;
                 }
+                //  여기까지 중복 클릭 방지를 위한 로직
 
+                //  여기부터 RVW의 유효성 겁사.
                 //  사진이 없다면 toast와 함께 return.
                 if( tempFile == null || tempFile.length() <= 0) {
                     makeText( getApplicationContext(),
@@ -187,8 +186,10 @@ public class RvwPOST extends AppCompatActivity {
                             R.string.nullCont, Toast.LENGTH_SHORT ).show();
                     return;
                 }
+                //  여기까지 RVW의 유효성 겁사.
 
-                //  RequestBody로 data 포장.
+
+                //  RequestBody로 전송할 data 포장.
                 RequestBody requestFile
                         = RequestBody.create(MediaType.parse("multipart/form-data"), tempFile );
                 MultipartBody.Part phot
@@ -223,7 +224,7 @@ public class RvwPOST extends AppCompatActivity {
         });
     }
 
-    /*  권한 요청을 위한 method  */
+    /* 여기 부터 카메라 또는 갤러리 접근을 위한 권한 확인 method */
     private void tedPermission() {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
@@ -246,7 +247,8 @@ public class RvwPOST extends AppCompatActivity {
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
     }
-    /*  권한 요청을 위한 method  */
+    /* 여기 까지 카메라 또는 갤러리 접근을 위한 권한 확인 method */
+
 
     /* 앨범에서 이미지를 가져오기 위한 method */
     private void goToAlbum() {
@@ -256,6 +258,7 @@ public class RvwPOST extends AppCompatActivity {
         startActivityForResult(intent, PICK_FROM_ALBUM);
     }
     /* 앨범에서 이미지를 가져오기 위한 method */
+
 
     /* 카메라에서 이미지를 가져오기 위한 method */
     private void takePhoto() {
@@ -269,7 +272,7 @@ public class RvwPOST extends AppCompatActivity {
             finish();
             e.printStackTrace();
         }
-        if (tempFile != null) {
+        if ( tempFile != null ) {
             /** tempFile 의 Uri 경로를 intent에 추가해 줘야 함.
              *  카메라에서 찍은 사진이 저장될 주소임.
              *  tempFile 을 전역변수로 해서 사용하기 때문에 이 tempFile 에 카메라에서 촬영한 이미지를 넣어 줄것임.
@@ -281,13 +284,10 @@ public class RvwPOST extends AppCompatActivity {
                     "com.example.app.fileprovider", tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             startActivityForResult(intent, PICK_FROM_CAMERA);
-
             } else {
-
                 Uri photoUri = Uri.fromFile(tempFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(intent, PICK_FROM_CAMERA);
-
             }
         }
     }

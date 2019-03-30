@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("1인당 가격");
 
         final String[] items = { "1 만원 이하", "1 만원 대", "2 만원 대", "3 만원 대", "4 만원 대", "5 만원 이상" };
-        final boolean[] checkedItems = { true, true, true, true, true, true };
+        final boolean[] checkedItems = { false, false, false, false, false, false };
 
         builder.setMultiChoiceItems( items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
 
@@ -130,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
                     if( checkedItems[i] ) {
                         str += items[i];
                         selectList.add(i);
-                        if (i != items.length-1) {
-                            str += ", ";
+                        if (i != items.length - 1) {
+                            str += "\n";
                         }
                     }
                 }
                 Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
                 if(selectList.size() == 0){
-                    Toast.makeText(MainActivity.this, "조건을 넣으세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "필터 조건이 없다면\n모든 레스토랑 목록을 보여줍니다.", Toast.LENGTH_LONG).show();
                     return;
                 }
                 adapter.filter(selectList);

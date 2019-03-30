@@ -103,10 +103,9 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
             }
         });
 
-        //  brck_tm과 dnnr_tm이 같다면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
+        //  brck_tm과 dnnr_tm이 null이거나 같으면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
         String brck = rst.getBrck_tm();
         String dnnr = rst.getDnnr_tm();
-        System.out.println( brck + " / " + dnnr );
 
         if( brck == null || brck.equals( dnnr ) ) {
             Log.i( "brck == dnnr", brck + dnnr );
@@ -137,9 +136,11 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
-        /*  구글 지도를 쓰기위한 Fragment  */
 
-        /*  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener  */
+
+        /**
+         *  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener
+         */
         ViewGroup layout = (ViewGroup) findViewById( R.id.rst_rvw_info );
         layout.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -147,9 +148,11 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
                 toRvwList(v);
             }
         });
-        /*  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener  */
 
-        /* 후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener */
+
+        /**
+         *  후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener
+         */
         Button toRvwListBtn = findViewById( R.id.toRvwListBtn );
         toRvwListBtn.setOnClickListener( new View.OnClickListener(){
            @Override
@@ -157,54 +160,36 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
                toRvwList(v);
            }
         });
-        /* 후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener */
+
 
 
         loadJSON( rst.getRst_no() );
     }
 
     private void loadJSON( int rst_no ){
-
-        //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
         Retrofit retrofit = RetrofitClient.getClient();
-
-        //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
         RequestInterface request = retrofit.create(RequestInterface.class);
-
-
-        //  request의 getRstJSONList()를 통하여 HTTP 요청을 서버에 보냄.
-        //  Call : HTTP 요청을 보내고 응답을 받는 retrofit interface.
         Call<Rater> call = request.getRate(rst_no);
-
         call.enqueue( new Callback<Rater>() {
-            //  요청이 성공하고 응답이 수신되면 onResponse() callback Method 가 실행되고, 실패하면 onFailure가 실행됨.
 
             @Override
             public void onResponse( Call<Rater> call, Response<Rater> response ) {
-
+                //  Rater 객체를 받아와서 화면에 값을 출력함.
                 rate = response.body();
-
                 TextView cnt  = (TextView) findViewById( R.id.cnt );
                 cnt.setText( rate.getCnt() + "건" );
-
                 TextView avg  = (TextView) findViewById( R.id.avg );
                 avg.setText( rate.getAvg() + "점" );
-
                 TextView  grade = (TextView) findViewById( R.id.grade );
                 grade.setText( rate.getGrade() + "점" );
-
                 TextView  best = (TextView) findViewById( R.id.best );
                 best.setText( rate.getBest() + "건" );
-
                 TextView  good = (TextView) findViewById( R.id.good );
                 good.setText( rate.getGood() + "건" );
-
                 TextView soso = (TextView) findViewById( R.id.soso );
                 soso.setText( rate.getSoso() + "건" );
-
                 TextView bad = (TextView) findViewById( R.id.bad );
                 bad.setText( rate.getBad() + "건" );
-
                 TextView worst = (TextView) findViewById( R.id.worst);
                 worst.setText( rate.getWorst() + "건" );
             }
@@ -216,15 +201,22 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         });
     }
 
-    /*  구글 지도 생성시 하는 작업  */
+    /**
+     *  구글 지도 생성시 하는 작업
+     *  rst에서 주소를 가져옴.
+     *
+     *  주소에 맞는 위_경도 를 받아와서 화면에 marker를 찍어줌.
+     *  마커를 클릭하면 가게 이름과, 전화번호를 뜨게 함.
+     */
     @Override
     public void onMapReady( GoogleMap map ) {
         geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
-        double lati = 0, longti = 0;            // 위도, 경도 변수 선언
+        double lati = 0, longti = 0;            // 위도, 경도 변수 선언과 초기화
         List<Address> addressList = null;
 
         address = rst.getLoc_dtl();
 
+        //  주소 값이 null이거나 없거나 1자리 미만일 경우 회사를 찍어줌.
         if( address == null || address.equals("") || address.length() < 3 ) {
             address = "성남대로 925번길 41";
         }
@@ -245,7 +237,7 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         LatLng marker = new LatLng( lati, longti );
 
         markerOptions.position( marker );
-        markerOptions.title( rst.getRst_name() );       // 마커 클릭하면 가게 이름이 뜨도록 함.
+        markerOptions.title( rst.getRst_name() );
         markerOptions.snippet( rst.getTel() );
         map.addMarker( markerOptions );
 
@@ -253,6 +245,11 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         map.animateCamera( CameraUpdateFactory.zoomTo(15) );
     }
     /*  구글 지도 생성시 하는 작업  */
+
+    /**
+     * rater 혹은 호기 보기 버튼을 클릭하면 실행하는 메소드.
+     * rvwList로 화면 전환.
+     */
 
     private void toRvwList(View v){
         //  인텐트 선언

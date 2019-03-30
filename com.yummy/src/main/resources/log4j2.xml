@@ -43,7 +43,7 @@
       <AppenderRef ref="console" />
     </logger>
     
-    <Root level="OFF">
+    <Root level="WARN">
       <AppenderRef ref="console" />
     </Root>
   </Loggers>

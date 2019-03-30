@@ -87,35 +87,19 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         viewHolder.rst_loc.setText( rst.getLoc() );
         viewHolder.star.setText( rst.getStarGrade() );
 
-//        viewHolder.rst_name.setText( showList.get(i).getRst_name() );
-//        viewHolder.catag_nm.setText( showList.get(i).getCatag_nm() );
-//        viewHolder.rst_loc.setText( showList.get(i).getLoc() );
-//        viewHolder.star.setText( showList.get(i).getStarGrade() );
-
         //  onClickListener와 원하는 화면을 넘겨주는 Intent를 넣어?
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //  인텐트 선언.
-                Intent intent = new Intent(v.getContext(), RstDetail.class);
+                Intent intent = new Intent( v.getContext(), RstDetail.class );
 
                 //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
                 rst = showList.get(i);
-                intent.putExtra("rst", rst);
-
-//            intent.putExtra( "rst_no", showList.get(i).getRst_no() );
-//            intent.putExtra( "rst_name", showList.get(i).getRst_name() );
-//            intent.putExtra( "loc_dtl", showList.get(i).getLoc_dtl() );
-//            intent.putExtra( "opn_tm", showList.get(i).getOpn_tm() );
-//            intent.putExtra( "brck_tm", showList.get(i).getBrck_tm() );
-//            intent.putExtra( "dnnr_tm", showList.get(i).getDnnr_tm() );
-//            intent.putExtra( "lo_tm", showList.get(i).getLo_tm() );
-//            intent.putExtra( "rst_phot", showList.get(i).getRst_phot() );
-//            intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
-//            intent.putExtra( "tel", showList.get(i).getTel() );
+                intent.putExtra("rst", rst );
 
             // 인텐트 시작
-            v.getContext().startActivity(intent);
+            v.getContext().startActivity( intent );
             }
         });
     }
@@ -133,15 +117,18 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         public ViewHolder( View view ) {
             super( view );
 
-            rst_name = (TextView)view.findViewById( R.id.rst_name );
-            catag_nm = (TextView)view.findViewById( R.id.catag_nm );
-            rst_loc = (TextView)view.findViewById( R.id.rst_loc );
-            star = (TextView)view.findViewById( R.id.star );
+            rst_name = view.findViewById( R.id.rst_name );
+            catag_nm = view.findViewById( R.id.catag_nm );
+            rst_loc  = view.findViewById( R.id.rst_loc );
+            star     = view.findViewById( R.id.star );
 
         }
     }
 
-    //  List를 min_price로 filter하는 메소드
+    /**
+     * List를 min_price로 filter하는 메소드
+     * 처음에 어려운줄 알고 고민을 엄청 했는데 생각보다 별거 아니여서 현타 왔었음.
+     */
     public void filter( ArrayList<Integer> selectList ){
         Log.d("filter recieve \n=>", selectList.toString() );
         //  필터 메소드를 호출 할 경우 화면에 보이는 rstList를 비움.

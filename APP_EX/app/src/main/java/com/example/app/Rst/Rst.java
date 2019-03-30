@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Spring com.yummy의 rst와 맞대응 하는 VO 객체.
+ * Spring com.yummy의 Rst와 맞대응 하는 VO 객체.
  */
 public class Rst implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -75,14 +75,26 @@ public class Rst implements Serializable {
     @SerializedName("min_price")
     private int min_price;      //  메뉴 최저 가격
 
+    public String getLoc() {
+        if( loc == null || loc.equals("") ) {
+            return "분당구";
+        }
+        return loc;
+    }
+
+    public String getLoc_dtl() {
+        if( loc_dtl == null || loc_dtl.equals("") || loc_dtl.length() < 3 ) {
+            return "성남대로 925번길 41";
+        }
+        return loc_dtl;
+    }
+
     public int getRst_no()      { return  rst_no; }
     public String getRst_name() {
         return rst_name;
     }
     public int getStar()        { return star; }
     public String getStarGrade(){ return starGrade; }
-    public String getLoc()      { return loc; }
-    public String getLoc_dtl()  { return loc_dtl; }
     public String getCatag_nm() { return catag_nm; }
     public String getTel()      { return tel; }
     public String getOpn_tm()   { return opn_tm; }
