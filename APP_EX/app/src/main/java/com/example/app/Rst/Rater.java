@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * Spring com.yummy 에서 Rater와 맞 대응하는 VO 객체.
+ */
 public class Rater implements Serializable {
     private static final long serialversionUID = 1L;
     //  해당 식당에 대한 리뷰의 수와 평점의 합

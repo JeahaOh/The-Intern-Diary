@@ -37,30 +37,42 @@ import java.util.List;
 
 public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
-    Rater rate;
-    int rst_no;
-    String rst_nm;
+    private static Rst rst;
+    private static Rater rate;
 
     private Geocoder geocoder;
+    private static String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rst_detail);
 
+        Intent inten = getIntent();
+        rst = (Rst) inten.getSerializableExtra("rst");
+        System.out.println("!!RST IS CALLED!!");
+
         initViews();
     }
 
     private void initViews(){
+        System.out.println("!!INITVIEWS IS CALLED!!");
         //  mainActivity에서 받은 data를 가져옴.
-        Bundle intent = getIntent().getExtras();
-        rst_no = intent.getInt( "rst_no" );
-        rst_nm = intent.getString("rst_name");
+//        Bundle intent = getIntent().getExtras();
+//        Intent inten = getIntent();
+//        rst = (Rst) inten.getSerializableExtra("rst");
+
+
+//        Bundle intent = inten.getExtras();
+
+//        rst_no = intent.getInt( "rst_no" );
+//        rst_nm = intent.getString("rst_name");
 
         //  RetrofitClient Class에서 default url을 가져옴.
         String url = RetrofitClient.getRstImgUrl();
         //  image의 resource 경로와, image의 이름을 경로에 추가
-        url += intent.getString("rst_phot");
+//        url += intent.getString("rst_phot");
+        url += rst.getRst_phot();
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -73,31 +85,35 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
         //  식당 주소 출력
         TextView loc_dtl = findViewById( R.id.loc_dtl );
-        loc_dtl.setText( intent.getString( "loc_dtl") );
+//        loc_dtl.setText( intent.getString( "loc_dtl") );
+        loc_dtl.setText( rst.getLoc_dtl() );
 
         //  오픈시간 출력
         TextView opn_tm = findViewById( R.id.opn_tm );
-        opn_tm.setText( intent.getString( "opn_tm") );
+//        opn_tm.setText( intent.getString( "opn_tm") );
+        opn_tm.setText( rst.getOpn_tm() );
 
         //  주문 마감 시간 출력
         TextView lo_tm = findViewById( R.id.lo_tm );
-        lo_tm.setText( intent.getString( "lo_tm") );
+//        lo_tm.setText( intent.getString( "lo_tm") );
+        lo_tm.setText( rst.getLo_tm() );
 
         //  미슐랭 별점 출력
         TextView starGrade = findViewById( R.id.starValue );
-        starGrade.setText( intent.getString( "starGrade") );
+//        starGrade.setText( intent.getString( "starGrade") );
+        starGrade.setText( rst.getStarGrade() );
 
         //  전화번호 출력
-        final String tno = intent.getString( "tel");
-        TextView tel = findViewById( R.id.telVal );
-        tel.setText( intent.getString( "tel") );
+//        final String tno = intent.getString( "tel");
 
         ViewGroup tel_no = (ViewGroup) findViewById(R.id.tel);
+        TextView tel = findViewById( R.id.telVal );
+        tel.setText( rst.getTel() );
         tel_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent call = new Intent(Intent.ACTION_DIAL);
-                call.setData(Uri.parse("tel:"+tno));
+                call.setData( Uri.parse("tel:" + rst.getTel() ) );
                 try{
                     startActivity(call);
                 }   catch (Exception e){
@@ -107,8 +123,11 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         });
 
         //  brck_tm과 dnnr_tm이 같다면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
-        if( intent.getString("brck_tm").equals( intent.getString( "dnnr_tm") ) ) {
-            Log.i( intent.getString( "brck_tm"), "brck == dnnr" );
+        String brck = rst.getBrck_tm();
+        String dnnr = rst.getDnnr_tm();
+
+        if( brck.equals( dnnr ) ) {
+            Log.i( "brck == dnnr", brck + dnnr );
 
             TextView brck_tm = findViewById( R.id.brck_tm );
             brck_tm.setText("");
@@ -117,18 +136,18 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
             dnnr_tm.setText("");
         }   else {
             TextView brck_tm = findViewById( R.id.brck_tm );
-            brck_tm.setText( intent.getString( "brck_tm") );
+            brck_tm.setText( brck );
 
             TextView dnnr_tm = findViewById( R.id.dnnr_tm );
-            dnnr_tm.setText( intent.getString( "dnnr_tm") );
+            dnnr_tm.setText( dnnr );
         }
 
         //  식당 이름 출력
         final TextView rst_name = findViewById( R.id.rst_name );
-        rst_name.setText( rst_nm );
+        rst_name.setText( rst.getRst_name() );
+
 
         /*  구글 지도를 쓰기위한 Fragment  */
-
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
         //  OnMapReadyCallback를 implement 해서 onMapReady()가 있어야 쓸 수 있음.
@@ -157,7 +176,7 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         /* 후기 보기 버튼을 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener */
 
 
-        loadJSON( rst_no );
+        loadJSON( rst.getRst_no() );
     }
 
     private void loadJSON( int rst_no ){
@@ -215,17 +234,16 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     /*  구글 지도 생성시 하는 작업  */
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady( GoogleMap map ) {
+        System.out.println("!!MAP IS CALLED!!");
         geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
-        double lati = 0, longti = 0;    // 위도, 경도 변수 선언
+        double lati = 0, longti = 0;            // 위도, 경도 변수 선언
         List<Address> addressList = null;
-        String address;
 
-        Bundle intent = getIntent().getExtras();
-        if( intent.getString( "loc_dtl") != null || intent.getString( "loc_dtl") != "" ) {
-            address = intent.getString( "loc_dtl");
-        }   else {
-            address = "서울특별시 중구 명동 세종대로 110";
+        address = rst.getLoc_dtl();
+
+        if( address == null || address.equals("") ) {
+            address = "성남대로 925번길 41";
         }
 
         try{
@@ -234,23 +252,22 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
                     10);
         } catch (IOException e){
             e.printStackTrace();
-            Log.e("test","입출력 오류");
         }
 
         MarkerOptions markerOptions = new MarkerOptions();
-        if(addressList!=null){
-            lati = addressList.get(0).getLatitude();   // 해당 주소의 위도
-            longti = addressList.get(0).getLongitude();  // 해당 주소의 경도
+        if( addressList != null ) {
+            lati = addressList.get(0).getLatitude();    // 해당 주소의 위도
+            longti = addressList.get(0).getLongitude(); // 해당 주소의 경도
         }
-        LatLng marker = new LatLng(lati,longti);
+        LatLng marker = new LatLng( lati, longti );
 
-        markerOptions.position(marker);
-        markerOptions.title(intent.getString("hpt_name"));  // 마커 클릭하면 뜨는 정보
-        markerOptions.snippet(intent.getString("hpt_phone"));
-        map.addMarker(markerOptions);
+        markerOptions.position( marker );
+        markerOptions.title( rst.getRst_name() );       // 마커 클릭하면 가게 이름이 뜨도록 함.
+        markerOptions.snippet( rst.getTel() );
+        map.addMarker( markerOptions );
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(marker));
-        map.animateCamera(CameraUpdateFactory.zoomTo(15));
+        map.moveCamera( CameraUpdateFactory.newLatLng( marker ) );
+        map.animateCamera( CameraUpdateFactory.zoomTo(15) );
     }
     /*  구글 지도 생성시 하는 작업  */
 
@@ -259,13 +276,13 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         Intent rvwList = new Intent(v.getContext(), RvwList.class);
 
         //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
-        rvwList.putExtra("rst_no", rst_no );
-        rvwList.putExtra( "rst_name", rst_nm );
+        rvwList.putExtra("rst_no", rst.getRst_no() );
+        rvwList.putExtra( "rst_name", rst.getRst_name() );
 
         //  이 외의 넘겨줄 데이터?
         rvwList.putExtra("rate", rate);
 
         //  화면 넘김.
-        startActivity(rvwList);
+        startActivity( rvwList );
     }
 }

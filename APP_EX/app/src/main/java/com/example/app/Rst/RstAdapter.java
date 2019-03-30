@@ -40,6 +40,7 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     private List<Rst> originRstList;
     //  화면에 보여줄 rstList
     private ArrayList<Rst> showList;
+    private Rst rst;
 
 
     public RstAdapter( List<Rst> originRstList) {
@@ -79,10 +80,17 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         //  Adapter에게 받았던 ViewHolder 객체와 리스트에서 해당 ViewHolder의 위치를 인자로 전달받음.
         //  ViewHolder 안의 View에 데이터를 넣어줌.
         //  View에 들어 가는 내용을 정의 해 줌.
-        viewHolder.rst_name.setText( showList.get(i).getRst_name() );
-        viewHolder.catag_nm.setText( showList.get(i).getCatag_nm() );
-        viewHolder.rst_loc.setText( showList.get(i).getLoc() );
-        viewHolder.star.setText( showList.get(i).getStarGrade() );
+        rst = showList.get(i);
+
+        viewHolder.rst_name.setText( rst.getRst_name() );
+        viewHolder.catag_nm.setText( rst.getCatag_nm() );
+        viewHolder.rst_loc.setText( rst.getLoc() );
+        viewHolder.star.setText( rst.getStarGrade() );
+
+//        viewHolder.rst_name.setText( showList.get(i).getRst_name() );
+//        viewHolder.catag_nm.setText( showList.get(i).getCatag_nm() );
+//        viewHolder.rst_loc.setText( showList.get(i).getLoc() );
+//        viewHolder.star.setText( showList.get(i).getStarGrade() );
 
         //  onClickListener와 원하는 화면을 넘겨주는 Intent를 넣어?
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -92,16 +100,18 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             Intent intent = new Intent(v.getContext(), RstDetail.class);
 
             //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
-            intent.putExtra( "rst_no", showList.get(i).getRst_no() );
-            intent.putExtra( "rst_name", showList.get(i).getRst_name() );
-            intent.putExtra( "loc_dtl", showList.get(i).getLoc_dtl() );
-            intent.putExtra( "opn_tm", showList.get(i).getOpn_tm() );
-            intent.putExtra( "brck_tm", showList.get(i).getBrck_tm() );
-            intent.putExtra( "dnnr_tm", showList.get(i).getDnnr_tm() );
-            intent.putExtra( "lo_tm", showList.get(i).getLo_tm() );
-            intent.putExtra( "rst_phot", showList.get(i).getRst_phot() );
-            intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
-            intent.putExtra( "tel", showList.get(i).getTel() );
+            intent.putExtra("rst", rst);
+
+//            intent.putExtra( "rst_no", showList.get(i).getRst_no() );
+//            intent.putExtra( "rst_name", showList.get(i).getRst_name() );
+//            intent.putExtra( "loc_dtl", showList.get(i).getLoc_dtl() );
+//            intent.putExtra( "opn_tm", showList.get(i).getOpn_tm() );
+//            intent.putExtra( "brck_tm", showList.get(i).getBrck_tm() );
+//            intent.putExtra( "dnnr_tm", showList.get(i).getDnnr_tm() );
+//            intent.putExtra( "lo_tm", showList.get(i).getLo_tm() );
+//            intent.putExtra( "rst_phot", showList.get(i).getRst_phot() );
+//            intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
+//            intent.putExtra( "tel", showList.get(i).getTel() );
 
             // 인텐트 시작
             v.getContext().startActivity(intent);

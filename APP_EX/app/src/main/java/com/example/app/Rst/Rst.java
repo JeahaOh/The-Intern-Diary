@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * Spring com.yummy의 rst와 맞대응 하는 VO 객체.
+ */
 public class Rst implements Serializable {
     private static final long serialVersionUID = 1L;
 

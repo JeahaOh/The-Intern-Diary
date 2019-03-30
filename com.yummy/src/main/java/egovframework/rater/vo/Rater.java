@@ -1,12 +1,15 @@
 package egovframework.rater.vo;
-
+  /**
+   * 해당 식당에 대한 리뷰의 총합, 평가 점수의 총합과 평균을 기록하는 객체.
+   *  
+   * @author jeahasorrowkissed
+   *
+   */
 public class Rater {
   //  해당 식당에 대한 리뷰의 수와 평점의 합
   int cnt;
   int sum;
   float avg;
-  
-  float grade;
   
   //  강추, 맛집, 무난, 별로, 최악
   int best;
@@ -14,11 +17,13 @@ public class Rater {
   int soso;
   int bad;
   int worst;
+  //  베이즈 정리, 베이즈 평균에 기반한 로직. 자체 평가점수로 봄.
+  float grade;
   
+  //  좋아요와 같은 맥락. 유저가 가고싶은 식당에 대한 표시. 시간상 구현하지 못함.
   int wannago;
   
   public Rater( ) {  }
-
   public Rater(int cnt, int sum, float avg, float grade, int best, int good, int soso, int bad, int worst, int wannago) {
     super();
     this.cnt = cnt;
