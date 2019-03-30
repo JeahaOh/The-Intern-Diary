@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import egovframework.phot.dao.PhotDAO;
 import egovframework.rvw.dao.RvwDAO;
 import egovframework.rvw.vo.Rvw;
 
@@ -30,6 +31,9 @@ public class RvwServiceImple implements RvwService {
   
   @Resource(name = "rvwDao")
   private RvwDAO rvwDao;
+  
+  @Resource(name = "photDao")
+  private PhotDAO photDao;
   
   /**
    * rst_no에 대한 rvw List 반환
@@ -87,6 +91,8 @@ public class RvwServiceImple implements RvwService {
    */
   @Override
   public Boolean delete(int rvw_no) throws Exception {
+    
+    
     return rvwDao.delete(rvw_no);
   }
 }

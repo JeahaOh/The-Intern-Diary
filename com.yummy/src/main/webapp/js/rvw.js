@@ -139,15 +139,15 @@ function getRvwDtl( rvw_no ) {
 //  rvw를 삭제하는 function
 function deleteRvw(  ) {
   if( $('#cont').attr('readOnly') ){
-    console.log('수정 불가능한 상태입니다.');
-    return
+    alert('수정 불가능한 상태입니다.');
+    return;
   }
-
+  
+  param = {"rvw_no": $('#rvw_no').val() };
+  
   $.ajax("/yummy/rvw/delete" , {
     method: "POST",
-    data:{
-      "rvw_no": $('#rvw_no').val()
-    },
+    data: param,
     dataType: "json",
     success: function ( data ) {
       console.log(data);
