@@ -36,9 +36,9 @@ import java.util.List;
 //  RecyclerView의 NestedClass인 Adapter클래스를 상속받음.
 public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
 
+    //  최초에 서버에서 받아올 rstList
     private List<Rst> originRstList;
-
-    private Context context;
+    //  화면에 보여줄 rstList
     private ArrayList<Rst> showList;
 
 
@@ -102,9 +102,6 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
             intent.putExtra( "rst_phot", showList.get(i).getRst_phot() );
             intent.putExtra( "starGrade", showList.get(i).getStarGrade() );
             intent.putExtra( "tel", showList.get(i).getTel() );
-
-//            intent.putExtra("rst", showList.get(i) );
-
 
             // 인텐트 시작
             v.getContext().startActivity(intent);

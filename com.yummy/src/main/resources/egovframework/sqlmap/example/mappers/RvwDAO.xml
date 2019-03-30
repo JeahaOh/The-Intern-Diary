@@ -64,7 +64,7 @@
       rvw_no = #{rvw_no}
   </update>
   
-  <!-- rvw 삭제 완전 삭제는 아니고, USE YN을 "N" 값으로 셋해줌. -->
+  <!-- rvw 삭제 : 완전 삭제는 아니고, USE YN을 "N" 값으로 셋해줌. -->
   <update id="delete" parameterType="int">
     UPDATE rvw
     SET

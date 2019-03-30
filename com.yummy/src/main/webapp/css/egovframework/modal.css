@@ -36,7 +36,7 @@
 }
 
 #cont {
-  height: 600px;
+  height: 400px;
   width: 500px;
 /*   resize: none; */
 }
@@ -52,6 +52,11 @@
 
 .rvw_dtl {
   text-align: left;
+}
+
+#rvw_phot {
+  width:500px;
+  height:500px;
 }
 
 

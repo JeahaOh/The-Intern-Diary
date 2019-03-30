@@ -1,5 +1,10 @@
 package com.example.app.Memb;
 
+/**
+ * 회원 가입 기능을 만들기에 시간이 부족함으로
+ * Singleton Pattern의 Memb 객체로 대체함.
+ */
+
 public class Memb {
     String id;      //  회원 아이디
     String pwd;     //  회원 비밀번호
@@ -16,7 +21,6 @@ public class Memb {
             memb.pwd = null;
             memb.adm = true;
         }
-
         return memb;
     }
 

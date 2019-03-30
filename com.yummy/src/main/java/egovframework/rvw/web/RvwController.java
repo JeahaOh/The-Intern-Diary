@@ -96,7 +96,7 @@ public class RvwController {
     
     Rater rater = raterService.getRate(rst_no);
     if( rater == null) {
-      logger.debug("\n\t/rater/getRate return null RATE : {}\n", rater.toString());
+      logger.debug("\n\t/rvw/getRvwList return null RATE : {}\n", rater.toString());
       rater = new Rater();
     }
     map.put("rate", rater);

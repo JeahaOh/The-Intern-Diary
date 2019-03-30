@@ -127,6 +127,13 @@ function getRvwDtl( rvw_no ) {
       $('#score').val(data.score);
       $('#cont').val(data.cont);
       $('#cdt').val(data.cdt);
+      
+      $('#rvw_phot').attr( 'src', "/yummy/resources/images/rvw/" + data.rvw_phot );
+      $('#rvw_phot').hide();
+      $('#rvw_phot').fadeIn(650);
+      
+      
+      
     },
     error: function(xhr, status, msg) {
       console.log('xhr:\n ' + xhr);
@@ -159,6 +166,7 @@ function deleteRvw(  ) {
       }
     },
     error: function(xhr, status, msg) {
+      alert( '게시번호' + $('#rvw_no').val() + '의 삭제를 실패 하였습니다.\n새로고침 후 다시 시도 해주세요' );
       console.log('xhr:\n ' + xhr);
       console.log('status:\n ' + status);
       console.log('msg:\n ' + msg);

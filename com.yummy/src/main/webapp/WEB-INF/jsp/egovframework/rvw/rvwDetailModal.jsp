@@ -39,6 +39,14 @@ rvw 상세 정보를 보여주는 Modal.
       </tr>
       <tr>
         <td class="tbtd_caption">
+          <spring:message code="rvw.phot"/>
+        </td>
+        <td class="rvw_dtl tbtd_content">
+          <img id="rvw_phot" src=""/>
+        </td>
+      </tr>
+      <tr>
+        <td class="tbtd_caption">
           <spring:message code="rvw.cont"/>
         </td>
         <td class="rvw_dtl tbtd_content">
