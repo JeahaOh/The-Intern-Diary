@@ -2,7 +2,7 @@
  * retDetail.jsp에 종속된 funtion들.
  */
 
-//rstDetail.jps의 상태를 저장하는 변수.
+//rstDetail.jps의 상태를 저장할 변수.
 let rst_form_status;
 
 /**
@@ -53,7 +53,7 @@ $( "#img_input" ).change(function() {
         $('#preview').hide();
         $('#preview').fadeIn(650);
       }
-        reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(input.files[0]);
         
       if( $('#mode').hasClass('modify') ) {
         postPhot( $('#rst_no').val() );
@@ -63,7 +63,9 @@ $( "#img_input" ).change(function() {
 });
 
 /**
- * 수정 버튼을 누르면
+ * 수정 버튼을 누르면,
+ * rst_form_status의 true false
+ * 즉, rstDetail.jsp가 작성용인지 읽고 수정용인지에 따라
  * form의 input에 disabled 속성을
  * 토글 방식으로 주거나 뺌
  */
@@ -147,7 +149,6 @@ $('#upper_catag').change( function () {
  * 새로 만들거나 수정된 rst정보를 저장
  */
 function saveRst(){
-  
   let cnfrm;
 
   //  rst_name의 유효성 검사.
@@ -194,7 +195,7 @@ function saveRst(){
 
   //  form의 data를 JSON 형태로 변환
   var form = $('#rstForm').serializeObject();
-  console.log( form );
+//  console.log( form );
 
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
   $.ajax("/yummy/rst/save" , {
@@ -236,6 +237,7 @@ function saveRst(){
     }
   });
 }
+
 /**
  * AJAX로 사진 보내기
  * @param rst_no

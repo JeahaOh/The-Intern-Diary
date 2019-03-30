@@ -32,7 +32,6 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         return new ViewHolder( view );
     }
 
-
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, final int position ) {
         //  Adapter에게 받았던 ViewHolder 객체와 리스트에서 해당 ViewHolder의 위치를 인자로 전달받음.
@@ -42,8 +41,6 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
         viewHolder.cont.setText( rvws.get(position).getCont() );
         viewHolder.cdt.setText( rvws.get(position).getCdt() );
 
-
-
         viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,10 +49,8 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
                 rvwIntent.putExtra("rvw", rvw);
                 rvwIntent.putExtra("rst_name", rst_nm );
                 v.getContext().startActivity( rvwIntent );
-
             }
         });
-
 
         switch ( rvws.get(position).getScore() ) {
             case 1 :

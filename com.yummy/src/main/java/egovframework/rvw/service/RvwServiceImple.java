@@ -50,7 +50,10 @@ public class RvwServiceImple implements RvwService {
    */
   @Override
   public Rvw getRvwDtl(int rvw_no) throws Exception {
-    return rvwDao.getRvwDtl(rvw_no);
+    logger.info("\n\trvwService recieve rvw_no {}", rvw_no);
+    Rvw rvw = rvwDao.getRvwDtl(rvw_no);
+    logger.info("\n\trvwService retunr {}", rvw.toString());
+    return rvw;
   }
   
   /**

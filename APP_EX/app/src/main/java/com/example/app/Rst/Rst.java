@@ -33,10 +33,6 @@ public class Rst implements Serializable {
     private String loc_dtl;     //  상세 주소
 
     @Expose
-    @SerializedName("upper_no")
-    private int upper_no;       //  요리 대분류 코드
-
-    @Expose
     @SerializedName("upper_nm")
     private String upper_nm;    //  요리 대분류 이름
 
@@ -70,11 +66,11 @@ public class Rst implements Serializable {
 
     @Expose
     @SerializedName("rst_phot")
-    private String rst_phot;
+    private String rst_phot;    //  사진 이름
 
     @Expose
     @SerializedName("min_price")
-    private int min_price;
+    private int min_price;      //  메뉴 최저 가격
 
     public int getRst_no()      { return  rst_no; }
     public String getRst_name() {
@@ -84,9 +80,6 @@ public class Rst implements Serializable {
     public String getStarGrade(){ return starGrade; }
     public String getLoc()      { return loc; }
     public String getLoc_dtl()  { return loc_dtl; }
-    public int getUpper_no()    { return upper_no; }
-    public String getUpper_nm() { return upper_nm; }
-    public int getCatag_no()    { return catag_no; }
     public String getCatag_nm() { return catag_nm; }
     public String getTel()      { return tel; }
     public String getOpn_tm()   { return opn_tm; }

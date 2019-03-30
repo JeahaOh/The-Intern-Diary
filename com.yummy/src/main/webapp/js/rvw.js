@@ -67,13 +67,13 @@ function getRvwInfo(){
     },
     dataType: "json",
     success: function ( data ) {
-      console.log( data );
-      console.log( Object.keys( data ).length );
+      console.log( "recieve : " + data );
       if ( data.rate === null || Object.keys( data.rate ).length <= 2 ) {
         console.log('data.rate == null or <= 1');
         $('#rate').hide();
         return;
       }  else {
+        console.log( data.rate );
         $('#score_best').html(data.rate.best);
         $('#score_good').html(data.rate.good);
         $('#score_soso').html(data.rate.soso);
@@ -82,7 +82,7 @@ function getRvwInfo(){
         $('#score_cnt').text(data.rate.cnt);
         $('#score_avg').text(data.rate.avg);
         $('#score_grade').text(data.rate.grade);
-        console.log('score');
+        console.log('score appended');
       }
       
       if ( data.rvwList === null || Object.keys( data.rvwList ).length < 1 ) {
@@ -99,8 +99,8 @@ function getRvwInfo(){
           html += '<td class="tbtd_content  vrw_cdt">'+ data.rvwList[i].cdt +'</td>';
           html += '</tr>';
         }
-        console.log('rvwList append');
         $('#rvw').append(html);
+        console.log('rvwList appended');
       }
     },
     error: function(xhr, status, msg) {
@@ -113,12 +113,12 @@ function getRvwInfo(){
 
 //  rvw의 detail 정보 가져오기
 function getRvwDtl( rvw_no ) {
-  console.log('{ rvw_no: ' + rvw_no + ' }');
+  param = {"rvw_no": rvw_no };
+  console.log(param);
+  
   $.ajax("/yummy/rvw/getRvwDtl" , {
     method: "POST",
-    data:{
-      rvw_no: rvw_no
-    },
+    data: param,
     dataType: "json",
     success: function ( data ) {
       console.log( data );

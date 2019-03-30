@@ -129,7 +129,8 @@ public class RvwController {
    */
   @ResponseBody
   @RequestMapping(value = "/getRvwDtl", method = RequestMethod.POST)
-  public Rvw getRvwDtl ( @RequestParam(value="rvw_no") int rvw_no ) throws Exception {
+  public Rvw getRvwDtl ( @RequestParam(value = "rvw_no") int rvw_no ) throws Exception {
+    logger.info("\n\t/rvw/getRveDtl recieve {}", rvw_no);
     Rvw rvw = rvwService.getRvwDtl(rvw_no);
     logger.info("\n\t/rvw/getRvwDtl Return {} RVW..", rvw.toString() );
     return rvw;

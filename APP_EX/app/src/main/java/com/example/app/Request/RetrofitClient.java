@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String addr = "192.168.1.251";
+    private static final String addr = "172.30.1.39";
     private static final String url = "http://" + addr + ":8888";
 
     public static final String getBASE_URL() { return  url; }

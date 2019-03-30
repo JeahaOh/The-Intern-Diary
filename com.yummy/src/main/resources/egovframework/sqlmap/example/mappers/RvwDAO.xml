@@ -35,7 +35,7 @@
     LEFT OUTER JOIN
       phot
     ON rvw.rvw_no = phot.rvw_no
-    AND rvw.rvw_no = #{rvw_no}
+    WHERE rvw.rvw_no = #{rvw_no}
   </select>
   
   <!-- rvw를 저장 -->
