@@ -48,35 +48,22 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rst_detail);
 
-        Intent inten = getIntent();
-        rst = (Rst) inten.getSerializableExtra("rst");
-        System.out.println("!!RST IS CALLED!!");
+        //  mainActivity에서 받은 Rst를 가져옴.
+        Intent intent = getIntent();
+        rst = (Rst) intent.getSerializableExtra("rst");
 
         initViews();
     }
 
-    private void initViews(){
-        System.out.println("!!INITVIEWS IS CALLED!!");
-        //  mainActivity에서 받은 data를 가져옴.
-//        Bundle intent = getIntent().getExtras();
-//        Intent inten = getIntent();
-//        rst = (Rst) inten.getSerializableExtra("rst");
-
-
-//        Bundle intent = inten.getExtras();
-
-//        rst_no = intent.getInt( "rst_no" );
-//        rst_nm = intent.getString("rst_name");
-
+    private void initViews() {
         //  RetrofitClient Class에서 default url을 가져옴.
         String url = RetrofitClient.getRstImgUrl();
         //  image의 resource 경로와, image의 이름을 경로에 추가
-//        url += intent.getString("rst_phot");
         url += rst.getRst_phot();
 
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        ImageView imageView = findViewById(R.id.imageView);
 
-        Picasso.with(this)
+        Picasso.with( this )
                 //  URL에서 Image를 가져와라.
                 .load(url)
                 //  사진이 없다면, res/drawable/ic_star_black.xml의 이미지를 띄워라.
@@ -85,28 +72,22 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
 
         //  식당 주소 출력
         TextView loc_dtl = findViewById( R.id.loc_dtl );
-//        loc_dtl.setText( intent.getString( "loc_dtl") );
         loc_dtl.setText( rst.getLoc_dtl() );
 
         //  오픈시간 출력
         TextView opn_tm = findViewById( R.id.opn_tm );
-//        opn_tm.setText( intent.getString( "opn_tm") );
         opn_tm.setText( rst.getOpn_tm() );
 
         //  주문 마감 시간 출력
         TextView lo_tm = findViewById( R.id.lo_tm );
-//        lo_tm.setText( intent.getString( "lo_tm") );
         lo_tm.setText( rst.getLo_tm() );
 
         //  미슐랭 별점 출력
         TextView starGrade = findViewById( R.id.starValue );
-//        starGrade.setText( intent.getString( "starGrade") );
         starGrade.setText( rst.getStarGrade() );
 
-        //  전화번호 출력
-//        final String tno = intent.getString( "tel");
-
-        ViewGroup tel_no = (ViewGroup) findViewById(R.id.tel);
+        //  전화번호 클릭시 전화 dial로 연결, 전화 번호 출력.
+        ViewGroup tel_no = findViewById(R.id.tel);
         TextView tel = findViewById( R.id.telVal );
         tel.setText( rst.getTel() );
         tel_no.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +106,9 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         //  brck_tm과 dnnr_tm이 같다면 쉬는 시간이 없는 것이므로 값을 주지 않는다.
         String brck = rst.getBrck_tm();
         String dnnr = rst.getDnnr_tm();
+        System.out.println( brck + " / " + dnnr );
 
-        if( brck.equals( dnnr ) ) {
+        if( brck == null || brck.equals( dnnr ) ) {
             Log.i( "brck == dnnr", brck + dnnr );
 
             TextView brck_tm = findViewById( R.id.brck_tm );
@@ -147,12 +129,14 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         rst_name.setText( rst.getRst_name() );
 
 
-        /*  구글 지도를 쓰기위한 Fragment  */
+        /**
+         *  구글 지도를 쓰기위한 Fragment
+         *  OnMapReadyCallback를 implement 해야 하며,
+         *  onMapReady()가 있어야 쓸 수 있음.
+         */
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.mapView);
-        //  OnMapReadyCallback를 implement 해서 onMapReady()가 있어야 쓸 수 있음.
         mapFragment.getMapAsync(this);
-
         /*  구글 지도를 쓰기위한 Fragment  */
 
         /*  rst_rvw_info를 클릭하면 rvwList화면으로 넘어가기 위한 onClickListener  */
@@ -235,14 +219,13 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
     /*  구글 지도 생성시 하는 작업  */
     @Override
     public void onMapReady( GoogleMap map ) {
-        System.out.println("!!MAP IS CALLED!!");
         geocoder = new Geocoder(this);  // 주소 -> 좌표 변환
         double lati = 0, longti = 0;            // 위도, 경도 변수 선언
         List<Address> addressList = null;
 
         address = rst.getLoc_dtl();
 
-        if( address == null || address.equals("") ) {
+        if( address == null || address.equals("") || address.length() < 3 ) {
             address = "성남대로 925번길 41";
         }
 
@@ -278,8 +261,6 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         //  rvwList인텐트에 넘겨줄 데이터를 정의해야 함.
         rvwList.putExtra("rst_no", rst.getRst_no() );
         rvwList.putExtra( "rst_name", rst.getRst_name() );
-
-        //  이 외의 넘겨줄 데이터?
         rvwList.putExtra("rate", rate);
 
         //  화면 넘김.

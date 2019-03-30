@@ -96,11 +96,12 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //  인텐트 선언.
-            Intent intent = new Intent(v.getContext(), RstDetail.class);
+                //  인텐트 선언.
+                Intent intent = new Intent(v.getContext(), RstDetail.class);
 
-            //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
-            intent.putExtra("rst", rst);
+                //  rst_detail 인텐트에 넘겨줄 데이터 정의 해야함.
+                rst = showList.get(i);
+                intent.putExtra("rst", rst);
 
 //            intent.putExtra( "rst_no", showList.get(i).getRst_no() );
 //            intent.putExtra( "rst_name", showList.get(i).getRst_name() );
