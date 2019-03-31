@@ -51,6 +51,5 @@ public interface RequestInterface {
             @Part("id")        RequestBody id,
             @Part("cont")      RequestBody cont,
             @Part("score")     RequestBody score
-
     );
 }

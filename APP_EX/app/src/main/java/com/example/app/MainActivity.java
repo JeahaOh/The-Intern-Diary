@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //  View의 초기화
-    private void initViews(){
+    private void initViews() {
         //  MainActivity의 recyclerView를 activity_main.xml의 card_recycler_view와 연결
         recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //
-    private void loadJSON(){
+    private void loadJSON() {
         //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
         Retrofit retrofit = RetrofitClient.getClient();
 
