@@ -112,7 +112,16 @@
   <!-- rst를 저장, 수정 -->
   <insert id="save" parameterType="map" >
     INSERT INTO rst
-      (rst_no, rst_name, star, catag_no, loc, loc_dtl, tel, opn_tm, brck_tm, dnnr_tm, lo_tm) 
+      (rst_no, rst_name, star, catag_no, 
+      <trim suffixOverrides=",">
+        <if test="loc != null">loc,</if>
+        <if test="loc_dtl != null">loc_dtl,</if>
+        <if test="tel != null">tel,</if>
+        <if test="opn_tm != null">opn_tm,</if>
+        <if test="brck_tm != null">brck_tm,</if>
+        <if test="dnnr_tm != null">dnnr_tm,</if>
+        <if test="lo_tm != null">lo_tm</if>
+      </trim>) 
     VALUES (
       #{rst_no},
       #{rst_name},

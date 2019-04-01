@@ -138,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
                 if(selectList.size() == 0){
                     Toast.makeText(MainActivity.this, "필터 조건이 없다면\n모든 레스토랑 목록을 보여줍니다.", Toast.LENGTH_LONG).show();
-                    return;
                 }
                 adapter.filter(selectList);
             }
