@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RstAdapter adapter;
+    Retrofit retrofit;
 
 
     @Override
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     //
     private void loadJSON() {
         //  Retrofit을 Singleton Pattern으로 생성한 객체를 가져옴.
-        Retrofit retrofit = RetrofitClient.getClient();
+        retrofit = RetrofitClient.getClient();
 
         //  Retrofit 클래스로 RequestInterface.class를 구현하여 생성함.
         RequestInterface request = retrofit.create(RequestInterface.class);
@@ -143,5 +144,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return builder.create();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this.getApplicationContext(),"Thanks for using application!!",Toast.LENGTH_LONG).show();
+        finish();
+        return;
     }
 }
