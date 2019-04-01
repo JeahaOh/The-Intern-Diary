@@ -1,4 +1,4 @@
-# **[ Intern Review ]**
+# **Intern Review**
 ### 2019년 02 ~ 04 인턴 생활을 마무리 하면서.
 
 - - -

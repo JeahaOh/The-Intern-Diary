@@ -127,8 +127,11 @@ function getRvwDtl( rvw_no ) {
       $('#score').val(data.score);
       $('#cont').val(data.cont);
       $('#cdt').val(data.cdt);
-      
-      $('#rvw_phot').attr( 'src', "/yummy/resources/images/rvw/" + data.rvw_phot );
+      if( data.rvw_phot != null ) {
+        $('#rvw_phot').attr( 'src', "/yummy/resources/images/rvw/" + data.rvw_phot );
+      } else {
+        $('#rvw_phot').attr( 'src', "/yummy/resources/images/rvw/DEFAULT" );
+      }
       $('#rvw_phot').hide();
       $('#rvw_phot').fadeIn(650);
       
