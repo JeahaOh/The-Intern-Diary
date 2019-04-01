@@ -67,7 +67,7 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
                 //  URL에서 Image를 가져와라.
                 .load(url)
                 //  사진이 없다면, res/drawable/ic_star_black.xml의 이미지를 띄워라.
-                .error(R.drawable.ic_star_black)
+                .error(R.drawable.no_image_found)
                 .into(imageView);
 
         //  식당 주소 출력

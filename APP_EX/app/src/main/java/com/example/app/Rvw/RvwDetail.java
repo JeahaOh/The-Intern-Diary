@@ -47,7 +47,7 @@ public class RvwDetail extends Activity {
         rvw_phot = findViewById(R.id.rvw_phot);
         Picasso.with(this)
                 .load(url)
-                .error(R.drawable.ic_star_black)
+                .error(R.drawable.no_image_found)
                 .into(rvw_phot);
 
         author_id = findViewById(R.id.author_id);

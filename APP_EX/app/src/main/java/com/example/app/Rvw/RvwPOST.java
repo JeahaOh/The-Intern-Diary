@@ -170,13 +170,8 @@ public class RvwPOST extends AppCompatActivity {
                 }
                 //  여기까지 중복 클릭 방지를 위한 로직
 
+
                 //  여기부터 RVW의 유효성 겁사.
-                //  사진이 없다면 toast와 함께 return.
-                if( tempFile == null || tempFile.length() <= 0) {
-                    makeText( getApplicationContext(),
-                            getResources().getString(R.string.nullPhot), Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 //  후기 값을 String 가져온 뒤, null 값이면 Toast와 함께 return.
                 EditText contText = findViewById(R.id.rvw_cont);
@@ -184,6 +179,12 @@ public class RvwPOST extends AppCompatActivity {
                 if( cont.length() <= 0 || cont.equals("")) {
                     makeText( getApplicationContext(),
                             R.string.nullCont, Toast.LENGTH_SHORT ).show();
+                    return;
+                }
+                //  사진이 없다면 toast와 함께 return.
+                if( tempFile == null || tempFile.length() <= 0) {
+                    makeText( getApplicationContext(),
+                            getResources().getString(R.string.nullPhot), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //  여기까지 RVW의 유효성 겁사.
