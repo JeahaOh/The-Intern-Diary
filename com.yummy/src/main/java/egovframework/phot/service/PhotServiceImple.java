@@ -92,7 +92,15 @@ public class PhotServiceImple implements PhotService {
    * @throws Exception
    */
   public Boolean updatePhot( Phot phot ) throws Exception {
-    return photDao.updatePhot(phot);
+    logger.info("\n\tphotService recieve {}", phot.toString() );
+    
+    if( photDao.findPhotByRstNo( phot.getRst_no() ) != null ){
+      logger.info("\n\tphot table have");
+      photDao.deleteRstPhot(phot.getRst_no());
+    }   else {
+      System.out.println(" NOT NULL");
+    }
+    return photDao.updatePhot( phot );
   };
 
 }

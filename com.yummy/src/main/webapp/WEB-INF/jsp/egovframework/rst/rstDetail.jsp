@@ -137,6 +137,7 @@
             
             <td class="tbtd_content">
               <select name="upper_catag" id="upper_catag" class="rst_form" required>
+                <option id="no_option">-----</option>
                 <c:forEach var="catag" items="${upperCatagList}" varStatus="status" >
                   <option value="${catag.catag_no}"
                       <c:if test="${catag.catag_no eq rst.upper_no}">selected</c:if>>

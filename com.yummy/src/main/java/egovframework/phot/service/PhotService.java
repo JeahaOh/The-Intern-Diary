@@ -47,5 +47,7 @@ public interface PhotService {
    * @throws Exception
    */
   Boolean updatePhot( Phot phot ) throws Exception;
+  
+  
 
 }

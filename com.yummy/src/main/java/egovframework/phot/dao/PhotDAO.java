@@ -57,5 +57,7 @@ public interface PhotDAO {
    * @throws Exception
    */
   Boolean deleteRstPhot(int rst_no) throws Exception;
+  
+  String findPhotByRstNo(int rst_no) throws Exception;
 
 }

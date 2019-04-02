@@ -57,17 +57,19 @@ public class PhotController {
       ,@RequestParam(name = "rst_phot_name") String rst_phot_name
 //      ,@RequestParam(name = "rst_no", required=false) int 
       ) throws Exception{
+    String result;
     Phot phot;
     //  사진이 있다면 처리 시
     if (rst_phot != null && rst_phot.getSize() > 0) {
       try {
-        
         //  파일 저장
         rst_phot.transferTo( new File( sc.getRealPath( "/resources/images/rst/" + rst_phot_name ) ) );
         
         //  phot 객체 생성후, rst_no와 phot_no 값 설정.
         phot = new Phot();
         phot.setPhot_no(rst_phot_name);
+        
+        result = photService.saveRstPhot( phot );
         
       } catch (IOException e) {
         logger.info("\n\t/phot/rstPhotSave Error Occur\n{} \n", e.toString());
@@ -78,7 +80,7 @@ public class PhotController {
           , rst_phot_name
           , sc.getRealPath("/resources/images/rst/").toString() + rst_phot_name );
       //  photService.saveRstPhot() 실행.
-      return photService.saveRstPhot( phot );
+      return result;
     }
     
     return "phot is null or < 0";

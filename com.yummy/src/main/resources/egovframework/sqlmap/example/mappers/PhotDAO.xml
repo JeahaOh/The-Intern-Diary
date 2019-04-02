@@ -18,6 +18,17 @@
       phot_no = #{phot_no}
   </select>
   
+  <!-- rst_no에 대한 phot_no를 찾기 -->
+  <select id="findPhotByRstNo" parameterType="int" resultType="String">
+    SELECT
+      phot_no
+    FROM
+      phot
+    WHERE
+      rst_no = #{rst_no}
+    AND rvw_no IS NULL
+  </select>
+  
   <!-- phot를 저장. -->
   <insert id="savePhot" parameterType="Phot">
     INSERT INTO phot

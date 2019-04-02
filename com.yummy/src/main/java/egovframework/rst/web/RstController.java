@@ -163,7 +163,7 @@ public class RstController {
    * @throws  Exception
    */
   @RequestMapping(value="/create", method= RequestMethod.POST)
-  public @ResponseBody int saveRst(
+  public @ResponseBody int save(
       @RequestBody Rst rst
       ) throws Exception {
     logger.info("\n/rst/save {}", rst.toString());
@@ -172,6 +172,24 @@ public class RstController {
       Phot phot = new Phot();
       phot.setPhot_no( rst.getRst_phot() );
       phot.setRst_no( rst.getRst_no() );
+      photService.updatePhot(phot);
+      return result;
+    }
+    return 0;
+  }
+  
+  @RequestMapping(value="/update", method= RequestMethod.POST)
+  public @ResponseBody int update(
+      @RequestBody Rst rst
+      ) throws Exception {
+    logger.info("\n/rst/update recieve {}", rst.toString());
+    int result = rstService.save(rst);
+    logger.info("\n\trst/update save rst {}", result);
+    if( result != 0 ) {
+      Phot phot = new Phot();
+      phot.setPhot_no( rst.getRst_phot() );
+      phot.setRst_no( rst.getRst_no() );
+      logger.info("\n\trst/update has Phot {}", phot.toString() );
       photService.updatePhot(phot);
       return result;
     }
@@ -187,6 +205,7 @@ public class RstController {
   @RequestMapping(value="/delete", method= RequestMethod.POST)
   public @ResponseBody String deleteRst( @RequestParam int rst_no ) throws Exception {
     logger.info("\n\t/rst/delete {}", rst_no);
+    
     if( rstService.delete( rst_no ) ) {
       return "success";
     }

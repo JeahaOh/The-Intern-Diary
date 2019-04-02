@@ -134,6 +134,8 @@ function removeRst() {
  * 가져온 JSON data를  catag_no에 넣어줌.
  */
 $('#upper_catag').change( function () {
+//  $('#no_option').hide();
+  $('#no_option').remove();
   $.ajax("/yummy/catag/get" , {
     method: "POST",
     data:{
@@ -169,11 +171,11 @@ $('#upper_catag').change( function () {
  * 새로 만들거나 수정된 rst정보를 저장
  */
 function saveRst(){
-  //  새로 만들기 라면
+//    새로 만들기 라면
   if( $('#mode').hasClass( 'create' ) ){
     console.log( "create" );
     url = "/yummy/rst/create";
-  //  수정하기 라면
+//  //  수정하기 라면
   } else if( $('#mode').hasClass( 'modify')) {
     console.log( "modify" );
     url = "/yummy/rst/update";
