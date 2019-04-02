@@ -4,6 +4,16 @@
 
 //rstDetail.jps의 상태를 저장할 변수.
 let rst_form_status;
+let rst_phot_name;
+/**
+ * JavaScript Math.Random으로 UUID를 얻는 function
+ */
+function getUUID() {
+  function get4char() {
+    return ( ( 1 + Math.random() ) * 0x10000 | 0 ).toString( 16 ).substring(1);
+  }
+  return get4char() + get4char() + '-' + get4char() + '-' + get4char() + '-' + get4char() + '-' + get4char() + get4char() + get4char();
+}
 
 /**
  * form의 input 값을 JSON형태로 바꾸는 function.
@@ -42,7 +52,9 @@ $(function(){
  * input type file에 사진을 올리면
  * #preview에 사진을 보여줌.
  */
+//  input file img_input에 사진이 변경되면
 $( "#img_input" ).change(function() {
+  //  #preview에 사진을 변경함
   pic( this );
   function pic( input ) {
     if ( input.files && input.files[0] ) {
@@ -60,6 +72,10 @@ $( "#img_input" ).change(function() {
       }
     }
   }
+  // rst_phot_name에 String 값을 주고,
+  rst_phot_name = getUUID();
+  $('#rst_phot').val( rst_phot_name );
+  postPhot( rst_phot_name );
 });
 
 /**
@@ -195,7 +211,7 @@ function saveRst(){
 
   //  form의 data를 JSON 형태로 변환
   var form = $('#rstForm').serializeObject();
-//  console.log( form );
+  console.log( form );
 
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
   $.ajax("/yummy/rst/save" , {
@@ -213,7 +229,7 @@ function saveRst(){
       console.log( data );
       
       if( $('#mode').hasClass('create') && $( "#img_input" ).val < 0) {
-        postPhot( data );
+//        postPhot( data );
       }
       
       //  업로딩 시간이 걸리므로 잠시 타임아웃.
@@ -245,10 +261,10 @@ function saveRst(){
  * console.log( $('#img_input')[0].files[0] );
  * console.log( $('#img_input')[0].value );
  */
-function postPhot( rst_no ) {
+function postPhot( rst_phot_name ) {
   var formData = new FormData();
   formData.append( "rst_phot", $('#img_input')[0].files[0] );
-  formData.append( "rst_no", rst_no );
+  formData.append( "rst_phot_name", rst_phot_name );
   
   $.ajax({
     async : false,

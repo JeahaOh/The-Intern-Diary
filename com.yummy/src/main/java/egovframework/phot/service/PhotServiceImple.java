@@ -84,5 +84,15 @@ public class PhotServiceImple implements PhotService {
       //  phot객체 저장.
     return photDao.savePhot( phot );
   }
+  
+  /**
+   * phot 테이블의 사진을 update 하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
+  public Boolean updatePhot( Phot phot ) throws Exception {
+    return photDao.updatePhot(phot);
+  };
 
 }

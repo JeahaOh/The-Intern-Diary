@@ -21,18 +21,41 @@
   <!-- phot를 저장. -->
   <insert id="savePhot" parameterType="Phot">
     INSERT INTO phot
-      ( phot_no, rst_no
+      ( phot_no
+      <if test="rst_no!=null and !rst_no.equals('') and rst_no!=0">
+        , rst_no
+      </if>
       <if test="rvw_no!=null and !rvw_no.equals('') and rvw_no!=0">
         , rvw_no
       </if>
        )
     VALUES
-      (#{phot_no}, #{rst_no}
+      (#{phot_no}
+      <if test="rst_no!=null and !rst_no.equals('') and rst_no!=0">
+        , #{rst_no}
+      </if>
       <if test="rvw_no!=null and !rvw_no.equals('') and rvw_no!=0">
         , #{rvw_no}
       </if>
       )
   </insert>
+  
+  <!-- phot 업데이트 -->
+  <update id="updatePhot">
+    UPDATE
+      phot
+    SET
+    <trim suffixOverrides=",">
+      <if test="rst_no!=null and !rst_no.equals('') and rst_no!=0">
+        rst_no = #{rst_no},
+      </if>
+      <if test="rvw_no!=null and !rvw_no.equals('') and rvw_no!=0">
+        rvw_no = #{rvw_no}
+      </if>
+    </trim>
+    WHERE
+      phot_no = #{phot_no}
+  </update>
   
   <!-- rst_no에 대한 phot유무 확인. -->
   <select id="getRstPhot" parameterType="int" resultType="String">

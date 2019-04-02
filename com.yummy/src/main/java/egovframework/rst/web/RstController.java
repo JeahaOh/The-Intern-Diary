@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.catag.service.CatagService;
 import egovframework.dflt.DefaultVO;
+import egovframework.phot.service.PhotService;
+import egovframework.phot.vo.Phot;
 import egovframework.rst.service.RstService;
 import egovframework.rst.vo.Rst;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -42,6 +44,9 @@ public class RstController {
   
   @Resource(name = "rstService")
   private RstService rstService;
+  
+  @Resource(name = "photService")
+  private PhotService photService;
   
   @Resource(name = "catagService")
   private CatagService catagService;
@@ -164,6 +169,10 @@ public class RstController {
     logger.info("\n/rst/save {}", rst.toString());
     int result = rstService.save(rst);
     if( result != 0 ) {
+      Phot phot = new Phot();
+      phot.setPhot_no( rst.getRst_phot() );
+      phot.setRst_no( rst.getRst_no() );
+      photService.saveRstPhot(phot);
       return result;
     }
     return 0;

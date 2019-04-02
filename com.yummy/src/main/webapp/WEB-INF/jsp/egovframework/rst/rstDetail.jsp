@@ -227,8 +227,9 @@
             <td class="tbtd_content">
               <label for="img_input" id="img_label">
                 <spring:message code="title.phot"/>
-                <input type="file" id="img_input" class="rst_form" name="rst_phot" alt="사진" accept=".png, .jpg, .jpeg">
+                <input type="file" id="img_input" class="rst_form" name="phot" alt="사진" accept=".png, .jpg, .jpeg">
               </label>
+              <input type="hidden" id="rst_phot" class="rst_form" name="rst_phot">
             </td>
             <td class="tbtd_content">
               <input type="time" id="opn_tm" class="rst_form" 

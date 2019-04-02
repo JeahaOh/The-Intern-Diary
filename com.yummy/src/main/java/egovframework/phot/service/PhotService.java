@@ -39,5 +39,13 @@ public interface PhotService {
    * @throws Exception
    */
   Boolean saveRvwPhot( Phot phot ) throws Exception;
+  
+  /**
+   * phot 테이블의 사진을 update 하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
+  Boolean updatePhot( Phot phot ) throws Exception;
 
 }

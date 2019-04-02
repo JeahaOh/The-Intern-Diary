@@ -27,12 +27,20 @@ public interface PhotDAO {
   Boolean getPhotNo(String phot_no) throws Exception;
   
   /**
-   * phot 테이블에 식당 사진을 저장하는 method
+   * phot 테이블에 사진을 저장하는 method
    * @param phot
    * @return
    * @throws Exception
    */
   Boolean savePhot( Phot phot ) throws Exception;
+  
+  /**
+   * phot 테이블의 사진을 update 하는 method
+   * @param phot
+   * @return
+   * @throws Exception
+   */
+  Boolean updatePhot( Phot phot ) throws Exception;
   
   /**
    * rst_no에 대한 phot의 유무를 반환하는 method

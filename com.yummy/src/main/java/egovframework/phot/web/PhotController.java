@@ -2,7 +2,6 @@ package egovframework.phot.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import org.slf4j.Logger;
@@ -55,48 +54,33 @@ public class PhotController {
   @RequestMapping(value = "/rstPhotSave", method = RequestMethod.POST, consumes = {"multipart/form-data"} )
   public String rstPhot(
       @RequestPart MultipartFile rst_phot
-      ,@RequestParam(name = "rst_no") int rst_no
+      ,@RequestParam(name = "rst_phot_name") String rst_phot_name
+//      ,@RequestParam(name = "rst_no", required=false) int 
       ) throws Exception{
-    logger.info( "\n\t/phot/rst_phot recieve\n\trst_no = {} phot.size =  {}", rst_no, rst_phot.getSize() );
-    
     Phot phot;
-    
     //  사진이 있다면 처리 시
     if (rst_phot != null && rst_phot.getSize() > 0) {
-      //  저장할 파일 이름을 UUID로 만듦.
-      String rst_phot_name = getUUID();
-      
       try {
-        //  저장 경로 
-        String path = sc.getRealPath("/resources/images/rst/").toString();
         
         //  파일 저장
         rst_phot.transferTo( new File( sc.getRealPath( "/resources/images/rst/" + rst_phot_name ) ) );
-        logger.info( "\n\trst_phot  set new name as {}\n\tAnd Save At {}\n", rst_phot_name, path + rst_phot_name );
         
         //  phot 객체 생성후, rst_no와 phot_no 값 설정.
         phot = new Phot();
         phot.setPhot_no(rst_phot_name);
-        phot.setRst_no(rst_no);
-        
         
       } catch (IOException e) {
         logger.info("\n\t/phot/rstPhotSave Error Occur\n{} \n", e.toString());
         return "fail";
       }
+      logger.info( "\n\t/phot/rst_phot recieve\n\trst_phot_name = {}\n\tphot.size =  {}", rst_phot_name, rst_phot.getSize() );
+      logger.info( "\n\trst_phot  set new name as {}\n\tAnd Save At {}\n"
+          , rst_phot_name
+          , sc.getRealPath("/resources/images/rst/").toString() + rst_phot_name );
       //  photService.saveRstPhot() 실행.
       return photService.saveRstPhot( phot );
     }
     
     return "phot is null or < 0";
   }
-  
-  private String getUUID() throws Exception {
-    String str = UUID.randomUUID().toString();
-    logger.info("\n\tgetUUID {}", str);
-    //  UUID 중복 체크를 위한 콜백 함수를 구현하고 싶지만 시간 관계상 넘어가도록 하자.
-    
-    return str;
-  }
-
 }
