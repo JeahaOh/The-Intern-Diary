@@ -162,7 +162,7 @@ public class RstController {
    * @return  JSON 객체 true / false
    * @throws  Exception
    */
-  @RequestMapping(value="/save", method= RequestMethod.POST)
+  @RequestMapping(value="/create", method= RequestMethod.POST)
   public @ResponseBody int saveRst(
       @RequestBody Rst rst
       ) throws Exception {
@@ -172,7 +172,7 @@ public class RstController {
       Phot phot = new Phot();
       phot.setPhot_no( rst.getRst_phot() );
       phot.setRst_no( rst.getRst_no() );
-      photService.saveRstPhot(phot);
+      photService.updatePhot(phot);
       return result;
     }
     return 0;

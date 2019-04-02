@@ -2,17 +2,21 @@
  * retDetail.jsp에 종속된 funtion들.
  */
 
-//rstDetail.jps의 상태를 저장할 변수.
+//  rstDetail.jps의 상태를 저장할 변수.
 let rst_form_status;
 let rst_phot_name;
+let url;
 /**
  * JavaScript Math.Random으로 UUID를 얻는 function
  */
 function getUUID() {
-  function get4char() {
-    return ( ( 1 + Math.random() ) * 0x10000 | 0 ).toString( 16 ).substring(1);
-  }
-  return get4char() + get4char() + '-' + get4char() + '-' + get4char() + '-' + get4char() + '-' + get4char() + get4char() + get4char();
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
 }
 
 /**
@@ -165,6 +169,16 @@ $('#upper_catag').change( function () {
  * 새로 만들거나 수정된 rst정보를 저장
  */
 function saveRst(){
+  //  새로 만들기 라면
+  if( $('#mode').hasClass( 'create' ) ){
+    console.log( "create" );
+    url = "/yummy/rst/create";
+  //  수정하기 라면
+  } else if( $('#mode').hasClass( 'modify')) {
+    console.log( "modify" );
+    url = "/yummy/rst/update";
+  }
+  
   let cnfrm;
 
   //  rst_name의 유효성 검사.
@@ -214,7 +228,7 @@ function saveRst(){
   console.log( form );
 
   //  JSON형태로 변환된 form data를 AJAX로 서버에 POST 요청 함.
-  $.ajax("/yummy/rst/save" , {
+  $.ajax( url , {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
