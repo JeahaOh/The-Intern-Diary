@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC
+  "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- MyBatis configLocation Property >> context-mapper.xml -->
 <!-- MyBatis에서 자바 타입에 대한 짧은 별칭을 지정 해 주는 것. -->
 <configuration>
@@ -18,5 +20,6 @@
     <typeAlias alias="rvw" type="egovframework.rvw.vo.Rvw"/>
     <typeAlias alias="rater" type="egovframework.rater.vo.Rater"/>
     <typeAlias alias="phot" type="egovframework.phot.vo.Phot"/>
+    <typeAlias alias="menu" type="egovframework.menu.vo.Menu"/>
   </typeAliases>
 </configuration>

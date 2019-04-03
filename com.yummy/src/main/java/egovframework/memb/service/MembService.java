@@ -3,7 +3,7 @@ package egovframework.memb.service;
 import egovframework.memb.vo.Memb;
 
 /**
- * @Class Name  : MemvService.java
+ * @Class Name  : MembService.java
  * @Discription : MembService Class
  * @ @ 수정일 수정자 수정내용 @ --------- --------- ------------------------------- @ 2019.03.03 최초생성
  *

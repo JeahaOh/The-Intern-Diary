@@ -9,7 +9,7 @@ import egovframework.memb.DAO.MembDAO;
 import egovframework.memb.vo.Memb;
 
 /**
- * @Class Name  : MemvServiceImple.java
+ * @Class Name  : MembServiceImple.java
  * @Discription : Memb Buisiness Implement Class
  * @ @ 수정일 수정자 수정내용 @ --------- --------- ------------------------------- @ 2019.03.03 최초생성
  *

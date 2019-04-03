@@ -173,24 +173,31 @@ public class RstController {
       phot.setPhot_no( rst.getRst_phot() );
       phot.setRst_no( rst.getRst_no() );
       photService.updatePhot(phot);
+      logger.info("\n\trst/create rst {}\n\tAND phot {}", result, phot.toString());
       return result;
     }
     return 0;
   }
   
+  /**
+   * rst를 수정하기 위한 POST URL
+   * 아직은 create와 로직은 같지만 추후 SQL문 분리 하면서 로직을 다르게 할 예정임.
+   * @param   rst - 등록할 rst 
+   * @return  JSON 객체 true / false
+   * @throws  Exception
+   */
   @RequestMapping(value="/update", method= RequestMethod.POST)
   public @ResponseBody int update(
       @RequestBody Rst rst
       ) throws Exception {
-    logger.info("\n/rst/update recieve {}", rst.toString());
+    logger.info("\n/rst/update {}", rst.toString());
     int result = rstService.save(rst);
-    logger.info("\n\trst/update save rst {}", result);
     if( result != 0 ) {
       Phot phot = new Phot();
       phot.setPhot_no( rst.getRst_phot() );
       phot.setRst_no( rst.getRst_no() );
-      logger.info("\n\trst/update has Phot {}", phot.toString() );
       photService.updatePhot(phot);
+      logger.info("\n\trst/update rst {}\n\tAND phot {}", result, phot.toString());
       return result;
     }
     return 0;

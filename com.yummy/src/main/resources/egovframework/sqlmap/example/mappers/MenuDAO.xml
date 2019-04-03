@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+  "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 
+      MenuDAO SQL 파일
+   -->
+<mapper namespace="egovframework.menu.DAO.MenuDAO">
+  <resultMap id="menu" type="egovframework.menu.vo.Menu">
+    <id property="mn_no" column="mn_no"/>
+    <result property="rst_no" column="rst_no"/>
+    <result property="menu" column="menu"/>
+    <result property="price" column="price"/>
+  </resultMap>
+  
+</mapper>
