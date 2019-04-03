@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.app.Menu.MenuList;
 import com.example.app.R;
 import com.example.app.Request.RequestInterface;
 import com.example.app.Request.RetrofitClient;
@@ -69,6 +72,16 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
                 //  사진이 없다면, res/drawable/ic_star_black.xml의 이미지를 띄워라.
                 .error(R.drawable.no_image_found)
                 .into(imageView);
+
+        Button show_menu_List = findViewById(R.id.menuBTN);
+        show_menu_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "MENU LIST", Toast.LENGTH_LONG).show();
+                Intent menuList = new Intent(v.getContext(), MenuList.class);
+                startActivity(menuList);
+            }
+        });
 
         //  식당 주소 출력
         TextView loc_dtl = findViewById( R.id.loc_dtl );

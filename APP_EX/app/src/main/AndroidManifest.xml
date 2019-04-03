@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 저장 공간 읽기 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라 사용 권한 -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -22,17 +22,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Menu.MenuList"></activity>
         <!-- 여기부터 구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
-        <!-- 여기까지 구글 지도를 사용하기 위한 API KEY -->
+            android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" /> <!-- 여기까지 구글 지도를 사용하기 위한 API KEY -->
         <activity
             android:name=".Rvw.RvwDetail"
-            android:theme="@style/Theme.MaterialComponents.Dialog"/>
+            android:theme="@style/Theme.MaterialComponents.Dialog" />
         <activity android:name=".Rst.RstDetail" />
         <activity android:name=".Rvw.RvwPOST" />
         <activity android:name=".Rvw.RvwList" />

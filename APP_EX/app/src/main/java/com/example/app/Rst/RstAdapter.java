@@ -2,6 +2,7 @@ package com.example.app.Rst;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +42,10 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
     //  화면에 보여줄 rstList
     private ArrayList<Rst> showList;
     private Rst rst;
+
+    //  빠른시간 안에 중복 클릭을 방지하기 위한 기준 시간 변수.
+    private static final long MIN_CLICK_INTERVAL = 600;
+    private long mLastClickTime;
 
 
     public RstAdapter( List<Rst> originRstList) {
@@ -91,6 +96,20 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
         viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //  여기서 부터 중복 클릭 방지를 위한 로직
+                //  현재 시간.
+                long currentClickTime = SystemClock.uptimeMillis();
+                //  현재 시간에서 마지막 시간을 뺀 elapsedTime.
+                long elapsedTime = currentClickTime - mLastClickTime;
+                mLastClickTime = currentClickTime;
+                //  elapsedTime가 기준 시간보다 늦다면 리턴.
+                if( elapsedTime <= MIN_CLICK_INTERVAL ){
+                    return;
+                }
+                //  여기까지 중복 클릭 방지를 위한 로직
+
+
                 //  인텐트 선언.
                 Intent intent = new Intent( v.getContext(), RstDetail.class );
 
