@@ -42,7 +42,7 @@ Release/
 
 #!build.gradle
 
-
+#asdf.*
 *.iml
 .gradle
 /local.properties
