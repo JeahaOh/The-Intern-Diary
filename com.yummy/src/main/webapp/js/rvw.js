@@ -56,7 +56,7 @@ function saveRvw( id, cont/*rst_no, id, cont, score*/ ){
   }, 500);
 }
 
-//  rst에 대한 rvw list를 가져옴
+//  rst에 대한 rvw rating 정보와 rvw List를 가져와서 출력
 function getRvwInfo(){
   console.log('getRvwInfo');
 

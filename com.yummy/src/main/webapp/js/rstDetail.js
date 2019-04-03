@@ -305,25 +305,25 @@ function postPhot( rst_phot_name ) {
 /**
  * rst 상세정보 JSON객체를 요청하는 함수
  */
-function getRstDetail( rst_no ) {
-  let param = {
-    "rst_no" : rst_no
-  }
-  
-  console.log( param );
-  
-  $.ajax("/yummy/rst/rstDetail" , {
-      method: "POST",
-      data: param,
-      contentType : "application/json; charset=UTF-8",
-      dataType: "json",
-      success: function ( data ) {
-        console.log( data );
-      },
-      error: function(xhr, status, msg) {
-        console.debug('xhr:\n ' + xhr);
-        console.debug('status:\n ' + status);
-        console.debug('msg:\n ' + msg);
-      }
-    });
-}
+//function getRstDetail( rst_no ) {
+//  let param = {
+//    "rst_no" : rst_no
+//  }
+//  
+//  console.log( param );
+//  
+//  $.ajax("/yummy/rst/rstDetail" , {
+//      method: "POST",
+//      data: param,
+//      contentType : "application/json; charset=UTF-8",
+//      dataType: "json",
+//      success: function ( data ) {
+//        console.log( data );
+//      },
+//      error: function(xhr, status, msg) {
+//        console.debug('xhr:\n ' + xhr);
+//        console.debug('status:\n ' + status);
+//        console.debug('msg:\n ' + msg);
+//      }
+//    });
+//}
