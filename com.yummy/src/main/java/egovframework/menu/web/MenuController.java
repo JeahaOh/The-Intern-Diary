@@ -32,7 +32,7 @@ public class MenuController {
   private MenuService menuService;
   
   @ResponseBody
-  @RequestMapping(value="/list", method = RequestMethod.GET, produces = "application/json")
+  @RequestMapping(value="/list", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
   public String getMenuList(int rst_no) throws Exception {
     logger.info("\n\t/menu/mnLst rst_no : {}", rst_no);
     List<Menu> list = menuService.getMenuList(rst_no);

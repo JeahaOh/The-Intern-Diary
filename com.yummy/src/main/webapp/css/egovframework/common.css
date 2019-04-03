@@ -112,3 +112,15 @@ body {
   font-size: large;
 }
 /*    FOOTER    */
+.menu_board {
+  width: 800px;
+}
+.menu_header {
+  margin: 20px;
+}
+.menu {
+  display: inline-block;
+  padding: 5px;
+  float: left;
+  width: 150px;
+}

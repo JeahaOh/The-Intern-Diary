@@ -103,8 +103,8 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 
 
 #catag_no {width: 145px;}
-.outter_container {min-height: 800px; position: relative;}
-.inner_container {  }
+.outter_container {min-height: 800px; position: relative; text-align: center;}
+.inner_container { display: inline-block; }
 .rvw { cursor: pointer; height: 40px; border-bottom: 1px solid #5f01011f; }
 
 hr { margin: 2em 10em; width: 90%; }

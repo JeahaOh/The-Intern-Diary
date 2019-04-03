@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import egovframework.catag.service.CatagService;
 import egovframework.dflt.DefaultVO;
+import egovframework.menu.service.MenuService;
+import egovframework.menu.vo.Menu;
 import egovframework.phot.service.PhotService;
 import egovframework.phot.vo.Phot;
 import egovframework.rst.service.RstService;
@@ -50,6 +52,9 @@ public class RstController {
   
   @Resource(name = "catagService")
   private CatagService catagService;
+  
+  @Resource(name = "menuService")
+  private MenuService menuService;
   
   /** EgovPropertyService */
   @Resource(name = "propertiesService")
@@ -117,12 +122,19 @@ public class RstController {
     Rst rst = rstService.getDetail(id);
     model.addAttribute("rst", rst);
     
-    logger.info(rst.toString());
+    List<Menu> menuList = menuService.getMenuList(id);
+    
+    if( menuList.size() > 0 ) {
+      model.addAttribute("menuList", menuList);
+    }
+    
     model.addAttribute("upperCatagList", catagService.getRstUpperCatagList());
     model.addAttribute("catagList", catagService.getRstLowerCatagList(rst.getUpper_no()));
     model.addAttribute("mode", "Modify");
     
-    logger.info(model.toString(), id);
+    logger.info( "\n\trst/detail rst = {}, {}", id, rst.toString() );
+    logger.info( "\n\trst/detail menuList = {}", menuList.toString() );
+    logger.info( "\n\trst/detail model = \n{}", model.toString() );
     return "rst/rstDetail";
   }
   
