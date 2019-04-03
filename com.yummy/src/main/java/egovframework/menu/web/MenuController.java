@@ -1,11 +1,15 @@
 package egovframework.menu.web;
 
+import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.menu.service.MenuService;
+import egovframework.menu.vo.Menu;
 
 /**
  * @Class Name  : MenuController.java
@@ -26,5 +30,14 @@ public class MenuController {
   
   @Resource(name="menuService")
   private MenuService menuService;
+  
+  @ResponseBody
+  @RequestMapping(value="/list", method = RequestMethod.GET, produces = "application/json")
+  public String getMenuList(int rst_no) throws Exception {
+    logger.info("\n\t/menu/mnLst rst_no : {}", rst_no);
+    List<Menu> list = menuService.getMenuList(rst_no);
+    logger.info("\n\t/menu/mnList return \n{}", list.toString() );
+    return list.toString();
+  }
 
 }

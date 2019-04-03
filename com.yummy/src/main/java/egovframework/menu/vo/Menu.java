@@ -43,6 +43,6 @@ public class Menu {
   
   @Override
   public String toString() {
-    return "\nMenu [menu = " + menu + ", price = " + price + "mn_no=" + mn_no + ", rst_no=" + rst_no + "]";
+    return "Menu [menu = " + menu + ", price = " + price + ", mn_no=" + mn_no + ", rst_no=" + rst_no + "]";
   }
 }

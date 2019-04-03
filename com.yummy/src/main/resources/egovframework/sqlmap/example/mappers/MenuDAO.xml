@@ -13,4 +13,13 @@
     <result property="price" column="price"/>
   </resultMap>
   
+  <select id="getMenuList" parameterType="int" resultType="menu">
+    SELECT
+      mn_no, rst_no, menu, price
+    FROM
+      menu
+    WHERE
+      rst_no = #{rst_no}
+  </select>
+  
 </mapper>

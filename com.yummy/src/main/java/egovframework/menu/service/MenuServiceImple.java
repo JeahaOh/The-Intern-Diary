@@ -1,11 +1,13 @@
 package egovframework.menu.service;
 
+import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import egovframework.menu.DAO.MenuDAO;
+import egovframework.menu.vo.Menu;
 
 /**
  * @Class Name  : MenuServiceImple.java
@@ -28,4 +30,9 @@ public class MenuServiceImple implements MenuService {
   @Resource(name="menuDao")
   private MenuDAO menuDao;
   
+  @Override
+  public List<Menu> getMenuList(int rst_no) throws Exception {
+    logger.info("\n\tmenuService get rst_no : {}", rst_no);
+    return menuDao.getMenuList(rst_no);
+  }
 }

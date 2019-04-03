@@ -1,5 +1,8 @@
 package egovframework.menu.service;
 
+import java.util.List;
+import egovframework.menu.vo.Menu;
+
 /**
  * @Class Name  : MenuService.java
  * @Discription : MenuService Class
@@ -13,5 +16,5 @@ package egovframework.menu.service;
  *      Copyright (C) by JeahaOh All right reserved.
  */
 public interface MenuService {
-
+  List<Menu> getMenuList(int rst_no) throws Exception;
 }

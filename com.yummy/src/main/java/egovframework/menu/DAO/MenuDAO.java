@@ -1,5 +1,7 @@
 package egovframework.menu.DAO;
 
+import java.util.List;
+import egovframework.menu.vo.Menu;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
@@ -19,5 +21,5 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("menuDao")
 public interface MenuDAO {
   
-  
+  List<Menu> getMenuList(int rst_no) throws Exception;
 }
