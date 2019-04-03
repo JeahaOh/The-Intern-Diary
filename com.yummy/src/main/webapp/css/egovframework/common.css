@@ -120,7 +120,10 @@ body {
 }
 .menu {
   display: inline-block;
-  padding: 5px;
+  /* padding: 10px; */
+  margin: 10px;
   float: left;
-  width: 150px;
+  width: 178px;
+  cursor: pointer;
+  /* border: 1px solid silver; */
 }

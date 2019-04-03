@@ -17,7 +17,8 @@ GET 방식 URL (/menu/list?rst_no=XXX )로 Menu List JSON 전송
 ### 11:20
 
 Menu List를 WEB상에서는 어떻게 출력 할지, APK 상에서는 어떻게 출력 할지 고민중...  
-그나저나 사진 File 삭제 로직도 구현 해야 할 것 같은데...
+그나저나 사진 File 삭제 로직도 구현 해야 할 것 같은데...  
+- https://javacpro.tistory.com/27
 
 ### 15:30
 

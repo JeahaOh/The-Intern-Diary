@@ -258,23 +258,24 @@
       </form>
       </div>
       <%-- ======= Menu Board ======= --%>
+      <hr>
       <div class="inner_container menu_board">
         <h3 class="menu_header">MENU</h3>
         <c:choose>
           <c:when test="${menuList eq null}">
-		        <p>메뉴가 등록되지 않았습니다.</p>
-		      </c:when>
-		      <c:otherwise>
-		        <ul class="rst_menus">
-					    <c:forEach var="menu" items="${menuList}" varStatus="status" >
-		            <li class="menu">
-					        <div class="menu_name">${menu.menu}</div>
-					        <div class="menu_price">${menu.price}원</div>
-				        </li>
-					    </c:forEach>
-			      </ul>
-		      </c:otherwise>
-	      </c:choose>
+            <p>메뉴가 등록되지 않았습니다.</p>
+          </c:when>
+          <c:otherwise>
+            <ul class="rst_menus">
+              <c:forEach var="menu" items="${menuList}" varStatus="status" >
+                <li class="menu">
+                  <div class="menu_name">${menu.menu}</div>
+                  <div class="menu_price">${menu.price}원</div>
+                </li>
+              </c:forEach>
+            </ul>
+          </c:otherwise>
+        </c:choose>
       </div>
       <c:if test="${mode eq 'Modify'}">
         <%-- ======= RVW INCLUDE ======= --%>
