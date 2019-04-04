@@ -2,6 +2,7 @@ package com.example.app.Request;
 
 import android.graphics.Bitmap;
 
+import com.example.app.Menu.Menu;
 import com.example.app.Rst.Rater;
 import com.example.app.Rst.Rst;
 import com.example.app.Rvw.Rvw;
@@ -40,7 +41,6 @@ public interface RequestInterface {
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
-
     //  Rvw POST : MultipartForm으로 rvw 정보와 사진을 저장함.
     @Headers( "Accept:application/json;charset=UTF-8" )
     @Multipart
@@ -52,4 +52,7 @@ public interface RequestInterface {
             @Part("cont")      RequestBody cont,
             @Part("score")     RequestBody score
     );
+
+    @GET("/yummy/menu/list")
+    Call<List<Menu>> getMenuBoard(@Query("rst_no") int rst_no);
 }

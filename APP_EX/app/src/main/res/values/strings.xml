@@ -55,4 +55,5 @@
     <string name="cdt">작성일 : </string>
 
     <string name="show_menu">메뉴 보기</string>
+    <string name="menu_board">메뉴판</string>
 </resources>

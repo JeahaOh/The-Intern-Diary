@@ -24,11 +24,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Menu.MenuList"></activity>
+        <activity
+            android:name=".Menu.MenuList"
+            android:theme="@style/Theme.MaterialComponents.Dialog"/>
         <!-- 여기부터 구글 지도를 사용하기 위한 API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" /> <!-- 여기까지 구글 지도를 사용하기 위한 API KEY -->
+            android:value="AIzaSyCAIR-SADIF2z-uuhbPj2XGehv_LoFrH7c" />
+        <!-- 여기까지 구글 지도를 사용하기 위한 API KEY -->
         <activity
             android:name=".Rvw.RvwDetail"
             android:theme="@style/Theme.MaterialComponents.Dialog" />
