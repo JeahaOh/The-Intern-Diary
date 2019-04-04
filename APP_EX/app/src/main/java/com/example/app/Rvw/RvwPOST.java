@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
@@ -66,6 +67,9 @@ public class RvwPOST extends AppCompatActivity {
 
     //  보낼 사진 File의 껍데기, 앨범 또는 카메라에서 가져온 이미지를 저장할 변수.
     private File tempFile;
+
+    //  사진 경로
+    private static String mCurrentPhotPath;
 
     // onActivityResult에서 requestCode로 반환 되는 값.
     private static final int PICK_FROM_ALBUM = 1;
@@ -323,10 +327,11 @@ public class RvwPOST extends AppCompatActivity {
                 String[] proj = { MediaStore.Images.Media.DATA };
 
                 assert photoUri != null;
-                cursor = getContentResolver().query(photoUri, proj, null, null, null);
+                cursor = getContentResolver()
+                        .query(photoUri, proj, null, null, null);
 
                 assert cursor != null;
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                int column_index = cursor.getColumnIndexOrThrow( MediaStore.Images.Media.DATA );
 
                 cursor.moveToFirst();
 
@@ -342,6 +347,36 @@ public class RvwPOST extends AppCompatActivity {
             setImage();
         }
         /*  onActivityResult의 requestCode 값에 따라 로직이 실행됨 */
+
+
+
+//                    File file = tempFile;
+////                    Bitmap bitmap = MediaStore.Images.Media
+////                            .getBitmap( getContentResolver(), Uri.fromFile( file ) );
+////                    if( bitmap != null ){
+////                        ExifInterface ei = new ExifInterface( mCurrentPhotPath );
+////                        int orientation = ei.getAttributeInt( ExifInterface.TAG_ORIENTATION,
+////                                ExifInterface.ORIENTATION_UNDEFINED);
+////
+////                        Bitmap rotatedBitmap = null;
+////                        switch( orientation ){
+////                            case ExifInterface.ORIENTATION_ROTATE_90:
+////                                rotatedBitmap = rotateIamge(bitmap, 90);
+////                                break;
+////                            case ExifInterface.ORIENTATION_ROTATE_180:
+////                                rotatedBitmap = rotateIamge(bitmap, 180);
+////                                break;
+////                            case ExifInterface.ORIENTATION_ROTATE_270:
+////                                rotatedBitmap = rotateIamge(bitmap, 270);
+////                                break;
+////                            case ExifInterface.ORIENTATION_NORMAL :
+////                            default:
+////                                rotatedBitmap = bitmap;
+////                        }
+////                        setImage();
+////                    }
+
+
     }
 
     /** 받아온 이미지 넣기
@@ -363,21 +398,27 @@ public class RvwPOST extends AppCompatActivity {
     /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
     private File createImageFile() throws IOException {
         // 이미지 파일 이름 ( Yummy_{시간}_ )
-        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
+        @SuppressLint("SimpleDateFormat")
+        String timeStamp = new SimpleDateFormat("HHmmss").format( new Date() );
         String imageFileName = "Yummy_" + timeStamp + "_";
 
         // 이미지가 저장될  폴더 이름
-        File storageDir = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
+        File storageDir = new File(
+                Environment.getExternalStorageDirectory() + "/DCIM/Camera/");
         if (!storageDir.exists()) {
             storageDir.mkdirs();
         }
 
-        // 빈 파일 생성
-        return File.createTempFile(
+        File image = File.createTempFile(
                 imageFileName,      /* prefix */
                 ".jpg",       /* suffix */
                 storageDir          /* directory*/
         );
+
+        mCurrentPhotPath = image.getAbsolutePath();
+
+        // 빈 파일 생성
+        return image;
     }
     /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
 
