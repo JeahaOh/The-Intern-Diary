@@ -27,7 +27,7 @@ public class RvwAdapter extends RecyclerView.Adapter<RvwAdapter.ViewHolder> {
 
         View view = LayoutInflater
                 .from( viewGroup.getContext() )
-                .inflate( R.layout.rvw_card, viewGroup, false );
+                .inflate( R.layout.rvw_list_row, viewGroup, false );
 
         return new ViewHolder( view );
     }

@@ -32,16 +32,16 @@ public interface RequestInterface {
     @GET("/yummy/rst/rstList")
     Call<List<Rst>> getRstJSONList();
 
-    //  GET으로 Rater 정보 받아오기
+    //  GET으로 Rater 정보 받아옴
     @GET("/yummy/rater/getRatee")
     Call<Rater> getRate(@Query("rst_no") int rst_no );
 
-    //  JSON 형식으로 POST 요청하기.
+    //  JSON 형식으로 POST 요청
     @FormUrlEncoded
     @POST("/yummy/rvw/getList")
     Call<List<Rvw>> getRvwList( @Field("rst_no") int rst_no );
 
-    //  Rvw POST : MultipartForm으로 rvw 정보와 사진을 저장함.
+    //  Rvw POST : MultipartForm으로 rvw 정보와 사진을 저장
     @Headers( "Accept:application/json;charset=UTF-8" )
     @Multipart
     @POST("/yummy/rvw/uploadRvw")
@@ -53,6 +53,7 @@ public interface RequestInterface {
             @Part("score")     RequestBody score
     );
 
+    //  GET으로 JSON형식의 Menu List를 받아옴
     @GET("/yummy/menu/list")
     Call<List<Menu>> getMenuBoard(@Query("rst_no") int rst_no);
 }

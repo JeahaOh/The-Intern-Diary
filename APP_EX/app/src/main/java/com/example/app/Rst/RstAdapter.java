@@ -1,6 +1,5 @@
 package com.example.app.Rst;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.app.MainActivity;
 import com.example.app.R;
 
 import java.util.ArrayList;
@@ -75,7 +72,7 @@ public class RstAdapter extends RecyclerView.Adapter<RstAdapter.ViewHolder> {
                  * 사용자의 화면에 보여지는 것들은 Activity 위에 있는 View라는 점을 잊지 말아 주세요.
                  */
                 .from( viewGroup.getContext() )
-                .inflate( R.layout.card_row, viewGroup, false );
+                .inflate( R.layout.rst_list_row, viewGroup, false );
 
         return new ViewHolder( view );
     }

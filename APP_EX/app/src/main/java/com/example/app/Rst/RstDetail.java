@@ -77,7 +77,6 @@ public class RstDetail extends AppCompatActivity implements OnMapReadyCallback {
         show_menu_List.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "MENU LIST", Toast.LENGTH_SHORT).show();
                 Intent menuList = new Intent(v.getContext(), MenuList.class);
                 menuList.putExtra("rst_no", rst.getRst_no() );
                 startActivity(menuList);

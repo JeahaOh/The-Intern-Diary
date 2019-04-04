@@ -36,7 +36,7 @@ public class MenuController {
   public List<Menu> getMenuList(int rst_no) throws Exception {
     logger.info("\n\t/menu/mnLst rst_no : {}", rst_no);
     List<Menu> list = menuService.getMenuList(rst_no);
-    logger.info("\n\t/menu/mnList return \n{}", list.toString() );
+    logger.info("\n\t/menu/mnList return {} Menus", list.size() );
     return list;
   }
 

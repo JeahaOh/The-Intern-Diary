@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.app.R;
 
@@ -28,7 +27,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater
                 .from( viewGroup.getContext() )
-                .inflate( R.layout.menu_card, viewGroup, false );
+                .inflate( R.layout.menu_list_row, viewGroup, false );
         return new ViewHolder( view );
     }
 

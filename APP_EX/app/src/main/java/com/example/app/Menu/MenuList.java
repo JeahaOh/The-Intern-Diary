@@ -33,6 +33,7 @@ public class MenuList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //  액티비티의 제목을 바꿈
         setTitle("메뉴판");
         setContentView(R.layout.activity_menu_list);
 
@@ -50,7 +51,7 @@ public class MenuList extends AppCompatActivity {
     }
 
     private void initViews( int rst_no ) {
-        recyclerView = (RecyclerView)findViewById(R.id.menu_card);
+        recyclerView = findViewById(R.id.menu_card);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
