@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
     Button cameraButton;
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cameraButton = findViewById(R.id.camera_button);
 
         //  카메라 버튼에 리스너 추가
-        cameraButton.setOnClickListener( this );
+        cameraButton.setOnClickListener( new Button.OnClickListener(){
+            @Override
+            public void onClick( View view ){
+                takePhoto();
+            }
+        });
 
         //  6.0 마쉬멜로우 이상일 경우에는 권한 체크 후 권한 요청
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -77,17 +83,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //  버튼 onClickListener 처리부분
-    @Override
-    public void onClick( View v ) {
-        switch( v.getId() ){
-            case R.id.camera_button:
-                Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_LONG);
-                //  카메라 앱을 여는 소스
-                takePhoto();
-                break;
-        }
-    }
+//    //  버튼 onClickListener 처리부분
+//    @Override
+//    public void onClick( View v ) {
+//        switch( v.getId() ){
+//            case R.id.camera_button:
+//                Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_LONG);
+//                //  카메라 앱을 여는 소스
+//                takePhoto();
+//                break;
+//        }
+//    }
 
     //  카메라로 촬영한 영상을 가져오는 부분
     protected void onActivityResult( int requestCode, int resultCode, Intent intent ) {
@@ -96,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (requestCode) {
                 case REQUEST_TAKE_PHOTO:
                     if (resultCode == RESULT_OK ) {
-                        Toast.makeText(getApplicationContext(), "onActivityRESULT_OK", Toast.LENGTH_LONG);
                         File file = new File( mCurrentPhotoPath );
+                        Log.d("File", file.toString() );
                         Bitmap bitmap =
                                 MediaStore
                                         .Images
@@ -107,27 +113,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 , Uri.fromFile( file ));
                         if( bitmap != null ) {
                             ExifInterface ei = new ExifInterface( mCurrentPhotoPath );
-                            Toast.makeText(getApplicationContext(), mCurrentPhotoPath, Toast.LENGTH_LONG);
                             int orientation = ei.getAttributeInt
                                     ( ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED );
 
                             Bitmap rotatedBitmap = null;
                             switch( orientation ){
                                 case ExifInterface.ORIENTATION_ROTATE_90:
-                                    Toast.makeText(getApplicationContext(), "ORIENTATION_ROTATE_90", Toast.LENGTH_LONG);
+                                    Log.d("ORIENTATION_ROTATE", "90");
                                     rotatedBitmap = rotateImage( bitmap, 90 );
                                     break;
                                 case ExifInterface.ORIENTATION_ROTATE_180:
-                                    Toast.makeText(getApplicationContext(), "ORIENTATION_ROTATE_90", Toast.LENGTH_LONG);
+                                    Log.d("ORIENTATION_ROTATE", "180");
                                     rotatedBitmap = rotateImage( bitmap, 180 );
                                     break;
                                 case ExifInterface.ORIENTATION_ROTATE_270:
-                                    Toast.makeText(getApplicationContext(), "ORIENTATION_ROTATE_90", Toast.LENGTH_LONG);
+                                    Log.d("ORIENTATION_ROTATE", "270");
                                     rotatedBitmap = rotateImage( bitmap, 270 );
                                     break;
                                 case ExifInterface.ORIENTATION_NORMAL:
                                 default:
-                                    Toast.makeText(getApplicationContext(), "ORIENTATION_NORMAL", Toast.LENGTH_LONG);
+                                    Log.d("ORIENTATION_ROTATE", "NORMAL");
                                     rotatedBitmap = bitmap;
                             }
                             imageView.setImageBitmap( rotatedBitmap );
@@ -163,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void takePhoto() {
         Intent takePictureIntent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
         //  인텐트를 저리 할 카메라 활동이 있는지 확인.
-        if( takePictureIntent.resolveActivity( getPackageManager() ) != null ) {
             //  지정한 곳으로 사진 파일 저장
             File photoFile = null;
             try {
@@ -181,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 takePictureIntent.putExtra( MediaStore.EXTRA_OUTPUT, photoURI );
                 startActivityForResult( takePictureIntent, REQUEST_TAKE_PHOTO );
             }
-        }
     }
 
     //  이미지를 회전 시키는 Method
