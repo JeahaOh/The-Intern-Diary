@@ -79,7 +79,7 @@ public class RvwPOST extends AppCompatActivity {
 
     //  request 객체를 밖으로 뺐음.
     private static final RequestInterface request =
-            RetrofitClient.getClient().create(RequestInterface.class);
+            RetrofitClient.getClient().create( RequestInterface.class );
 
     //  빠른시간 안에 중복 클릭을 방지하기 위한 기준 시간 변수.
     private static final long MIN_CLICK_INTERVAL = 600;
@@ -416,7 +416,6 @@ public class RvwPOST extends AppCompatActivity {
         );
 
         mCurrentPhotPath = image.getAbsolutePath();
-
         // 빈 파일 생성
         return image;
     }

@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.io.File;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.camera_button:
                 Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_LONG);
                 //  카메라 앱을 여는 소스
-                dispatchTakePictureIntent();
+                takePhoto();
                 break;
         }
     }
@@ -141,12 +140,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //  카메라로 촬영한 이미지를 파일로 저장해 주는 함수
+    /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
     private File createImageFile() throws IOException {
         //  이미지 이름 만들어 주기
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format( new Date() );
         String imageFileName = "JEPG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+        // 이미지가 저장될  폴더 이름
+        File storageDir = new File(
+                Environment.getExternalStorageDirectory() + "/DCIM/Camera/JEJE");
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",  /* suffix */
@@ -157,9 +161,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+    /* 카메라에서 찍어온 사진을 저장할 파일 만들기 */
 
     //  카메라 인텐트를 실행하는 별도의 함수
-    private void dispatchTakePictureIntent() {
+    private void takePhoto() {
         Intent takePictureIntent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
         //  인텐트를 저리 할 카메라 활동이 있는지 확인.
         if( takePictureIntent.resolveActivity( getPackageManager() ) != null ) {

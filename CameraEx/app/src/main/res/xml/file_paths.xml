@@ -2,6 +2,6 @@
 <paths
     xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
-        name="storage/emulated"
+        name="/storage/emulated"
         path="Android/data/Ex.Camera/files/Pictures"/>
 </paths>
