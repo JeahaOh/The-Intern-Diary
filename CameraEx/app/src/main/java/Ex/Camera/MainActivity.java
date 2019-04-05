@@ -146,11 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format( new Date() );
         String imageFileName = "JEPG_" + timeStamp + "_";
         // 이미지가 저장될  폴더 이름
-        File storageDir = new File(
-                Environment.getExternalStorageDirectory() + "/DCIM/Camera/JEJE");
-        if (!storageDir.exists()) {
-            storageDir.mkdirs();
-        }
+        File storageDir = getExternalFilesDir( Environment.DIRECTORY_PICTURES );
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",  /* suffix */
